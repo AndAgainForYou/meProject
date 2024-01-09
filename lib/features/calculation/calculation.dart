@@ -1,220 +1,149 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class CalculateNameWidget extends StatelessWidget {
+  const CalculateNameWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Stack(
-        children: <Widget>[
-        Positioned(
-        top: 766,
-        left: 72,
-        child: Container(
-          decoration: BoxDecoration(),
-          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                'Don`t have an account ?',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color.fromRGBO(36, 36, 36, 1),
-                  fontFamily: 'Gilroy',
-                  fontSize: 16,
-                  letterSpacing: 0,
-                  fontWeight: FontWeight.normal,
-                  height: 1,
-                ),
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Sign Up',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color.fromRGBO(36, 36, 36, 1),
-                  fontFamily: 'Gilroy',
-                  fontSize: 16,
-                  letterSpacing: 0,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      Positioned(
-        top: 730,
-        left: 120,
-        child: Text(
-          'Forgot my password',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color.fromRGBO(36, 36, 36, 1),
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            letterSpacing: 0,
-            fontWeight: FontWeight.normal,
-            height: 1,
-          ),
-        ),
-      ),
-      Positioned(
-        top: 486,
-        left: 16,
-        child: Container(
-            width: 358,
-            height: 52,
-            decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(25),
-        topRight: Radius.circular(25),
-        bottomLeft: Radius.circular(25),
-        bottomRight: Radius.circular(25),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-          offset: Offset(1, 3),
-          blurRadius: 9,
-        ),
-      ],
-      gradient: LinearGradient(
-        begin: Alignment(0.8375781774520874, 0.015026814304292202),
-        end: Alignment(-0.015026813372969627, 0.017671197652816772),
-        colors: [
-          Color.fromRGBO(89, 167, 167, 1),
-          Color.fromRGBO(175, 205, 109, 1)
-        ],
-      ),
-    ),
-    child: Stack(
-    children: <Widget>[
-    Positioned(
-    top: 17,
-    left: 161,
-    child: Text(
-    'Next',
-    textAlign: TextAlign.left,
-    style: TextStyle(
-    color: Color.fromRGBO(255, 255, 255, 1),
-    fontFamily: 'Gilroy',
-    fontSize: 16,
-    letterSpacing: 0,
-    fontWeight: FontWeight.normal,
-    height: 1,
-    ),
-    ),
-    ),
-    ],
-    ),
-    ),
-    ),
-    Positioned(
-    top: 216,
-    left: 46,
-    child: Text(
-    'Create your User Name',
-    textAlign: TextAlign.center,
-    style: TextStyle(
-    color: Color.fromRGBO(0, 0, 0, 1),
-    fontFamily: 'Gilroy',
-    fontSize: 28,
-    letterSpacing: 0,
-    fontWeight: FontWeight.normal,
-    height: 1,
-    ),
-    ),
-    ),
-    Positioned(
-    top: 282,
-    left: 99,
-    child: Text(
-    'My name is...',
-    textAlign: TextAlign.left,
-    style: TextStyle(
-    color: Color.fromRGBO(36, 36, 36, 1),
-    fontFamily: 'Gilroy',
-    fontSize: 32,
-    letterSpacing: 0,
-    fontWeight: FontWeight.normal,
-    height: 1,
-    ),
-    ),
-    ),
-    Positioned(
-    top: 121,
-    left: 16,
-    child: Container(
-    decoration: BoxDecoration(),
-    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-    child: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-    Text(
-    'Questions:',
-    textAlign: TextAlign.left,
-    style: TextStyle(
-    color: Color.fromRGBO(36, 36, 36, 1),
-    fontFamily: 'Gilroy',
-    fontSize: 18,
-    letterSpacing: 0,
-    fontWeight: FontWeight.normal,
-    height: 1,
-    ),
-    ),
-    SizedBox(width: 8),
-    Text(
-    '1/39',
-    textAlign: TextAlign.left,
-    style: TextStyle(
-    color: Color.fromRGBO(36, 36, 36, 1),
-    fontFamily: 'Gilroy',
-    fontSize: 18,
-    letterSpacing: 0,
-    fontWeight: FontWeight.normal,
-    height: 1,
-    ),
-    ),
-    ],
-    ),
-    ),
-    ),
-    ],
-    ),
-    );
-  }
-}
-
-
-class CalculateAchieveWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 390,
-      height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 216,
-            left: 17,
+            top: 766,
+            left: 72,
+            child: Container(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'Don`t have an account ?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(36, 36, 36, 1),
+                      fontFamily: 'Gilroy',
+                      fontSize: 16,
+                      letterSpacing: 0,
+                      fontWeight: FontWeight.normal,
+                      height: 1,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Sign Up',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(36, 36, 36, 1),
+                      fontFamily: 'Gilroy',
+                      fontSize: 16,
+                      letterSpacing: 0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 730,
+            left: 120,
             child: Text(
-              'Do you have health goals you want to achieve this month?',
+              'Forgot my password',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color.fromRGBO(36, 36, 36, 1),
                 fontFamily: 'Gilroy',
-                fontSize:  28,
+                fontSize: 16,
+                letterSpacing: 0,
+                fontWeight: FontWeight.normal,
+                height: 1,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 486,
+            left: 16,
+            child: Container(
+              width: 358,
+              height: 52,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                    offset: Offset(1, 3),
+                    blurRadius: 9,
+                  ),
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment(0.8375781774520874, 0.015026814304292202),
+                  end: Alignment(-0.015026813372969627, 0.017671197652816772),
+                  colors: [
+                    Color.fromRGBO(89, 167, 167, 1),
+                    Color.fromRGBO(175, 205, 109, 1)
+                  ],
+                ),
+              ),
+              child: const Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 17,
+                    left: 161,
+                    child: Text(
+                      'Next',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontFamily: 'Gilroy',
+                        fontSize: 16,
+                        letterSpacing: 0,
+                        fontWeight: FontWeight.normal,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 216,
+            left: 46,
+            child: Text(
+              'Create your User Name',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color.fromRGBO(0, 0, 0, 1),
+                fontFamily: 'Gilroy',
+                fontSize: 28,
+                letterSpacing: 0,
+                fontWeight: FontWeight.normal,
+                height: 1,
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 282,
+            left: 99,
+            child: Text(
+              'My name is...',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Color.fromRGBO(36, 36, 36, 1),
+                fontFamily: 'Gilroy',
+                fontSize: 32,
                 letterSpacing: 0,
                 fontWeight: FontWeight.normal,
                 height: 1,
@@ -225,9 +154,9 @@ class CalculateAchieveWidget extends StatelessWidget {
             top: 121,
             left: 16,
             child: Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Row(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
@@ -265,14 +194,88 @@ class CalculateAchieveWidget extends StatelessWidget {
   }
 }
 
+class CalculateAchieveWidget extends StatelessWidget {
+  const CalculateAchieveWidget({Key? key}) : super(key: key);
 
-class CalculateGenderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(255, 255, 255, 1),
+      ),
+      child: Stack(
+        children: <Widget>[
+          const Positioned(
+            top: 216,
+            left: 17,
+            child: Text(
+              'Do you have health goals you want to achieve this month?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color.fromRGBO(36, 36, 36, 1),
+                fontFamily: 'Gilroy',
+                fontSize: 28,
+                letterSpacing: 0,
+                fontWeight: FontWeight.normal,
+                height: 1,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 121,
+            left: 16,
+            child: Container(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'Questions:',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromRGBO(36, 36, 36, 1),
+                      fontFamily: 'Gilroy',
+                      fontSize: 18,
+                      letterSpacing: 0,
+                      fontWeight: FontWeight.normal,
+                      height: 1,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    '1/39',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color.fromRGBO(36, 36, 36, 1),
+                      fontFamily: 'Gilroy',
+                      fontSize: 18,
+                      letterSpacing: 0,
+                      fontWeight: FontWeight.normal,
+                      height: 1,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CalculateGenderWidget extends StatelessWidget {
+  const CalculateGenderWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 390,
+      height: 844,
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -285,14 +288,14 @@ class CalculateGenderWidget extends StatelessWidget {
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.09),
                     offset: Offset(1, 3),
                     blurRadius: 9,
                   ),
                 ],
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment(0.8375781774520874, 0.015026814304292202),
                   end: Alignment(-0.015026813372969627, 0.017671197652816772),
                   colors: [
@@ -301,7 +304,7 @@ class CalculateGenderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Next',
                   style: TextStyle(
@@ -314,7 +317,7 @@ class CalculateGenderWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 216,
             left: 15,
             child: Text(
@@ -328,7 +331,7 @@ class CalculateGenderWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 282,
             left: 149,
             child: Text(
@@ -342,10 +345,13 @@ class CalculateGenderWidget extends StatelessWidget {
               ),
             ),
           ),
-          buildGenderOption(top: 357, left: 16, assetPath: 'assets/images/male.svg'),
-          buildGenderOption(top: 357, left: 138, assetPath: 'assets/images/female.svg'),
-          buildGenderOption(top: 357, left: 260, assetPath: 'assets/images/other.svg'),
-          Positioned(
+          buildGenderOption(
+              top: 357, left: 16, assetPath: 'assets/images/male.svg'),
+          buildGenderOption(
+              top: 357, left: 138, assetPath: 'assets/images/female.svg'),
+          buildGenderOption(
+              top: 357, left: 260, assetPath: 'assets/images/other.svg'),
+          const Positioned(
             top: 121,
             left: 16,
             child: Row(
@@ -378,7 +384,8 @@ class CalculateGenderWidget extends StatelessWidget {
     );
   }
 
-  Widget buildGenderOption({required double top, required double left, required String assetPath}) {
+  Widget buildGenderOption(
+      {required double top, required double left, required String assetPath}) {
     return Positioned(
       top: top,
       left: left,
@@ -387,14 +394,14 @@ class CalculateGenderWidget extends StatelessWidget {
         height: 114,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.09),
+              color: Color.fromRGBO(35, 35, 35, 0.086),
               offset: Offset(1, 3),
               blurRadius: 9,
             ),
           ],
-          color: Color.fromRGBO(255, 255, 255, 1),
+          color: const Color.fromRGBO(255, 255, 255, 1),
         ),
         child: Center(
           child: SvgPicture.asset(
@@ -408,12 +415,14 @@ class CalculateGenderWidget extends StatelessWidget {
 }
 
 class CalculateAgeWidget extends StatelessWidget {
+  const CalculateAgeWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -423,7 +432,7 @@ class CalculateAgeWidget extends StatelessWidget {
             left: 16,
             child: buildNextButton(),
           ),
-          Positioned(
+          const Positioned(
             top: 216,
             left: 80,
             child: Text(
@@ -447,7 +456,7 @@ class CalculateAgeWidget extends StatelessWidget {
             left: 16,
             child: buildAgeSelector(),
           ),
-          Positioned(
+          const Positioned(
             top: 282,
             left: 179,
             child: Text(
@@ -472,14 +481,14 @@ class CalculateAgeWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(0.8375781774520874, 0.015026814304292202),
           end: Alignment(-0.015026813372969627, 0.017671197652816772),
           colors: [
@@ -488,7 +497,7 @@ class CalculateAgeWidget extends StatelessWidget {
           ],
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           'Next',
           style: TextStyle(
@@ -504,8 +513,8 @@ class CalculateAgeWidget extends StatelessWidget {
 
   Widget buildQuestionHeader() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -534,11 +543,11 @@ class CalculateAgeWidget extends StatelessWidget {
 
   Widget buildAgeSelector() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
+          const Text(
             'Age',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -548,10 +557,10 @@ class CalculateAgeWidget extends StatelessWidget {
               fontWeight: FontWeight.normal,
             ),
           ),
-          SizedBox(height: 4),
-          buildDateInput('Day', '23', Color.fromRGBO(252, 108, 76, 1)),
-          buildDateInput('Month', '10', Color.fromRGBO(36, 36, 36, 1)),
-          buildDateInput('Year', '2022', Color.fromRGBO(36, 36, 36, 1)),
+          const SizedBox(height: 4),
+          buildDateInput('Day', '23', const Color.fromRGBO(252, 108, 76, 1)),
+          buildDateInput('Month', '10', const Color.fromRGBO(36, 36, 36, 1)),
+          buildDateInput('Year', '2022', const Color.fromRGBO(36, 36, 36, 1)),
         ],
       ),
     );
@@ -563,21 +572,21 @@ class CalculateAgeWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromRGBO(36, 36, 36, 1),
               fontFamily: 'Gilroy',
               fontSize: 14,
@@ -600,17 +609,19 @@ class CalculateAgeWidget extends StatelessWidget {
 }
 
 class CalculateHightWidget extends StatelessWidget {
+  const CalculateHightWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
         children: <Widget>[
-          Positioned(
+          const Positioned(
             top: 216,
             left: 74,
             child: Text(
@@ -624,7 +635,7 @@ class CalculateHightWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 282,
             left: 140,
             child: Text(
@@ -660,8 +671,8 @@ class CalculateHightWidget extends StatelessWidget {
 
   Widget buildQuestionsHeader() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -690,11 +701,11 @@ class CalculateHightWidget extends StatelessWidget {
 
   Widget buildHeightSelector() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
+          const Text(
             'Height',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -704,7 +715,7 @@ class CalculateHightWidget extends StatelessWidget {
               fontWeight: FontWeight.normal,
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           buildHeightInput(),
         ],
       ),
@@ -715,17 +726,17 @@ class CalculateHightWidget extends StatelessWidget {
     List<int> heights = [170, 171, 172, 173, 174];
     List<Widget> heightWidgets = heights
         .map((height) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Text(
-        height.toString(),
-        style: TextStyle(
-          color: Color.fromRGBO(36, 36, 36, 1),
-          fontFamily: 'Gilroy',
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-        ),
-      ),
-    ))
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                height.toString(),
+                style: const TextStyle(
+                  color: Color.fromRGBO(36, 36, 36, 1),
+                  fontFamily: 'Gilroy',
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ))
         .toList();
 
     return Container(
@@ -733,14 +744,14 @@ class CalculateHightWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -751,16 +762,16 @@ class CalculateHightWidget extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.09),
                   offset: Offset(1, 3),
                   blurRadius: 9,
                 ),
               ],
-              color: Color.fromRGBO(252, 108, 76, 1),
+              color: const Color.fromRGBO(252, 108, 76, 1),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 '175',
                 textAlign: TextAlign.center,
@@ -784,14 +795,14 @@ class CalculateHightWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(0.8375781774520874, 0.015026814304292202),
           end: Alignment(-0.015026813372969627, 0.017671197652816772),
           colors: [
@@ -800,7 +811,7 @@ class CalculateHightWidget extends StatelessWidget {
           ],
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           'Next',
           style: TextStyle(
@@ -816,17 +827,19 @@ class CalculateHightWidget extends StatelessWidget {
 }
 
 class CalculateWeightWidget extends StatelessWidget {
+  const CalculateWeightWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
         children: <Widget>[
-          Positioned(
+          const Positioned(
             top: 216,
             left: 68,
             child: Text(
@@ -840,7 +853,7 @@ class CalculateWeightWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 282,
             left: 154,
             child: Text(
@@ -876,8 +889,8 @@ class CalculateWeightWidget extends StatelessWidget {
 
   Widget buildQuestionsHeader() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -906,11 +919,11 @@ class CalculateWeightWidget extends StatelessWidget {
 
   Widget buildWeightSelector() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
+          const Text(
             'Weight',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -920,7 +933,7 @@ class CalculateWeightWidget extends StatelessWidget {
               fontWeight: FontWeight.normal,
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           buildWeightInput(),
         ],
       ),
@@ -931,17 +944,17 @@ class CalculateWeightWidget extends StatelessWidget {
     List<int> weights = [80, 81, 82, 83, 84];
     List<Widget> weightWidgets = weights
         .map((weight) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Text(
-        weight.toString(),
-        style: TextStyle(
-          color: Color.fromRGBO(36, 36, 36, 1),
-          fontFamily: 'Gilroy',
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-        ),
-      ),
-    ))
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                weight.toString(),
+                style: const TextStyle(
+                  color: Color.fromRGBO(36, 36, 36, 1),
+                  fontFamily: 'Gilroy',
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ))
         .toList();
 
     return Container(
@@ -949,14 +962,14 @@ class CalculateWeightWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -967,16 +980,16 @@ class CalculateWeightWidget extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.09),
                   offset: Offset(1, 3),
                   blurRadius: 9,
                 ),
               ],
-              color: Color.fromRGBO(252, 108, 76, 1),
+              color: const Color.fromRGBO(252, 108, 76, 1),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 '85',
                 textAlign: TextAlign.center,
@@ -1000,14 +1013,14 @@ class CalculateWeightWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(0.8375781774520874, 0.015026814304292202),
           end: Alignment(-0.015026813372969627, 0.017671197652816772),
           colors: [
@@ -1016,7 +1029,7 @@ class CalculateWeightWidget extends StatelessWidget {
           ],
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           'Next',
           style: TextStyle(
@@ -1032,12 +1045,14 @@ class CalculateWeightWidget extends StatelessWidget {
 }
 
 class CalculateAlergicWidget extends StatelessWidget {
+  const CalculateAlergicWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 911,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -1076,10 +1091,10 @@ class CalculateAlergicWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(19),
-        color: Color.fromRGBO(57, 126, 229, 1),
+        color: const Color.fromRGBO(57, 126, 229, 1),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: const Text(
         'Skip',
         textAlign: TextAlign.left,
         style: TextStyle(
@@ -1093,16 +1108,23 @@ class CalculateAlergicWidget extends StatelessWidget {
   }
 
   Widget buildAllergenList() {
-    List<String> allergens = ['Dairy', 'Nuts', 'Gluten', 'Shellfish', 'Soy', 'Eggs'];
+    List<String> allergens = [
+      'Dairy',
+      'Nuts',
+      'Gluten',
+      'Shellfish',
+      'Soy',
+      'Eggs'
+    ];
     List<Widget> allergenWidgets = allergens
         .map((allergen) => Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: buildAllergenItem(allergen),
-    ))
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: buildAllergenItem(allergen),
+            ))
         .toList();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -1118,8 +1140,8 @@ class CalculateAlergicWidget extends StatelessWidget {
       width: 358,
       height: 100,
       decoration: buildBoxDecoration(),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+      child: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Text(
           'Add your option separated by commas',
           textAlign: TextAlign.left,
@@ -1137,14 +1159,14 @@ class CalculateAlergicWidget extends StatelessWidget {
   BoxDecoration buildBoxDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(25),
-      boxShadow: [
+      boxShadow: const [
         BoxShadow(
           color: Color.fromRGBO(0, 0, 0, 0.09),
           offset: Offset(1, 3),
           blurRadius: 9,
         ),
       ],
-      color: Color.fromRGBO(255, 255, 255, 1),
+      color: const Color.fromRGBO(255, 255, 255, 1),
     );
   }
 
@@ -1158,7 +1180,7 @@ class CalculateAlergicWidget extends StatelessWidget {
         child: Text(
           allergen,
           textAlign: TextAlign.left,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromRGBO(36, 36, 36, 1),
             fontFamily: 'Gilroy',
             fontSize: 16,
@@ -1175,14 +1197,14 @@ class CalculateAlergicWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(0.8375781774520874, 0.015026814304292202),
           end: Alignment(-0.015026813372969627, 0.017671197652816772),
           colors: [
@@ -1191,7 +1213,7 @@ class CalculateAlergicWidget extends StatelessWidget {
           ],
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           'Next',
           style: TextStyle(
@@ -1207,8 +1229,8 @@ class CalculateAlergicWidget extends StatelessWidget {
 
   Widget buildTitleSection() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -1239,8 +1261,8 @@ class CalculateAlergicWidget extends StatelessWidget {
 
   Widget buildQuestionsHeader() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -1269,12 +1291,14 @@ class CalculateAlergicWidget extends StatelessWidget {
 }
 
 class CalculateMentalWidget extends StatelessWidget {
+  const CalculateMentalWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -1305,14 +1329,14 @@ class CalculateMentalWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment(0.8375781774520874, 0.015026814304292202),
           end: Alignment(-0.015026813372969627, 0.017671197652816772),
           colors: [
@@ -1321,7 +1345,7 @@ class CalculateMentalWidget extends StatelessWidget {
           ],
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           'Next',
           style: TextStyle(
@@ -1344,13 +1368,13 @@ class CalculateMentalWidget extends StatelessWidget {
     ];
     List<Widget> optionWidgets = options
         .map((option) => Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: buildOptionItem(option),
-    ))
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: buildOptionItem(option),
+            ))
         .toList();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: optionWidgets,
@@ -1364,21 +1388,21 @@ class CalculateMentalWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Text(
           option,
           textAlign: TextAlign.left,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromRGBO(36, 36, 36, 1),
             fontFamily: 'Gilroy',
             fontSize: 16,
@@ -1391,8 +1415,8 @@ class CalculateMentalWidget extends StatelessWidget {
 
   Widget buildTitleSection() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(

@@ -4,17 +4,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
         children: <Widget>[
-          Positioned(
+          const Positioned(
             top: 287,
             left: -200,
             child: SizedBox.shrink(), // Placeholder for missing widget
@@ -22,7 +24,7 @@ class LoadingWidget extends StatelessWidget {
           Positioned(
             top: 211,
             left: 72.14047241210938,
-            child: Container(
+            child: SizedBox(
               width: 208.71910095214844,
               height: 136.00021362304688,
               child: Stack(
@@ -30,7 +32,7 @@ class LoadingWidget extends StatelessWidget {
                   Positioned(
                     top: 40.0853385925293,
                     left: 0,
-                    child: Container(
+                    child: SizedBox(
                       width: 206.6457061767578,
                       height: 95.91487884521484,
                       child: Stack(
@@ -108,7 +110,7 @@ class LoadingWidget extends StatelessWidget {
             child: Container(
               width: 32,
               height: 32,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
               ),
               child: Stack(
@@ -133,12 +135,12 @@ class LoadingWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             child: SizedBox.shrink(), // Placeholder for missing widget
           ),
-          Positioned(
+          const Positioned(
             top: 810,
             left: 7,
             child: SizedBox.shrink(), // Placeholder for missing widget
