@@ -10,6 +10,14 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   bool _isObscure = true;
+  bool _isErrorVisible = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextStyle errorTextStyle = const TextStyle(
+    color: Colors.red, // Set the color you prefer for error text
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +52,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                     flex: 1,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20,),
+                        horizontal: 20,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -120,97 +129,149 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                            offset: Offset(1, 3),
-                            blurRadius: 9,
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: TextField(
-                          maxLength: 25,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 15),
-                            counterText: '',
-                            hintText: 'Enter your email',
-                            hintStyle: const TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Gilroy',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              border: Border.all(color: _isErrorVisible ? Colors.red : Colors.transparent),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                      0, 0, 0, 0.09000000357627869),
+                                  offset: Offset(1, 3),
+                                  blurRadius: 9,
+                                ),
+                              ],
                             ),
-                            border: InputBorder.none,
-                            prefixIcon: Image.asset('assets/images/mail.png',
-                                width: 20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                            offset: Offset(1, 3),
-                            blurRadius: 9,
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: TextField(
-                          maxLength: 25,
-                          obscureText: _isObscure,
-                          decoration: InputDecoration(
-                            hintText: 'Enter your password',
-                            hintStyle: const TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Gilroy',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            border: InputBorder.none,
-                            prefixIcon: Image.asset(
-                              'assets/images/lock.png',
-                              width: 20,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(_isObscure
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
+                            child: TextFormField(
+                              maxLength: 25,
+                              decoration: InputDecoration(
+                                counterText: '',
+                                hintText: 'Enter your email',
+                                hintStyle: const TextStyle(
+                                  color: Colors.grey,
+                                  fontFamily: 'Gilroy',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                border: InputBorder.none,
+                                prefixIcon: Image.asset(
+                                    'assets/images/mail.png',
+                                    width: 20),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  setState(() {
+                                    _isErrorVisible = true;
+                                  });
+                                }
+                                // Add more validation logic if needed
+                                return null;
                               },
-                              iconSize: 25,
                             ),
-                            counterText: '',
                           ),
                         ),
-                      ),
+                        if (_isErrorVisible)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 4.0, left: 35),
+                            child: Text(
+                              'Invalid login',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        SizedBox(height: _isErrorVisible ? 4 : 24),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              border: Border.all(color: _isErrorVisible ? Colors.red : Colors.transparent),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                      0, 0, 0, 0.09000000357627869),
+                                  offset: Offset(1, 3),
+                                  blurRadius: 9,
+                                ),
+                              ],
+                            ),
+                            child: TextFormField(
+                              maxLength: 25,
+                              obscureText: _isObscure,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  setState(() {
+                                    _isErrorVisible = true;
+                                  });
+                                }
+                                // Add more validation logic if needed
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Enter your password',
+                                hintStyle: const TextStyle(
+                                  color: Colors.grey,
+                                  fontFamily: 'Gilroy',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                border: InputBorder.none,
+                                
+                                prefixIcon: Image.asset(
+                                  'assets/images/lock.png',
+                                  width: 20,
+                                ),
+                                counterText: '',
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                  iconSize: 25,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (_isErrorVisible)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 4.0, left: 35),
+                            child: Text(
+                              'Invalid password',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: _isErrorVisible ? 4 : 24),
                   InkWell(
                     onTap: () {
-                      // Handle Facebook login
+                      if (_formKey.currentState!.validate()) {
+                        // Form is valid, proceed with login logic
+                      }
                     },
                     child: Container(
                       constraints: const BoxConstraints(
@@ -222,10 +283,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         gradient: const LinearGradient(
                           begin: Alignment(0.0, -1.0),
                           end: Alignment(1.0, 1.0),
-                          colors: [
-                            Color(0xFF59A7A7),
-                            Color(0xFFAFCD6D)
-                          ], // Set your gradient colors
+                          colors: [Color(0xFF59A7A7), Color(0xFFAFCD6D)],
                           stops: [0.0, 1.0],
                         ),
                         boxShadow: const [
