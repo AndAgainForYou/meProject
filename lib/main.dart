@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/login/login_page.dart';
+import 'package:platy/features/loading/loading_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: const LoginWidget(),
+      home: const LoadingPage(),
     );
   }
 }
