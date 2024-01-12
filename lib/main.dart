@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
+import 'package:platy/features/restore_password/restore_password_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
 import 'package:platy/features/signUp/signUp_page.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
         '/signUp':(context) => const SignUpPage(),
         '/signUpCongratulation':(context) => const SignUpCongratulationPage(),
+        '/RestorePasswordPage':(context) => const RestorePasswordPage(),
       },
      // home: const SignUpPage(),
     );

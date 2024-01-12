@@ -319,30 +319,33 @@ class _LoginPageState extends State<LoginPage> {
                       children: <Widget>[
                         Visibility(
                           visible: !visible,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: Text(
-                              'Forgot my password',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.transparent,
-                                fontFamily: 'Gilroy',
-                                fontSize: 16,
-                                letterSpacing: 0,
-                                fontWeight: FontWeight.normal,
-                                height: 1,
-                                decoration: TextDecoration.combine([
-                                  TextDecoration.underline,
-                                ]),
-                                decorationColor:
-                                    const Color.fromRGBO(89, 167, 167, 1),
-                                decorationThickness: 1.0,
-                                decorationStyle: TextDecorationStyle.solid,
-                                shadows: const [
-                                  Shadow(
-                                      color: Color.fromRGBO(89, 167, 167, 1),
-                                      offset: Offset(0, -5))
-                                ],
+                          child: GestureDetector(
+                            onTap: () => Navigator.pushNamed(context, '/RestorePasswordPage'),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 16.0),
+                              child: Text(
+                                'Forgot my password',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.transparent,
+                                  fontFamily: 'Gilroy',
+                                  fontSize: 16,
+                                  letterSpacing: 0,
+                                  fontWeight: FontWeight.normal,
+                                  height: 1,
+                                  decoration: TextDecoration.combine([
+                                    TextDecoration.underline,
+                                  ]),
+                                  decorationColor:
+                                      const Color.fromRGBO(89, 167, 167, 1),
+                                  decorationThickness: 1.0,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  shadows: const [
+                                    Shadow(
+                                        color: Color.fromRGBO(89, 167, 167, 1),
+                                        offset: Offset(0, -5))
+                                  ],
+                                ),
                               ),
                             ),
                           ),
