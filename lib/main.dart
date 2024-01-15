@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
 import 'package:platy/features/restore_password/restore_password_page.dart';
@@ -18,11 +19,14 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/':(context) => const LoadingPage(),
+
         '/login':(context) => const LoginPage(),
 
         '/signUp':(context) => const SignUpPage(),
         '/signUpCongratulation':(context) => const SignUpCongratulationPage(),
         '/RestorePasswordPage':(context) => const RestorePasswordPage(),
+
+        '/MealGenerationPage':(context) => const MealGenerationPage(),
       },
      // home: const SignUpPage(),
     );
