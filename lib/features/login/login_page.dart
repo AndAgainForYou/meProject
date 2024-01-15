@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
   bool _isErrorVisible = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -310,7 +310,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ),
                   const SizedBox(height: 16),
                   KeyboardVisibilityBuilder(builder: (context, visible) {
-                    print(visible);
                     return Column(
                       children: <Widget>[
                         Visibility(
