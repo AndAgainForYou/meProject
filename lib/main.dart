@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
+import 'package:platy/features/mainPage/diary/diary_page.dart';
+import 'package:platy/features/mainPage/main_home_page.dart';
+import 'package:platy/features/mainPage/myMealPlan/meal_plan_page.dart';
+import 'package:platy/features/mainPage/profile/profile_page.dart';
 import 'package:platy/features/restore_password/restore_password_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
 import 'package:platy/features/signUp/signUp_page.dart';
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       initialRoute: '/',
       routes: {
-        '/':(context) => const LoadingPage(),
+        '/':(context) => const MainHomePage(), //LoginPage()
 
         '/login':(context) => const LoginPage(),
 
@@ -27,6 +31,13 @@ class MyApp extends StatelessWidget {
         '/RestorePasswordPage':(context) => const RestorePasswordPage(),
 
         '/MealGenerationPage':(context) => const MealGenerationPage(),
+        //MainPage navigation bar routes:
+        //'/MainDiary':(context) => const DiaryPage(),
+       // '/MainMyMealPlan':(context) => const MealPlanPage(),
+       // '/MainProfile':(context) => const ProfilePage(),
+        //'/MainHome':(context) => const MainPage(),
+
+        //'/MainPage':(context) => const MainPage(),
       },
      // home: const SignUpPage(),
     );
