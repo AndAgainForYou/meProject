@@ -47,7 +47,6 @@ class _SignUpPageState extends State<SignUpPage> {
       _isPasswordsEqual =
           _passwordController.text == _repeatPasswordController.text;
     });
-    //print(_isPasswordsEqual ? 'password equal' : 'password not equal');
     if (_isPasswordsEqual) {
       Navigator.pushNamed(context, '/signUpCongratulation');
     }
