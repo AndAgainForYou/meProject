@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpWidget extends StatelessWidget {
+  const SignUpWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -16,9 +18,9 @@ class SignUpWidget extends StatelessWidget {
             top: 766,
             left: 67,
             child: Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Row(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
@@ -85,16 +87,16 @@ class SignUpWidget extends StatelessWidget {
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
                     offset: Offset(1, 3),
                     blurRadius: 9,
                   ),
                 ],
-                color: Color.fromRGBO(194, 194, 194, 1),
+                color: const Color.fromRGBO(194, 194, 194, 1),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
@@ -119,14 +121,14 @@ class SignUpWidget extends StatelessWidget {
       height: 52,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
         children: <Widget>[
@@ -135,7 +137,7 @@ class SignUpWidget extends StatelessWidget {
             left: 48,
             child: Text(
               hintText,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromRGBO(23, 23, 23, 0.5),
                 fontFamily: 'Gilroy',
                 fontSize: 16,
@@ -150,7 +152,7 @@ class SignUpWidget extends StatelessWidget {
             child: Container(
               width: 24,
               height: 24,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
               ),
               child: SvgPicture.asset(
@@ -166,13 +168,15 @@ class SignUpWidget extends StatelessWidget {
 }
 
 class SignUpCongratulationWidget extends StatelessWidget {
+  const SignUpCongratulationWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
 
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -181,9 +185,9 @@ class SignUpCongratulationWidget extends StatelessWidget {
             top: 249,
             left: 20,
             child: Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
@@ -223,20 +227,20 @@ class SignUpCongratulationWidget extends StatelessWidget {
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
                     offset: Offset(1, 3),
                     blurRadius: 9,
                   ),
                 ],
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment(0.8375781774520874, 0.015026814304292202),
                   end: Alignment(-0.015026813372969627, 0.017671197652816772),
                   colors: [Color.fromRGBO(89, 167, 167, 1), Color.fromRGBO(175, 205, 109, 1)],
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Let's Start!",
                   style: TextStyle(
@@ -256,22 +260,22 @@ class SignUpCongratulationWidget extends StatelessWidget {
           // and the SVG assets available in your project.
           // The placeholders should be replaced with the actual asset paths.
           // Positioned SVG Widgets here...
-          Positioned(
+          const Positioned(
             top: 55,
             left: 0,
             child: SizedBox.shrink(), // Placeholder for missing widget
           ),
-          Positioned(
+          const Positioned(
             top: 115,
             left: 101,
             child: SizedBox.shrink(), // Placeholder for SVG
           ),
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             child: SizedBox.shrink(), // Placeholder for missing widget
           ),
-          Positioned(
+          const Positioned(
             top: 810,
             left: 7,
             child: SizedBox.shrink(), // Placeholder for missing widget

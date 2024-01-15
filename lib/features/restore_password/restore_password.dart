@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class RestorePasswordWidget extends StatelessWidget {
+  const RestorePasswordWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -19,7 +21,7 @@ class RestorePasswordWidget extends StatelessWidget {
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment(0.8375781774520874, 0.015026814304292202),
                   end: Alignment(-0.015026813372969627, 0.017671197652816772),
                   colors: [
@@ -28,7 +30,7 @@ class RestorePasswordWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Restore Password',
                   style: TextStyle(
@@ -46,9 +48,9 @@ class RestorePasswordWidget extends StatelessWidget {
             top: 302,
             left: 84,
             child: Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
+              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
@@ -84,18 +86,18 @@ class RestorePasswordWidget extends StatelessWidget {
             child: Container(
               width: 184,
               height: 172,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
               ),
               // SVG Placeholder for Image Widget
               // Example SVG Image Widget
-              child: SizedBox.shrink(),
+              child: const SizedBox.shrink(),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 139,
             left: 101,
-            child: Container(
+            child: SizedBox(
               width: 151,
               height: 98.390625,
               // SVG Placeholder for Image Widget
@@ -103,12 +105,12 @@ class RestorePasswordWidget extends StatelessWidget {
               child: SizedBox.shrink(),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             child: SizedBox.shrink(), // Placeholder for missing widget
           ),
-          Positioned(
+          const Positioned(
             top: 810,
             left: 7,
             child: SizedBox.shrink(), // Placeholder for missing widget
@@ -121,12 +123,14 @@ class RestorePasswordWidget extends StatelessWidget {
 
 
 class RestorePasswordDoneWidget extends StatelessWidget {
+  const RestorePasswordDoneWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -139,7 +143,7 @@ class RestorePasswordDoneWidget extends StatelessWidget {
               height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     begin: Alignment(0.8375781774520874, 0.015026814304292202),
                     end: Alignment(-0.015026813372969627, 0.017671197652816772),
                     colors: [
@@ -148,7 +152,7 @@ class RestorePasswordDoneWidget extends StatelessWidget {
                     ]
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'To Log In',
                   style: TextStyle(
@@ -166,8 +170,8 @@ class RestorePasswordDoneWidget extends StatelessWidget {
             top: 249,
             left: 38,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
@@ -202,13 +206,13 @@ class RestorePasswordDoneWidget extends StatelessWidget {
           // The placeholders should be replaced with the actual SVG asset paths.
           // Additional Positioned Widgets...
           // Placeholder for missing widget
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             child: SizedBox.shrink(),
           ),
           // Placeholder for missing widget
-          Positioned(
+          const Positioned(
             top: 810,
             left: 7,
             child: SizedBox.shrink(),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MealGenerationWidget extends StatelessWidget {
+  const MealGenerationWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
       height: 844,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -28,7 +30,7 @@ class MealGenerationWidget extends StatelessWidget {
   }
 
   Widget buildLoadingCircle() {
-    return Container(
+    return SizedBox(
       width: 280,
       height: 280,
       child: Stack(
@@ -53,8 +55,8 @@ class MealGenerationWidget extends StatelessWidget {
 
   Widget buildLoadingText() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -85,8 +87,8 @@ class MealGenerationWidget extends StatelessWidget {
 
   Widget buildTitleSection() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
