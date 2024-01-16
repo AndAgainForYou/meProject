@@ -247,6 +247,7 @@ class _ProVersionPageState extends State<ProVersionPage> {
       ),
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       child: RadioListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         title: Text(
           title,
           style: const TextStyle(

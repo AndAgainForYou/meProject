@@ -1,198 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CalculateNameWidget extends StatelessWidget {
-  const CalculateNameWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 390,
-      height: 844,
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 766,
-            left: 72,
-            child: Container(
-              decoration: const BoxDecoration(),
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Don`t have an account ?',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 16,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    'Sign Up',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 16,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 730,
-            left: 120,
-            child: Text(
-              'Forgot my password',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(36, 36, 36, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 16,
-                letterSpacing: 0,
-                fontWeight: FontWeight.normal,
-                height: 1,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 486,
-            left: 16,
-            child: Container(
-              width: 358,
-              height: 52,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                    offset: Offset(1, 3),
-                    blurRadius: 9,
-                  ),
-                ],
-                gradient: LinearGradient(
-                  begin: Alignment(0.8375781774520874, 0.015026814304292202),
-                  end: Alignment(-0.015026813372969627, 0.017671197652816772),
-                  colors: [
-                    Color.fromRGBO(89, 167, 167, 1),
-                    Color.fromRGBO(175, 205, 109, 1)
-                  ],
-                ),
-              ),
-              child: const Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 17,
-                    left: 161,
-                    child: Text(
-                      'Next',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Gilroy',
-                        fontSize: 16,
-                        letterSpacing: 0,
-                        fontWeight: FontWeight.normal,
-                        height: 1,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 216,
-            left: 46,
-            child: Text(
-              'Create your User Name',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 28,
-                letterSpacing: 0,
-                fontWeight: FontWeight.normal,
-                height: 1,
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 282,
-            left: 99,
-            child: Text(
-              'My name is...',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: Color.fromRGBO(36, 36, 36, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 32,
-                letterSpacing: 0,
-                fontWeight: FontWeight.normal,
-                height: 1,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 121,
-            left: 16,
-            child: Container(
-              decoration: const BoxDecoration(),
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Questions:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    '1/39',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class CalculateMainWidget extends StatelessWidget {
+//   const CalculateMainWidget({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       leading: const Column(
+//         children: [
+//           Icon(
+//             Icons.arrow_back_ios,
+//             color: Colors.black,
+//             semanticLabel: 'Back',
+//           ),
+//           Image(
+//             image: AssetImage('assets/images/logo_small.png'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class CalculateAchieveWidget extends StatelessWidget {
   const CalculateAchieveWidget({Key? key}) : super(key: key);
