@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:platy/features/mainPage/diary/diary_page.dart';
+import 'package:platy/features/mainPage/main_seeMore_page.dart';
 import 'package:platy/features/mainPage/myMealPlan/meal_plan_page.dart';
 import 'package:platy/features/mainPage/profile/profile_page.dart';
 
@@ -45,13 +46,12 @@ class _MainHomePageState extends State<MainHomePage> {
                 ],
               ),
               child: IconButton(
-                    icon: Image.asset(
-                      'assets/images/bell_pin.png',
-                      width: 24,
-                      height: 24,
-                    ),
-                    onPressed: () {}),
-              
+                  icon: Image.asset(
+                    'assets/images/bell_pin.png',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onPressed: () {}),
             ),
           ),
         ],
@@ -180,7 +180,11 @@ class MainHome extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Event handler for the button
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SeeMorePage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -266,7 +270,8 @@ class MainHome extends StatelessWidget {
                 animationDuration: 2000,
                 percent: 0.9,
                 barRadius: const Radius.circular(18),
-                progressColor: const Color.fromARGB(255, 114, 205, 109),
+                progressColor: const Color.fromRGBO(137, 234, 103, 1),
+                backgroundColor: const Color.fromRGBO(23, 23, 23, 0.25),
               ),
               const SizedBox(height: 16),
               Row(

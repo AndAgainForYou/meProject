@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       initialRoute: '/',
       routes: {
-        '/':(context) => const MainHomePage(), //LoginPage()
+        '/':(context) => const LoadingPage(), //LoadingPage()
 
         '/login':(context) => const LoginPage(),
 

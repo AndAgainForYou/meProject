@@ -236,7 +236,6 @@ class _RestorePasswordPageState extends State<RestorePasswordPage> {
                                       child: GestureDetector(
                                         onTap: () {
                                           Navigator.of(context).pop();
-                                          print('go to login...');
                                         },
                                         child: Container(
                                           constraints: const BoxConstraints(
