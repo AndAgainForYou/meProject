@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:platy/features/calculation/theme.dart';
 
 // class CalculateMainWidget extends StatelessWidget {
 //   const CalculateMainWidget({Key? key}) : super(key: key);
@@ -22,225 +23,78 @@ import 'package:flutter_svg/flutter_svg.dart';
 //   }
 // }
 
-class CalculateAchieveWidget extends StatelessWidget {
-  const CalculateAchieveWidget({Key? key}) : super(key: key);
+// class CalculateAchieveWidget extends StatelessWidget {
+//   const CalculateAchieveWidget({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 390,
-      height: 844,
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Stack(
-        children: <Widget>[
-          const Positioned(
-            top: 216,
-            left: 17,
-            child: Text(
-              'Do you have health goals you want to achieve this month?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(36, 36, 36, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 28,
-                letterSpacing: 0,
-                fontWeight: FontWeight.normal,
-                height: 1,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 121,
-            left: 16,
-            child: Container(
-              decoration: const BoxDecoration(),
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Questions:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    '1/39',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(36, 36, 36, 1),
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CalculateGenderWidget extends StatelessWidget {
-  const CalculateGenderWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 390,
-      height: 844,
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 734,
-            left: 16,
-            child: Container(
-              width: 358,
-              height: 52,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.09),
-                    offset: Offset(1, 3),
-                    blurRadius: 9,
-                  ),
-                ],
-                gradient: const LinearGradient(
-                  begin: Alignment(0.8375781774520874, 0.015026814304292202),
-                  end: Alignment(-0.015026813372969627, 0.017671197652816772),
-                  colors: [
-                    Color.fromRGBO(89, 167, 167, 1),
-                    Color.fromRGBO(175, 205, 109, 1)
-                  ],
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  'Next',
-                  style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontFamily: 'Gilroy',
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 216,
-            left: 15,
-            child: Text(
-              'Please indicate your gender',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 28,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 282,
-            left: 149,
-            child: Text(
-              'I am...',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(36, 36, 36, 1),
-                fontFamily: 'Gilroy',
-                fontSize: 32,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          buildGenderOption(
-              top: 357, left: 16, assetPath: 'assets/images/male.svg'),
-          buildGenderOption(
-              top: 357, left: 138, assetPath: 'assets/images/female.svg'),
-          buildGenderOption(
-              top: 357, left: 260, assetPath: 'assets/images/other.svg'),
-          const Positioned(
-            top: 121,
-            left: 16,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(
-                  'Questions:',
-                  style: TextStyle(
-                    color: Color.fromRGBO(36, 36, 36, 1),
-                    fontFamily: 'Gilroy',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                SizedBox(width: 8),
-                Text(
-                  '1/39',
-                  style: TextStyle(
-                    color: Color.fromRGBO(36, 36, 36, 1),
-                    fontFamily: 'Gilroy',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildGenderOption(
-      {required double top, required double left, required String assetPath}) {
-    return Positioned(
-      top: top,
-      left: left,
-      child: Container(
-        width: 114,
-        height: 114,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(35, 35, 35, 0.086),
-              offset: Offset(1, 3),
-              blurRadius: 9,
-            ),
-          ],
-          color: const Color.fromRGBO(255, 255, 255, 1),
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            assetPath,
-            semanticsLabel: 'gender icon',
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 390,
+//       height: 844,
+//       decoration: const BoxDecoration(
+//         color: Color.fromRGBO(255, 255, 255, 1),
+//       ),
+//       child: Stack(
+//         children: <Widget>[
+//           const Positioned(
+//             top: 216,
+//             left: 17,
+//             child: Text(
+//               'Do you have health goals you want to achieve this month?',
+//               textAlign: TextAlign.center,
+//               style: TextStyle(
+//                 color: Color.fromRGBO(36, 36, 36, 1),
+//                 fontFamily: 'Gilroy',
+//                 fontSize: 28,
+//                 letterSpacing: 0,
+//                 fontWeight: FontWeight.normal,
+//                 height: 1,
+//               ),
+//             ),
+//           ),
+//           Positioned(
+//             top: 121,
+//             left: 16,
+//             child: Container(
+//               decoration: const BoxDecoration(),
+//               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+//               child: const Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: <Widget>[
+//                   Text(
+//                     'Questions:',
+//                     textAlign: TextAlign.left,
+//                     style: TextStyle(
+//                       color: Color.fromRGBO(36, 36, 36, 1),
+//                       fontFamily: 'Gilroy',
+//                       fontSize: 18,
+//                       letterSpacing: 0,
+//                       fontWeight: FontWeight.normal,
+//                       height: 1,
+//                     ),
+//                   ),
+//                   SizedBox(width: 8),
+//                   Text(
+//                     '1/39',
+//                     textAlign: TextAlign.left,
+//                     style: TextStyle(
+//                       color: Color.fromRGBO(36, 36, 36, 1),
+//                       fontFamily: 'Gilroy',
+//                       fontSize: 18,
+//                       letterSpacing: 0,
+//                       fontWeight: FontWeight.normal,
+//                       height: 1,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class CalculateAgeWidget extends StatelessWidget {
   const CalculateAgeWidget({Key? key}) : super(key: key);
