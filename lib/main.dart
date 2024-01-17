@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_gender.dart';
+import 'package:platy/features/calculation/calculation_user_name.dart';
+import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_gender.dart';
+import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
-import 'package:platy/features/mainPage/diary/diary_page.dart';
-import 'package:platy/features/mainPage/main_home_page.dart';
-import 'package:platy/features/mainPage/myMealPlan/meal_plan_page.dart';
-import 'package:platy/features/mainPage/profile/profile_page.dart';
+import 'package:platy/features/pro_version/pro_version_page.dart';
 import 'package:platy/features/restore_password/restore_password_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
 import 'package:platy/features/signUp/signUp_page.dart';
@@ -22,31 +24,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       initialRoute: '/',
       routes: {
-        '/':(context) => const LoadingPage(), //LoadingPage()
-
-        '/login':(context) => const LoginPage(),
-
-        '/signUp':(context) => const SignUpPage(),
-        '/signUpCongratulation':(context) => const SignUpCongratulationPage(),
-        '/RestorePasswordPage':(context) => const RestorePasswordPage(),
-
-        '/MealGenerationPage':(context) => const MealGenerationPage(),
-        //MainPage navigation bar routes:
-        //'/MainDiary':(context) => const DiaryPage(),
-       // '/MainMyMealPlan':(context) => const MealPlanPage(),
-       // '/MainProfile':(context) => const ProfilePage(),
-        //'/MainHome':(context) => const MainPage(),
-
-        //'/MainPage':(context) => const MainPage(),
+        '/': (context) => const LoadingPage(),
+        '/login': (context) => const LoginPage(),
+        '/signUp': (context) => const SignUpPage(),
+        '/signUpCongratulation': (context) => const SignUpCongratulationPage(),
+        '/RestorePasswordPage': (context) => const RestorePasswordPage(),
+        '/MealGenerationPage': (context) => const MealGenerationPage(),
+        '/ProVersionPage': (context) => const ProVersionPage(),
       },
-     // home: const SignUpPage(),
+      //home: const SignUpPage(),
     );
   }
 }
-
-
-
-
 
 class MainScreenWidget extends StatelessWidget {
   const MainScreenWidget({Key? key}) : super(key: key);
