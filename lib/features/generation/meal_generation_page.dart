@@ -18,7 +18,7 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
         leading: IconButton(
           icon: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Icon(Icons.arrow_back), Text('Back')],
+            children: [Icon(Icons.arrow_back), SizedBox(width: 8,), Text('Back')],
           ),
           onPressed: () {
             // Navigator.of(context).pop();
