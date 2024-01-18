@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateGenderWidget extends StatefulWidget {
@@ -9,138 +10,85 @@ class CalculateGenderWidget extends StatefulWidget {
 }
 
 class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
-  String selectedGender = ''; // Зберігає вибраний гендер
+  String selectedGender = '';
   bool get _isButtonActive => selectedGender.isNotEmpty;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 150,
-        toolbarHeight: 100,
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Обробник натискання кнопки назад
-                },
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                          fontFamily: 'Gilroy',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Spacer(),
+        Text(
+          'Please indicate your gender',
+          textAlign: TextAlign.center,
+          style: whiteTheme.textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 20),
+        Text(
+          selectedGender.isNotEmpty ? selectedGender : 'I am...',
+          textAlign: TextAlign.center,
+          style: whiteTheme.textTheme.titleMedium?.copyWith(
+            color: selectedGender.isNotEmpty ? Colors.black : Colors.grey,
           ),
         ),
-        centerTitle: true,
-        title: const Image(
-          image: AssetImage('assets/images/logo_small.png'),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        const SizedBox(height: 60),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Row(
-              children: [
-                Text('Questions:',
-                    textAlign: TextAlign.left,
-                    style: whiteTheme.textTheme.titleSmall),
-                const SizedBox(width: 8),
-                Text('2/39',
-                    textAlign: TextAlign.left,
-                    style: whiteTheme.textTheme.bodySmall),
-              ],
-            ),
-            const SizedBox(height: 100),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Please indicate your gender',
-                  textAlign: TextAlign.center,
-                  style: whiteTheme.textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  selectedGender.isNotEmpty ? selectedGender : 'I am...',
-                  textAlign: TextAlign.center,
-                  style: whiteTheme.textTheme.titleMedium?.copyWith(
-                    color:
-                        selectedGender.isNotEmpty ? Colors.black : Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 60),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buildGenderOption(
-                        assetPath: 'assets/images/male.png',
-                        gender: 'Male',
-                        maincolor: Colors.blue),
-                    buildGenderOption(
-                        assetPath: 'assets/images/female.png',
-                        gender: 'Female',
-                        maincolor: Colors.pink),
-                    buildGenderOption(
-                        assetPath: 'assets/images/other.png',
-                        gender: 'Other',
-                        maincolor: Colors.orange),
-                  ],
-                ),
-              ],
-            ),
-            const Spacer(),
-            Container(
-              height: 54.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                gradient: const LinearGradient(
-                  colors: [
-                    Color(0xFF59A7A7),
-                    Color(0xFFAFCD6D),
-                  ],
-                ),
-              ),
-              child: ElevatedButton(
-                onPressed: _isButtonActive ? () {} : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                  ),
-                ),
-                child: const Text(
-                  'Next',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            buildGenderOption(
+                assetPath: 'assets/images/male.png',
+                gender: 'Male',
+                maincolor: Colors.blue),
+            buildGenderOption(
+                assetPath: 'assets/images/female.png',
+                gender: 'Female',
+                maincolor: Colors.pink),
+            buildGenderOption(
+                assetPath: 'assets/images/other.png',
+                gender: 'Other',
+                maincolor: Colors.orange),
           ],
         ),
-      ),
+        const Spacer(),
+        Container(
+          height: 54.0,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25.0),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xFF59A7A7),
+                Color(0xFFAFCD6D),
+              ],
+            ),
+          ),
+          child: ElevatedButton(
+            onPressed: _isButtonActive
+                ? () {
+                    CalculateGlobalWidget.of(context).pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  }
+                : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(22.0),
+              ),
+            ),
+            child: const Text(
+              'Next',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

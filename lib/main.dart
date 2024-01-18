@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/calculation_gender.dart';
-import 'package:platy/features/calculation/calculation_user_name.dart';
-import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/calculation_gender.dart';
-import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
@@ -11,6 +6,7 @@ import 'package:platy/features/pro_version/pro_version_page.dart';
 import 'package:platy/features/restore_password/restore_password_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
 import 'package:platy/features/signUp/signUp_page.dart';
+import 'package:platy/features/calculation/calculation_global.dart';
 
 void main() => runApp(const MyApp());
 
