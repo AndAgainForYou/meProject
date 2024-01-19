@@ -3,6 +3,7 @@ import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
+import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -119,7 +120,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                     }),
               ],
             ),
-            //
             Expanded(
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -129,6 +129,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateGenderWidget(),
                   CalculateAgeWidget(),
                   CalculateHeightWidget(),
+                  CalculateWeightWidget(),
                 ],
               ),
             ),
