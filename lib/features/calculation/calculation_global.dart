@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
+import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/theme.dart';
 
@@ -127,6 +128,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateNameWidget(),
                   CalculateGenderWidget(),
                   CalculateAgeWidget(),
+                  CalculateHeightWidget(),
                 ],
               ),
             ),
