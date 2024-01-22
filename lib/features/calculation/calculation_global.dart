@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
+import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
@@ -35,9 +36,15 @@ class CalculateGlobalWidget extends StatefulWidget {
 class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   final pageNotifier = ValueNotifier<int>(1);
   final pageController = PageController();
+  final ValueNotifier<bool> showSkipButtonNotifier = ValueNotifier<bool>(false);
 
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
+    bool isSkipButtonWidget = false;
+    if (pageNotifier.value == 6) {
+      isSkipButtonWidget = true;
+    }
+    showSkipButtonNotifier.value = isSkipButtonWidget;
   }
 
   @override
@@ -98,6 +105,38 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         title: const Image(
           image: AssetImage('assets/images/logo_small.png'),
         ),
+        actions: [
+          ValueListenableBuilder<bool>(
+            valueListenable: showSkipButtonNotifier,
+            builder: (context, showSkipButton, child) {
+              return showSkipButton
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.ease);
+                        },
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue),
+                        ),
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -130,6 +169,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateAgeWidget(),
                   CalculateHeightWidget(),
                   CalculateWeightWidget(),
+                  CalculateAlergicListWidget(),
                 ],
               ),
             ),
