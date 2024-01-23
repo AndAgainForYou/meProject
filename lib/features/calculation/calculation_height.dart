@@ -95,6 +95,7 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
                 perspective: 0.0001,
                 totalCount: _nTotalCount,
                 initValue: _nInitValue,
+                animationDuration: const Duration(milliseconds: 600),
                 selectedNumberStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
