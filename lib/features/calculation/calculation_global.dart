@@ -10,6 +10,7 @@ import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_sports_competition.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
+import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -182,6 +183,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateSportCompetitionWidget(),
                   CalculateImpGoalsListWidget(),
                   CalculateFreqSportWidget(),
+
+                  CalculateWeightLossWidget(), //weight loss widget
                 ],
               ),
             ),
