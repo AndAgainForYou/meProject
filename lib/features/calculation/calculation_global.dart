@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
@@ -42,7 +43,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
     bool isSkipButtonWidget = false;
-    if (pageNotifier.value == 6 || pageNotifier.value == 7) {
+    if (pageNotifier.value == 6 ||
+        pageNotifier.value == 7 ||
+        pageNotifier.value == 8) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -172,6 +175,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateWeightWidget(),
                   CalculateAlergicListWidget(),
                   CalculateChronicDiseasesListWidget(),
+                  CalculateActivitySportListWidget(),
                 ],
               ),
             ),
