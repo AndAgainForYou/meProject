@@ -16,9 +16,9 @@ class _DiaryPageState extends State<DiaryPage> {
     super.initState();
 
     items = [
-      {'title': 'Fastfood', 'date': '06.16.2023'},
-      {'title': 'Smoking', 'date': '06.16.2023'},
-      {'title': 'Alcohol', 'date': '06.16.2023'},
+      {'title': 'Fastfood', 'day': '06', 'month': '01', 'year': '2023'},
+      {'title': 'Smoking', 'day': '05', 'month': '01', 'year': '2023'},
+      {'title': 'Alcohol', 'day': '06', 'month': '01', 'year': '2023'},
     ];
   }
 
@@ -143,35 +143,73 @@ class _DiaryPageState extends State<DiaryPage> {
                   children: List.generate(items.length, (index) {
                     return Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    items[index]['title'] ?? '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DiaryAddPage(
+                                        titleController: TextEditingController(
+                                            text: items[index]['title']),
+                                        dayController: TextEditingController(
+                                            text: items[index]['day']),
+                                        monthController: TextEditingController(
+                                            text: items[index]['month']),
+                                        yearController: TextEditingController(
+                                            text: items[index]['year']),
+                                      )),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      items[index]['title'] ?? '',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    items[index]['date'] ?? '',
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
+                                    Row(
+                                      children: [
+                                        Text(
+                                          items[index]['day'] ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const Text('.'),
+                                        Text(
+                                          items[index]['month'] ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const Text('.'),
+                                        Text(
+                                          items[index]['year'] ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Image.asset(
-                                'assets/images/trash_red_icon.png',
-                                width: 24,
-                              ),
-                            ],
+                                  ],
+                                ),
+                                Image.asset(
+                                  'assets/images/trash_red_icon.png',
+                                  width: 24,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         // Conditionally add the divider if it's not the last item
