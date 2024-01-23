@@ -5,6 +5,7 @@ import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
+import 'package:platy/features/calculation/calculation_sports_competition.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/theme.dart';
@@ -176,6 +177,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateAlergicListWidget(),
                   CalculateChronicDiseasesListWidget(),
                   CalculateActivitySportListWidget(),
+                  CalculateSportCompetitionWidget(),
                 ],
               ),
             ),
