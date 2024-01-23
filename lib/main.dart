@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       initialRoute: '/',
       routes: {
-        '/': (context) => const CalculateGlobalWidget(), //LoadingPage
+        '/': (context) => const LoadingPage(),
         '/login': (context) => const LoginPage(),
         '/signUp': (context) => const SignUpPage(),
         '/signUpCongratulation': (context) => const SignUpCongratulationPage(),
