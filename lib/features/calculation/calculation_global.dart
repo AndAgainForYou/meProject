@@ -3,6 +3,7 @@ import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
+import 'package:platy/features/calculation/calculation_food_preferences.dart';
 import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
@@ -196,7 +197,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateWeightLossSliderWidget(), //weight loss slider
                   CalculateMentalHealthWidget(), //mental health widget
                   CalculateSkinAndBeautyWidget(), //skin and beauty list widget
-
+                  CalculateFoodPreferencesWidget(),
                   CalculateIntermediateFastingWidget(),
                   CalculateFastingDaysWidget(),
                 ],

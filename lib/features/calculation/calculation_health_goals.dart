@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/calculation_global.dart';
+import 'package:platy/features/calculation/calculation_mental_health.dart';
+import 'package:platy/features/calculation/calculation_skin_beauty.dart';
+import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateHealthGoalsWidget extends StatefulWidget {
@@ -14,8 +16,18 @@ class _CalculateHealthGoalsWidgetState
     extends State<CalculateHealthGoalsWidget> {
   String selectedPoint = '';
   bool _isButtonActive = false;
+  Widget? _selectedWidget;
+
   @override
   Widget build(BuildContext context) {
+    if (_selectedWidget != null) {
+      return _selectedWidget!;
+    } else {
+      return mainPageHealthGoals();
+    }
+  }
+
+  Widget mainPageHealthGoals() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,24 +39,31 @@ class _CalculateHealthGoalsWidgetState
           style: whiteTheme.textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
-        buildCustomContainer(
-          assetPath: 'assets/images/weight_loss.png',
-          label: 'Weight loss',
-          subtitle: 'The Path to Strong Muscles.',
+        Expanded(
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            children: [
+              buildCustomContainer(
+                assetPath: 'assets/images/weight_loss.png',
+                label: 'Weight loss',
+                subtitle: 'The Path to Strong Muscles.',
+              ),
+              const SizedBox(height: 10),
+              buildCustomContainer(
+                assetPath: 'assets/images/mental_health.png',
+                label: 'Mental Health',
+                subtitle: 'Bring thoughts to order',
+              ),
+              const SizedBox(height: 10),
+              buildCustomContainer(
+                assetPath: 'assets/images/skin_and_beauty.png',
+                label: 'Skin and Beauty',
+                subtitle: 'Look better than yesterday',
+              ),
+            ],
+          ),
         ),
-        const SizedBox(height: 10),
-        buildCustomContainer(
-          assetPath: 'assets/images/mental_health.png',
-          label: 'Mental Health',
-          subtitle: 'Bring thoughts to order',
-        ),
-        const SizedBox(height: 10),
-        buildCustomContainer(
-          assetPath: 'assets/images/skin_and_beauty.png',
-          label: 'Skin and Beauty',
-          subtitle: 'Look better than yesterday',
-        ),
-        const Spacer(),
         Container(
           height: 54.0,
           width: double.infinity,
@@ -60,9 +79,19 @@ class _CalculateHealthGoalsWidgetState
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
+                    if (selectedPoint == 'Weight loss') {
+                      setState(() {
+                        _selectedWidget = CalculateWeightLossWidget();
+                      });
+                    } else if (selectedPoint == 'Mental Health') {
+                      setState(() {
+                        _selectedWidget = CalculateMentalHealthWidget();
+                      });
+                    } else if (selectedPoint == 'Skin and Beauty') {
+                      setState(() {
+                        _selectedWidget = CalculateSkinAndBeautyWidget();
+                      });
+                    }
                   }
                 : null,
             style: ElevatedButton.styleFrom(
