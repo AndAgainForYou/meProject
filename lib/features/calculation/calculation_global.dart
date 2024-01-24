@@ -3,11 +3,13 @@ import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
+import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
 import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
+import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
 import 'package:platy/features/calculation/calculation_skin_beauty.dart';
 import 'package:platy/features/calculation/calculation_sports_competition.dart';
@@ -194,6 +196,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateWeightLossSliderWidget(), //weight loss slider
                   CalculateMentalHealthWidget(), //mental health widget
                   CalculateSkinAndBeautyWidget(), //skin and beauty list widget
+
+                  CalculateIntermediateFastingWidget(),
+                  CalculateFastingDaysWidget(),
                 ],
               ),
             ),
