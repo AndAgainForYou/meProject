@@ -14,6 +14,7 @@ import 'package:platy/features/calculation/calculation_sports_competition.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/calculation_weight_loss.dart';
+import 'package:platy/features/calculation/calculation_weight_loss_slider.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -75,7 +76,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 150,
+        leadingWidth: 130,
         toolbarHeight: 100,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -116,6 +117,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         title: const Image(
           image: AssetImage('assets/images/logo_small.png'),
         ),
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: Colors.white,
         actions: [
           ValueListenableBuilder<bool>(
             valueListenable: showSkipButtonNotifier,
@@ -183,11 +186,12 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateAlergicListWidget(),
                   CalculateChronicDiseasesListWidget(),
                   CalculateActivitySportListWidget(),
-                  CalculateFreqSportWidget(),
                   CalculateSportCompetitionWidget(),
                   CalculateImpGoalsListWidget(),
+                  CalculateFreqSportWidget(),
                   CalculateHealthGoalsWidget(),
-                  CalculateWeightLossWidget(), //weight loss widget
+                  CalculateWeightLossWidget(),  //weight loss widget
+                  CalculateWeightLossSliderWidget(), //weight loss slider
                   CalculateMentalHealthWidget(), //mental health widget
                   CalculateSkinAndBeautyWidget(), //skin and beauty list widget
                 ],
