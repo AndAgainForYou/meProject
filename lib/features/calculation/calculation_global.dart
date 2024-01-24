@@ -6,6 +6,7 @@ import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
+import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
 import 'package:platy/features/calculation/calculation_skin_beauty.dart';
@@ -188,7 +189,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateSportCompetitionWidget(),
                   CalculateImpGoalsListWidget(),
                   CalculateFreqSportWidget(),
-
+                  CalculateHealthGoalsWidget(),
                   CalculateWeightLossWidget(),  //weight loss widget
                   CalculateWeightLossSliderWidget(), //weight loss slider
                   CalculateMentalHealthWidget(), //mental health widget
