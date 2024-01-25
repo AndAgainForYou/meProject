@@ -23,6 +23,8 @@ import 'package:platy/features/calculation/calculation_skin_beauty.dart';
 import 'package:platy/features/calculation/calculation_specific_diet.dart';
 import 'package:platy/features/calculation/calculation_sport_nutrition.dart';
 import 'package:platy/features/calculation/calculation_sports_competition.dart';
+import 'package:platy/features/calculation/calculation_supplements.dart';
+import 'package:platy/features/calculation/calculation_supplements_qa.dart';
 import 'package:platy/features/calculation/calculation_third_tpd.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
@@ -220,6 +222,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateNutritionAddWidget(),
                   CalculateCookingAskWidget(), //plat-19 pages
                   CalculateCookingChoseWidget(), //plat-19 pages
+                  CalculateSupplementsQAWidget(),
+                  CalculateSupplementsListWidget(),
                 ],
               ),
             ),
