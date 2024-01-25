@@ -3,8 +3,11 @@ import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
+import 'package:platy/features/calculation/calculation_fifth_tpd.dart';
+import 'package:platy/features/calculation/calculation_first_tpd.dart';
 import 'package:platy/features/calculation/calculation_food_preferences.dart';
 import 'package:platy/features/calculation/calculation_fasting_days.dart';
+import 'package:platy/features/calculation/calculation_fourth_tpd.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
@@ -14,6 +17,7 @@ import 'package:platy/features/calculation/calculation_intermediate_fasting.dart
 import 'package:platy/features/calculation/calculation_mental_health.dart';
 import 'package:platy/features/calculation/calculation_skin_beauty.dart';
 import 'package:platy/features/calculation/calculation_sports_competition.dart';
+import 'package:platy/features/calculation/calculation_third_tpd.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/calculation_weight_loss.dart';
@@ -193,11 +197,15 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateImpGoalsListWidget(),
                   CalculateFreqSportWidget(),
                   CalculateHealthGoalsWidget(),
-                  CalculateWeightLossWidget(),  //weight loss widget
+                  CalculateWeightLossWidget(), //weight loss widget
                   CalculateWeightLossSliderWidget(), //weight loss slider
                   CalculateMentalHealthWidget(), //mental health widget
                   CalculateSkinAndBeautyWidget(), //skin and beauty list widget
                   CalculateFoodPreferencesWidget(),
+                  CalculateFirstTPDWidget(),
+                  CalculateThirdTPDWidget(),
+                  CalculateFourthTPDWidget(),
+                  CalculateFifthTPDWidget(),
                   CalculateIntermediateFastingWidget(),
                   CalculateFastingDaysWidget(),
                 ],
