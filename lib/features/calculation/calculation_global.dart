@@ -15,6 +15,10 @@ import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
 import 'package:platy/features/calculation/calculation_health_goals.dart';
+import 'package:platy/features/calculation/calculation_health_status_first.dart';
+import 'package:platy/features/calculation/calculation_health_status_habits.dart';
+import 'package:platy/features/calculation/calculation_health_status_second.dart';
+import 'package:platy/features/calculation/calculation_health_status_third.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
@@ -220,6 +224,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateNutritionAddWidget(),
                   CalculateCookingAskWidget(), //plat-19 pages
                   CalculateCookingChoseWidget(), //plat-19 pages
+
+                  CalculateHealthStatusFirstWidget(), // plat-21 pages
+                  CalculateHealthStatusSecondWidget(), // plat-21 pages
+                  CalculateHealthStatusThirdWidget(), // plat-21 pages
+                  CalculateHealthStatusHabitsWidget(), // plat-21 pages
                 ],
               ),
             ),
