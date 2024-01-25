@@ -18,8 +18,10 @@ import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
+import 'package:platy/features/calculation/calculation_nutrition_add.dart';
 import 'package:platy/features/calculation/calculation_skin_beauty.dart';
 import 'package:platy/features/calculation/calculation_specific_diet.dart';
+import 'package:platy/features/calculation/calculation_sport_nutrition.dart';
 import 'package:platy/features/calculation/calculation_sports_competition.dart';
 import 'package:platy/features/calculation/calculation_third_tpd.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
@@ -212,12 +214,12 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateFifthTPDWidget(),
                   CalculateIntermediateFastingWidget(),
                   CalculateFastingDaysWidget(),
-
                   CalculateSpecificDietWidget(),
                   CalculateCurrentDietWidget(),
+                  CalculateSportNutritionWidget(),
+                  CalculateNutritionAddWidget(),
                   CalculateCookingAskWidget(), //plat-19 pages
                   CalculateCookingChoseWidget(), //plat-19 pages
-                  
                 ],
               ),
             ),
