@@ -11,6 +11,7 @@ import 'package:platy/features/calculation/calculation_current_diet.dart';
 import 'package:platy/features/calculation/calculation_delivery.dart';
 import 'package:platy/features/calculation/calculation_delivery_qa.dart';
 import 'package:platy/features/calculation/calculation_diversity_plan.dart';
+import 'package:platy/features/calculation/calculation_eco_friendly_list.dart';
 import 'package:platy/features/calculation/calculation_fifth_tpd.dart';
 import 'package:platy/features/calculation/calculation_first_tpd.dart';
 import 'package:platy/features/calculation/calculation_food_preferences.dart';
@@ -27,6 +28,7 @@ import 'package:platy/features/calculation/calculation_health_status_third.dart'
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_home_eating_ask.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
+import 'package:platy/features/calculation/calculation_local_products.dart';
 import 'package:platy/features/calculation/calculation_medicaments.dart';
 import 'package:platy/features/calculation/calculation_medicaments_qa.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
@@ -254,6 +256,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
                   CalculateDeliveryQAWidget(),
                   CalculateDeliveryListWidget(),
+
+                  CalculateEcoFriendlyListWidget(),
+                  CalculateLocalProductsWidget(),
 
                   CalculateDiversityPlanWidget(),
                 ],
