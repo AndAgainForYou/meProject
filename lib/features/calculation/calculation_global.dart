@@ -3,6 +3,8 @@ import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
+import 'package:platy/features/calculation/calculation_cooking_ask.dart';
+import 'package:platy/features/calculation/calculation_cooking_chose.dart';
 import 'package:platy/features/calculation/calculation_current_diet.dart';
 import 'package:platy/features/calculation/calculation_fifth_tpd.dart';
 import 'package:platy/features/calculation/calculation_first_tpd.dart';
@@ -214,9 +216,10 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateFastingDaysWidget(),
                   CalculateSpecificDietWidget(),
                   CalculateCurrentDietWidget(),
-
                   CalculateSportNutritionWidget(),
                   CalculateNutritionAddWidget(),
+                  CalculateCookingAskWidget(), //plat-19 pages
+                  CalculateCookingChoseWidget(), //plat-19 pages
                 ],
               ),
             ),
