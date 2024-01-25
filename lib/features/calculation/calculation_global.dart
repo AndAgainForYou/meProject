@@ -7,6 +7,8 @@ import 'package:platy/features/calculation/calculation_cooking_ask.dart';
 import 'package:platy/features/calculation/calculation_cooking_chose.dart';
 import 'package:platy/features/calculation/calculation_cousin_choose.dart';
 import 'package:platy/features/calculation/calculation_current_diet.dart';
+import 'package:platy/features/calculation/calculation_delivery.dart';
+import 'package:platy/features/calculation/calculation_delivery_qa.dart';
 import 'package:platy/features/calculation/calculation_fifth_tpd.dart';
 import 'package:platy/features/calculation/calculation_first_tpd.dart';
 import 'package:platy/features/calculation/calculation_food_preferences.dart';
@@ -243,6 +245,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   CalculateMedicamentsWidget(),
 
                   CalculateCousinListWidget(),
+
+                  CalculateDeliveryQAWidget(),
+                  CalculateDeliveryListWidget(),
                 ],
               ),
             ),
