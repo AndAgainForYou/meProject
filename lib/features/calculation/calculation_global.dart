@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/Calculation_home_eating_calendar.dart';
 import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
@@ -23,6 +24,7 @@ import 'package:platy/features/calculation/calculation_health_status_habits.dart
 import 'package:platy/features/calculation/calculation_health_status_second.dart';
 import 'package:platy/features/calculation/calculation_health_status_third.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
+import 'package:platy/features/calculation/calculation_home_eating_ask.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
 import 'package:platy/features/calculation/calculation_medicaments.dart';
 import 'package:platy/features/calculation/calculation_medicaments_qa.dart';
@@ -243,6 +245,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
                   CalculateMedicamentsQAWidget(),
                   CalculateMedicamentsWidget(),
+
+                  CalculateHomeEatingAskWidget(),
+                  CalculateHomeEatingCalendarWidget(),
 
                   CalculateCousinListWidget(),
 
