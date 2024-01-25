@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateFastingDaysWidget extends StatefulWidget {
