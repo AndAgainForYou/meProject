@@ -21,6 +21,8 @@ import 'package:platy/features/calculation/calculation_health_status_second.dart
 import 'package:platy/features/calculation/calculation_health_status_third.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
+import 'package:platy/features/calculation/calculation_medicaments.dart';
+import 'package:platy/features/calculation/calculation_medicaments_qa.dart';
 import 'package:platy/features/calculation/calculation_mental_health.dart';
 import 'package:platy/features/calculation/calculation_nutrition_add.dart';
 import 'package:platy/features/calculation/calculation_skin_beauty.dart';
@@ -235,6 +237,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
                   CalculateSupplementsQAWidget(),
                   CalculateSupplementsListWidget(),
+
+                  CalculateMedicamentsQAWidget(),
+                  CalculateMedicamentsWidget(),
                 ],
               ),
             ),
