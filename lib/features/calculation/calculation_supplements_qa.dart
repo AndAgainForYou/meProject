@@ -80,6 +80,8 @@ class _CalculateSupplementsQAWidgetState
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('supplements_ask', titles[_selectedIndex!]);
                     CalculateGlobalWidget.of(context).pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);

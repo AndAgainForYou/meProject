@@ -7,7 +7,8 @@ class CalculateCookingAskWidget extends StatefulWidget {
   const CalculateCookingAskWidget({super.key});
 
   @override
-  State<CalculateCookingAskWidget> createState() => _CalculateCookingAskWidgetState();
+  State<CalculateCookingAskWidget> createState() =>
+      _CalculateCookingAskWidgetState();
 }
 
 class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
@@ -16,13 +17,7 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
     'No',
   ];
   bool _isButtonActive = false;
-  List<bool> _isCheckedList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +38,11 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
             itemBuilder: (context, index) {
               return CustomListTile(
                 title: titles[index],
-                isChecked: _isCheckedList[index],
+                isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {
                   setState(() {
-                    _isCheckedList[index] = isChecked;
-                    _isButtonActive = _isCheckedList.contains(true);
+                    _selectedIndex = isChecked ? index : null;
+                    _isButtonActive = _selectedIndex != null;
                   });
                 },
               );
@@ -70,6 +65,8 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('coocking_ask', titles[_selectedIndex!]);
                     CalculateGlobalWidget.of(context).pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);

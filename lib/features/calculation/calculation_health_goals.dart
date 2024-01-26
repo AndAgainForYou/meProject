@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/calculation_mental_health.dart';
-import 'package:platy/features/calculation/calculation_skin_beauty.dart';
-import 'package:platy/features/calculation/calculation_weight_loss.dart';
+import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateHealthGoalsWidget extends StatefulWidget {
@@ -16,18 +14,9 @@ class _CalculateHealthGoalsWidgetState
     extends State<CalculateHealthGoalsWidget> {
   String selectedPoint = '';
   bool _isButtonActive = false;
-  Widget? _selectedWidget;
 
   @override
   Widget build(BuildContext context) {
-    if (_selectedWidget != null) {
-      return _selectedWidget!;
-    } else {
-      return mainPageHealthGoals();
-    }
-  }
-
-  Widget mainPageHealthGoals() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,19 +68,11 @@ class _CalculateHealthGoalsWidgetState
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
-                    if (selectedPoint == 'Weight loss') {
-                      setState(() {
-                        _selectedWidget = CalculateWeightLossWidget();
-                      });
-                    } else if (selectedPoint == 'Mental Health') {
-                      setState(() {
-                        _selectedWidget = CalculateMentalHealthWidget();
-                      });
-                    } else if (selectedPoint == 'Skin and Beauty') {
-                      setState(() {
-                        _selectedWidget = CalculateSkinAndBeautyWidget();
-                      });
-                    }
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('health_goals', selectedPoint);
+                    CalculateGlobalWidget.of(context).pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
                   }
                 : null,
             style: ElevatedButton.styleFrom(

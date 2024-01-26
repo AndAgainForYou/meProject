@@ -19,6 +19,7 @@ import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_fourth_tpd.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
+import 'package:platy/features/calculation/calculation_global_data.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
 import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_health_status_first.dart';
@@ -76,6 +77,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   final pageNotifier = ValueNotifier<int>(1);
   final pageController = PageController();
   final ValueNotifier<bool> showSkipButtonNotifier = ValueNotifier<bool>(false);
+
+  void saveAnswer(String question, dynamic answer) {
+    GlobalData().answers[question] = answer;
+    setState(() {});
+  }
 
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
@@ -196,7 +202,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                 ValueListenableBuilder(
                     valueListenable: pageNotifier,
                     builder: (context, page, child) {
-                      return Text('$page/39',
+                      return Text('$page/31',
                           textAlign: TextAlign.left,
                           style: whiteTheme.textTheme.bodySmall);
                     }),
@@ -206,65 +212,97 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: pageController,
-                children: const [
-                  CalculateNameWidget(),
-                  CalculateGenderWidget(),
-                  CalculateAgeWidget(),
-                  CalculateHeightWidget(),
-                  CalculateWeightWidget(),
-                  CalculateAlergicListWidget(),
-                  CalculateChronicDiseasesListWidget(),
-                  CalculateActivitySportListWidget(),
-                  CalculateSportCompetitionWidget(),
-                  CalculateImpGoalsListWidget(),
-                  CalculateFreqSportWidget(),
-                  CalculateHealthGoalsWidget(),
-                  CalculateWeightLossWidget(), //weight loss widget
-                  CalculateWeightLossSliderWidget(), //weight loss slider
-                  CalculateMentalHealthWidget(), //mental health widget
-                  CalculateSkinAndBeautyWidget(), //skin and beauty list widget
-                  CalculateFoodPreferencesWidget(),
-                  CalculateFirstTPDWidget(),
-                  CalculateThirdTPDWidget(),
-                  CalculateFourthTPDWidget(),
-                  CalculateFifthTPDWidget(),
-                  CalculateIntermediateFastingWidget(),
-                  CalculateFastingDaysWidget(),
-                  CalculateSpecificDietWidget(),
-                  CalculateCurrentDietWidget(),
+                children: [
+                  const CalculateNameWidget(),
+                  const CalculateGenderWidget(),
+                  const CalculateAgeWidget(),
+                  const CalculateHeightWidget(),
+                  const CalculateWeightWidget(),
+                  const CalculateAlergicListWidget(),
+                  const CalculateChronicDiseasesListWidget(),
+                  const CalculateActivitySportListWidget(),
+                  const CalculateSportCompetitionWidget(),
+                  const CalculateImpGoalsListWidget(),
+                  const CalculateFreqSportWidget(),
+                  const CalculateHealthGoalsWidget(),
+                  if (GlobalData().answers['health_goals'] ==
+                      'Weight loss') ...[
+                    const CalculateWeightLossWidget(), //weight loss widget
+                    const CalculateWeightLossSliderWidget(), //weight loss slider
+                  ] else if (GlobalData().answers['health_goals'] ==
+                      'Mental Health') ...[
+                    const CalculateMentalHealthWidget(), //mental health widget
+                  ] else if (GlobalData().answers['health_goals'] ==
+                      'Skin and Beauty') ...[
+                    const CalculateSkinAndBeautyWidget(), //skin and beauty list widget
+                  ],
 
-                  CalculateCookingAskWidget(), //plat-19 pages
-                  CalculateCookingChoseWidget(), //plat-19 pages
+                  const CalculateFoodPreferencesWidget(),
+                  if (GlobalData().answers['food_preferences'] ==
+                      '1-2 TPD') ...[
+                    const CalculateFirstTPDWidget(),
+                  ] else if (GlobalData().answers['food_preferences'] ==
+                      '3 TPD') ...[
+                    const CalculateThirdTPDWidget(),
+                  ] else if (GlobalData().answers['food_preferences'] ==
+                      '4 TPD') ...[
+                    const CalculateFourthTPDWidget(),
+                  ] else if (GlobalData().answers['food_preferences'] ==
+                      '5 TPD') ...[
+                    const CalculateFifthTPDWidget(),
+                  ] else if (GlobalData().answers['food_preferences'] ==
+                      'Intermediate Fasting') ...[
+                    const CalculateIntermediateFastingWidget(),
+                    const CalculateFastingDaysWidget(),
+                  ],
 
-                  CalculateSportNutritionWidget(),
-                  CalculateNutritionAddWidget(),
-                  CalculateHealthStatusFirstWidget(), // plat-21 pages
-                  CalculateHealthStatusSecondWidget(), // plat-21 pages
-                  CalculateHealthStatusThirdWidget(), // plat-21 pages
-                  CalculateHealthStatusHabitsWidget(), // plat-21 pages
+                  const CalculateSpecificDietWidget(),
+                  if (GlobalData().answers['specific_diet'] == 'Yes') ...[
+                    const CalculateCurrentDietWidget(),
+                  ],
 
-                  CalculateSupplementsQAWidget(),
-                  CalculateSupplementsListWidget(),
+                  const CalculateCookingAskWidget(),
+                  if (GlobalData().answers['coocking_ask'] == 'Yes') ...[
+                    const CalculateCookingChoseWidget(),
+                  ],
 
-                  CalculateMedicamentsQAWidget(),
-                  CalculateMedicamentsWidget(),
+                  const CalculateSportNutritionWidget(),
+                  if (GlobalData().answers['nutrition_ask'] == 'Yes') ...[
+                    const CalculateNutritionAddWidget(),
+                  ],
 
-                  CalculateHomeEatingAskWidget(),
-                  CalculateHomeEatingCalendarWidget(),
+                  const CalculateHealthStatusFirstWidget(), // plat-21 pages
+                  const CalculateHealthStatusSecondWidget(), // plat-21 pages
+                  const CalculateHealthStatusThirdWidget(), // plat-21 pages
+                  const CalculateHealthStatusHabitsWidget(), // plat-21 pages
 
-                  CalculateCousinListWidget(),
+                  const CalculateSupplementsQAWidget(),
+                  if (GlobalData().answers['supplements_ask'] == 'Yes') ...[
+                    const CalculateSupplementsListWidget(),
+                  ],
 
-                  CalculateDeliveryQAWidget(),
-                  CalculateDeliveryListWidget(),
+                  const CalculateMedicamentsQAWidget(),
+                  if (GlobalData().answers['medicaments_ask'] == 'Yes') ...[
+                    const CalculateMedicamentsWidget(),
+                  ],
 
-                  CalculateEcoFriendlyListWidget(),
-                  CalculateLocalProductsWidget(),
+                  const CalculateHomeEatingAskWidget(),
+                  if (GlobalData().answers['home_eating_ask'] == 'Yes') ...[
+                    const CalculateHomeEatingCalendarWidget(),
+                  ],
 
-                  CalculateDiversityPlanWidget(),
+                  const CalculateCousinListWidget(),
+                  const CalculateDeliveryQAWidget(),
+                  if (GlobalData().answers['delivery_ask'] == 'Yes') ...[
+                    const CalculateDeliveryListWidget(),
+                  ],
+
+                  const CalculateEcoFriendlyListWidget(),
+                  const CalculateLocalProductsWidget(),
+                  const CalculateDiversityPlanWidget(),
                 ],
               ),
             ),
-            // кнопка
           ],
         ),
       ),

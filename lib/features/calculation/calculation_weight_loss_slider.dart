@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
-import 'package:platy/features/calculation/custom_list_tile.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateWeightLossSliderWidget extends StatefulWidget {
@@ -15,7 +14,6 @@ class CalculateWeightLossSliderWidget extends StatefulWidget {
 class _CalculateWeightLossSliderWidgetState
     extends State<CalculateWeightLossSliderWidget> {
   bool _isButtonActive = false;
-  List<bool> _isCheckedList = [];
 
   double _currentSliderValue = 0;
   String? _sliderStatus;
