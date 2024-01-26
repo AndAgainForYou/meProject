@@ -74,91 +74,16 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-            top: 10.0, left: 10.0, right: 10.0, bottom: 70.0),
-        child: ListView.builder(
-          itemCount: elements.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-              child: Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                          offset: Offset(1, 3),
-                          blurRadius: 9,
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                '${index + 1}. ',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              Text(
-                                elements[index],
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HealthStatusPage()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              minimumSize: const Size(30, 26),
-                              backgroundColor: Colors.blue,
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.only(
-                                top: 4.0,
-                                bottom: 4.0,
-                                left: 8.0,
-                                right: 8.0,
-                              ),
-                              child: Text(
-                                'Edit',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Gilroy',
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                ],
-              ),
-            );
-          },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+              top: 10.0, left: 10.0, right: 10.0, bottom: 100.0),
+        
+          child: Column(
+            children: generateListWidgets(elements),
+          ),
+        
+          
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -191,5 +116,88 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         ),
       ),
     );
+  }
+
+  List<Widget> generateListWidgets(List<String> elements) {
+    return List.generate(elements.length, (index) {
+      return Padding(
+        padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 1,
+              height: 52,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                    offset: Offset(1, 3),
+                    blurRadius: 9,
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0,),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          '${index + 1}. ',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          elements[index],
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const HealthStatusPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(30, 26),
+                        backgroundColor: Colors.blue,
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(
+                          top: 4.0,
+                          bottom: 4.0,
+                          left: 8.0,
+                          right: 8.0,
+                        ),
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Gilroy',
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 8.0),
+          ],
+        ),
+      );
+    });
   }
 }
