@@ -34,25 +34,39 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
               style: whiteTheme.textTheme.bodyMedium,
             ),
             const SizedBox(height: 15),
-            _heightController.isEmpty
-                ? Text(
-                    '.../kg',
-                    textAlign: TextAlign.center,
-                    style: whiteTheme.textTheme.titleMedium,
-                  )
-                : Text(
-                    '$_heightController/kg',
-                    textAlign: TextAlign.center,
+            RichText(
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: _heightController.isEmpty ? '...' : '',
+                    style: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text: _heightController,
                     style: whiteTheme.textTheme.titleMedium!
                         .copyWith(color: Colors.black),
                   ),
+                  const TextSpan(
+                    text: '/',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  TextSpan(
+                    text: 'kg',
+                    style: whiteTheme.textTheme.titleMedium!
+                        .copyWith(color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 20),
         const Row(
           children: [
             Text(
-              '  Weight',
+              'Weight',
               style: TextStyle(
                 fontFamily: 'Gilroy',
                 fontSize: 18,
@@ -66,7 +80,8 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
         Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.symmetric(horizontal: 1),
-          height: 60,
+          width: MediaQuery.of(context).size.width * 1,
+          height: 52,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             boxShadow: const [
@@ -82,39 +97,44 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
           ),
           child: Stack(
             children: [
-              Container(
-                alignment: Alignment.bottomCenter,
-                margin: const EdgeInsets.only(top: 3),
-                height: 45,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.orange,
+              Center(
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  margin: const EdgeInsets.only(top: 3),
+                  height: 45,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(252, 108, 76, 1),
+                  ),
                 ),
               ),
-              WheelSlider.number(
-                perspective: 0.0001,
-                totalCount: _nTotalCount,
-                initValue: _nInitValue,
-                animationDuration: const Duration(milliseconds: 600),
-                selectedNumberStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(top: 1.0),
+                child: WheelSlider.number(
+                  perspective: 0.0001,
+                  totalCount: _nTotalCount,
+                  initValue: _nInitValue,
+                  animationDuration: const Duration(milliseconds: 600),
+                  selectedNumberStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  unSelectedNumberStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                  currentIndex: _nCurrentValue,
+                  onValueChanged: (val) {
+                    setState(() {
+                      _nCurrentValue = val;
+                      _heightController = val.toString();
+                      _isButtonActive = true;
+                    });
+                  },
+                  hapticFeedbackType: HapticFeedbackType.heavyImpact,
                 ),
-                unSelectedNumberStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-                currentIndex: _nCurrentValue,
-                onValueChanged: (val) {
-                  setState(() {
-                    _nCurrentValue = val;
-                    _heightController = val.toString();
-                    _isButtonActive = true;
-                  });
-                },
-                hapticFeedbackType: HapticFeedbackType.heavyImpact,
               ),
             ],
           ),
