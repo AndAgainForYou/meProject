@@ -17,18 +17,12 @@ class _CalculateFoodPreferencesWidgetState
     '1-2 TPD',
     '3 TPD',
     '4 TPD',
-    '5TPD',
+    '5 TPD',
     'Only snacks',
     'Intermediate Fasting',
   ];
   bool _isButtonActive = false;
-  List<bool> _isCheckedList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +52,11 @@ class _CalculateFoodPreferencesWidgetState
             itemBuilder: (context, index) {
               return CustomListTile(
                 title: titles[index],
-                isChecked: _isCheckedList[index],
+                isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {
                   setState(() {
-                    _isCheckedList[index] = isChecked;
-                    _isButtonActive = _isCheckedList.contains(true);
+                    _selectedIndex = isChecked ? index : null;
+                    _isButtonActive = _selectedIndex != null;
                   });
                 },
               );
@@ -85,6 +79,8 @@ class _CalculateFoodPreferencesWidgetState
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
+                    CalculateGlobalWidget.of(context).saveAnswer(
+                        'food_preferences', titles[_selectedIndex!]);
                     CalculateGlobalWidget.of(context).pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);

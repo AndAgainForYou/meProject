@@ -70,6 +70,8 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('delivery_ask', titles[_selectedIndex!]);
                     CalculateGlobalWidget.of(context).pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);

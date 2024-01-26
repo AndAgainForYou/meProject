@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/theme.dart';
@@ -110,8 +109,8 @@ class _CalculateFastingDaysWidgetState
               onPressed: _isButtonActive
                   ? () {
                       CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn);
                     }
                   : null,
               style: ElevatedButton.styleFrom(

@@ -71,6 +71,8 @@ class _CalculateSportNutritionWidgetState
           child: ElevatedButton(
             onPressed: _isButtonActive
                 ? () {
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('nutrition_ask', titles[_selectedIndex!]);
                     CalculateGlobalWidget.of(context).pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);
