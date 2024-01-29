@@ -29,52 +29,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Image.asset('assets/images/logo_small.png'),
-          centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 4.0),
-                    child: Text(
-                      'PDF Export',
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                          offset: Offset(1, 3),
-                          blurRadius: 9,
-                        ),
-                      ],
-                    ),
-                    child: IconButton(
-                        icon: Image.asset(
-                          'assets/images/download_icon.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        onPressed: () {}),
-                  ),
-                ],
-              ),
-            ),
-          ],
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.transparent,
-        ),
+        
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
