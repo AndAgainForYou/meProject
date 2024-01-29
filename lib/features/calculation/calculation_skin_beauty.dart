@@ -33,7 +33,7 @@ class _CalculateSkinAndBeautyWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 73),
+          const SizedBox(height: 63),
           Text(
             'Skin and Beauty',
             textAlign: TextAlign.center,

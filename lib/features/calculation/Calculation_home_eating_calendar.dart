@@ -15,6 +15,7 @@ class _CalculateHomeEatingCalendarWidgetState
   List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   List<bool> isSelected = List.generate(7, (index) => false);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _CalculateHomeEatingCalendarWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 50),
+         const SizedBox(height: 63),
           Text(
             'Plan outside home eating',
             textAlign: TextAlign.center,

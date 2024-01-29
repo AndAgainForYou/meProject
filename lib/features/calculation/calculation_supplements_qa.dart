@@ -25,7 +25,7 @@ class _CalculateSupplementsQAWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 63),
         Text(
           'Supplements',
           textAlign: TextAlign.center,

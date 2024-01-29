@@ -39,7 +39,7 @@ class _CalculateImpGoalsListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 40),
+        const SizedBox(height: 63),
         Text(
           'What is the most important goal for you now',
           textAlign: TextAlign.center,

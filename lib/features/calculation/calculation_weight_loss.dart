@@ -33,7 +33,7 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 73),
+          const SizedBox(height: 63),
           Text(
             'Weight loss',
             textAlign: TextAlign.center,

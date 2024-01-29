@@ -25,7 +25,7 @@ class _CalculateSpecificDietWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 63),
         Text(
           'Do you follow any Specific Diet?',
           textAlign: TextAlign.center,

@@ -41,7 +41,7 @@ class _CalculateMedicamentsWidgetState
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 70),
+        const SizedBox(height: 63),
         Text(
           'Medicaments',
           textAlign: TextAlign.center,
@@ -64,10 +64,10 @@ class _CalculateMedicamentsWidgetState
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(35, 35, 35, 0.2),
-                offset: Offset(0, 3),
-                blurRadius: 5,
+             BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                offset: Offset(1, 3),
+                blurRadius: 9,
               ),
               BoxShadow(
                 color: Colors.white,

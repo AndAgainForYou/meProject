@@ -119,9 +119,11 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
                 Text(
                   'Age',
                   style: TextStyle(
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
+                    fontFamily: 'Gilroy',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500
+                  ),
+
                 )
               ],
             ),
@@ -218,19 +220,17 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
               child: Text(
                 label,
                 style: const TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontSize: 14,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500),
+                  fontFamily: 'Gilroy',
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w500
+                ),
               ),
             ),
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.only(
-                bottom: 8,
-                left: 0,
-              ),
+              padding: const EdgeInsets.only(bottom: 8, left: 0,),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),

@@ -32,7 +32,7 @@ class _CalculateLocalProductsWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 73),
+        const SizedBox(height: 63),
         const Center(
           child: Column(
             children: [

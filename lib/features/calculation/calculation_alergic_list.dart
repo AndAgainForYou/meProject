@@ -35,13 +35,13 @@ class _CalculateAlergicListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 20),
+        const SizedBox(height: 63),
         Text(
           'What are you allergic to?',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Text(
           'If you are not allergic, skip this step.',
           style: TextStyle(
@@ -57,14 +57,12 @@ class _CalculateAlergicListWidgetState
           margin: const EdgeInsets.symmetric(horizontal: 3),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
             boxShadow: const [
               BoxShadow(
-                color: Color.fromRGBO(35, 35, 35, 0.2),
-                offset: Offset(0, 3),
-                blurRadius: 5,
-              ),
-              BoxShadow(
-                color: Colors.white,
+                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                offset: Offset(1, 3),
+                blurRadius: 9,
               ),
             ],
           ),

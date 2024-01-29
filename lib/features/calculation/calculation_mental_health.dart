@@ -34,7 +34,7 @@ class _CalculateMentalHealthWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 73),
+          const SizedBox(height: 63),
           Text(
             'Mental Health',
             textAlign: TextAlign.center,

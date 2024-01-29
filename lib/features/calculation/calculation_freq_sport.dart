@@ -36,7 +36,7 @@ class _CalculateFreqSportWidgetState extends State<CalculateFreqSportWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 30),
+        const SizedBox(height: 63),
         Text(
           'How frequently do you do sports?',
           textAlign: TextAlign.center,

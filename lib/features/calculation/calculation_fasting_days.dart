@@ -22,7 +22,7 @@ class _CalculateFastingDaysWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(),
+          const SizedBox(height: 63),
           Text(
             'Indicate fasting days',
             textAlign: TextAlign.center,

@@ -14,11 +14,9 @@ class CalculateWeightLossSliderWidget extends StatefulWidget {
 class _CalculateWeightLossSliderWidgetState
     extends State<CalculateWeightLossSliderWidget> {
   double _currentSliderValue = 0;
-  String? _sliderStatus;
 
   @override
   void initState() {
-    bool _isButtonActive = false;
     super.initState();
   }
 
@@ -29,7 +27,7 @@ class _CalculateWeightLossSliderWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(),
+          const SizedBox(height: 63),
           Text(
             'Weight loss',
             textAlign: TextAlign.center,
@@ -65,7 +63,6 @@ class _CalculateWeightLossSliderWidgetState
               },
               onChangeEnd: (double value) {
                 setState(() {
-                  _sliderStatus = 'Finished sliding';
                   _currentSliderValue.toInt() == 0
                       ? CalculateGlobalWidget.of(context)
                           .setButtonActivity(false)
