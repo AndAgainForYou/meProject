@@ -12,7 +12,6 @@ class CalculateMedicamentsWidget extends StatefulWidget {
 
 class _CalculateMedicamentsWidgetState
     extends State<CalculateMedicamentsWidget> {
-  bool _isButtonActive = false;
   TextEditingController? controllerTextField;
 
   @override
@@ -30,7 +29,9 @@ class _CalculateMedicamentsWidgetState
 
   void _onTextFieldChanged() {
     setState(() {
-      _isButtonActive = controllerTextField!.text.isNotEmpty;
+      controllerTextField!.text.isNotEmpty
+          ? CalculateGlobalWidget.of(context).setButtonActivity(true)
+          : CalculateGlobalWidget.of(context).setButtonActivity(false);
     });
   }
 
@@ -91,43 +92,6 @@ class _CalculateMedicamentsWidgetState
           ),
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

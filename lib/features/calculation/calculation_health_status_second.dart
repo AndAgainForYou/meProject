@@ -56,6 +56,7 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Acidic',
               isSelected: buttonPH1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonPH1Selected = true;
                   buttonPH2Selected = false;
@@ -68,6 +69,7 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Neutral',
               isSelected: buttonPH2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = true;
@@ -80,6 +82,7 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Alkaline',
               isSelected: buttonPH3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = false;
@@ -103,6 +106,7 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Balanced',
               isSelected: buttonElectrolyte1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonElectrolyte1Selected = true;
                   buttonElectrolyte2Selected = false;
@@ -114,6 +118,7 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Imbalanced',
               isSelected: buttonElectrolyte2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonElectrolyte1Selected = false;
                   buttonElectrolyte2Selected = true;
@@ -123,41 +128,6 @@ class _CalculateHealthStatusSecondWidgetState
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-              CalculateGlobalWidget.of(context).pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

@@ -11,7 +11,6 @@ class CalculateGenderWidget extends StatefulWidget {
 
 class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
   String selectedGender = '';
-  bool get _isButtonActive => selectedGender.isNotEmpty;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,43 +50,6 @@ class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -102,6 +64,8 @@ class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
       onTap: () {
         setState(() {
           selectedGender = gender;
+          CalculateGlobalWidget.of(context)
+              .setButtonActivity(selectedGender.isNotEmpty);
         });
       },
       child: Container(

@@ -16,7 +16,6 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
     'Yes',
     'No',
   ];
-  bool _isButtonActive = false;
   int? _selectedIndex;
 
   @override
@@ -43,10 +42,13 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      _isButtonActive = true;
+                      CalculateGlobalWidget.of(context)
+                          .saveAnswer('delivery_ask', titles[_selectedIndex!]);
+                      CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;
-                      _isButtonActive = false;
+                      CalculateGlobalWidget.of(context)
+                          .setButtonActivity(false);
                     }
                   });
                 },
@@ -55,45 +57,6 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
           ),
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context)
-                        .saveAnswer('delivery_ask', titles[_selectedIndex!]);
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

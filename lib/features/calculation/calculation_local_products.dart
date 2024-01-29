@@ -5,25 +5,27 @@ class CalculateLocalProductsWidget extends StatefulWidget {
   const CalculateLocalProductsWidget({super.key});
 
   @override
-  State<CalculateLocalProductsWidget> createState() => _CalculateLocalProductsWidgetState();
+  State<CalculateLocalProductsWidget> createState() =>
+      _CalculateLocalProductsWidgetState();
 }
 
-class _CalculateLocalProductsWidgetState extends State<CalculateLocalProductsWidget> {
- bool buttonSeason1Selected = false; //Season
+class _CalculateLocalProductsWidgetState
+    extends State<CalculateLocalProductsWidget> {
+  bool buttonSeason1Selected = false; //Season
   bool buttonSeason2Selected = true;
   bool buttonSeason3Selected = false;
   bool buttonSeason4Selected = false;
 
-String selectedRegion = 'Region';
-  List<DropdownMenuItem<String>> get dropdownItems{
-  List<DropdownMenuItem<String>> menuItems = [
-    const DropdownMenuItem(value: "Region", child: Text("Region")),
-    const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    const DropdownMenuItem(value: "England", child: Text("England")),
-  ];
-  return menuItems;
-}
+  String selectedRegion = 'Region';
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(value: "Region", child: Text("Region")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,44 +52,43 @@ String selectedRegion = 'Region';
           ),
         ),
         const SizedBox(height: 24),
-
-       Container(
-        height: 52,
-        width: MediaQuery.of(context).size.width * 0.95,
-        padding: const EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.09),
-              offset: Offset(1, 3),
-              blurRadius: 9,
-            ),
-          ],
-        ),
-         child: Padding(
-           padding: const EdgeInsets.only(left:8.0, right: 8.0),
-           child: DropdownButtonHideUnderline(
-             child: DropdownButton<String>(
-              icon: const Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black,
-                      ),
-              dropdownColor: Colors.white,
-              isExpanded: true,
+        Container(
+          height: 52,
+          width: MediaQuery.of(context).size.width * 0.95,
+          padding: const EdgeInsets.all(3),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.09),
+                offset: Offset(1, 3),
+                blurRadius: 9,
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                icon: const Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.black,
+                ),
+                dropdownColor: Colors.white,
+                isExpanded: true,
                 value: selectedRegion,
                 items: dropdownItems,
                 onChanged: (value) {
                   setState(() {
                     selectedRegion = value!;
+                    CalculateGlobalWidget.of(context).setButtonActivity(true);
                   });
                 },
               ),
-           ),
-         ),
-       ),
-
+            ),
+          ),
+        ),
         const SizedBox(height: 16),
         const Text(
           'Season of the year',
@@ -102,6 +103,7 @@ String selectedRegion = 'Region';
               label: 'Winter',
               isSelected: buttonSeason1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = true;
                   buttonSeason2Selected = false;
@@ -115,6 +117,7 @@ String selectedRegion = 'Region';
               label: 'Spring',
               isSelected: buttonSeason2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = true;
@@ -128,6 +131,7 @@ String selectedRegion = 'Region';
               label: 'Summer',
               isSelected: buttonSeason3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = false;
@@ -141,6 +145,7 @@ String selectedRegion = 'Region';
               label: 'Autumn',
               isSelected: buttonSeason4Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = false;
@@ -152,41 +157,6 @@ String selectedRegion = 'Region';
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-              CalculateGlobalWidget.of(context).pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

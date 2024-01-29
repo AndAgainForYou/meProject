@@ -69,6 +69,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonCholesterol1Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonCholesterol1Selected = true;
                     buttonCholesterol2Selected = false;
@@ -81,6 +82,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonCholesterol2Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonCholesterol1Selected = false;
                     buttonCholesterol2Selected = true;
@@ -93,6 +95,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonCholesterol3Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonCholesterol1Selected = false;
                     buttonCholesterol2Selected = false;
@@ -116,6 +119,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonBlood1Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonBlood1Selected = true;
                     buttonBlood2Selected = false;
@@ -128,6 +132,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Pre-Diabetic',
                 isSelected: buttonBlood2Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonBlood1Selected = false;
                     buttonBlood2Selected = true;
@@ -140,6 +145,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Diabetic',
                 isSelected: buttonBlood3Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonBlood1Selected = false;
                     buttonBlood2Selected = false;
@@ -163,6 +169,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonHemoglobin1Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonHemoglobin1Selected = true;
                     buttonHemoglobin2Selected = false;
@@ -174,6 +181,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonHemoglobin2Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonHemoglobin1Selected = false;
                     buttonHemoglobin2Selected = true;
@@ -196,6 +204,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonTriglycerides1Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonTriglycerides1Selected = true;
                     buttonTriglycerides2Selected = false;
@@ -208,6 +217,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonTriglycerides2Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonTriglycerides1Selected = false;
                     buttonTriglycerides2Selected = true;
@@ -220,6 +230,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonTriglycerides3Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonTriglycerides1Selected = false;
                     buttonTriglycerides2Selected = false;
@@ -243,6 +254,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonIron1Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonIron1Selected = true;
                     buttonIron2Selected = false;
@@ -255,6 +267,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonIron2Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonIron1Selected = false;
                     buttonIron2Selected = true;
@@ -267,6 +280,7 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonIron3Selected,
                 onPressed: () {
+                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   setState(() {
                     buttonIron1Selected = false;
                     buttonIron2Selected = false;
@@ -275,42 +289,6 @@ class _CalculateHealthStatusFirstWidgetState
                 },
               ),
             ],
-          ),
-          const SizedBox(height: 80),
-          Container(
-            height: 54.0,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25.0),
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xFF59A7A7),
-                  Color(0xFFAFCD6D),
-                ],
-              ),
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                CalculateGlobalWidget.of(context).pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22.0),
-                ),
-              ),
-              child: const Text(
-                'Next',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              ),
-            ),
           ),
         ],
       ),
