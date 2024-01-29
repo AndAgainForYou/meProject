@@ -11,7 +11,6 @@ class CalculateNameWidget extends StatefulWidget {
 
 class _CalculateNameWidgetState extends State<CalculateNameWidget> {
   TextEditingController _nameController = TextEditingController();
-  bool _isButtonActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +36,8 @@ class _CalculateNameWidgetState extends State<CalculateNameWidget> {
                     ?.copyWith(color: Colors.black),
                 obscureText: false,
                 onChanged: (text) {
-                  setState(() {
-                    _isButtonActive = text.isNotEmpty;
-                  });
+                  CalculateGlobalWidget.of(context)
+                      .setButtonActivity(text.isNotEmpty);
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -54,44 +52,6 @@ class _CalculateNameWidgetState extends State<CalculateNameWidget> {
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    FocusScope.of(context).unfocus();
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

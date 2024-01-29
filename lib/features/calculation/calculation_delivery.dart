@@ -23,7 +23,6 @@ class _CalculateDeliveryListWidgetState
     'Mediterranean Cuisine',
     'Home style dinner',
   ];
-  bool _isButtonActive = false;
   List<bool> _isCheckedList = [];
 
   @override
@@ -55,49 +54,12 @@ class _CalculateDeliveryListWidgetState
                 onTilePressed: (isChecked) {
                   setState(() {
                     _isCheckedList[index] = isChecked;
-                    _isButtonActive = _isCheckedList.contains(true);
+                    CalculateGlobalWidget.of(context)
+                        .setButtonActivity(_isCheckedList.contains(true));
                   });
                 },
               );
             },
-          ),
-        ),
-        const SizedBox(height: 10),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
           ),
         ),
       ],

@@ -16,7 +16,6 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
     'Yes',
     'No',
   ];
-  bool _isButtonActive = false;
   int? _selectedIndex;
 
   @override
@@ -42,51 +41,14 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
                 onTilePressed: (isChecked) {
                   setState(() {
                     _selectedIndex = isChecked ? index : null;
-                    _isButtonActive = _selectedIndex != null;
+                    CalculateGlobalWidget.of(context)
+                        .saveAnswer('coocking_ask', titles[_selectedIndex!]);
+                    CalculateGlobalWidget.of(context)
+                        .setButtonActivity(_selectedIndex != null);
                   });
                 },
               );
             },
-          ),
-        ),
-        const SizedBox(height: 10),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context)
-                        .saveAnswer('coocking_ask', titles[_selectedIndex!]);
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
           ),
         ),
       ],

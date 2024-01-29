@@ -15,7 +15,6 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
   final int _nTotalCount = 300;
   final int _nInitValue = 65;
   int _nCurrentValue = 65;
-  bool _isButtonActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +129,7 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
                     setState(() {
                       _nCurrentValue = val;
                       _heightController = val.toString();
-                      _isButtonActive = true;
+                      CalculateGlobalWidget.of(context).setButtonActivity(true);
                     });
                   },
                   hapticFeedbackType: HapticFeedbackType.heavyImpact,
@@ -140,44 +139,6 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
           ),
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    FocusScope.of(context).unfocus();
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

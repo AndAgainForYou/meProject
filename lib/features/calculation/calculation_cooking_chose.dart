@@ -7,10 +7,12 @@ class CalculateCookingChoseWidget extends StatefulWidget {
   const CalculateCookingChoseWidget({super.key});
 
   @override
-  State<CalculateCookingChoseWidget> createState() => _CalculateCookingChoseWidgetState();
+  State<CalculateCookingChoseWidget> createState() =>
+      _CalculateCookingChoseWidgetState();
 }
 
-class _CalculateCookingChoseWidgetState extends State<CalculateCookingChoseWidget> {
+class _CalculateCookingChoseWidgetState
+    extends State<CalculateCookingChoseWidget> {
   List<String> titles = [
     'Grilled',
     'Baked',
@@ -19,7 +21,6 @@ class _CalculateCookingChoseWidgetState extends State<CalculateCookingChoseWidge
     'Slow Cooked',
     'Raw',
   ];
-  bool _isButtonActive = false;
   List<bool> _isCheckedList = [];
 
   @override
@@ -51,49 +52,12 @@ class _CalculateCookingChoseWidgetState extends State<CalculateCookingChoseWidge
                 onTilePressed: (isChecked) {
                   setState(() {
                     _isCheckedList[index] = isChecked;
-                    _isButtonActive = _isCheckedList.contains(true);
+                    CalculateGlobalWidget.of(context)
+                        .setButtonActivity(_isCheckedList.contains(true));
                   });
                 },
               );
             },
-          ),
-        ),
-        const SizedBox(height: 10),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
           ),
         ),
       ],

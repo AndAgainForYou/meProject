@@ -60,6 +60,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Sufficient',
               isSelected: buttonD1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonD1Selected = true;
                   buttonD2Selected = false;
@@ -71,6 +72,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Insufficient',
               isSelected: buttonD2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonD1Selected = false;
                   buttonD2Selected = true;
@@ -82,6 +84,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonD3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonD1Selected = false;
                   buttonD2Selected = false;
@@ -104,6 +107,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: ' Low',
               isSelected: buttonB1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonB1Selected = true;
                   buttonB2Selected = false;
@@ -115,6 +119,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonB2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonB1Selected = false;
                   buttonB2Selected = true;
@@ -126,6 +131,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Normal',
               isSelected: buttonB3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonB1Selected = false;
                   buttonB2Selected = false;
@@ -148,6 +154,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: ' Low',
               isSelected: buttonCalcium1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonCalcium1Selected = true;
                   buttonCalcium2Selected = false;
@@ -159,6 +166,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonCalcium2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = true;
@@ -170,6 +178,7 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Normal',
               isSelected: buttonCalcium3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = false;
@@ -180,41 +189,6 @@ class _CalculateHealthStatusThirdWidgetState
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-              CalculateGlobalWidget.of(context).pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

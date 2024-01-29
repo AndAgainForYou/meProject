@@ -77,10 +77,17 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   final pageNotifier = ValueNotifier<int>(1);
   final pageController = PageController();
   final ValueNotifier<bool> showSkipButtonNotifier = ValueNotifier<bool>(false);
+  bool _isButtonActive = false;
 
   void saveAnswer(String question, dynamic answer) {
     GlobalData().answers[question] = answer;
     setState(() {});
+  }
+
+  void setButtonActivity(bool isActive) {
+    setState(() {
+      _isButtonActive = isActive;
+    });
   }
 
   void pageListener() {
@@ -119,14 +126,15 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   if (pageController.page?.round() == 0) {
                     Navigator.pop(context);
                   } else {
                     FocusScope.of(context).unfocus();
-                    pageController.previousPage(
+                    await pageController.previousPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.ease);
+                    setButtonActivity(false);
                   }
                 },
                 child: const Row(
@@ -162,10 +170,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   ? Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: ElevatedButton(
-                        onPressed: () {
-                          pageController.nextPage(
+                        onPressed: () async {
+                          await pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.ease);
+                          setButtonActivity(false);
                         },
                         style: const ButtonStyle(
                           backgroundColor:
@@ -202,7 +211,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                 ValueListenableBuilder(
                     valueListenable: pageNotifier,
                     builder: (context, page, child) {
-                      return Text('$page/31',
+                      return Text('$page/39',
                           textAlign: TextAlign.left,
                           style: whiteTheme.textTheme.bodySmall);
                     }),
@@ -227,16 +236,15 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   const CalculateHealthGoalsWidget(),
                   if (GlobalData().answers['health_goals'] ==
                       'Weight loss') ...[
-                    const CalculateWeightLossWidget(), //weight loss widget
-                    const CalculateWeightLossSliderWidget(), //weight loss slider
+                    const CalculateWeightLossWidget(),
+                    const CalculateWeightLossSliderWidget(),
                   ] else if (GlobalData().answers['health_goals'] ==
                       'Mental Health') ...[
-                    const CalculateMentalHealthWidget(), //mental health widget
+                    const CalculateMentalHealthWidget(),
                   ] else if (GlobalData().answers['health_goals'] ==
                       'Skin and Beauty') ...[
-                    const CalculateSkinAndBeautyWidget(), //skin and beauty list widget
+                    const CalculateSkinAndBeautyWidget(),
                   ],
-
                   const CalculateFoodPreferencesWidget(),
                   if (GlobalData().answers['food_preferences'] ==
                       '1-2 TPD') ...[
@@ -255,52 +263,85 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                     const CalculateIntermediateFastingWidget(),
                     const CalculateFastingDaysWidget(),
                   ],
-
                   const CalculateSpecificDietWidget(),
                   if (GlobalData().answers['specific_diet'] == 'Yes') ...[
                     const CalculateCurrentDietWidget(),
                   ],
-
                   const CalculateCookingAskWidget(),
                   if (GlobalData().answers['coocking_ask'] == 'Yes') ...[
                     const CalculateCookingChoseWidget(),
                   ],
-
                   const CalculateSportNutritionWidget(),
                   if (GlobalData().answers['nutrition_ask'] == 'Yes') ...[
                     const CalculateNutritionAddWidget(),
                   ],
-
-                  const CalculateHealthStatusFirstWidget(), // plat-21 pages
-                  const CalculateHealthStatusSecondWidget(), // plat-21 pages
-                  const CalculateHealthStatusThirdWidget(), // plat-21 pages
-                  const CalculateHealthStatusHabitsWidget(), // plat-21 pages
-
+                  const CalculateHealthStatusFirstWidget(),
+                  const CalculateHealthStatusSecondWidget(),
+                  const CalculateHealthStatusThirdWidget(),
+                  const CalculateHealthStatusHabitsWidget(),
                   const CalculateSupplementsQAWidget(),
                   if (GlobalData().answers['supplements_ask'] == 'Yes') ...[
                     const CalculateSupplementsListWidget(),
                   ],
-
                   const CalculateMedicamentsQAWidget(),
                   if (GlobalData().answers['medicaments_ask'] == 'Yes') ...[
                     const CalculateMedicamentsWidget(),
                   ],
-
                   const CalculateHomeEatingAskWidget(),
                   if (GlobalData().answers['home_eating_ask'] == 'Yes') ...[
                     const CalculateHomeEatingCalendarWidget(),
                   ],
-
                   const CalculateCousinListWidget(),
                   const CalculateDeliveryQAWidget(),
                   if (GlobalData().answers['delivery_ask'] == 'Yes') ...[
                     const CalculateDeliveryListWidget(),
                   ],
-
                   const CalculateEcoFriendlyListWidget(),
                   const CalculateLocalProductsWidget(),
                   const CalculateDiversityPlanWidget(),
                 ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: 54.0,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                gradient: const LinearGradient(
+                  colors: [
+                    Color(0xFF59A7A7),
+                    Color(0xFFAFCD6D),
+                  ],
+                ),
+              ),
+              child: ElevatedButton(
+                onPressed: _isButtonActive
+                    ? () async {
+                        FocusScope.of(context).unfocus();
+                        await CalculateGlobalWidget.of(context)
+                            .pageController
+                            .nextPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeIn);
+                        setButtonActivity(false);
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(22.0),
+                  ),
+                ),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],

@@ -68,13 +68,16 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
           _errorText = "Invalid year";
         } else {
           _isButtonActive = true;
+          CalculateGlobalWidget.of(context).setButtonActivity(true);
         }
       } catch (e) {
         _errorText = "Invalid input";
         _isButtonActive = false;
+        CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     } else {
       _isButtonActive = false;
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
     }
   }
 
@@ -114,19 +117,19 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
             const Row(
               children: [
                 Text(
-                  '  Age',
+                  'Age',
                   style: TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                      fontFamily: 'Gilroy',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
                 )
               ],
             ),
             const SizedBox(height: 5),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 4),
-              height: 60,
+              width: double.infinity,
+              height: 52,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 boxShadow: const [
@@ -141,7 +144,7 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
                 ],
               ),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: buildInputField(
@@ -176,44 +179,6 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
           ],
         ),
         const Spacer(),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    FocusScope.of(context).unfocus();
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -242,9 +207,9 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
     String? errorText,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.only(right: 9),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Container(
@@ -253,17 +218,19 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
               child: Text(
                 label,
                 style: const TextStyle(
-                  fontFamily: 'Gilroy',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
-                ),
+                    fontFamily: 'Gilroy',
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w500),
               ),
             ),
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.only(bottom: 2),
+              padding: const EdgeInsets.only(
+                bottom: 8,
+                left: 0,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -273,8 +240,8 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'Gilroy',
-                  fontSize: 18,
                   fontWeight: FontWeight.w500,
+                  fontSize: 18,
                   color: errorText != null ? Colors.red : Colors.black,
                 ),
                 decoration: const InputDecoration(

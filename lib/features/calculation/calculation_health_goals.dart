@@ -13,7 +13,6 @@ class CalculateHealthGoalsWidget extends StatefulWidget {
 class _CalculateHealthGoalsWidgetState
     extends State<CalculateHealthGoalsWidget> {
   String selectedPoint = '';
-  bool _isButtonActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,45 +52,6 @@ class _CalculateHealthGoalsWidgetState
             ],
           ),
         ),
-        Container(
-          height: 54.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ],
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: _isButtonActive
-                ? () {
-                    CalculateGlobalWidget.of(context)
-                        .saveAnswer('health_goals', selectedPoint);
-                    CalculateGlobalWidget.of(context).pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0),
-              ),
-            ),
-            child: const Text(
-              'Next',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -101,7 +61,6 @@ class _CalculateHealthGoalsWidgetState
       required String label,
       required String subtitle}) {
     bool isSelected = selectedPoint == label;
-    _isButtonActive = selectedPoint.isEmpty ? false : true;
     ColorFilter colorFilter = isSelected || selectedPoint.isEmpty
         ? ColorFilter.mode(Colors.transparent, BlendMode.multiply)
         : ColorFilter.mode(Colors.white.withOpacity(0.4), BlendMode.dstATop);
@@ -110,6 +69,11 @@ class _CalculateHealthGoalsWidgetState
       onTap: () {
         setState(() {
           selectedPoint = label;
+          if (selectedPoint.isNotEmpty) {
+            CalculateGlobalWidget.of(context).setButtonActivity(true);
+          }
+          CalculateGlobalWidget.of(context)
+              .saveAnswer('health_goals', selectedPoint);
         });
       },
       child: Padding(
