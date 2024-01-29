@@ -20,27 +20,29 @@ class _CustomListTileState extends State<CustomListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+      height: 52,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(25),
+        color: const Color.fromRGBO(255, 255, 255, 1),
         boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(35, 35, 35, 0.2),
-            offset: Offset(0, 3),
-            blurRadius: 2,
-          ),
-          BoxShadow(
-            color: Colors.white,
+            color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+            offset: Offset(1, 3),
+            blurRadius: 9,
           ),
         ],
       ),
       child: ListTile(
-        title: Text(
-          widget.title,
-          style: const TextStyle(
-            fontFamily: 'Gilroy',
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 4.0),
+          child: Text(
+            widget.title,
+            style: const TextStyle(
+              fontFamily: 'Gilroy',
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         trailing: Image(

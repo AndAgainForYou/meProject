@@ -34,7 +34,7 @@ class _CalculateCookingChoseWidgetState extends State<CalculateCookingChoseWidge
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 73),
+        const SizedBox(height: 63),
         Text(
           'Choose the most comfortable for you',
           textAlign: TextAlign.center,

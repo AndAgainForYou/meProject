@@ -31,7 +31,7 @@ class _CalculateFourthTPDWidgetState extends State<CalculateFourthTPDWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 73),
+        const SizedBox(height: 63),
         Text(
           '4 TPD',
           textAlign: TextAlign.center,

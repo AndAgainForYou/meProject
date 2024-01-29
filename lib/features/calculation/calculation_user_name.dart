@@ -10,7 +10,7 @@ class CalculateNameWidget extends StatefulWidget {
 }
 
 class _CalculateNameWidgetState extends State<CalculateNameWidget> {
-  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   bool _isButtonActive = false;
 
   @override

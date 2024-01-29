@@ -26,7 +26,7 @@ class _CalculateSportCompetitionWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 63),
         Text(
           'Do you plan to take part in a sports competition?',
           textAlign: TextAlign.center,

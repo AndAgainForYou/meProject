@@ -130,11 +130,13 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   }
                 },
                 child: const Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.arrow_back_ios,
+                      Icons.arrow_back,
                       color: Colors.black,
                     ),
+                    SizedBox(width: 4),
                     Text(
                       'Back',
                       style: TextStyle(
@@ -160,23 +162,25 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
             builder: (context, showSkipButton, child) {
               return showSkipButton
                   ? Padding(
-                      padding: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.only(right: 16),
                       child: ElevatedButton(
+                        
                         onPressed: () {
                           pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.ease);
                         },
-                        style: const ButtonStyle(
+                        style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all(const Size.fromHeight(31.0),),
                           backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue),
+                              const MaterialStatePropertyAll(Colors.blue),
                         ),
                         child: const Text(
                           'Skip',
                           style: TextStyle(
                             fontFamily: 'Gilroy',
                             color: Colors.white,
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
