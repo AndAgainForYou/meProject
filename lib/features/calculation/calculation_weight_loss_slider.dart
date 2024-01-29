@@ -14,7 +14,7 @@ class CalculateWeightLossSliderWidget extends StatefulWidget {
 class _CalculateWeightLossSliderWidgetState
     extends State<CalculateWeightLossSliderWidget> {
   double _currentSliderValue = 0;
-
+  String? _sliderStatus;
   @override
   void initState() {
     super.initState();
