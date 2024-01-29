@@ -37,7 +37,7 @@ class _CalculateCousinListWidgetState extends State<CalculateCousinListWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 73),
+        const SizedBox(height: 63),
         Text(
           'Which cousin do you want to choose?',
           textAlign: TextAlign.center,

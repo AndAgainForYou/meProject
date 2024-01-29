@@ -33,7 +33,7 @@ class _CalculateNutritionAddWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 73),
+        const SizedBox(height: 63),
         Text(
           'Chose the ones you want to add',
           textAlign: TextAlign.center,

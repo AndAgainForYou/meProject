@@ -138,8 +138,8 @@ class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
                 : const ColorFilter.mode(Colors.white, BlendMode.color),
             child: Image.asset(
               assetPath,
-              width: 80,
-              height: 80,
+              width: 66,
+              height: 66,
             ),
           ),
         ),

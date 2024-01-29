@@ -26,7 +26,7 @@ class _CalculateSportNutritionWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 63),
         Text(
           'Do you want to include sport nutrition in the plan?',
           textAlign: TextAlign.center,

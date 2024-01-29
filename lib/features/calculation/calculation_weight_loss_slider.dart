@@ -16,11 +16,9 @@ class _CalculateWeightLossSliderWidgetState
   bool _isButtonActive = false;
 
   double _currentSliderValue = 0;
-  String? _sliderStatus;
 
   @override
   void initState() {
-    bool _isButtonActive = false;
     super.initState();
   }
 
@@ -31,7 +29,7 @@ class _CalculateWeightLossSliderWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(),
+          const SizedBox(height: 63),
           Text(
             'Weight loss',
             textAlign: TextAlign.center,
@@ -61,13 +59,11 @@ class _CalculateWeightLossSliderWidgetState
               thumbColor: Colors.white,
               onChangeStart: (double value) {
                 setState(() {
-                  _sliderStatus = 'Sliding';
                   _isButtonActive = true;
                 });
               },
               onChangeEnd: (double value) {
                 setState(() {
-                  _sliderStatus = 'Finished sliding';
                   _currentSliderValue.toInt() == 0
                       ? _isButtonActive = false
                       : _isButtonActive = true;

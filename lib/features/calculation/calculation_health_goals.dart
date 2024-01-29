@@ -21,7 +21,7 @@ class _CalculateHealthGoalsWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 40),
+        const SizedBox(height: 63),
         Text(
           'Do you have health goals you want to achieve this month?',
           textAlign: TextAlign.center,
@@ -120,9 +120,9 @@ class _CalculateHealthGoalsWidgetState
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [
               BoxShadow(
-                color: Color.fromRGBO(35, 35, 35, 0.2),
-                offset: Offset(0, 5),
-                blurRadius: 10,
+                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                offset: Offset(1, 3),
+                blurRadius: 9,
               ),
               BoxShadow(
                 color: Colors.white,

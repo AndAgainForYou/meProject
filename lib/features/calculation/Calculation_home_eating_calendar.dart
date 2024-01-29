@@ -16,7 +16,6 @@ class _CalculateHomeEatingCalendarWidgetState extends State<CalculateHomeEatingC
 
   @override
   void initState() {
-    bool _isButtonActive = false;
     super.initState();
   }
 
@@ -27,7 +26,7 @@ class _CalculateHomeEatingCalendarWidgetState extends State<CalculateHomeEatingC
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-         const SizedBox(height: 50),
+         const SizedBox(height: 63),
           Text(
             'Plan outside home eating',
             textAlign: TextAlign.center,

@@ -25,7 +25,7 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 63),
         Text(
           'Do you plan to use delivery services this week?',
           textAlign: TextAlign.center,
