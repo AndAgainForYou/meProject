@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
@@ -15,20 +17,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const CalculateGlobalWidget(), //LoadingPage
-        '/login': (context) => const LoginPage(),
-        '/signUp': (context) => const SignUpPage(),
-        '/signUpCongratulation': (context) => const SignUpCongratulationPage(),
-        '/RestorePasswordPage': (context) => const RestorePasswordPage(),
-        '/MealGenerationPage': (context) => const MealGenerationPage(),
-        '/ProVersionPage': (context) => const ProVersionPage(),
-      },
-      //home: const SignUpPage(),
+    return BlocProvider(
+      create: (context) => PlatyBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const CalculateGlobalWidget(), //LoadingPage
+          '/login': (context) => const LoginPage(),
+          '/signUp': (context) => const SignUpPage(),
+          '/signUpCongratulation': (context) =>
+              const SignUpCongratulationPage(),
+          '/RestorePasswordPage': (context) => const RestorePasswordPage(),
+          '/MealGenerationPage': (context) => const MealGenerationPage(),
+          '/ProVersionPage': (context) => const ProVersionPage(),
+        },
+        //home: const SignUpPage(),
+      ),
     );
   }
 }
