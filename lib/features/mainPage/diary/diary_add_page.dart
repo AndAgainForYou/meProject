@@ -30,7 +30,6 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
     'Stress or frustration feeling?',
     'Late dinner?',
     'Feeling of depression?',
-    'How many hours have you \nslept?',
     'Do you have a trip?',
     'Changes in the activity \nlevel?'
   ];
