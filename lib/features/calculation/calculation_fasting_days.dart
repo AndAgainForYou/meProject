@@ -43,6 +43,7 @@ class _CalculateFastingDaysWidgetState
                     isSelected[index] = !isSelected[index];
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(isSelected.contains(true));
+                    //CalculateGlobalWidget.of(context).userModelBuilder.
                   });
                 },
                 child: Column(

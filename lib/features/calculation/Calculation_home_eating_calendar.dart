@@ -14,7 +14,7 @@ class _CalculateHomeEatingCalendarWidgetState
     extends State<CalculateHomeEatingCalendarWidget> {
   List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   List<bool> isSelected = List.generate(7, (index) => false);
-
+  List<String> choosedTitles = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _CalculateHomeEatingCalendarWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-         const SizedBox(height: 63),
+          const SizedBox(height: 63),
           Text(
             'Plan outside home eating',
             textAlign: TextAlign.center,
@@ -42,6 +42,10 @@ class _CalculateHomeEatingCalendarWidgetState
                 onTap: () {
                   setState(() {
                     isSelected[index] = !isSelected[index];
+                    choosedTitles.add(days[index]);
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .outside_eating_days = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(isSelected.contains(true));
                   });

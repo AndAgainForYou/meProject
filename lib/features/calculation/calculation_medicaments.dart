@@ -13,7 +13,7 @@ class CalculateMedicamentsWidget extends StatefulWidget {
 class _CalculateMedicamentsWidgetState
     extends State<CalculateMedicamentsWidget> {
   TextEditingController? controllerTextField;
-
+  List<String> medicamentsArray = [];
   @override
   void initState() {
     super.initState();
@@ -29,9 +29,14 @@ class _CalculateMedicamentsWidgetState
 
   void _onTextFieldChanged() {
     setState(() {
-      controllerTextField!.text.isNotEmpty
-          ? CalculateGlobalWidget.of(context).setButtonActivity(true)
-          : CalculateGlobalWidget.of(context).setButtonActivity(false);
+      if (controllerTextField!.text.isNotEmpty) {
+        medicamentsArray = controllerTextField!.text.split(',');
+        CalculateGlobalWidget.of(context).userModelBuilder.medicaments =
+            medicamentsArray;
+        CalculateGlobalWidget.of(context).setButtonActivity(true);
+      } else {
+        CalculateGlobalWidget.of(context).setButtonActivity(false);
+      }
     });
   }
 
@@ -64,7 +69,7 @@ class _CalculateMedicamentsWidgetState
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             boxShadow: const [
-             BoxShadow(
+              BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
                 offset: Offset(1, 3),
                 blurRadius: 9,

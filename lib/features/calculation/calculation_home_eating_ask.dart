@@ -53,8 +53,15 @@ class _CalculateHomeEatingAskWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      CalculateGlobalWidget.of(context).saveAnswer(
-                          'home_eating_ask', titles[_selectedIndex!]);
+                      if (titles[index] == "Yes") {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_outside_eating = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_outside_eating = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

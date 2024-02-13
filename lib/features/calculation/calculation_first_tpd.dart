@@ -20,13 +20,8 @@ class _CalculateFirstTPDWidgetState extends State<CalculateFirstTPDWidget> {
     'Late-Night Snack',
     'Smoothie for a Quick Meal',
   ];
-  List<bool> _isCheckedList = [];
 
-  @override
-  void initState() {
-    super.initState();
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +51,15 @@ class _CalculateFirstTPDWidgetState extends State<CalculateFirstTPDWidget> {
             itemBuilder: (context, index) {
               return CustomListTile(
                 title: titles[index],
-                isChecked: _isCheckedList[index],
+                isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {
                   setState(() {
-                    _isCheckedList[index] = isChecked;
+                    _selectedIndex = isChecked ? index : null;
                     CalculateGlobalWidget.of(context)
-                        .setButtonActivity(_isCheckedList.contains(true));
+                        .setButtonActivity(_selectedIndex != null);
+                    CalculateGlobalWidget.of(context).userModelBuilder.tpds = [
+                      titles[index]
+                    ];
                   });
                 },
               );

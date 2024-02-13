@@ -41,10 +41,16 @@ class _CalculateCookingAskWidgetState extends State<CalculateCookingAskWidget> {
                 onTilePressed: (isChecked) {
                   setState(() {
                     _selectedIndex = isChecked ? index : null;
-                    CalculateGlobalWidget.of(context)
-                        .saveAnswer('coocking_ask', titles[_selectedIndex!]);
-                    CalculateGlobalWidget.of(context)
-                        .setButtonActivity(_selectedIndex != null);
+                    if (titles[index] == "Yes") {
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .is_cooking_preference = true;
+                    } else {
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .is_cooking_preference = false;
+                    }
+                    CalculateGlobalWidget.of(context).setButtonActivity(true);
                   });
                 },
               );

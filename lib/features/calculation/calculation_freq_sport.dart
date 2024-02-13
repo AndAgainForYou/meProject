@@ -22,13 +22,7 @@ class _CalculateFreqSportWidgetState extends State<CalculateFreqSportWidget> {
     'Occasionally',
     'Rarely'
   ];
-  List<bool> _isCheckedList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +43,20 @@ class _CalculateFreqSportWidgetState extends State<CalculateFreqSportWidget> {
             itemBuilder: (context, index) {
               return CustomListTile(
                 title: titles[index],
-                isChecked: _isCheckedList[index],
+                isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {
                   setState(() {
-                    _isCheckedList[index] = isChecked;
-                    CalculateGlobalWidget.of(context)
-                        .setButtonActivity(_isCheckedList.contains(true));
+                    if (isChecked) {
+                      _selectedIndex = index;
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .activities_frequency = titles[index];
+                      CalculateGlobalWidget.of(context).setButtonActivity(true);
+                    } else {
+                      _selectedIndex = null;
+                      CalculateGlobalWidget.of(context)
+                          .setButtonActivity(false);
+                    }
                   });
                 },
               );

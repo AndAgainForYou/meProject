@@ -21,7 +21,7 @@ class _CalculateEcoFriendlyListWidgetState
     'Use food in my refrigerator first',
   ];
   List<bool> _isCheckedList = [];
-
+  List<String> choosedTitles = [];
   @override
   void initState() {
     super.initState();
@@ -59,7 +59,11 @@ class _CalculateEcoFriendlyListWidgetState
                 isChecked: _isCheckedList[index],
                 onTilePressed: (isChecked) {
                   setState(() {
+                    choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .eco_friendly_eating = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });

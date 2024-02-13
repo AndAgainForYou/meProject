@@ -64,6 +64,8 @@ class _CalculateGenderWidgetState extends State<CalculateGenderWidget> {
       onTap: () {
         setState(() {
           selectedGender = gender;
+          CalculateGlobalWidget.of(context).userModelBuilder.gender =
+              selectedGender;
           CalculateGlobalWidget.of(context)
               .setButtonActivity(selectedGender.isNotEmpty);
         });
