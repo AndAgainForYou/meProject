@@ -19,7 +19,7 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
     'Satiety and Digestive Health',
   ];
   List<bool> _isCheckedList = [];
-
+  List<String> choosedTitles = [];
   @override
   void initState() {
     super.initState();
@@ -53,7 +53,11 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
                   isChecked: _isCheckedList[index],
                   onTilePressed: (isChecked) {
                     setState(() {
-                      _isCheckedList[index] = isChecked;
+                      //                       choosedTitles.add(titles[index]);
+                      // _isCheckedList[index] = isChecked;
+                      // CalculateGlobalWidget.of(context)
+                      //     .userModelBuilder
+                      //     .= choosedTitles;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(_isCheckedList.contains(true));
                     });

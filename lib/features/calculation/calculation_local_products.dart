@@ -82,6 +82,8 @@ class _CalculateLocalProductsWidgetState
                 onChanged: (value) {
                   setState(() {
                     selectedRegion = value!;
+                    CalculateGlobalWidget.of(context).userModelBuilder.region =
+                        selectedRegion;
                     CalculateGlobalWidget.of(context).setButtonActivity(true);
                   });
                 },
@@ -103,6 +105,8 @@ class _CalculateLocalProductsWidgetState
               label: 'Winter',
               isSelected: buttonSeason1Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).userModelBuilder.season =
+                    'Winter';
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = true;
@@ -117,6 +121,8 @@ class _CalculateLocalProductsWidgetState
               label: 'Spring',
               isSelected: buttonSeason2Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).userModelBuilder.season =
+                    'Spring';
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;
@@ -131,6 +137,8 @@ class _CalculateLocalProductsWidgetState
               label: 'Summer',
               isSelected: buttonSeason3Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).userModelBuilder.season =
+                    'Summer';
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;
@@ -145,6 +153,8 @@ class _CalculateLocalProductsWidgetState
               label: 'Autumn',
               isSelected: buttonSeason4Selected,
               onPressed: () {
+                CalculateGlobalWidget.of(context).userModelBuilder.season =
+                    'Autumn';
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
                 setState(() {
                   buttonSeason1Selected = false;

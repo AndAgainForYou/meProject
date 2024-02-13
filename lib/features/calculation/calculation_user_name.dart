@@ -37,6 +37,9 @@ class _CalculateNameWidgetState extends State<CalculateNameWidget> {
                 obscureText: false,
                 onChanged: (text) {
                   CalculateGlobalWidget.of(context)
+                      .userModelBuilder
+                      .first_name = text;
+                  CalculateGlobalWidget.of(context)
                       .setButtonActivity(text.isNotEmpty);
                 },
                 decoration: InputDecoration(

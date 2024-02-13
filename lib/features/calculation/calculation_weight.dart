@@ -129,6 +129,9 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
                     setState(() {
                       _nCurrentValue = val;
                       _heightController = val.toString();
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .weight = val;
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     });
                   },

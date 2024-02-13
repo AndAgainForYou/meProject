@@ -57,8 +57,9 @@ class _CalculateFoodPreferencesWidgetState
                     _selectedIndex = isChecked ? index : null;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_selectedIndex != null);
-                    CalculateGlobalWidget.of(context).saveAnswer(
-                        'food_preferences', titles[_selectedIndex!]);
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .tpd_count = titles[index];
                   });
                 },
               );

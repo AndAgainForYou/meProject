@@ -4,8 +4,9 @@ import 'package:platy/features/calculation/custom_list_tile.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateDiversityPlanWidget extends StatefulWidget {
-  const CalculateDiversityPlanWidget({Key? key}) : super(key: key);
-
+  const CalculateDiversityPlanWidget({Key? key, required this.onfinished})
+      : super(key: key);
+  final VoidCallback onfinished;
   @override
   _CalculateDiversityPlanWidgetState createState() =>
       _CalculateDiversityPlanWidgetState();
@@ -18,13 +19,7 @@ class _CalculateDiversityPlanWidgetState
     'New meal plan each second day',
     'Same meal plan Mo-Fri and diverse plan for Sa-So',
   ];
-  List<bool> _isCheckedList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +49,21 @@ class _CalculateDiversityPlanWidgetState
             itemBuilder: (context, index) {
               return CustomListTile(
                 title: titles[index],
-                isChecked: _isCheckedList[index],
+                isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {
                   setState(() {
-                    _isCheckedList[index] = isChecked;
-                    CalculateGlobalWidget.of(context)
-                        .setButtonActivity(_isCheckedList.contains(true));
+                    if (isChecked) {
+                      _selectedIndex = index;
+                      widget.onfinished();
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .diversity = titles[index];
+                      CalculateGlobalWidget.of(context).setButtonActivity(true);
+                    } else {
+                      _selectedIndex = null;
+                      CalculateGlobalWidget.of(context)
+                          .setButtonActivity(false);
+                    }
                   });
                 },
               );

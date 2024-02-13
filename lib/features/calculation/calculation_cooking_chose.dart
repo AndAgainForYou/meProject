@@ -22,7 +22,7 @@ class _CalculateCookingChoseWidgetState
     'Raw',
   ];
   List<bool> _isCheckedList = [];
-
+  List<String> choosedTitles = [];
   @override
   void initState() {
     super.initState();
@@ -52,6 +52,10 @@ class _CalculateCookingChoseWidgetState
                 onTilePressed: (isChecked) {
                   setState(() {
                     _isCheckedList[index] = isChecked;
+                    choosedTitles.add(titles[index]);
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .cooking_preferences = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });

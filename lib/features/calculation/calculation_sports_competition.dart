@@ -43,6 +43,15 @@ class _CalculateSportCompetitionWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
+                      if (titles[index] == 'Yes') {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_competitions = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_competitions = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

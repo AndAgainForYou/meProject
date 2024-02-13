@@ -43,8 +43,15 @@ class _CalculateSportNutritionWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      CalculateGlobalWidget.of(context)
-                          .saveAnswer('nutrition_ask', titles[_selectedIndex!]);
+                      if (titles[index] == "Yes") {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_sport_nutrition = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_sport_nutrition = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

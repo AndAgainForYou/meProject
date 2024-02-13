@@ -37,6 +37,7 @@ class _CalculateActivitySportListWidgetState
     'Yoga',
   ];
   List<bool> _isCheckedList = [];
+  List<String> choosedTitles = [];
 
   @override
   void initState() {
@@ -109,7 +110,11 @@ class _CalculateActivitySportListWidgetState
                 isChecked: _isCheckedList[index],
                 onTilePressed: (isChecked) {
                   setState(() {
+                    choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .activities = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });

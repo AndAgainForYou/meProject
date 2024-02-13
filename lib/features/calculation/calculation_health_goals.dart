@@ -70,10 +70,11 @@ class _CalculateHealthGoalsWidgetState
         setState(() {
           selectedPoint = label;
           if (selectedPoint.isNotEmpty) {
+            CalculateGlobalWidget.of(context).userModelBuilder.health_goals = [
+              selectedPoint
+            ];
             CalculateGlobalWidget.of(context).setButtonActivity(true);
           }
-          CalculateGlobalWidget.of(context)
-              .saveAnswer('health_goals', selectedPoint);
         });
       },
       child: Padding(

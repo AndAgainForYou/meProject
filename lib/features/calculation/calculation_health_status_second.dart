@@ -57,6 +57,8 @@ class _CalculateHealthStatusSecondWidgetState
               isSelected: buttonPH1Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
+                    'Acidic';
                 setState(() {
                   buttonPH1Selected = true;
                   buttonPH2Selected = false;
@@ -70,6 +72,8 @@ class _CalculateHealthStatusSecondWidgetState
               isSelected: buttonPH2Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
+                    'Neutral';
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = true;
@@ -83,6 +87,8 @@ class _CalculateHealthStatusSecondWidgetState
               isSelected: buttonPH3Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
+                    'Alkaline';
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = false;
@@ -107,6 +113,9 @@ class _CalculateHealthStatusSecondWidgetState
               isSelected: buttonElectrolyte1Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .electrolyte_balance = 'Balanced';
                 setState(() {
                   buttonElectrolyte1Selected = true;
                   buttonElectrolyte2Selected = false;
@@ -119,6 +128,9 @@ class _CalculateHealthStatusSecondWidgetState
               isSelected: buttonElectrolyte2Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .electrolyte_balance = 'Imbalanced';
                 setState(() {
                   buttonElectrolyte1Selected = false;
                   buttonElectrolyte2Selected = true;

@@ -48,6 +48,8 @@ class _CalculateIntermediateFastingWidgetState
                     if (isChecked) {
                       _selectedIndex = index;
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
+                      CalculateGlobalWidget.of(context).userModelBuilder.tpds =
+                          [titles[index]];
                     } else {
                       _selectedIndex = null;
                       CalculateGlobalWidget.of(context)

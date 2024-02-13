@@ -42,8 +42,15 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      CalculateGlobalWidget.of(context)
-                          .saveAnswer('delivery_ask', titles[_selectedIndex!]);
+                      if (titles[index] == "Yes") {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_delivery = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_delivery = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

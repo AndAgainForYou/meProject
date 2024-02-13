@@ -68,6 +68,9 @@ class _CalculateWeightLossSliderWidgetState
                           .setButtonActivity(false)
                       : CalculateGlobalWidget.of(context)
                           .setButtonActivity(true);
+                  CalculateGlobalWidget.of(context)
+                      .userModelBuilder
+                      .weight_loss_goal = _currentSliderValue.toInt();
                 });
               },
               onChanged: (double value) {

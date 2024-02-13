@@ -21,6 +21,7 @@ class _CalculateChronicDiseasesListWidgetState
     'Autoimmune conditions',
   ];
   List<bool> _isCheckedList = [];
+  List<String> choosedTitles = [];
 
   @override
   void initState() {
@@ -93,7 +94,11 @@ class _CalculateChronicDiseasesListWidgetState
                 isChecked: _isCheckedList[index],
                 onTilePressed: (isChecked) {
                   setState(() {
+                    choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .chronic_diseases = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });

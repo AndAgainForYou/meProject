@@ -19,7 +19,6 @@ import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_fourth_tpd.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_gender.dart';
-import 'package:platy/features/calculation/calculation_global_data.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
 import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_health_status_first.dart';
@@ -45,6 +44,7 @@ import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/calculation/calculation_weight_loss_slider.dart';
+import 'package:platy/features/calculation/repositories/models/update_user_model.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -78,11 +78,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   final pageController = PageController();
   final ValueNotifier<bool> showSkipButtonNotifier = ValueNotifier<bool>(false);
   bool _isButtonActive = false;
-
-  void saveAnswer(String question, dynamic answer) {
-    GlobalData().answers[question] = answer;
-    setState(() {});
-  }
+  bool _lastPage = false;
+  final UpdateUserModelBuilder userModelBuilder = UpdateUserModelBuilder();
 
   void setButtonActivity(bool isActive) {
     setState(() {
@@ -179,7 +176,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                           setButtonActivity(false);
                         },
                         style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(const Size.fromHeight(31.0),),
+                          fixedSize: MaterialStateProperty.all(
+                            const Size.fromHeight(31.0),
+                          ),
                           backgroundColor:
                               const MaterialStatePropertyAll(Colors.blue),
                         ),
@@ -236,46 +235,41 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   const CalculateSportCompetitionWidget(),
                   const CalculateImpGoalsListWidget(),
                   const CalculateFreqSportWidget(),
-                  const CalculateHealthGoalsWidget(),
-                  if (GlobalData().answers['health_goals'] ==
-                      'Weight loss') ...[
+                  const CalculateHealthGoalsWidget(), //TODO Model have uncorrect parametrs
+                  if (userModelBuilder.health_goals?[0] == 'Weight loss') ...[
                     const CalculateWeightLossWidget(),
                     const CalculateWeightLossSliderWidget(),
-                  ] else if (GlobalData().answers['health_goals'] ==
+                  ] else if (userModelBuilder.health_goals?[0] ==
                       'Mental Health') ...[
                     const CalculateMentalHealthWidget(),
-                  ] else if (GlobalData().answers['health_goals'] ==
+                  ] else if (userModelBuilder.health_goals?[0] ==
                       'Skin and Beauty') ...[
                     const CalculateSkinAndBeautyWidget(),
                   ],
-                  const CalculateFoodPreferencesWidget(),
-                  if (GlobalData().answers['food_preferences'] ==
-                      '1-2 TPD') ...[
+                  const CalculateFoodPreferencesWidget(), //TODO Model have uncorrect parametrs
+                  if (userModelBuilder.tpd_count == '1-2 TPD') ...[
                     const CalculateFirstTPDWidget(),
-                  ] else if (GlobalData().answers['food_preferences'] ==
-                      '3 TPD') ...[
+                  ] else if (userModelBuilder.tpd_count == '3 TPD') ...[
                     const CalculateThirdTPDWidget(),
-                  ] else if (GlobalData().answers['food_preferences'] ==
-                      '4 TPD') ...[
+                  ] else if (userModelBuilder.tpd_count == '4 TPD') ...[
                     const CalculateFourthTPDWidget(),
-                  ] else if (GlobalData().answers['food_preferences'] ==
-                      '5 TPD') ...[
+                  ] else if (userModelBuilder.tpd_count == '5 TPD') ...[
                     const CalculateFifthTPDWidget(),
-                  ] else if (GlobalData().answers['food_preferences'] ==
+                  ] else if (userModelBuilder.tpd_count ==
                       'Intermediate Fasting') ...[
                     const CalculateIntermediateFastingWidget(),
-                    const CalculateFastingDaysWidget(),
+                    const CalculateFastingDaysWidget(), //TODO Model havent parametrs
                   ],
                   const CalculateSpecificDietWidget(),
-                  if (GlobalData().answers['specific_diet'] == 'Yes') ...[
+                  if (userModelBuilder.is_diet == true) ...[
                     const CalculateCurrentDietWidget(),
                   ],
                   const CalculateCookingAskWidget(),
-                  if (GlobalData().answers['coocking_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_cooking_preference == true) ...[
                     const CalculateCookingChoseWidget(),
                   ],
                   const CalculateSportNutritionWidget(),
-                  if (GlobalData().answers['nutrition_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_sport_nutrition == true) ...[
                     const CalculateNutritionAddWidget(),
                   ],
                   const CalculateHealthStatusFirstWidget(),
@@ -283,25 +277,34 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   const CalculateHealthStatusThirdWidget(),
                   const CalculateHealthStatusHabitsWidget(),
                   const CalculateSupplementsQAWidget(),
-                  if (GlobalData().answers['supplements_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_supplements == true) ...[
                     const CalculateSupplementsListWidget(),
                   ],
                   const CalculateMedicamentsQAWidget(),
-                  if (GlobalData().answers['medicaments_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_medicaments == true) ...[
                     const CalculateMedicamentsWidget(),
                   ],
                   const CalculateHomeEatingAskWidget(),
-                  if (GlobalData().answers['home_eating_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_outside_eating == true) ...[
                     const CalculateHomeEatingCalendarWidget(),
                   ],
                   const CalculateCousinListWidget(),
                   const CalculateDeliveryQAWidget(),
-                  if (GlobalData().answers['delivery_ask'] == 'Yes') ...[
+                  if (userModelBuilder.is_delivery == true) ...[
                     const CalculateDeliveryListWidget(),
                   ],
                   const CalculateEcoFriendlyListWidget(),
                   const CalculateLocalProductsWidget(),
-                  const CalculateDiversityPlanWidget(),
+                  CalculateDiversityPlanWidget(
+                    onfinished: () {
+                      if (!_lastPage) {
+                        setState(() {
+                          _lastPage = true;
+                          print("last page");
+                        });
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
@@ -321,6 +324,13 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
               child: ElevatedButton(
                 onPressed: _isButtonActive
                     ? () async {
+                        if (_lastPage == true) {
+                          final userModel = userModelBuilder.build();
+                          print('builded');
+                          print(
+                            'show:\n ${userModel.toJson()}',
+                          );
+                        }
                         FocusScope.of(context).unfocus();
                         await CalculateGlobalWidget.of(context)
                             .pageController

@@ -61,6 +61,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonD1Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_D_status = 'Sufficient';
                 setState(() {
                   buttonD1Selected = true;
                   buttonD2Selected = false;
@@ -73,6 +76,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonD2Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_D_status = 'Insufficient';
                 setState(() {
                   buttonD1Selected = false;
                   buttonD2Selected = true;
@@ -85,6 +91,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonD3Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_D_status = 'Deficient';
                 setState(() {
                   buttonD1Selected = false;
                   buttonD2Selected = false;
@@ -108,6 +117,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonB1Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_B12_status = 'Low';
                 setState(() {
                   buttonB1Selected = true;
                   buttonB2Selected = false;
@@ -120,6 +132,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonB2Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_B12_status = 'Deficient';
                 setState(() {
                   buttonB1Selected = false;
                   buttonB2Selected = true;
@@ -132,6 +147,9 @@ class _CalculateHealthStatusThirdWidgetState
               isSelected: buttonB3Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .vitamin_B12_status = 'Normal';
                 setState(() {
                   buttonB1Selected = false;
                   buttonB2Selected = false;
@@ -151,10 +169,13 @@ class _CalculateHealthStatusThirdWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomButton(
-              label: ' Low',
+              label: 'Adequate',
               isSelected: buttonCalcium1Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .calcium_status = 'Adequate';
                 setState(() {
                   buttonCalcium1Selected = true;
                   buttonCalcium2Selected = false;
@@ -163,10 +184,13 @@ class _CalculateHealthStatusThirdWidgetState
               },
             ),
             CustomButton(
-              label: 'Deficient',
+              label: 'Insufficient',
               isSelected: buttonCalcium2Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .calcium_status = 'Insufficient';
                 setState(() {
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = true;
@@ -175,10 +199,13 @@ class _CalculateHealthStatusThirdWidgetState
               },
             ),
             CustomButton(
-              label: 'Normal',
+              label: 'Deficient',
               isSelected: buttonCalcium3Selected,
               onPressed: () {
                 CalculateGlobalWidget.of(context).setButtonActivity(true);
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .calcium_status = 'Deficient';
                 setState(() {
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = false;

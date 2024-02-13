@@ -52,8 +52,15 @@ class _CalculateMedicamentsQAWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      CalculateGlobalWidget.of(context).saveAnswer(
-                          'medicaments_ask', titles[_selectedIndex!]);
+                      if (titles[index] == "Yes") {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_medicaments = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .is_medicaments = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;
