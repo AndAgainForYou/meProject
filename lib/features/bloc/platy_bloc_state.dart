@@ -22,3 +22,21 @@ class ProfileCreationErrorState extends PlatyBlocState {
 
   List<Object?> get props => [errorMessage];
 }
+
+//notes state
+class NotesAllState extends PlatyBlocState {
+  final Map<String, dynamic> notesData;
+
+  NotesAllState(this.notesData);
+
+  List<Object?> get props => [notesData];
+}
+
+class NotesByIdState extends PlatyBlocState {
+  final Map<String, dynamic> noteData;
+
+  NotesByIdState(this.noteData);
+
+  List<Object?> get props => [noteData];
+}
+
