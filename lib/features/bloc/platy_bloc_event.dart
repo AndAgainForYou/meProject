@@ -9,4 +9,136 @@ class CreateProfileEvent extends PlatyBlocEvent {
   CreateProfileEvent(this.profileData);
 }
 
+class SignUpEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> signUpData;
 
+  SignUpEvent(this.signUpData);
+}
+
+class LogInEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> logInData;
+
+  LogInEvent(this.logInData);
+}
+
+class LogOutEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> logOutData;
+
+  LogOutEvent(this.logOutData);
+}
+
+class DeleteAccountEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> deleteAccountData;
+
+  DeleteAccountEvent(this.deleteAccountData);
+}
+
+class PasswordChangePutEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> passwordChangeData;
+
+  PasswordChangePutEvent(this.passwordChangeData);
+}
+
+class PasswordChangePatchEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> passwordChangeData;
+
+  PasswordChangePatchEvent(this.passwordChangeData);
+}
+
+class PasswordResetPutEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> passwordResetData;
+
+  PasswordResetPutEvent(this.passwordResetData);
+}
+
+class PasswordResetPatchEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> passwordResetData;
+
+  PasswordResetPatchEvent(this.passwordResetData);
+}
+
+//jwt
+class JwtCreateEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> jwtData;
+
+  JwtCreateEvent(this.jwtData);
+}
+
+class JwtRefreshEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> jwtRefreshData;
+
+  JwtRefreshEvent(this.jwtRefreshData);
+}
+
+class JwtVerifyEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> jwtVerifyData;
+
+  JwtVerifyEvent(this.jwtVerifyData);
+}
+//notes
+class NotesGetAllEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesGetAllEvent(this.notesData);
+}
+
+class NotesCreateEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesCreateEvent(this.notesData);
+}
+
+class NotesDeleteEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesDeleteEvent(this.notesData);
+}
+
+class NotesGetByIdEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesGetByIdEvent(this.notesData);
+}
+
+//password-reset-user
+/*class PasswordResetUserPutEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  PasswordResetUserPutEvent(this.data);
+} */
+
+//change-profile-image
+
+class ProfileImagePostEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  ProfileImagePostEvent(this.data);
+} 
+
+//profile data
+
+class ProfileDataEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  ProfileDataEvent(this.data);
+} 
+
+//update profile
+
+class UpdateProfileGetEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  UpdateProfileGetEvent(this.data);
+} 
+
+class UpdateProfilePutEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  UpdateProfilePutEvent(this.data);
+} 
+
+class UpdateProfilePatchEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> data;
+
+  UpdateProfilePatchEvent(this.data);
+} 
