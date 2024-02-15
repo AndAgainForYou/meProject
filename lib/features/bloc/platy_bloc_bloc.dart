@@ -28,7 +28,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<JwtRefreshEvent>((event, emit) async {
       final response =
           await apiService.postData('/jwt/refresh/', event.jwtRefreshData);
-          
+
       //TokenManager.updateTokensValue('refresh', 'response');
       print(response);
     });
@@ -59,6 +59,38 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     on<LogInEvent>((event, emit) async {
       final response = await apiService.postData('/login/', event.logInData);
+
+      if (response['user_id'] != null) {
+        TokenManager.saveUserId(response['user_id']);
+      }
+
+      if (response['tokens'] != null) {
+        TokenManager.saveTokensData(response['tokens']);
+      }
+
+      print(TokenManager.getUserId());
+      print("access: ${TokenManager.getTokensData()?['access']}");
+    });
+
+    on<LogInWithGoogleEvent>((event, emit) async {
+      final response = await apiService.postData(
+          '/login/google-oauth2/', event.logInWithGoogleData);
+
+      if (response['user_id'] != null) {
+        TokenManager.saveUserId(response['user_id']);
+      }
+
+      if (response['tokens'] != null) {
+        TokenManager.saveTokensData(response['tokens']);
+      }
+
+      print(TokenManager.getUserId());
+      print("access: ${TokenManager.getTokensData()?['access']}");
+    });
+
+    on<LogInWithFacebookEvent>((event, emit) async {
+      final response = await apiService.postData(
+          '/login/facebook/', event.logInWithFacebookData);
 
       if (response['user_id'] != null) {
         TokenManager.saveUserId(response['user_id']);
@@ -146,35 +178,33 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     //profile-image
     on<ProfileImagePostEvent>((event, emit) async {
-      final response = await apiService.postData(
-          '/profile-image/', event.data);
+      final response = await apiService.postData('/profile-image/', event.data);
       print(response);
     });
 
     //profile
     on<ProfileDataEvent>((event, emit) async {
-      final response = await apiService.fetchData(
-          '/profile/', event.data);
+      final response = await apiService.fetchData('/profile/', event.data);
       print(response);
     });
 
     //update-profile
     on<UpdateProfileGetEvent>((event, emit) async {
-      final response = await apiService.fetchData(
-          '/update-profile/', event.data);
+      final response =
+          await apiService.fetchData('/update-profile/', event.data);
       print(response);
     });
 
-
-    on<UpdateProfilePutEvent>((event, emit) async { //update with full data
-      final response = await apiService.putData(
-          '/update-profile/', event.data);
+    on<UpdateProfilePutEvent>((event, emit) async {
+      //update with full data
+      final response = await apiService.putData('/update-profile/', event.data);
       print(response);
     });
 
-    on<UpdateProfilePatchEvent>((event, emit) async { //partical update
-      final response = await apiService.patchData(
-          '/update-profile/', event.data);
+    on<UpdateProfilePatchEvent>((event, emit) async {
+      //partical update
+      final response =
+          await apiService.patchData('/update-profile/', event.data);
       print(response);
     });
   }
