@@ -21,6 +21,18 @@ class LogInEvent extends PlatyBlocEvent {
   LogInEvent(this.logInData);
 }
 
+class LogInWithGoogleEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> logInWithGoogleData;
+
+  LogInWithGoogleEvent(this.logInWithGoogleData);
+}
+
+class LogInWithFacebookEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> logInWithFacebookData;
+
+  LogInWithFacebookEvent(this.logInWithFacebookData);
+}
+
 class LogOutEvent extends PlatyBlocEvent {
   final Map<String, dynamic> logOutData;
 
@@ -75,6 +87,7 @@ class JwtVerifyEvent extends PlatyBlocEvent {
 
   JwtVerifyEvent(this.jwtVerifyData);
 }
+
 //notes
 class NotesGetAllEvent extends PlatyBlocEvent {
   final Map<String, dynamic> notesData;
@@ -113,7 +126,7 @@ class ProfileImagePostEvent extends PlatyBlocEvent {
   final Map<String, dynamic> data;
 
   ProfileImagePostEvent(this.data);
-} 
+}
 
 //profile data
 
@@ -121,7 +134,7 @@ class ProfileDataEvent extends PlatyBlocEvent {
   final Map<String, dynamic> data;
 
   ProfileDataEvent(this.data);
-} 
+}
 
 //update profile
 
@@ -129,16 +142,16 @@ class UpdateProfileGetEvent extends PlatyBlocEvent {
   final Map<String, dynamic> data;
 
   UpdateProfileGetEvent(this.data);
-} 
+}
 
 class UpdateProfilePutEvent extends PlatyBlocEvent {
   final Map<String, dynamic> data;
 
   UpdateProfilePutEvent(this.data);
-} 
+}
 
 class UpdateProfilePatchEvent extends PlatyBlocEvent {
   final Map<String, dynamic> data;
 
   UpdateProfilePatchEvent(this.data);
-} 
+}
