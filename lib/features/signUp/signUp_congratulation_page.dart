@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_global.dart';
+import 'package:platy/features/login/login_page.dart';
 
 class SignUpCongratulationPage extends StatelessWidget {
   const SignUpCongratulationPage({super.key});
@@ -10,7 +12,10 @@ class SignUpCongratulationPage extends StatelessWidget {
           leadingWidth: 100,
           leading: InkWell(
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const LoginPage()));
             },
             child: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -66,7 +71,6 @@ class SignUpCongratulationPage extends StatelessWidget {
                           text: 'registered.',
                           style: TextStyle(
                             color: Colors.green,
-                            
                           ),
                         ),
                       ],
@@ -96,53 +100,62 @@ class SignUpCongratulationPage extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 190.0),
-                child: Container(
-                  constraints: const BoxConstraints(
-                    maxHeight: 52,
-                    maxWidth: 335,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                    gradient: const LinearGradient(
-                      begin: Alignment(0.0, -1.0),
-                      end: Alignment(1.0, 1.0),
-                      colors: [Color(0xFF59A7A7), Color(0xFFAFCD6D)],
-                      stops: [0.0, 1.0],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const CalculateGlobalWidget()));
+                  },
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      maxHeight: 52,
+                      maxWidth: 335,
                     ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      gradient: const LinearGradient(
+                        begin: Alignment(0.0, -1.0),
+                        end: Alignment(1.0, 1.0),
+                        colors: [Color(0xFF59A7A7), Color(0xFFAFCD6D)],
+                        stops: [0.0, 1.0],
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Let`s Start !',
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontFamily: 'Gilroy',
-                            fontSize: 16,
-                            letterSpacing: 0,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Transform.rotate(
-                            angle: 329.9,
-                            child: const Icon(
-                              Icons.arrow_back,
+                      ],
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Let`s Start !',
+                            style: TextStyle(
                               color: Color.fromRGBO(255, 255, 255, 1),
-                              size: 20,
+                              fontFamily: 'Gilroy',
+                              fontSize: 16,
+                              letterSpacing: 0,
+                              fontWeight: FontWeight.normal,
+                              height: 1,
                             ),
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Transform.rotate(
+                              angle: 329.9,
+                              child: const Icon(
+                                Icons.arrow_back,
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                size: 20,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

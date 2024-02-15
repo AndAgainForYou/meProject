@@ -44,99 +44,81 @@ class ApiService {
 
   Future<Map<String, dynamic>> fetchData(
       String path, Map<String, dynamic> getData) async {
-    try {
-      final response = await _dio.get(
-        path,
-        data: getData,
-        queryParameters: TokenManager._token?.isNotEmpty == true
+    final response = await _dio.get(
+      path,
+      data: getData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
           ? {'user_id': TokenManager.getUserId()}
           : null,
-        options: _getTokenOptions(),
-      );
-      return response.data;
-    } catch (error) {
-      print('Error fetching data: $error');
-      return {'error': 'Failed to fetch data'};
-    }
+      options: _getTokenOptions(),
+    );
+    return response.data;
   }
 
   Future<Map<String, dynamic>> postData(
       String path, Map<String, dynamic> postData) async {
-    try {
-      final response = await _dio.post(
-        path,
-        data: postData,
-        queryParameters: TokenManager._token?.isNotEmpty == true
+    final response = await _dio.post(
+      path,
+      data: postData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
           ? {'user_id': TokenManager.getUserId()}
           : null,
-        options: _getTokenOptions(),
-      );
-      return response.data;
-    } catch (error) {
-      print('Error posting data: $error');
-      return {'error': 'Failed to post data'};
-    }
+      options: _getTokenOptions(),
+    );
+    return response.data;
   }
 
   Future<Map<String, dynamic>> putData(
       String path, Map<String, dynamic> putData) async {
-    try {
-      final response = await _dio.put(
-        path,
-        data: putData,
-        queryParameters: TokenManager._token?.isNotEmpty == true
+    final response = await _dio.put(
+      path,
+      data: putData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
           ? {'user_id': TokenManager.getUserId()}
           : null,
-        options: _getTokenOptions(),
-      );
-      return response.data;
-    } catch (error) {
-      print('Error putting data: $error');
-      return {'error': 'Failed to put data'};
-    }
+      options: _getTokenOptions(),
+    );
+    return response.data;
   }
 
   Future<Map<String, dynamic>> deleteData(
       String path, Map<String, dynamic> deleteData) async {
-    try {
-      final response = await _dio.delete(
-        path,
-        data: deleteData,
-        queryParameters: TokenManager._token?.isNotEmpty == true
+    final response = await _dio.delete(
+      path,
+      data: deleteData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
           ? {'user_id': TokenManager.getUserId()}
           : null,
-        options: _getTokenOptions(),
-      );
-      return response.data;
-    } catch (error) {
-      print('Error deleting data: $error');
-      return {'error': 'Failed to delete data'};
-    }
+      options: _getTokenOptions(),
+    );
+    return response.data;
   }
 
   Future<Map<String, dynamic>> patchData(
       String path, Map<String, dynamic> patchData) async {
-    try {
-      final response = await _dio.patch(
-        path,
-        data: patchData,
-        queryParameters: TokenManager._token?.isNotEmpty == true
+    final response = await _dio.patch(
+      path,
+      data: patchData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
           ? {'user_id': TokenManager.getUserId()}
           : null,
-        options: _getTokenOptions(),
-      );
-      return response.data;
-    } catch (error) {
-      print('Error patching data: $error');
-      return {'error': 'Failed to patch data'};
-    }
+      options: _getTokenOptions(),
+    );
+    return response.data;
   }
 
   Options _getTokenOptions() {
     return Options(
       headers: TokenManager.getTokensData()?.isNotEmpty == true
-          ? {'Authorization': 'Bearer ${TokenManager.getTokensData()?['access']}'}
+          ? {
+              'Authorization':
+                  'Bearer ${TokenManager.getTokensData()?['access']}'
+            }
           : null,
+      followRedirects: false,
+      validateStatus: (status) {
+        return status! < 500;
+      },
     );
   }
 }

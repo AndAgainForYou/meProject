@@ -53,10 +53,11 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         TokenManager.saveTokensData(response['tokens']);
         emit(SignUpSuccessState(response['user_id']));
       } else {
-        print('bad request ${response['status']}');
-        emit(SignUpErrorState(response['status']));
+        //print('bad request ${response['status']}');
+        emit(SignUpErrorState(response));
       }
 
+      print(response);
       print(TokenManager.getUserId());
       print(TokenManager.getTokensData());
     });
