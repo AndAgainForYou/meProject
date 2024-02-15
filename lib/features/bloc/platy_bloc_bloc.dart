@@ -28,7 +28,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<JwtRefreshEvent>((event, emit) async {
       final response =
           await apiService.postData('/jwt/refresh/', event.jwtRefreshData);
-          
+
       //TokenManager.updateTokensValue('refresh', 'response');
       print(response);
     });
@@ -51,6 +51,10 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
+        emit(SignUpSuccessState(response['user_id']));
+      } else {
+        print('bad request ${response['status']}');
+        emit(SignUpErrorState(response['status']));
       }
 
       print(TokenManager.getUserId());
@@ -66,9 +70,12 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
+        emit(LoginSuccessState(response['user_id']));
+      } else {
+        print('bad request ${response['status']}');
+        emit(LoginErrorState(response['status']));
       }
 
-      print(TokenManager.getUserId());
       print("access: ${TokenManager.getTokensData()?['access']}");
     });
 
@@ -146,35 +153,33 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     //profile-image
     on<ProfileImagePostEvent>((event, emit) async {
-      final response = await apiService.postData(
-          '/profile-image/', event.data);
+      final response = await apiService.postData('/profile-image/', event.data);
       print(response);
     });
 
     //profile
     on<ProfileDataEvent>((event, emit) async {
-      final response = await apiService.fetchData(
-          '/profile/', event.data);
+      final response = await apiService.fetchData('/profile/', event.data);
       print(response);
     });
 
     //update-profile
     on<UpdateProfileGetEvent>((event, emit) async {
-      final response = await apiService.fetchData(
-          '/update-profile/', event.data);
+      final response =
+          await apiService.fetchData('/update-profile/', event.data);
       print(response);
     });
 
-
-    on<UpdateProfilePutEvent>((event, emit) async { //update with full data
-      final response = await apiService.putData(
-          '/update-profile/', event.data);
+    on<UpdateProfilePutEvent>((event, emit) async {
+      //update with full data
+      final response = await apiService.putData('/update-profile/', event.data);
       print(response);
     });
 
-    on<UpdateProfilePatchEvent>((event, emit) async { //partical update
-      final response = await apiService.patchData(
-          '/update-profile/', event.data);
+    on<UpdateProfilePatchEvent>((event, emit) async {
+      //partical update
+      final response =
+          await apiService.patchData('/update-profile/', event.data);
       print(response);
     });
   }
