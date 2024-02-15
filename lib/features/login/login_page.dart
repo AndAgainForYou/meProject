@@ -41,15 +41,13 @@ class _LoginPageState extends State<LoginPage> {
               _isErrorVisible = true;
               _isErrorRequest = false;
             });
-          }
-          ;
+          };
           if (state is LoginSuccessState) {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CalculateGlobalWidget()));
-          }
-          ;
+                    builder: (context) => const CalculateGlobalWidget()));
+          };
         },
         child: KeyboardDismissOnTap(
           child: CustomScrollView(
