@@ -51,6 +51,10 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
+        emit(SignUpSuccessState(response['user_id']));
+      } else {
+        print('bad request ${response['status']}');
+        emit(SignUpErrorState(response['status']));
       }
 
       print(TokenManager.getUserId());
@@ -66,9 +70,12 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
+        emit(LoginSuccessState(response['user_id']));
+      } else {
+        print('bad request ${response['status']}');
+        emit(LoginErrorState(response['status']));
       }
 
-      print(TokenManager.getUserId());
       print("access: ${TokenManager.getTokensData()?['access']}");
     });
 
