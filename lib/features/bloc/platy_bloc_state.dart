@@ -77,6 +77,22 @@ class ProfileCreationErrorState extends PlatyBlocState {
   List<Object?> get props => [errorMessage];
 }
 
+class ProfileIncludesDataState extends PlatyBlocState {
+  final Map<String, dynamic> profileData;
+
+  ProfileIncludesDataState(this.profileData);
+
+  List<Object?> get props => [profileData];
+}
+
+class ProfileNotIncludesDataState extends PlatyBlocState {
+  final Map<String, dynamic> profileData;
+
+  ProfileNotIncludesDataState(this.profileData);
+
+  List<Object?> get props => [profileData];
+}
+
 //notes state
 class NotesAllState extends PlatyBlocState {
   final Map<String, dynamic> notesData;
