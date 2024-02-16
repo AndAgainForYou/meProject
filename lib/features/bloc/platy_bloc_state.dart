@@ -40,6 +40,24 @@ class SignUpErrorState extends PlatyBlocState {
   List<dynamic> get props => [errorMessage];
 }
 
+//password reset
+
+class PasswordResetSuccessState extends PlatyBlocState {
+  final dynamic successMessage;
+
+  PasswordResetSuccessState(this.successMessage);
+
+  List<dynamic> get props => [successMessage];
+}
+
+class PasswordResetErrorState extends PlatyBlocState {
+  final dynamic errorMessage;
+
+  PasswordResetErrorState(this.errorMessage);
+
+  List<dynamic> get props => [errorMessage];
+}
+
 
 //profile data
 

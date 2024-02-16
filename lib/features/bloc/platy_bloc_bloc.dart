@@ -53,7 +53,6 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         TokenManager.saveTokensData(response['tokens']);
         emit(SignUpSuccessState(response['user_id']));
       } else {
-        //print('bad request ${response['status']}');
         emit(SignUpErrorState(response));
       }
 
@@ -124,22 +123,15 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     });
 
     //password
-    on<PasswordResetPutEvent>((event, emit) async {
-      final response =
-          await apiService.putData('/password-reset/', event.passwordResetData);
-      print(response);
-    });
-
-    on<PasswordResetPatchEvent>((event, emit) async {
-      final response = await apiService.patchData(
+    
+    on<PasswordResetEvent>((event, emit) async {
+      final response = await apiService.postData(
           '/password-reset/', event.passwordResetData);
-      print(response);
-    });
-
-    on<PasswordChangePutEvent>((event, emit) async {
-      final response = await apiService.putData(
-          '/change-password/', event.passwordChangeData);
-      print(response);
+      if (response['message'] == null) {
+        emit(PasswordResetErrorState(response['email']));
+      } else {
+        emit(PasswordResetSuccessState(response['message']));
+      }
     });
 
     on<PasswordChangePatchEvent>((event, emit) async {
