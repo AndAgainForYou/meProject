@@ -66,10 +66,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    '+1 777 77 77',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
                   const SizedBox(height: 16),
                   Column(
                     children: [
@@ -156,11 +152,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ProfileChangeFilledPage()),
-                              );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ProfileChangeFilledPage()),
+                          );
                         },
                         child: Container(
                           height: 52.0,
