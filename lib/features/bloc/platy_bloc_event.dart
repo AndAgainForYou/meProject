@@ -57,16 +57,10 @@ class PasswordChangePatchEvent extends PlatyBlocEvent {
   PasswordChangePatchEvent(this.passwordChangeData);
 }
 
-class PasswordResetPutEvent extends PlatyBlocEvent {
+class PasswordResetEvent extends PlatyBlocEvent {
   final Map<String, dynamic> passwordResetData;
 
-  PasswordResetPutEvent(this.passwordResetData);
-}
-
-class PasswordResetPatchEvent extends PlatyBlocEvent {
-  final Map<String, dynamic> passwordResetData;
-
-  PasswordResetPatchEvent(this.passwordResetData);
+  PasswordResetEvent(this.passwordResetData);
 }
 
 //jwt
