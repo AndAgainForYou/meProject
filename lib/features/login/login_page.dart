@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
+import 'package:platy/features/mainPage/main_home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -41,13 +42,23 @@ class _LoginPageState extends State<LoginPage> {
               _isErrorVisible = true;
               _isErrorRequest = false;
             });
-          };
+          }
+          ;
           if (state is LoginSuccessState) {
+            platyBloc.add(ProfileDataEvent({}));
+          }
+          ;
+          if (state is ProfileNotIncludesDataState) {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const CalculateGlobalWidget()));
-          };
+          } else if (state is ProfileIncludesDataState) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const MainHomePage()));
+          }
         },
         child: KeyboardDismissOnTap(
           child: CustomScrollView(
@@ -318,6 +329,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (_formKey.currentState!.validate()) {
                           if (_isErrorVisible != true) {
                             platyBloc.add(LogInEvent(loginData));
+                            //platyBloc.add(ProfileDataEvent({}));
                           }
                           ;
                         }

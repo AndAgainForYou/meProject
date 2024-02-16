@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/Calculation_home_eating_calendar.dart';
 import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
@@ -46,6 +48,7 @@ import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/calculation/calculation_weight_loss_slider.dart';
 import 'package:platy/features/calculation/repositories/models/update_user_model.dart';
 import 'package:platy/features/calculation/theme.dart';
+import 'package:platy/features/mainPage/main_home_page.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
   const CalculateGlobalWidget({Key? key}) : super(key: key);
@@ -113,6 +116,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
   @override
   Widget build(BuildContext context) {
+    PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 130,
@@ -326,18 +330,29 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                     ? () async {
                         if (_lastPage == true) {
                           final userModel = userModelBuilder.build();
+
+                          platyBloc.add(CreateProfileEvent(userModel.toJson()));
+
                           print('builded');
                           print(
                             'show:\n ${userModel.toJson()}',
                           );
+                          
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => const MainHomePage()));
+                          
+                        } else {
+                            FocusScope.of(context).unfocus();
+                          await CalculateGlobalWidget.of(context)
+                              .pageController
+                              .nextPage(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeIn);
+                          setButtonActivity(false);
                         }
-                        FocusScope.of(context).unfocus();
-                        await CalculateGlobalWidget.of(context)
-                            .pageController
-                            .nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeIn);
-                        setButtonActivity(false);
+                        
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

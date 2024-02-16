@@ -13,7 +13,8 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       final response =
           await apiService.postData('/create-profile/', event.profileData);
       // Update the state based on the API response or other logic
-      emit(ProfileCreatedState(response));
+      //emit(ProfileCreatedState(response));
+      print('response: ${response}');
     });
 
     //jwt
@@ -185,6 +186,18 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     //profile
     on<ProfileDataEvent>((event, emit) async {
       final response = await apiService.fetchData('/profile/', event.data);
+
+      //emit(ProfileIncludesDataState(response));
+
+      if (response['detail'] != null) {
+        emit(ProfileNotIncludesDataState(response));
+        print('not included data');
+      } 
+      if (response['detail'] == null) {
+        emit(ProfileIncludesDataState(response));
+        print('included data');
+      }
+
       print(response);
     });
 
