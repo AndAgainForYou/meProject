@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                                   bottom: 22.0, left: 8.0, right: 8.0),
                               child: InkWell(
                                 onTap: () {
-                                  // Handle Facebook login
+                                  //platyBloc.add(LogInWithFacebookEvent(logInWithFacebookData));
                                 },
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                                   bottom: 22.0, left: 8.0, right: 8.0),
                               child: InkWell(
                                 onTap: () {
-                                  // Handle Google login
+                                  platyBloc.add(LogInWithGoogleEvent()); //
                                 },
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
