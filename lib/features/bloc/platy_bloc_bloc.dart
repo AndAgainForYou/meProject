@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:platy/features/api/api_service.dart';
 
@@ -80,23 +82,39 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     });
 
     on<LogInWithGoogleEvent>((event, emit) async {
-      final response = await apiService.postData(
-          '/login/google-oauth2/', event.logInWithGoogleData);
+      try {
+        // Trigger the authentication flow
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        // Obtain the auth details from the request
+        GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+        print(googleAuth);
 
-      if (response['user_id'] != null) {
-        TokenManager.saveUserId(response['user_id']);
+        // final result = await FlutterWebAuth2.authenticate(
+        //   url: 'http://16.171.1.90/api/v1/login/google-oauth2/',
+        //   callbackUrlScheme: 'platy',
+        // );
+        // final String? token = Uri.parse(result).queryParameters['token'];
+      } catch (e) {
+        print('Error: $e');
       }
+      // final response = await apiService.fetchData(
+      //     '/login/google-oauth2/', event.logInWithGoogleData);
 
-      if (response['tokens'] != null) {
-        TokenManager.saveTokensData(response['tokens']);
-      }
+      // if (response['user_id'] != null) {
+      //   TokenManager.saveUserId(response['user_id']);
+      // }
 
-      print(TokenManager.getUserId());
-      print("access: ${TokenManager.getTokensData()?['access']}");
+      // if (response['tokens'] != null) {
+      //   TokenManager.saveTokensData(response['tokens']);
+      // }
+
+      // print(TokenManager.getUserId());
+      // print("access: ${TokenManager.getTokensData()?['access']}");
     });
 
     on<LogInWithFacebookEvent>((event, emit) async {
-      final response = await apiService.postData(
+      final response = await apiService.fetchData(
           '/login/facebook/', event.logInWithFacebookData);
 
       if (response['user_id'] != null) {
