@@ -12,16 +12,25 @@ class CalculateHealthStatusThirdWidget extends StatefulWidget {
 class _CalculateHealthStatusThirdWidgetState
     extends State<CalculateHealthStatusThirdWidget> {
   bool buttonD1Selected = false;
-  bool buttonD2Selected = true;
+  bool buttonD2Selected = false;
   bool buttonD3Selected = false;
 
   bool buttonB1Selected = false;
-  bool buttonB2Selected = true;
+  bool buttonB2Selected = false;
   bool buttonB3Selected = false;
 
   bool buttonCalcium1Selected = false;
-  bool buttonCalcium2Selected = true;
+  bool buttonCalcium2Selected = false;
   bool buttonCalcium3Selected = false;
+  void checkToNext() {
+    if ((buttonD1Selected || buttonD2Selected || buttonD3Selected) &&
+        (buttonB1Selected || buttonB2Selected || buttonB3Selected) &&
+        (buttonCalcium1Selected ||
+            buttonCalcium2Selected ||
+            buttonCalcium3Selected)) {
+      CalculateGlobalWidget.of(context).setButtonActivity(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +69,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Sufficient',
               isSelected: buttonD1Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_D_status = 'Sufficient';
@@ -68,6 +76,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonD1Selected = true;
                   buttonD2Selected = false;
                   buttonD3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -75,7 +84,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Insufficient',
               isSelected: buttonD2Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_D_status = 'Insufficient';
@@ -83,6 +91,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonD1Selected = false;
                   buttonD2Selected = true;
                   buttonD3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -90,7 +99,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonD3Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_D_status = 'Deficient';
@@ -98,6 +106,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonD1Selected = false;
                   buttonD2Selected = false;
                   buttonD3Selected = true;
+                  checkToNext();
                 });
               },
             ),
@@ -116,7 +125,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: ' Low',
               isSelected: buttonB1Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_B12_status = 'Low';
@@ -124,6 +132,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonB1Selected = true;
                   buttonB2Selected = false;
                   buttonB3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -131,7 +140,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonB2Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_B12_status = 'Deficient';
@@ -139,6 +147,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonB1Selected = false;
                   buttonB2Selected = true;
                   buttonB3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -146,7 +155,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Normal',
               isSelected: buttonB3Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .vitamin_B12_status = 'Normal';
@@ -154,6 +162,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonB1Selected = false;
                   buttonB2Selected = false;
                   buttonB3Selected = true;
+                  checkToNext();
                 });
               },
             ),
@@ -172,7 +181,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Adequate',
               isSelected: buttonCalcium1Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .calcium_status = 'Adequate';
@@ -180,6 +188,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonCalcium1Selected = true;
                   buttonCalcium2Selected = false;
                   buttonCalcium3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -187,7 +196,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Insufficient',
               isSelected: buttonCalcium2Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .calcium_status = 'Insufficient';
@@ -195,6 +203,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = true;
                   buttonCalcium3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -202,7 +211,6 @@ class _CalculateHealthStatusThirdWidgetState
               label: 'Deficient',
               isSelected: buttonCalcium3Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .calcium_status = 'Deficient';
@@ -210,6 +218,7 @@ class _CalculateHealthStatusThirdWidgetState
                   buttonCalcium1Selected = false;
                   buttonCalcium2Selected = false;
                   buttonCalcium3Selected = true;
+                  checkToNext();
                 });
               },
             ),
