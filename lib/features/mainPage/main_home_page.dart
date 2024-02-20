@@ -30,6 +30,7 @@ class _MainHomePageState extends State<MainHomePage> {
       appBar: AppBar(
         title: Image.asset('assets/images/logo_small.png'),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         actions: [
           _selectedIndex == 0 || _selectedIndex == 3
               ? Padding(
