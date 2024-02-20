@@ -333,11 +333,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
                           platyBloc.add(CreateProfileEvent(userModel.toJson()));
 
-                          print('builded');
-                          print(
-                            'show:\n ${userModel.toJson()}',
-                          );
-
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
