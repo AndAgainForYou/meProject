@@ -93,10 +93,28 @@ class NotesCreateEvent extends PlatyBlocEvent {
   NotesCreateEvent(this.notesData);
 }
 
+class NotesCreateJournalEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesCreateJournalEvent(this.notesData);
+}
+
 class NotesDeleteEvent extends PlatyBlocEvent {
   final Map<String, dynamic> notesData;
 
   NotesDeleteEvent(this.notesData);
+}
+
+class NotesJournalGetByIdEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesJournalGetByIdEvent(this.notesData);
+}
+
+class NotesUpdateByIdEvent extends PlatyBlocEvent {
+  final Map<String, dynamic> notesData;
+
+  NotesUpdateByIdEvent(this.notesData);
 }
 
 class NotesGetByIdEvent extends PlatyBlocEvent {

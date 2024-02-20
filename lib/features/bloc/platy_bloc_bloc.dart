@@ -174,9 +174,29 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       print(response);
     });
 
+    on<NotesCreateJournalEvent>((event, emit) async {
+      final response =
+          await apiService.postData('/notes/create/journal', event.notesData);
+      print(response);
+    });
+
     on<NotesDeleteEvent>((event, emit) async {
       final response = await apiService.deleteData(
           '/notes/delete/${event.notesData['id']}/', event.notesData);
+      print(response);
+    });
+
+    on<NotesJournalGetByIdEvent>((event, emit) async {
+      final response = await apiService.fetchData(
+          '/notes/journal/${event.notesData['id']}/', event.notesData);
+      //emit(NotesByIdState(response));
+      print(response);
+    });
+
+    on<NotesUpdateByIdEvent>((event, emit) async {
+      final response = await apiService.postData(
+          '/notes/update/${event.notesData['id']}/', event.notesData);
+      //emit(NotesByIdState(response));
       print(response);
     });
 
