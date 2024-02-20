@@ -12,23 +12,38 @@ class CalculateHealthStatusFirstWidget extends StatefulWidget {
 class _CalculateHealthStatusFirstWidgetState
     extends State<CalculateHealthStatusFirstWidget> {
   bool buttonCholesterol1Selected = false; //Cholesterol
-  bool buttonCholesterol2Selected = true;
+  bool buttonCholesterol2Selected = false;
   bool buttonCholesterol3Selected = false;
 
-  bool buttonBlood1Selected = true; //Blood
+  bool buttonBlood1Selected = false; //Blood
   bool buttonBlood2Selected = false;
   bool buttonBlood3Selected = false;
 
-  bool buttonHemoglobin1Selected = true; //Hemoglobin
+  bool buttonHemoglobin1Selected = false; //Hemoglobin
   bool buttonHemoglobin2Selected = false;
 
   bool buttonTriglycerides1Selected = false; //Triglycerides
-  bool buttonTriglycerides2Selected = true;
+  bool buttonTriglycerides2Selected = false;
   bool buttonTriglycerides3Selected = false;
 
   bool buttonIron1Selected = false; //Iron
-  bool buttonIron2Selected = true;
+  bool buttonIron2Selected = false;
   bool buttonIron3Selected = false;
+  void checkToNext() {
+    if ((buttonBlood1Selected ||
+            buttonBlood2Selected ||
+            buttonBlood3Selected) &&
+        (buttonCholesterol1Selected ||
+            buttonCholesterol2Selected ||
+            buttonCholesterol3Selected) &&
+        (buttonHemoglobin1Selected || buttonHemoglobin2Selected) &&
+        (buttonIron1Selected || buttonIron2Selected || buttonIron3Selected) &&
+        (buttonTriglycerides1Selected ||
+            buttonTriglycerides2Selected ||
+            buttonTriglycerides3Selected)) {
+      CalculateGlobalWidget.of(context).setButtonActivity(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +84,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonCholesterol1Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .cholesterol_level = 'Low';
@@ -77,6 +91,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonCholesterol1Selected = true;
                     buttonCholesterol2Selected = false;
                     buttonCholesterol3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -85,7 +100,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonCholesterol2Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .cholesterol_level = 'Normal';
@@ -93,6 +107,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonCholesterol1Selected = false;
                     buttonCholesterol2Selected = true;
                     buttonCholesterol3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -101,7 +116,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonCholesterol3Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .cholesterol_level = 'High';
@@ -109,6 +123,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonCholesterol1Selected = false;
                     buttonCholesterol2Selected = false;
                     buttonCholesterol3Selected = true;
+                    checkToNext();
                   });
                 },
               ),
@@ -128,7 +143,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonBlood1Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .blood_glucose_level = 'Normal';
@@ -136,6 +150,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonBlood1Selected = true;
                     buttonBlood2Selected = false;
                     buttonBlood3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -144,7 +159,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Pre-Diabetic',
                 isSelected: buttonBlood2Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .blood_glucose_level = 'Pre-Diabetic';
@@ -152,6 +166,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonBlood1Selected = false;
                     buttonBlood2Selected = true;
                     buttonBlood3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -160,7 +175,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Diabetic',
                 isSelected: buttonBlood3Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .blood_glucose_level = 'Diabetic';
@@ -168,6 +182,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonBlood1Selected = false;
                     buttonBlood2Selected = false;
                     buttonBlood3Selected = true;
+                    checkToNext();
                   });
                 },
               ),
@@ -187,13 +202,13 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonHemoglobin1Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .hemoglobin_level = 'Normal';
                   setState(() {
                     buttonHemoglobin1Selected = true;
                     buttonHemoglobin2Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -202,13 +217,13 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonHemoglobin2Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .hemoglobin_level = 'High';
                   setState(() {
                     buttonHemoglobin1Selected = false;
                     buttonHemoglobin2Selected = true;
+                    checkToNext();
                   });
                 },
               ),
@@ -228,7 +243,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonTriglycerides1Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .triglycerides_level = 'Low';
@@ -236,6 +250,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonTriglycerides1Selected = true;
                     buttonTriglycerides2Selected = false;
                     buttonTriglycerides3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -244,7 +259,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonTriglycerides2Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .triglycerides_level = 'Normal';
@@ -252,6 +266,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonTriglycerides1Selected = false;
                     buttonTriglycerides2Selected = true;
                     buttonTriglycerides3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -260,7 +275,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonTriglycerides3Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .triglycerides_level = 'High';
@@ -268,6 +282,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonTriglycerides1Selected = false;
                     buttonTriglycerides2Selected = false;
                     buttonTriglycerides3Selected = true;
+                    checkToNext();
                   });
                 },
               ),
@@ -287,7 +302,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: ' Low',
                 isSelected: buttonIron1Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .iron_level = 'Low';
@@ -295,6 +309,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonIron1Selected = true;
                     buttonIron2Selected = false;
                     buttonIron3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -303,7 +318,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'Normal',
                 isSelected: buttonIron2Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .iron_level = 'Normal';
@@ -311,6 +325,7 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonIron1Selected = false;
                     buttonIron2Selected = true;
                     buttonIron3Selected = false;
+                    checkToNext();
                   });
                 },
               ),
@@ -319,7 +334,6 @@ class _CalculateHealthStatusFirstWidgetState
                 label: 'High',
                 isSelected: buttonIron3Selected,
                 onPressed: () {
-                  CalculateGlobalWidget.of(context).setButtonActivity(true);
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .iron_level = 'High';
@@ -327,11 +341,13 @@ class _CalculateHealthStatusFirstWidgetState
                     buttonIron1Selected = false;
                     buttonIron2Selected = false;
                     buttonIron3Selected = true;
+                    checkToNext();
                   });
                 },
               ),
             ],
           ),
+          const SizedBox(height: 10),
         ],
       ),
     );

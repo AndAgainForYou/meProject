@@ -12,11 +12,17 @@ class CalculateHealthStatusSecondWidget extends StatefulWidget {
 class _CalculateHealthStatusSecondWidgetState
     extends State<CalculateHealthStatusSecondWidget> {
   bool buttonPH1Selected = false; //PH
-  bool buttonPH2Selected = true;
+  bool buttonPH2Selected = false;
   bool buttonPH3Selected = false;
 
-  bool buttonElectrolyte1Selected = true; //Electrolyte
+  bool buttonElectrolyte1Selected = false; //Electrolyte
   bool buttonElectrolyte2Selected = false;
+  void checkToNext() {
+    if ((buttonPH1Selected || buttonPH2Selected || buttonPH3Selected) &&
+        (buttonElectrolyte1Selected || buttonElectrolyte2Selected)) {
+      CalculateGlobalWidget.of(context).setButtonActivity(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +62,13 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Acidic',
               isSelected: buttonPH1Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
                     'Acidic';
                 setState(() {
                   buttonPH1Selected = true;
                   buttonPH2Selected = false;
                   buttonPH3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -71,13 +77,13 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Neutral',
               isSelected: buttonPH2Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
                     'Neutral';
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = true;
                   buttonPH3Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -86,13 +92,13 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Alkaline',
               isSelected: buttonPH3Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context).userModelBuilder.ph_level =
                     'Alkaline';
                 setState(() {
                   buttonPH1Selected = false;
                   buttonPH2Selected = false;
                   buttonPH3Selected = true;
+                  checkToNext();
                 });
               },
             ),
@@ -112,13 +118,13 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Balanced',
               isSelected: buttonElectrolyte1Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .electrolyte_balance = 'Balanced';
                 setState(() {
                   buttonElectrolyte1Selected = true;
                   buttonElectrolyte2Selected = false;
+                  checkToNext();
                 });
               },
             ),
@@ -127,13 +133,13 @@ class _CalculateHealthStatusSecondWidgetState
               label: 'Imbalanced',
               isSelected: buttonElectrolyte2Selected,
               onPressed: () {
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .electrolyte_balance = 'Imbalanced';
                 setState(() {
                   buttonElectrolyte1Selected = false;
                   buttonElectrolyte2Selected = true;
+                  checkToNext();
                 });
               },
             ),
