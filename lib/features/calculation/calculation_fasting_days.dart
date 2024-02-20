@@ -14,6 +14,7 @@ class _CalculateFastingDaysWidgetState
     extends State<CalculateFastingDaysWidget> {
   List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   List<bool> isSelected = List.generate(7, (index) => false);
+  List<String> choosedTitles = [];
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,12 @@ class _CalculateFastingDaysWidgetState
                 onTap: () {
                   setState(() {
                     isSelected[index] = !isSelected[index];
+                    choosedTitles.add(days[index]);
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .fasting_days = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(isSelected.contains(true));
-                    //CalculateGlobalWidget.of(context).userModelBuilder.
                   });
                 },
                 child: Column(

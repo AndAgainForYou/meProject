@@ -239,7 +239,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   const CalculateSportCompetitionWidget(),
                   const CalculateImpGoalsListWidget(),
                   const CalculateFreqSportWidget(),
-                  const CalculateHealthGoalsWidget(), //TODO Model have uncorrect parametrs
+                  const CalculateHealthGoalsWidget(),
                   if (userModelBuilder.health_goals?[0] == 'Weight loss') ...[
                     const CalculateWeightLossWidget(),
                     const CalculateWeightLossSliderWidget(),
@@ -250,7 +250,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                       'Skin and Beauty') ...[
                     const CalculateSkinAndBeautyWidget(),
                   ],
-                  const CalculateFoodPreferencesWidget(), //TODO Model have uncorrect parametrs
+                  const CalculateFoodPreferencesWidget(),
                   if (userModelBuilder.tpd_count == '1-2 TPD') ...[
                     const CalculateFirstTPDWidget(),
                   ] else if (userModelBuilder.tpd_count == '3 TPD') ...[
@@ -262,7 +262,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   ] else if (userModelBuilder.tpd_count ==
                       'Intermediate Fasting') ...[
                     const CalculateIntermediateFastingWidget(),
-                    const CalculateFastingDaysWidget(), //TODO Model havent parametrs
+                    const CalculateFastingDaysWidget(),
                   ],
                   const CalculateSpecificDietWidget(),
                   if (userModelBuilder.is_diet == true) ...[
@@ -337,14 +337,14 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                           print(
                             'show:\n ${userModel.toJson()}',
                           );
-                          
-                            Navigator.pushReplacement(
+
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => const MainHomePage()));
-                          
+                                  builder: (BuildContext context) =>
+                                      const MainHomePage()));
                         } else {
-                            FocusScope.of(context).unfocus();
+                          FocusScope.of(context).unfocus();
                           await CalculateGlobalWidget.of(context)
                               .pageController
                               .nextPage(
@@ -352,7 +352,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                                   curve: Curves.easeIn);
                           setButtonActivity(false);
                         }
-                        
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

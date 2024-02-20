@@ -15,8 +15,7 @@ class UpdateUserModel {
       this.outside_eating_cuisine,
       this.delivery_cuisine,
       this.sport_nutritions,
-      this.first_name,
-      this.last_name,
+      this.name,
       this.gender,
       this.birthday_date,
       this.height,
@@ -45,7 +44,11 @@ class UpdateUserModel {
       this.region,
       this.is_sport_nutrition,
       this.diversity,
-      this.tpd_count);
+      this.tpd_count,
+      this.weight_goals,
+      this.mental_health_goals,
+      this.beauty_goals,
+      this.fasting_days);
 
   final List<String>? alergies;
   final List<String>? tpds;
@@ -62,8 +65,7 @@ class UpdateUserModel {
   final List<String>? outside_eating_cuisine;
   final List<String>? delivery_cuisine;
   final List<String>? sport_nutritions;
-  final String first_name;
-  final String? last_name;
+  final String name;
   final String gender;
   final String birthday_date;
   final int height;
@@ -93,6 +95,10 @@ class UpdateUserModel {
   final bool? is_sport_nutrition;
   final String diversity;
   final String tpd_count;
+  final List<String>? weight_goals;
+  final List<String>? mental_health_goals;
+  final List<String>? beauty_goals;
+  final List<String>? fasting_days;
 
   Map<String, dynamic> toJson() => {
         if (alergies != null) 'alergies': alergies,
@@ -115,8 +121,7 @@ class UpdateUserModel {
           'outside_eating_cuisine': outside_eating_cuisine,
         if (delivery_cuisine != null) 'delivery_cuisine': delivery_cuisine,
         if (sport_nutritions != null) 'sport_nutritions': sport_nutritions,
-        'first_name': first_name,
-        if (last_name != null) 'last_name': last_name,
+        'name': name,
         'gender': gender,
         'birthday_date': birthday_date,
         'height': height,
@@ -147,7 +152,12 @@ class UpdateUserModel {
         if (is_sport_nutrition != null)
           'is_sport_nutrition': is_sport_nutrition,
         'diversity': diversity,
-        'tpd_count': tpd_count
+        'tpd_count': tpd_count,
+        if (weight_goals != null) 'weight_goals': weight_goals,
+        if (mental_health_goals != null)
+          'mental_health_goals': mental_health_goals,
+        if (beauty_goals != null) 'beauty_goals': beauty_goals,
+        if (fasting_days != null) 'fasting_days': fasting_days
       };
 
   UpdateUserModel._builder(UpdateUserModelBuilder builder)
@@ -166,8 +176,7 @@ class UpdateUserModel {
         outside_eating_cuisine = builder.outside_eating_cuisine,
         delivery_cuisine = builder.delivery_cuisine,
         sport_nutritions = builder.sport_nutritions,
-        first_name = builder.first_name!,
-        last_name = builder.last_name, //TODO make not NULL
+        name = builder.name!,
         gender = builder.gender!,
         birthday_date = builder.birthday_date!,
         height = builder.height!,
@@ -196,7 +205,11 @@ class UpdateUserModel {
         region = builder.region,
         is_sport_nutrition = builder.is_sport_nutrition,
         diversity = builder.diversity!,
-        tpd_count = builder.tpd_count!;
+        tpd_count = builder.tpd_count!,
+        weight_goals = builder.weight_goals,
+        mental_health_goals = builder.mental_health_goals,
+        beauty_goals = builder.beauty_goals,
+        fasting_days = builder.fasting_days;
 }
 
 class UpdateUserModelBuilder {
@@ -216,8 +229,7 @@ class UpdateUserModelBuilder {
   List<String>? outside_eating_cuisine;
   List<String>? delivery_cuisine;
   List<String>? sport_nutritions;
-  String? first_name; //
-  String? last_name; //
+  String? name;
   String? gender;
   String? birthday_date;
   int? height;
@@ -247,6 +259,10 @@ class UpdateUserModelBuilder {
   bool? is_sport_nutrition;
   String? diversity;
   String? tpd_count;
+  List<String>? weight_goals;
+  List<String>? mental_health_goals;
+  List<String>? beauty_goals;
+  List<String>? fasting_days;
 
   UpdateUserModel build() {
     return UpdateUserModel._builder(this);

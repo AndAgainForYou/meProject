@@ -53,11 +53,11 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
                   isChecked: _isCheckedList[index],
                   onTilePressed: (isChecked) {
                     setState(() {
-                      //                       choosedTitles.add(titles[index]);
-                      // _isCheckedList[index] = isChecked;
-                      // CalculateGlobalWidget.of(context)
-                      //     .userModelBuilder
-                      //     .= choosedTitles;
+                      choosedTitles.add(titles[index]);
+                      _isCheckedList[index] = isChecked;
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .weight_goals = choosedTitles;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(_isCheckedList.contains(true));
                     });

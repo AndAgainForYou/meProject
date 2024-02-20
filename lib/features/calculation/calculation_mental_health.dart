@@ -56,8 +56,9 @@ class _CalculateMentalHealthWidgetState
                     setState(() {
                       choosedTitles.add(titles[index]);
                       _isCheckedList[index] = isChecked;
-                      // CalculateGlobalWidget.of(context)
-                      //     .userModelBuilder. = choosedTitles;
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .mental_health_goals = choosedTitles;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(_isCheckedList.contains(true));
                     });
