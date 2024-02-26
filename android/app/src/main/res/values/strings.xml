@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Platy</string>
+    <string name="facebook_app_id">1278646166859685</string>
+    <string name="fb_login_protocol_scheme">fb1278646166859685</string>
+    <string name="facebook_client_token">bd30e8071acac90b1f1061a04b3fcbdb</string>
+</resources>

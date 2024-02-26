@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:platy/features/api/api_service.dart';
@@ -84,50 +84,58 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     on<LogInWithGoogleEvent>((event, emit) async {
       try {
-        // Trigger the authentication flow
         final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-        // Obtain the auth details from the request
         GoogleSignInAuthentication? googleAuth =
             await googleUser?.authentication;
-        print(googleAuth);
+        String? accessToken = googleAuth?.accessToken;
+        print("AccsesToken Google: $accessToken");
+        final response = await apiService
+            .postData('/google-login/', {'accessToken': accessToken});
+        if (response['user_id'] != null) {
+          TokenManager.saveUserId(response['user_id']);
+        }
 
-        // final result = await FlutterWebAuth2.authenticate(
-        //   url: 'http://16.171.1.90/api/v1/login/google-oauth2/',
-        //   callbackUrlScheme: 'platy',
-        // );
-        // final String? token = Uri.parse(result).queryParameters['token'];
+        if (response['tokens'] != null) {
+          TokenManager.saveTokensData(response['tokens']);
+          emit(LoginSuccessState(response['user_id']));
+        } else {
+          print('bad request ${response['status']}');
+          emit(LoginErrorState(response['status']));
+        }
+        print("access: ${TokenManager.getTokensData()?['access']}");
       } catch (e) {
         print('Error: $e');
       }
-      // final response = await apiService.fetchData(
-      //     '/login/google-oauth2/', event.logInWithGoogleData);
-
-      // if (response['user_id'] != null) {
-      //   TokenManager.saveUserId(response['user_id']);
-      // }
-
-      // if (response['tokens'] != null) {
-      //   TokenManager.saveTokensData(response['tokens']);
-      // }
-
-      // print(TokenManager.getUserId());
-      // print("access: ${TokenManager.getTokensData()?['access']}");
     });
 
     on<LogInWithFacebookEvent>((event, emit) async {
-      final response = await apiService.fetchData(
-          '/login/facebook/', event.logInWithFacebookData);
+      try {
+        final result = await FacebookAuth.instance.login();
+        await FacebookAuth.instance.logOut();
+        if (result.status == LoginStatus.success) {
+          final AccessToken accessToken = result.accessToken!;
+          print('Успішно увійшли: ${accessToken.token}');
+          print("AccsesToken Facebook: $accessToken.token");
+          final response = await apiService
+              .postData('/facebook-login/', {'accessToken': accessToken.token});
+          if (response['user_id'] != null) {
+            TokenManager.saveUserId(response['user_id']);
+          }
 
-      if (response['user_id'] != null) {
-        TokenManager.saveUserId(response['user_id']);
+          if (response['tokens'] != null) {
+            TokenManager.saveTokensData(response['tokens']);
+            emit(LoginSuccessState(response['user_id']));
+          } else {
+            print('bad request ${response['status']}');
+            emit(LoginErrorState(response['status']));
+          }
+          print("access: ${TokenManager.getTokensData()?['access']}");
+        } else {
+          print('Не вдалося увійти: ${result.message}');
+        }
+      } catch (e) {
+        print('Помилка при автентифікації: $e');
       }
-
-      if (response['tokens'] != null) {
-        TokenManager.saveTokensData(response['tokens']);
-      }
-
-      print(TokenManager.getUserId());
-      print("access: ${TokenManager.getTokensData()?['access']}");
     });
 
     on<LogOutEvent>((event, emit) async {
@@ -142,7 +150,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     });
 
     //password
-    
+
     on<PasswordResetEvent>((event, emit) async {
       final response = await apiService.postData(
           '/password-reset/', event.passwordResetData);
@@ -230,7 +238,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       if (response['detail'] != null) {
         emit(ProfileNotIncludesDataState(response));
         print('not included data');
-      } 
+      }
       if (response['detail'] == null) {
         emit(ProfileIncludesDataState(response));
         print('included data');
