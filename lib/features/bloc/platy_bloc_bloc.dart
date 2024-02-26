@@ -11,14 +11,6 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
   final ApiService apiService = ApiService();
   final TokenManager tokenManager = TokenManager();
   PlatyBloc() : super(PlatyBlocInitial()) {
-    on<CreateProfileEvent>((event, emit) async {
-      final response =
-          await apiService.postData('/create-profile/', event.profileData);
-      // Update the state based on the API response or other logic
-      //emit(ProfileCreatedState(response));
-      print('response: ${response}');
-    });
-
     //jwt
     //needs username/enail and password
     on<JwtCreateEvent>((event, emit) async {
@@ -223,6 +215,14 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       print(response);
     }); */
 
+      on<CreateProfileEvent>((event, emit) async {
+      final response =
+          await apiService.postData('/create-profile/', event.profileData);
+      // Update the state based on the API response or other logic
+      //emit(ProfileCreatedState(response));
+      print('response: ${response}');
+    });
+
     //profile-image
     on<ProfileImagePostEvent>((event, emit) async {
       final response = await apiService.postData('/profile-image/', event.data);
@@ -238,9 +238,11 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       if (response['detail'] != null) {
         emit(ProfileNotIncludesDataState(response));
         print('not included data');
-      }
+        print(response['tpds']);
+      } 
       if (response['detail'] == null) {
         emit(ProfileIncludesDataState(response));
+        print(response['tpds']);
         print('included data');
       }
 
