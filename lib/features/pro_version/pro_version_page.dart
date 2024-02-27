@@ -29,18 +29,21 @@ class _ProVersionPageState extends State<ProVersionPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 200,
-                height: 130,
-                fit: BoxFit.cover,
+              Padding(
+                padding: const EdgeInsets.only(right: 24.0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 150,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned(
-                top: 40,
-                left: 8,
+                top: 64,
+                left: 20,
                 child: GestureDetector(
                   onTap: () {
-                    //Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   child: const Icon(
                     Icons.close,
@@ -93,7 +96,7 @@ class _ProVersionPageState extends State<ProVersionPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -101,11 +104,11 @@ class _ProVersionPageState extends State<ProVersionPage> {
                       Icons.add_task,
                       color: Colors.green,
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 8),
                     Text(
                       'Unlimited Usage / Questions & Answers',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Colors.black),
                     ),
@@ -118,11 +121,11 @@ class _ProVersionPageState extends State<ProVersionPage> {
                       Icons.add_task,
                       color: Colors.green,
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 8),
                     Text(
                       'Ads free experience',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Colors.black),
                     ),
@@ -135,11 +138,11 @@ class _ProVersionPageState extends State<ProVersionPage> {
                       Icons.add_task,
                       color: Colors.green,
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 8),
                     Text(
                       'Higher word counts in responses',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Colors.black),
                     ),
@@ -242,8 +245,8 @@ class _ProVersionPageState extends State<ProVersionPage> {
       String title, String price, String oldPrice, String value) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(color: Colors.grey),
       ),
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       child: RadioListTile(
@@ -253,7 +256,7 @@ class _ProVersionPageState extends State<ProVersionPage> {
           style: const TextStyle(
             fontWeight: FontWeight.w400,
             color: Colors.black,
-            fontSize: 15,
+            fontSize: 13,
             height: 1,
           ),
         ),
@@ -268,9 +271,10 @@ class _ProVersionPageState extends State<ProVersionPage> {
         controlAffinity: ListTileControlAffinity.trailing,
         visualDensity: const VisualDensity(horizontal: -1, vertical: -1),
         subtitle: Row(
+         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '$price   ',
+              '$price  ',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: selectedDuration == value
@@ -281,6 +285,7 @@ class _ProVersionPageState extends State<ProVersionPage> {
             ),
             Text(
               oldPrice,
+              textAlign: TextAlign.start,
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(117, 36, 36, 36),
