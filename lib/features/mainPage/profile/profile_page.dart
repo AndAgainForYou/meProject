@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/login/login_page.dart';
 import 'package:platy/features/mainPage/profile/profile_change_filled.dart';
 import 'package:platy/features/mainPage/profile/profile_edit_page.dart';
+import 'package:platy/features/pro_version/pro_version_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +16,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final storage = FlutterSecureStorage();
+  String? email;
+  String? password;
+
   final kInnerDecoration = BoxDecoration(
     color: Colors.white,
     border: Border.all(color: Colors.white),
@@ -38,219 +47,268 @@ class _ProfilePageState extends State<ProfilePage> {
   );
 
   @override
+  void initState() {
+    super.initState();
+    _loadCredentials();
+  }
+
+  void _loadCredentials() async {
+    password = await storage.read(key: 'password');
+    setState(() {
+      password = password;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              Center(
-                  child: Column(
-                children: [
-                  const CircleAvatar(
-                    radius: 60,
-                    backgroundImage:
-                        AssetImage('assets/images/profile_photo.png'),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Steve Jobs',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'stevejobs@mail.com',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 6),
-                  const SizedBox(height: 16),
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ProfileEditPage()),
-                              );
-                            },
-                            child: Container(
-                              height: 52.0,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              decoration: kGradientBoxDecoration,
-                              child: Container(
-                                decoration: kInnerDecoration,
-                                child: Center(
-                                    child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 6.0),
-                                      child: Image.asset(
-                                        'assets/images/profile_edit_vector.png',
-                                        height: 24,
+      body: BlocBuilder<PlatyBloc, PlatyBlocState>(
+        builder: (context, state) {
+          if (state is ProfileIncludesDataState) {
+            Map<String, dynamic> profileData = state.profilePageData;
+            PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 40),
+                    Center(
+                        child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 60,
+                          backgroundImage: profileData['image'] != null
+                              ? const AssetImage('url')
+                              : const AssetImage(
+                                  'assets/images/profile_photo.png'),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          profileData['name'],
+                          style: const TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          profileData['user_email'].toString(),
+                          style:
+                              const TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        const SizedBox(height: 6),
+                        const SizedBox(height: 16),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ProfileEditPage()),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 52.0,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                    decoration: kGradientBoxDecoration,
+                                    child: Container(
+                                      decoration: kInnerDecoration,
+                                      child: Center(
+                                          child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 6.0),
+                                            child: Image.asset(
+                                              'assets/images/profile_edit_vector.png',
+                                              height: 24,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Edit Profile",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                        ],
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ProfileChangeFilledPage()),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                    height: 52,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                      gradient: const LinearGradient(
+                                        begin: Alignment(0.0, -1.0),
+                                        end: Alignment(1.0, 1.0),
+                                        colors: [
+                                          Color(0xFF59A7A7),
+                                          Color(0xFFAFCD6D)
+                                        ],
+                                        stops: [0.0, 1.0],
+                                      ),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 6,
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Recalculation of values',
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(255, 255, 255, 1),
+                                          fontFamily: 'Gilroy',
+                                          fontSize: 14,
+                                          letterSpacing: 0,
+                                          fontWeight: FontWeight.normal,
+                                          height: 1,
+                                        ),
                                       ),
                                     ),
-                                    const Text(
-                                      "Edit Profile",
-                                      style: TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProVersionPage()),
+                                );
+                              },
+                              child: Container(
+                                height: 52.0,
+                                width: MediaQuery.of(context).size.width * 1,
+                                decoration: kGradientBoxDecoration,
+                                child: Container(
+                                  decoration: kInnerDecoration,
+                                  child: const Center(
+                                      child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Сhange my subscription plan",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  )),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 130),
+                            GestureDetector(
+                              onTap: () {
+                                _showCupertinoAlertDialog(context,
+                                    email: profileData['user_email'],
+                                    password: password.toString());
+                              },
+                              child: Container(
+                                height: 52.0,
+                                width: MediaQuery.of(context).size.width * 1,
+                                decoration: kGradientBoxDecorationLog,
+                                child: Container(
+                                  decoration: kInnerDecoration,
+                                  child: const Center(
+                                      child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Log Out",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  )),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            GestureDetector(
+                              onTap: () {
+                                _showCupertinoAlertDialogDelete(context,
+                                    email: profileData['user_email'],
+                                    password: password);
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 1,
+                                height: 52.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(0.0, -1.0),
+                                    end: Alignment(1.0, 1.0),
+                                    colors: [
+                                      Color.fromRGBO(252, 108, 76, 1),
+                                      Color.fromRGBO(252, 108, 76, 1)
+                                    ],
+                                    stops: [0.0, 1.0],
+                                  ),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 6,
                                     ),
                                   ],
-                                )),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              height: 52,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50.0),
-                                gradient: const LinearGradient(
-                                  begin: Alignment(0.0, -1.0),
-                                  end: Alignment(1.0, 1.0),
-                                  colors: [
-                                    Color(0xFF59A7A7),
-                                    Color(0xFFAFCD6D)
-                                  ],
-                                  stops: [0.0, 1.0],
                                 ),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 6,
-                                  ),
-                                ],
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'Recalculation of values',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 14,
-                                    letterSpacing: 0,
-                                    fontWeight: FontWeight.normal,
-                                    height: 1,
+                                child: const Center(
+                                  child: Text(
+                                    'Delete account',
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                      fontFamily: 'Gilroy',
+                                      fontSize: 16,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ProfileChangeFilledPage()),
-                          );
-                        },
-                        child: Container(
-                          height: 52.0,
-                          width: MediaQuery.of(context).size.width * 1,
-                          decoration: kGradientBoxDecoration,
-                          child: Container(
-                            decoration: kInnerDecoration,
-                            child: const Center(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Сhange my subscription plan",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            )),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 130),
-                      GestureDetector(
-                        onTap: () {
-                          _showCupertinoAlertDialog(context);
-                        },
-                        child: Container(
-                          height: 52.0,
-                          width: MediaQuery.of(context).size.width * 1,
-                          decoration: kGradientBoxDecorationLog,
-                          child: Container(
-                            decoration: kInnerDecoration,
-                            child: const Center(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Log Out",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            )),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      GestureDetector(
-                        onTap: () {
-                          _showCupertinoAlertDialogDelete(context);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1,
-                          height: 52.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
-                            gradient: const LinearGradient(
-                              begin: Alignment(0.0, -1.0),
-                              end: Alignment(1.0, 1.0),
-                              colors: [
-                                Color.fromRGBO(252, 108, 76, 1),
-                                Color.fromRGBO(252, 108, 76, 1)
-                              ],
-                              stops: [0.0, 1.0],
-                            ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 6,
-                              ),
-                            ],
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Delete account',
-                              style: TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: 'Gilroy',
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              )),
-            ],
-          ),
-        ),
+                          ],
+                        )
+                      ],
+                    )),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return const Text('data');
+          }
+        },
       ),
     );
   }
 
-  void _showCupertinoAlertDialog(BuildContext context) {
+  void _showCupertinoAlertDialog(BuildContext context,
+      {required String email, required String password}) {
+    PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+
+    Map<String, dynamic> logOutData = {
+      "email": email,
+      "password": password,
+    };
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -269,7 +327,11 @@ class _ProfilePageState extends State<ProfilePage> {
             CupertinoDialogAction(
               isDestructiveAction: true,
               onPressed: () {
-                Navigator.pop(context);
+                platyBloc.add(LogOutEvent(logOutData));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()));
               },
               child: const Text('Log Out'),
             ),
@@ -279,7 +341,10 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void _showCupertinoAlertDialogDelete(BuildContext context) {
+  void _showCupertinoAlertDialogDelete(BuildContext context,
+      {required email, String? password}) {
+    PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+   
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -296,8 +361,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             CupertinoDialogAction(
               isDestructiveAction: true,
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()));
+                        await Future.delayed(const Duration(seconds: 1));
+                        platyBloc.add(DeleteAccountEvent(const {}));
               },
               child: const Text('Delete'),
             ),

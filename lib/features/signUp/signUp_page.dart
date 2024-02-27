@@ -170,8 +170,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       _isFieldsEmpty = true;
                                     });
                                   }
-
-                                  // Add more validation logic if needed
                                   return null;
                                 },
                                 controller: _emailController,

@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:platy/features/api/api_service.dart';
+import 'package:platy/features/secureStorage/secure_storage.dart';
 
 part 'platy_bloc_event.dart';
 part 'platy_bloc_state.dart';
@@ -10,6 +13,8 @@ part 'platy_bloc_state.dart';
 class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
   final ApiService apiService = ApiService();
   final TokenManager tokenManager = TokenManager();
+  final SecureStorageService secureStorage = SecureStorageService();
+
   PlatyBloc() : super(PlatyBlocInitial()) {
     //jwt
     //needs username/enail and password
@@ -47,6 +52,9 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
         emit(SignUpSuccessState(response['user_id']));
+        await secureStorage.saveCredentials(
+            email: event.signUpData['email'],
+            password: event.signUpData['password1']);
       } else {
         emit(SignUpErrorState(response));
       }
@@ -66,6 +74,9 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       if (response['tokens'] != null) {
         TokenManager.saveTokensData(response['tokens']);
         emit(LoginSuccessState(response['user_id']));
+        await secureStorage.saveCredentials(
+            email: event.logInData['email'],
+            password: event.logInData['password']);
       } else {
         print('bad request ${response['status']}');
         emit(LoginErrorState(response['status']));
@@ -133,12 +144,15 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<LogOutEvent>((event, emit) async {
       final response = await apiService.postData('/logout/', event.logOutData);
       print(response);
+      await secureStorage.clearAllData();
+      TokenManager.clearTokens();      
     });
 
     on<DeleteAccountEvent>((event, emit) async {
       final response = await apiService.deleteData(
           '/delete-account/', event.deleteAccountData);
-      print(response);
+          print(response);
+      await secureStorage.clearAllData();
     });
 
     //password
@@ -207,15 +221,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       print(response);
     });
 
-    //password-reset-user
-    //new_password1 new_password2
-    /*on<PasswordResetUserPutEvent>((event, emit) async {
-      final response = await apiService.putData(
-          '/password-reset-user/${'uidb64?'}/${TokenManager.getTokensData()?['access']}/', event.data);
-      print(response);
-    }); */
-
-      on<CreateProfileEvent>((event, emit) async {
+    on<CreateProfileEvent>((event, emit) async {
       final response =
           await apiService.postData('/create-profile/', event.profileData);
       // Update the state based on the API response or other logic
@@ -239,7 +245,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         emit(ProfileNotIncludesDataState(response));
         print('not included data');
         print(response['tpds']);
-      } 
+      }
       if (response['detail'] == null) {
         emit(ProfileIncludesDataState(response));
         print(response['tpds']);
@@ -253,6 +259,8 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<UpdateProfileGetEvent>((event, emit) async {
       final response =
           await apiService.fetchData('/update-profile/', event.data);
+      emit(ProfileIncludesDataState(response));
+      print('update-profile request');
       print(response);
     });
 
@@ -266,7 +274,10 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       //partical update
       final response =
           await apiService.patchData('/update-profile/', event.data);
-      print(response);
+          final responseData =
+          await apiService.fetchData('/update-profile/', event.data);
+      print(responseData);
+      emit(ProfileIncludesDataState(responseData));
     });
   }
 }
