@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:platy/features/api/api_service.dart';
 import 'package:platy/features/secureStorage/secure_storage.dart';
@@ -231,8 +233,10 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     //profile-image
     on<ProfileImagePostEvent>((event, emit) async {
-      final response = await apiService.postData('/profile-image/', event.data);
-      print(response);
+      final response = await apiService.postImage('/profile-image/', event.data);
+      final responseData = await apiService.fetchData('/update-profile/', {});
+      print(responseData);
+      emit(ProfileIncludesDataState(responseData));
     });
 
     //profile

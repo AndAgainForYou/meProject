@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/login/login_page.dart';
 import 'package:platy/features/mainPage/profile/profile_change_filled.dart';
@@ -16,9 +19,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   String? email;
   String? password;
+
+  ImageProvider? backgroundImage;
+  String? customImageFile;
+  XFile? imageFile;
 
   final kInnerDecoration = BoxDecoration(
     color: Colors.white,
@@ -59,6 +66,18 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  Future openGallery() async {
+    imageFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (imageFile != null) {
+      print('Image URI: ${imageFile!.path}');
+      PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+      platyBloc.add(ProfileImagePostEvent(imageFile!));
+    } else {
+      print('User didn\'t pick an image');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,12 +96,21 @@ class _ProfilePageState extends State<ProfilePage> {
                     Center(
                         child: Column(
                       children: [
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage: profileData['image'] != null
-                              ? const AssetImage('url')
-                              : const AssetImage(
-                                  'assets/images/profile_photo.png'),
+                        GestureDetector(
+                          onTap: () {
+                            openGallery(); // This is where you handle the tap event
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 60,
+                            backgroundImage: profileData['photo'] != null
+                                ? NetworkImage(
+                                    profileData['photo'] as String,
+                                  ) as ImageProvider<Object>?
+                                : const AssetImage(
+                                    'assets/images/profile_photo.png',
+                                  ),
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -344,7 +372,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showCupertinoAlertDialogDelete(BuildContext context,
       {required email, String? password}) {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-   
+
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -366,8 +394,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => const LoginPage()));
-                        await Future.delayed(const Duration(seconds: 1));
-                        platyBloc.add(DeleteAccountEvent(const {}));
+                await Future.delayed(const Duration(seconds: 1));
+                platyBloc.add(DeleteAccountEvent(const {}));
               },
               child: const Text('Delete'),
             ),
