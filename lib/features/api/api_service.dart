@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TokenManager {
   static String? _token;
@@ -115,6 +118,38 @@ class ApiService {
     );
     return response.data;
   }
+
+ Future<Map<String, dynamic>> postImage(String path, XFile imageFile) async {
+  final formData = FormData.fromMap({
+    'photo': await MultipartFile.fromFile(
+      imageFile.path,  // Pass imageFile.path instead of imageFile
+      filename: 'image.jpg',
+    ),
+  });
+
+  final response = await _dio.post(
+    path,
+    data: formData,
+    queryParameters: TokenManager._token?.isNotEmpty == true
+        ? {'user_id': TokenManager.getUserId()}
+        : null,
+    options: Options(
+      headers: TokenManager.getTokensData()?.isNotEmpty == true
+          ? {
+              'Authorization':
+                  'Bearer ${TokenManager.getTokensData()?['access']}'
+            }
+          : null,
+      followRedirects: false,
+      contentType: Headers.formUrlEncodedContentType,
+      validateStatus: (status) {
+        return status! < 500;
+      },
+    ),
+  );
+
+  return response.data;
+}
 
   Options _getTokenOptions() {
     return Options(

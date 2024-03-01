@@ -131,7 +131,7 @@ class NotesGetByIdEvent extends PlatyBlocEvent {
 //change-profile-image
 
 class ProfileImagePostEvent extends PlatyBlocEvent {
-  final Map<String, dynamic> data;
+  final XFile data;
 
   ProfileImagePostEvent(this.data);
 }
