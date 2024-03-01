@@ -163,15 +163,15 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<NotesGetAllEvent>((event, emit) async {
       final response =
           await apiService.fetchData('/notes/all/', event.notesData);
-
+      print('Response: $response');
       emit(NotesAllState(response));
-      print(response);
     });
 
     on<NotesCreateEvent>((event, emit) async {
       final response =
           await apiService.postData('/notes/create/', event.notesData);
       print(response);
+      emit(NotesCreateSuccessState(response));
     });
 
     on<NotesCreateJournalEvent>((event, emit) async {
@@ -182,7 +182,8 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     on<NotesDeleteEvent>((event, emit) async {
       final response = await apiService.deleteData(
-          '/notes/delete/${event.notesData['id']}/', event.notesData);
+          '/notes/delete/${event.notesData['id']}/', {}); //, event.notesData);
+      emit(NotesDeleteSuccessState(event.notesData['id']));
       print(response);
     });
 
@@ -194,9 +195,9 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     });
 
     on<NotesUpdateByIdEvent>((event, emit) async {
-      final response = await apiService.postData(
+      final response = await apiService.patchData(
           '/notes/update/${event.notesData['id']}/', event.notesData);
-      //emit(NotesByIdState(response));
+      emit(NotesUpdateByIdSuccessState(response));
       print(response);
     });
 
@@ -215,7 +216,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       print(response);
     }); */
 
-      on<CreateProfileEvent>((event, emit) async {
+    on<CreateProfileEvent>((event, emit) async {
       final response =
           await apiService.postData('/create-profile/', event.profileData);
       // Update the state based on the API response or other logic
@@ -239,7 +240,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         emit(ProfileNotIncludesDataState(response));
         print('not included data');
         print(response['tpds']);
-      } 
+      }
       if (response['detail'] == null) {
         emit(ProfileIncludesDataState(response));
         print(response['tpds']);

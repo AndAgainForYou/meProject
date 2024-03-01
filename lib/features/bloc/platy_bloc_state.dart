@@ -5,7 +5,6 @@ sealed class PlatyBlocState {}
 
 final class PlatyBlocInitial extends PlatyBlocState {}
 
-
 //login
 class LoginSuccessState extends PlatyBlocState {
   final dynamic successMessage;
@@ -58,7 +57,6 @@ class PasswordResetErrorState extends PlatyBlocState {
   List<dynamic> get props => [errorMessage];
 }
 
-
 //profile data
 
 class ProfileCreatedState extends PlatyBlocState {
@@ -110,3 +108,26 @@ class NotesByIdState extends PlatyBlocState {
   List<Object?> get props => [noteData];
 }
 
+class NotesCreateSuccessState extends PlatyBlocState {
+  final dynamic successMessage;
+
+  NotesCreateSuccessState(this.successMessage);
+
+  List<dynamic> get props => [successMessage];
+}
+
+class NotesDeleteSuccessState extends PlatyBlocState {
+  final dynamic successMessage;
+
+  NotesDeleteSuccessState(this.successMessage);
+
+  List<dynamic> get props => [successMessage];
+}
+
+class NotesUpdateByIdSuccessState extends PlatyBlocState {
+  final dynamic successMessage;
+
+  NotesUpdateByIdSuccessState(this.successMessage);
+
+  List<dynamic> get props => [successMessage];
+}
