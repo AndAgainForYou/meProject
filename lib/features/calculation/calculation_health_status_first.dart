@@ -161,7 +161,7 @@ class _CalculateHealthStatusFirstWidgetState
                 onPressed: () {
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
-                      .blood_glucose_level = 'Pre-Diabetic';
+                      .blood_glucose_level = 'Pre-diabetic';
                   setState(() {
                     buttonBlood1Selected = false;
                     buttonBlood2Selected = true;

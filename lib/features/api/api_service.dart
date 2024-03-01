@@ -34,6 +34,13 @@ class TokenManager {
   static Map<String, dynamic>? getTokensData() {
     return _tokensData;
   }
+
+   static void clearTokens() {
+    _token = null;
+    _userId = null;
+    _tokensData = null;
+    print('token cleared');
+  }
 }
 
 class ApiService {
@@ -82,7 +89,6 @@ class ApiService {
   }
 
   Future<bool> deleteData(
-      //<Map<String, dynamic>>
       String path,
       Map<String, dynamic> deleteData) async {
     final response = await _dio.delete(
@@ -93,8 +99,8 @@ class ApiService {
           : null,
       options: _getTokenOptions(),
     );
+
     return response.statusCode == 200;
-    //return response.data;
   }
 
   Future<Map<String, dynamic>> patchData(
