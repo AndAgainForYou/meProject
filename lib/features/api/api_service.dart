@@ -88,8 +88,9 @@ class ApiService {
     return response.data;
   }
 
-  Future<dynamic> deleteData(
-      String path, Map<String, dynamic> deleteData) async {
+  Future<bool> deleteData(
+      String path,
+      Map<String, dynamic> deleteData) async {
     final response = await _dio.delete(
       path,
       data: deleteData,
@@ -98,7 +99,8 @@ class ApiService {
           : null,
       options: _getTokenOptions(),
     );
-    return response;
+
+    return response.statusCode == 200;
   }
 
   Future<Map<String, dynamic>> patchData(

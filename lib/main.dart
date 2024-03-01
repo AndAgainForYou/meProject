@@ -4,6 +4,7 @@ import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
+import 'package:platy/features/mainPage/main_home_page.dart';
 import 'package:platy/features/pro_version/pro_version_page.dart';
 import 'package:platy/features/restore_password/restore_password_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoadingPage(), //LoadingPage
+          '/': (context) => const LoadingPage(), //MainHomePage
           '/login': (context) => const LoginPage(),
           '/signUp': (context) => const SignUpPage(),
           '/signUpCongratulation': (context) =>
