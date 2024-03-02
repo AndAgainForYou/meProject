@@ -12,11 +12,11 @@ class CalculateLocalProductsWidget extends StatefulWidget {
 class _CalculateLocalProductsWidgetState
     extends State<CalculateLocalProductsWidget> {
   bool buttonSeason1Selected = false; //Season
-  bool buttonSeason2Selected = true;
+  bool buttonSeason2Selected = false;
   bool buttonSeason3Selected = false;
   bool buttonSeason4Selected = false;
 
-  String selectedRegion = 'Region';
+  String selectedRegion = '';
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "Region", child: Text("Region")),
@@ -25,6 +25,16 @@ class _CalculateLocalProductsWidgetState
       const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
+  }
+
+  void isSelectedAll() {
+    if ((buttonSeason1Selected ||
+            buttonSeason2Selected ||
+            buttonSeason3Selected ||
+            buttonSeason4Selected) &&
+        selectedRegion.isNotEmpty) {
+      CalculateGlobalWidget.of(context).setButtonActivity(true);
+    }
   }
 
   @override
@@ -84,7 +94,7 @@ class _CalculateLocalProductsWidgetState
                     selectedRegion = value!;
                     CalculateGlobalWidget.of(context).userModelBuilder.region =
                         selectedRegion;
-                    CalculateGlobalWidget.of(context).setButtonActivity(true);
+                    isSelectedAll();
                   });
                 },
               ),
@@ -107,7 +117,7 @@ class _CalculateLocalProductsWidgetState
               onPressed: () {
                 CalculateGlobalWidget.of(context).userModelBuilder.season =
                     'Winter';
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
+                isSelectedAll();
                 setState(() {
                   buttonSeason1Selected = true;
                   buttonSeason2Selected = false;
@@ -123,7 +133,7 @@ class _CalculateLocalProductsWidgetState
               onPressed: () {
                 CalculateGlobalWidget.of(context).userModelBuilder.season =
                     'Spring';
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
+                isSelectedAll();
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = true;
@@ -139,7 +149,7 @@ class _CalculateLocalProductsWidgetState
               onPressed: () {
                 CalculateGlobalWidget.of(context).userModelBuilder.season =
                     'Summer';
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
+                isSelectedAll();
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = false;
@@ -155,7 +165,7 @@ class _CalculateLocalProductsWidgetState
               onPressed: () {
                 CalculateGlobalWidget.of(context).userModelBuilder.season =
                     'Autumn';
-                CalculateGlobalWidget.of(context).setButtonActivity(true);
+                isSelectedAll();
                 setState(() {
                   buttonSeason1Selected = false;
                   buttonSeason2Selected = false;
