@@ -103,6 +103,8 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         if (response['tokens'] != null) {
           TokenManager.saveTokensData(response['tokens']);
           emit(LoginSuccessState(response['user_id']));
+          await secureStorage.saveCredentials(
+              email: googleUser!.email, password: "");
         } else {
           print('bad request ${response['status']}');
           emit(LoginErrorState(response['status']));
@@ -147,13 +149,13 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       final response = await apiService.postData('/logout/', event.logOutData);
       print(response);
       await secureStorage.clearAllData();
-      TokenManager.clearTokens();      
+      TokenManager.clearTokens();
     });
 
     on<DeleteAccountEvent>((event, emit) async {
       final response = await apiService.deleteData(
           '/delete-account/', event.deleteAccountData);
-          print(response);
+      print(response);
       await secureStorage.clearAllData();
     });
 
@@ -234,7 +236,8 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     //profile-image
     on<ProfileImagePostEvent>((event, emit) async {
-      final response = await apiService.postImage('/profile-image/', event.data);
+      final response =
+          await apiService.postImage('/profile-image/', event.data);
       final responseData = await apiService.fetchData('/update-profile/', {});
       print(responseData);
       emit(ProfileIncludesDataState(responseData));
@@ -245,7 +248,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       final response = await apiService.fetchData('/profile/', event.data);
 
       //emit(ProfileIncludesDataState(response));
-
+      print(response);
       if (response['detail'] != null) {
         emit(ProfileNotIncludesDataState(response));
         print('not included data');
@@ -279,7 +282,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       //partical update
       final response =
           await apiService.patchData('/update-profile/', event.data);
-          final responseData =
+      final responseData =
           await apiService.fetchData('/update-profile/', event.data);
       print(responseData);
       emit(ProfileIncludesDataState(responseData));
