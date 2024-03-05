@@ -18,8 +18,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   TextEditingController _controllerFirstName = TextEditingController();
   TextEditingController _controllerLastName = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
-  TextEditingController _controllerPassword =
-      TextEditingController();
+  TextEditingController _controllerPassword = TextEditingController();
   TextEditingController _controllerNewPassword = TextEditingController();
   TextEditingController _controllerRepeatNewPassword = TextEditingController();
 
@@ -36,7 +35,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       _controllerEmail.text = email ?? '';
       _controllerPassword.text = password ?? '';
       passwordsData["old_password"] = password;
-    }); 
+    });
+    print(_controllerEmail.text);
   }
 
   Map<String, dynamic> formData = {};
@@ -220,8 +220,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             maxLength: 25,
                             decoration: InputDecoration(
                               counterText: '',
-                              hintText:
-                                  'Your email',
+                              hintText: 'Your email',
                               hintStyle: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Gilroy',
@@ -285,9 +284,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                               border: InputBorder.none,
                             ),
                             style: const TextStyle(color: Colors.black),
-                            onChanged: (value) {
-                     
-                            },
+                            onChanged: (value) {},
                           ),
                         ),
                       ],
@@ -430,16 +427,18 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   GestureDetector(
                     onTap: () async {
                       if (formData.isNotEmpty) {
-                       platyBloc.add(UpdateProfilePatchEvent(formData));
-                       platyBloc.add(UpdateProfileGetEvent({}));
+                        platyBloc.add(UpdateProfilePatchEvent(formData));
+                        platyBloc.add(UpdateProfileGetEvent({}));
 
                         await Future.delayed(const Duration(seconds: 1));
-                        
+
                         Navigator.pop(context);
-                      };
+                      }
+                      ;
                       if (isPasswordsDataValid()) {
                         if (areNewPasswordsEqual) {
-                          platyBloc.add(PasswordChangePatchEvent(passwordsData));
+                          platyBloc
+                              .add(PasswordChangePatchEvent(passwordsData));
                           Navigator.pop(context);
                         } else {
                           setState(() {
