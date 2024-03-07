@@ -107,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     profileData['photo'] as String,
                                   ) as ImageProvider<Object>?
                                 : const AssetImage(
-                                    'assets/images/profile_photo.png',
+                                    'assets/images/user-logo-image.png',
                                   ),
                           ),
                         ),
@@ -321,7 +321,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             );
           } else {
-            return const Text('data');
+            return const Text('');
           }
         },
       ),
