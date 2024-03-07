@@ -57,7 +57,7 @@ class _CalculateSkinAndBeautyWidgetState
                       _isCheckedList[index] = isChecked;
                       CalculateGlobalWidget.of(context)
                           .userModelBuilder
-                          .mental_health_goals = choosedTitles;
+                          .beauty_goals = choosedTitles;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(_isCheckedList.contains(true));
                     });

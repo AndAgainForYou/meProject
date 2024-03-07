@@ -1,5 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/mainPage/profile/profile_health_status_page.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_activity_sport.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_alergic_list.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_chronic_diseases.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_cooking_chose.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_cousin_choose.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_current_diet.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_diversity_plan.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_eco_friendly_list.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_food_preferences.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_freq_sport.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_first.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_habits.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_second.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_third.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_height.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_local_products.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_medicaments.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_mental_health.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_nutrition_add.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_skin_beauty.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_supplements.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_weight.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_weight_loss_slider.dart';
 
 class ProfileChangeFilledPage extends StatefulWidget {
   const ProfileChangeFilledPage({super.key});
@@ -10,23 +32,56 @@ class ProfileChangeFilledPage extends StatefulWidget {
 }
 
 class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
-  final List<String> elements = [
-    'Diversity of the plan',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    'Health status',
-    // Add 13 more elements as needed
+  final List<String> elementsTitles = [
+    'Height Status',
+    'Weight Status',
+    'Alegic list status',
+    'Chronic Diseases status',
+    'Sport Activity status',
+    'Frequency of Sport status',
+    'Weight Loss status',
+    'Mental Health status',
+    'Skin & Beauty status',
+    'Food Preferences status',
+    'Current Diet status',
+    'Cooking Choose status',
+    'Nutrition status',
+    'Blood check-up status',
+    'Urine check-up status',
+    'Vitamin check-up status',
+    'Habits status',
+    'Supplements status',
+    'Medicaments status',
+    'Cousin List status',
+    'Eco Friendly products status',
+    'Local Products status',
+    'Diversity Plan status',
+  ];
+
+  final List<Widget> elemWidget = [
+    const ProfileHeightWidget(),
+    const ProfileWeightWidget(),
+    const ProfileAlergicListWidget(),
+    const ProfileChronicDiseasesListWidget(),
+    const ProfileActivitySportListWidget(),
+    const ProfileFreqSportWidget(),
+    const ProfileWeightLossSliderWidget(),
+    const ProfileMentalHealthWidget(),
+    const ProfileSkinAndBeautyWidget(),
+    const ProfileFoodPreferencesWidget(),
+    const ProfileCurrentDietWidget(),
+    const ProfileCookingChoseWidget(),
+    const ProfileNutritionAddWidget(),
+    const ProfileHealthStatusFirstWidget(),
+    const ProfileHealthStatusSecondWidget(),
+    const ProfileHealthStatusThirdWidget(),
+    const ProfileHealthStatusHabitsWidget(),
+    const ProfileSupplementsListWidget(),
+    const ProfileMedicamentsWidget(),
+    const ProfileCousinListWidget(),
+    const ProfileEcoFriendlyListWidget(),
+    const ProfileLocalProductsWidget(),
+    const ProfileDiversityPlanWidget(),
   ];
 
   @override
@@ -78,12 +133,9 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         child: Padding(
           padding: const EdgeInsets.only(
               top: 10.0, left: 10.0, right: 10.0, bottom: 100.0),
-        
           child: Column(
-            children: generateListWidgets(elements),
+            children: generateListWidgets(elementsTitles),
           ),
-        
-          
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -104,7 +156,9 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
             splashColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             shape: RoundedRectangleBorder(
                 side: const BorderSide(width: 0, color: Colors.transparent),
                 borderRadius: BorderRadius.circular(50)),
@@ -139,7 +193,10 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16.0,),
+                padding: const EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -160,8 +217,7 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const HealthStatusPage()),
+                              builder: (context) => elemWidget[index]),
                         );
                       },
                       style: ElevatedButton.styleFrom(
