@@ -40,17 +40,17 @@ android {
     }
 
     signingConfigs {
-       release {
-           keyAlias 'your-key-alias'
-        keyPassword 'your-key-password'
-        storeFile file('path-to-your-keystore-file')
-        storePassword 'your-keystore-password'
+       debug {
+           keyAlias 'androiddebugkey'
+        keyPassword 'android'
+        storeFile file('platyKeystore.jks')
+        storePassword 'android'
        }
    }
 
     buildTypes {
       
-       release {
+       debug {
            signingConfig signingConfigs.debug
        }
     }
