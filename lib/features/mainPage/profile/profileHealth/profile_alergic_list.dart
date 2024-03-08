@@ -24,10 +24,27 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   Map<String, dynamic> updateProfileData = {};
+  TextEditingController? controllerTextField;
+  List<String> alergicArray = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
+    controllerTextField = TextEditingController();
+    controllerTextField!.addListener(_onTextFieldChanged);
     _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
+  void _onTextFieldChanged() {
+    setState(() {
+      if (controllerTextField!.text.isNotEmpty) {
+        alergicArray = controllerTextField!.text.split(',');
+        choosedTitles.addAll(alergicArray);
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
+    });
   }
 
   @override
@@ -127,6 +144,8 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
                         setState(() {
                           choosedTitles.add(titles[index]);
                           _isCheckedList[index] = isChecked;
+                          _onTextFieldChanged();
+                          _isButtonActive = true;
                           updateProfileData['alergies'] = choosedTitles;
                         });
                       },
@@ -147,10 +166,12 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context)
-                        .add(UpdateProfilePatchEvent(updateProfileData));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context)
+                              .add(UpdateProfilePatchEvent(updateProfileData));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

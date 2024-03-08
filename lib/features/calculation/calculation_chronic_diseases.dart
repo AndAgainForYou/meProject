@@ -22,11 +22,29 @@ class _CalculateChronicDiseasesListWidgetState
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  TextEditingController? controllerTextField;
+  List<String> diseasesArray = [];
 
   @override
   void initState() {
     super.initState();
+    controllerTextField = TextEditingController();
+    controllerTextField!.addListener(_onTextFieldChanged);
     _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
+  void _onTextFieldChanged() {
+    setState(() {
+      if (controllerTextField!.text.isNotEmpty) {
+        diseasesArray = controllerTextField!.text.split(',');
+        choosedTitles.addAll(diseasesArray);
+        CalculateGlobalWidget.of(context).setButtonActivity(true);
+        CalculateGlobalWidget.of(context).userModelBuilder.chronic_diseases =
+            choosedTitles;
+      } else {
+        CalculateGlobalWidget.of(context).setButtonActivity(false);
+      }
+    });
   }
 
   @override

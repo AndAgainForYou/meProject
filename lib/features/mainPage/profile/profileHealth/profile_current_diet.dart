@@ -22,6 +22,7 @@ class _ProfileCurrentDietWidgetState extends State<ProfileCurrentDietWidget> {
     'Paleo',
   ];
   int? _selectedIndex;
+  bool _isButtonActive = false;
   Map<String, dynamic> updateProfileData = {};
   @override
   Widget build(BuildContext context) {
@@ -78,6 +79,7 @@ class _ProfileCurrentDietWidgetState extends State<ProfileCurrentDietWidget> {
                         onTilePressed: (isChecked) {
                           setState(() {
                             _selectedIndex = isChecked ? index : null;
+                            _isButtonActive = true;
                             updateProfileData['current_diet'] = titles[index];
                           });
                         },
@@ -98,10 +100,12 @@ class _ProfileCurrentDietWidgetState extends State<ProfileCurrentDietWidget> {
                     ),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<PlatyBloc>(context)
-                          .add(UpdateProfilePatchEvent(updateProfileData));
-                    },
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<PlatyBloc>(context).add(
+                                UpdateProfilePatchEvent(updateProfileData));
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       elevation: 0,

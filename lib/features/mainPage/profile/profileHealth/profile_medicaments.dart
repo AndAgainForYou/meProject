@@ -14,6 +14,7 @@ class ProfileMedicamentsWidget extends StatefulWidget {
 class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
   TextEditingController? controllerTextField;
   List<String> medicamentsArray = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
@@ -31,6 +32,7 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
     setState(() {
       if (controllerTextField!.text.isNotEmpty) {
         medicamentsArray = controllerTextField!.text.split(',');
+        _isButtonActive = true;
       }
     });
   }
@@ -137,11 +139,13 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context).add(
-                        UpdateProfilePatchEvent(
-                            {'medicaments': medicamentsArray}));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context).add(
+                              UpdateProfilePatchEvent(
+                                  {'medicaments': medicamentsArray}));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

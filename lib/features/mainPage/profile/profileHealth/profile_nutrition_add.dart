@@ -20,6 +20,7 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
@@ -80,6 +81,7 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
                         isChecked: _isCheckedList[index],
                         onTilePressed: (isChecked) {
                           setState(() {
+                            _isButtonActive = true;
                             choosedTitles.add(titles[index]);
                             _isCheckedList[index] = isChecked;
                           });
@@ -101,11 +103,13 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
                     ),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<PlatyBloc>(context).add(
-                          UpdateProfilePatchEvent(
-                              {'sport_nutritions': choosedTitles}));
-                    },
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<PlatyBloc>(context).add(
+                                UpdateProfilePatchEvent(
+                                    {'sport_nutritions': choosedTitles}));
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       elevation: 0,

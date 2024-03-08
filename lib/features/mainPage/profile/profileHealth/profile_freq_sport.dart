@@ -23,6 +23,7 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
     'Rarely'
   ];
   int? _selectedIndex;
+  bool _isButtonActive = false;
   Map<String, dynamic> updateProfileData = {};
   @override
   Widget build(BuildContext context) {
@@ -82,8 +83,10 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
                             _selectedIndex = index;
                             updateProfileData['activities_frequency'] =
                                 titles[index];
+                            _isButtonActive = true;
                           } else {
                             _selectedIndex = null;
+                            _isButtonActive = false;
                           }
                         });
                       },
@@ -104,10 +107,12 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context)
-                        .add(UpdateProfilePatchEvent(updateProfileData));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context)
+                              .add(UpdateProfilePatchEvent(updateProfileData));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

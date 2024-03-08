@@ -25,6 +25,7 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
@@ -86,6 +87,7 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
                       onTilePressed: (isChecked) {
                         setState(() {
                           choosedTitles.add(titles[index]);
+                          _isButtonActive = true;
                           _isCheckedList[index] = isChecked;
                         });
                       },
@@ -106,12 +108,14 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context).add(
-                        UpdateProfilePatchEvent({
-                      'outside_eating_cuisine': choosedTitles
-                    })); //TODO probably uncorrect param
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context).add(
+                              UpdateProfilePatchEvent({
+                            'outside_eating_cuisine': choosedTitles
+                          })); //TODO probably uncorrect param
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
