@@ -27,7 +27,7 @@ class _ProfileSupplementsListWidgetState
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
-
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
@@ -98,6 +98,7 @@ class _ProfileSupplementsListWidgetState
                       onTilePressed: (isChecked) {
                         setState(() {
                           choosedTitles.add(titles[index]);
+                          _isButtonActive = true;
                           _isCheckedList[index] = isChecked;
                         });
                       },
@@ -118,11 +119,13 @@ class _ProfileSupplementsListWidgetState
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context).add(
-                        UpdateProfilePatchEvent(
-                            {'supplements': choosedTitles}));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context).add(
+                              UpdateProfilePatchEvent(
+                                  {'supplements': choosedTitles}));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

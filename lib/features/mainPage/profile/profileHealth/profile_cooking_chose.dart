@@ -23,6 +23,7 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
@@ -84,6 +85,7 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
                         onTilePressed: (isChecked) {
                           setState(() {
                             _isCheckedList[index] = isChecked;
+                            _isButtonActive = true;
                             choosedTitles.add(titles[index]);
                           });
                         },
@@ -104,11 +106,13 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
                     ),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<PlatyBloc>(context).add(
-                          UpdateProfilePatchEvent(
-                              {'cooking_preferences': choosedTitles}));
-                    },
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<PlatyBloc>(context).add(
+                                UpdateProfilePatchEvent(
+                                    {'cooking_preferences': choosedTitles}));
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       elevation: 0,

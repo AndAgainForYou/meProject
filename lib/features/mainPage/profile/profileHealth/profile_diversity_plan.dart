@@ -18,6 +18,7 @@ class _ProfileDiversityPlanWidgetState
     'New meal plan each second day',
     'Same meal plan Mo-Fri and diverse plan for Sa-So',
   ];
+  bool _isButtonActive = false;
   int? _selectedIndex;
   Map<String, dynamic> updateProfileData = {};
   @override
@@ -85,6 +86,7 @@ class _ProfileDiversityPlanWidgetState
                         setState(() {
                           if (isChecked) {
                             _selectedIndex = index;
+                            _isButtonActive = true;
                             updateProfileData['diversity'] = titles[index];
                           }
                         });
@@ -106,10 +108,12 @@ class _ProfileDiversityPlanWidgetState
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context)
-                        .add(UpdateProfilePatchEvent(updateProfileData));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context)
+                              .add(UpdateProfilePatchEvent(updateProfileData));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

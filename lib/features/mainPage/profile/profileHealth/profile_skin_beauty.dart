@@ -21,6 +21,8 @@ class _ProfileSkinAndBeautyWidgetState
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  bool _isButtonActive = false;
+
   @override
   void initState() {
     super.initState();
@@ -86,6 +88,7 @@ class _ProfileSkinAndBeautyWidgetState
                       onTilePressed: (isChecked) {
                         setState(() {
                           choosedTitles.add(titles[index]);
+                          _isButtonActive = true;
                           _isCheckedList[index] = isChecked;
                         });
                       },
@@ -106,11 +109,13 @@ class _ProfileSkinAndBeautyWidgetState
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context).add(
-                        UpdateProfilePatchEvent(
-                            {'beauty_goals': choosedTitles}));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context).add(
+                              UpdateProfilePatchEvent(
+                                  {'beauty_goals': choosedTitles}));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

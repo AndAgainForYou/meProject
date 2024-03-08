@@ -40,10 +40,27 @@ class _ProfileActivitySportListWidgetState
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   Map<String, dynamic> updateProfileData = {};
+  TextEditingController? controllerTextField;
+  List<String> sportsArray = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
+    controllerTextField = TextEditingController();
+    controllerTextField!.addListener(_onTextFieldChanged);
     _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
+  void _onTextFieldChanged() {
+    setState(() {
+      if (controllerTextField!.text.isNotEmpty) {
+        sportsArray = controllerTextField!.text.split(',');
+        choosedTitles.addAll(sportsArray);
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
+    });
   }
 
   @override
@@ -145,6 +162,8 @@ class _ProfileActivitySportListWidgetState
                         setState(() {
                           choosedTitles.add(titles[index]);
                           _isCheckedList[index] = isChecked;
+                          _onTextFieldChanged();
+                          _isButtonActive = true;
                           updateProfileData['activities'] = choosedTitles;
                         });
                       },
@@ -165,10 +184,12 @@ class _ProfileActivitySportListWidgetState
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context)
-                        .add(UpdateProfilePatchEvent(updateProfileData));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context)
+                              .add(UpdateProfilePatchEvent(updateProfileData));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

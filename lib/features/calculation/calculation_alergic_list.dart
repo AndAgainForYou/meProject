@@ -23,10 +23,29 @@ class _CalculateAlergicListWidgetState
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
+  TextEditingController? controllerTextField;
+  List<String> alergicArray = [];
+
   @override
   void initState() {
     super.initState();
+    controllerTextField = TextEditingController();
+    controllerTextField!.addListener(_onTextFieldChanged);
     _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
+  void _onTextFieldChanged() {
+    setState(() {
+      if (controllerTextField!.text.isNotEmpty) {
+        alergicArray = controllerTextField!.text.split(',');
+        choosedTitles.addAll(alergicArray);
+        CalculateGlobalWidget.of(context).userModelBuilder.chronic_diseases =
+            choosedTitles;
+        CalculateGlobalWidget.of(context).setButtonActivity(true);
+      } else {
+        CalculateGlobalWidget.of(context).setButtonActivity(false);
+      }
+    });
   }
 
   @override

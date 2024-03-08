@@ -24,10 +24,27 @@ class _ProfileChronicDiseasesListWidgetState
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   Map<String, dynamic> updateProfileData = {};
+  TextEditingController? controllerTextField;
+  List<String> diseasesArray = [];
+  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
+    controllerTextField = TextEditingController();
+    controllerTextField!.addListener(_onTextFieldChanged);
     _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
+  void _onTextFieldChanged() {
+    setState(() {
+      if (controllerTextField!.text.isNotEmpty) {
+        diseasesArray = controllerTextField!.text.split(',');
+        choosedTitles.addAll(diseasesArray);
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
+    });
   }
 
   @override
@@ -129,6 +146,8 @@ class _ProfileChronicDiseasesListWidgetState
                         setState(() {
                           choosedTitles.add(titles[index]);
                           _isCheckedList[index] = isChecked;
+                          _onTextFieldChanged();
+                          _isButtonActive = true;
                           updateProfileData['chronic_diseases'] = choosedTitles;
                         });
                       },
@@ -149,10 +168,12 @@ class _ProfileChronicDiseasesListWidgetState
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PlatyBloc>(context)
-                        .add(UpdateProfilePatchEvent(updateProfileData));
-                  },
+                  onPressed: _isButtonActive
+                      ? () {
+                          BlocProvider.of<PlatyBloc>(context)
+                              .add(UpdateProfilePatchEvent(updateProfileData));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
