@@ -83,34 +83,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   bool _isButtonActive = false;
   bool _lastPage = false;
   final UpdateUserModelBuilder userModelBuilder = UpdateUserModelBuilder();
-  int allPages = 30;
 
   void setButtonActivity(bool isActive) {
     setState(() {
       _isButtonActive = isActive;
     });
-  }
-
-  void pageCounter() {
-    if (userModelBuilder.health_goals?[0] == 'Weight loss' ||
-        userModelBuilder.health_goals?[0] == 'Mental Health' ||
-        userModelBuilder.health_goals?[0] == 'Skin and Beauty' ||
-        userModelBuilder.tpd_count == '1-2 TPD' ||
-        userModelBuilder.tpd_count == '3 TPD' ||
-        userModelBuilder.tpd_count == '4 TPD' ||
-        userModelBuilder.tpd_count == '5 TPD' ||
-        userModelBuilder.tpd_count == 'Intermediate Fasting' ||
-        userModelBuilder.is_diet == true ||
-        userModelBuilder.is_cooking_preference == true ||
-        userModelBuilder.is_sport_nutrition == true ||
-        userModelBuilder.is_supplements == true ||
-        userModelBuilder.is_medicaments == true ||
-        userModelBuilder.is_outside_eating == true ||
-        userModelBuilder.is_delivery == true) {
-      setState(() {
-        allPages += 1;
-      });
-    }
   }
 
   void pageListener() {
