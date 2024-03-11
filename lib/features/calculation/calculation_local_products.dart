@@ -16,7 +16,7 @@ class _CalculateLocalProductsWidgetState
   bool buttonSeason3Selected = false;
   bool buttonSeason4Selected = false;
 
-  String selectedRegion = '';
+  String selectedRegion = 'Region';
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "Region", child: Text("Region")),

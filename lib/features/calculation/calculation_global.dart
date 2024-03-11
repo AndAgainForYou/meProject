@@ -117,6 +117,86 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   @override
   Widget build(BuildContext context) {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+    List<Widget> lisWidgets = [
+      const CalculateNameWidget(),
+      const CalculateGenderWidget(),
+      const CalculateAgeWidget(),
+      const CalculateHeightWidget(),
+      const CalculateWeightWidget(),
+      const CalculateAlergicListWidget(),
+      const CalculateChronicDiseasesListWidget(),
+      const CalculateActivitySportListWidget(),
+      const CalculateSportCompetitionWidget(),
+      const CalculateImpGoalsListWidget(),
+      const CalculateFreqSportWidget(),
+      const CalculateHealthGoalsWidget(),
+      if (userModelBuilder.health_goals?[0] == 'Weight loss') ...[
+        const CalculateWeightLossWidget(),
+        const CalculateWeightLossSliderWidget(),
+      ] else if (userModelBuilder.health_goals?[0] == 'Mental Health') ...[
+        const CalculateMentalHealthWidget(),
+      ] else if (userModelBuilder.health_goals?[0] == 'Skin and Beauty') ...[
+        const CalculateSkinAndBeautyWidget(),
+      ],
+      const CalculateFoodPreferencesWidget(),
+      if (userModelBuilder.tpd_count == '1-2 TPD') ...[
+        const CalculateFirstTPDWidget(),
+      ] else if (userModelBuilder.tpd_count == '3 TPD') ...[
+        const CalculateThirdTPDWidget(),
+      ] else if (userModelBuilder.tpd_count == '4 TPD') ...[
+        const CalculateFourthTPDWidget(),
+      ] else if (userModelBuilder.tpd_count == '5 TPD') ...[
+        const CalculateFifthTPDWidget(),
+      ] else if (userModelBuilder.tpd_count == 'Intermediate Fasting') ...[
+        const CalculateIntermediateFastingWidget(),
+        const CalculateFastingDaysWidget(),
+      ],
+      const CalculateSpecificDietWidget(),
+      if (userModelBuilder.is_diet == true) ...[
+        const CalculateCurrentDietWidget(),
+      ],
+      const CalculateCookingAskWidget(),
+      if (userModelBuilder.is_cooking_preference == true) ...[
+        const CalculateCookingChoseWidget(),
+      ],
+      const CalculateSportNutritionWidget(),
+      if (userModelBuilder.is_sport_nutrition == true) ...[
+        const CalculateNutritionAddWidget(),
+      ],
+      const CalculateHealthStatusFirstWidget(),
+      const CalculateHealthStatusSecondWidget(),
+      const CalculateHealthStatusThirdWidget(),
+      const CalculateHealthStatusHabitsWidget(),
+      const CalculateSupplementsQAWidget(),
+      if (userModelBuilder.is_supplements == true) ...[
+        const CalculateSupplementsListWidget(),
+      ],
+      const CalculateMedicamentsQAWidget(),
+      if (userModelBuilder.is_medicaments == true) ...[
+        const CalculateMedicamentsWidget(),
+      ],
+      const CalculateHomeEatingAskWidget(),
+      if (userModelBuilder.is_outside_eating == true) ...[
+        const CalculateHomeEatingCalendarWidget(),
+      ],
+      const CalculateCousinListWidget(),
+      const CalculateDeliveryQAWidget(),
+      if (userModelBuilder.is_delivery == true) ...[
+        const CalculateDeliveryListWidget(),
+      ],
+      const CalculateEcoFriendlyListWidget(),
+      const CalculateLocalProductsWidget(),
+      CalculateDiversityPlanWidget(
+        onfinished: () {
+          if (!_lastPage) {
+            setState(() {
+              _lastPage = true;
+              print("last page");
+            });
+          }
+        },
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 130,
@@ -217,7 +297,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                 ValueListenableBuilder(
                     valueListenable: pageNotifier,
                     builder: (context, page, child) {
-                      return Text('$page/39',
+                      return Text('$page/${lisWidgets.length}',
                           textAlign: TextAlign.left,
                           style: whiteTheme.textTheme.bodySmall);
                     }),
@@ -227,89 +307,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: pageController,
-                children: [
-                  const CalculateNameWidget(),
-                  const CalculateGenderWidget(),
-                  const CalculateAgeWidget(),
-                  const CalculateHeightWidget(),
-                  const CalculateWeightWidget(),
-                  const CalculateAlergicListWidget(),
-                  const CalculateChronicDiseasesListWidget(),
-                  const CalculateActivitySportListWidget(),
-                  const CalculateSportCompetitionWidget(),
-                  const CalculateImpGoalsListWidget(),
-                  const CalculateFreqSportWidget(),
-                  const CalculateHealthGoalsWidget(),
-                  if (userModelBuilder.health_goals?[0] == 'Weight loss') ...[
-                    const CalculateWeightLossWidget(),
-                    const CalculateWeightLossSliderWidget(),
-                  ] else if (userModelBuilder.health_goals?[0] ==
-                      'Mental Health') ...[
-                    const CalculateMentalHealthWidget(),
-                  ] else if (userModelBuilder.health_goals?[0] ==
-                      'Skin and Beauty') ...[
-                    const CalculateSkinAndBeautyWidget(),
-                  ],
-                  const CalculateFoodPreferencesWidget(),
-                  if (userModelBuilder.tpd_count == '1-2 TPD') ...[
-                    const CalculateFirstTPDWidget(),
-                  ] else if (userModelBuilder.tpd_count == '3 TPD') ...[
-                    const CalculateThirdTPDWidget(),
-                  ] else if (userModelBuilder.tpd_count == '4 TPD') ...[
-                    const CalculateFourthTPDWidget(),
-                  ] else if (userModelBuilder.tpd_count == '5 TPD') ...[
-                    const CalculateFifthTPDWidget(),
-                  ] else if (userModelBuilder.tpd_count ==
-                      'Intermediate Fasting') ...[
-                    const CalculateIntermediateFastingWidget(),
-                    const CalculateFastingDaysWidget(),
-                  ],
-                  const CalculateSpecificDietWidget(),
-                  if (userModelBuilder.is_diet == true) ...[
-                    const CalculateCurrentDietWidget(),
-                  ],
-                  const CalculateCookingAskWidget(),
-                  if (userModelBuilder.is_cooking_preference == true) ...[
-                    const CalculateCookingChoseWidget(),
-                  ],
-                  const CalculateSportNutritionWidget(),
-                  if (userModelBuilder.is_sport_nutrition == true) ...[
-                    const CalculateNutritionAddWidget(),
-                  ],
-                  const CalculateHealthStatusFirstWidget(),
-                  const CalculateHealthStatusSecondWidget(),
-                  const CalculateHealthStatusThirdWidget(),
-                  const CalculateHealthStatusHabitsWidget(),
-                  const CalculateSupplementsQAWidget(),
-                  if (userModelBuilder.is_supplements == true) ...[
-                    const CalculateSupplementsListWidget(),
-                  ],
-                  const CalculateMedicamentsQAWidget(),
-                  if (userModelBuilder.is_medicaments == true) ...[
-                    const CalculateMedicamentsWidget(),
-                  ],
-                  const CalculateHomeEatingAskWidget(),
-                  if (userModelBuilder.is_outside_eating == true) ...[
-                    const CalculateHomeEatingCalendarWidget(),
-                  ],
-                  const CalculateCousinListWidget(),
-                  const CalculateDeliveryQAWidget(),
-                  if (userModelBuilder.is_delivery == true) ...[
-                    const CalculateDeliveryListWidget(),
-                  ],
-                  const CalculateEcoFriendlyListWidget(),
-                  const CalculateLocalProductsWidget(),
-                  CalculateDiversityPlanWidget(
-                    onfinished: () {
-                      if (!_lastPage) {
-                        setState(() {
-                          _lastPage = true;
-                          print("last page");
-                        });
-                      }
-                    },
-                  ),
-                ],
+                children: lisWidgets,
               ),
             ),
             const SizedBox(height: 10),
