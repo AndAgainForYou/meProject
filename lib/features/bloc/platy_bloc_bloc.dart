@@ -19,7 +19,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
   PlatyBloc() : super(PlatyBlocInitial()) {
     //jwt
-    //needs username/enail and password
+    //needs username/email and password
     on<JwtCreateEvent>((event, emit) async {
       final response = await apiService.postData('/jwt/create/', event.jwtData);
 
@@ -110,6 +110,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
           emit(LoginErrorState(response['status']));
         }
         print("access: ${TokenManager.getTokensData()?['access']}");
+        print("refresh: ${TokenManager.getTokensData()?['refresh']}");
       } catch (e) {
         print('Error: $e');
       }
@@ -246,7 +247,6 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     //profile
     on<ProfileDataEvent>((event, emit) async {
       final response = await apiService.fetchData('/profile/', event.data);
-
       //emit(ProfileIncludesDataState(response));
       print(response);
       if (response['detail'] != null) {
