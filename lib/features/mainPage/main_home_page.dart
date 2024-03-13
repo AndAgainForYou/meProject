@@ -352,7 +352,7 @@ class MainHome extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                                const EdgeInsets.only(left: 8.0, right: 6.0),
                             child: Image.asset(
                               'assets/images/days_left_frame.png',
                               width: 40,
@@ -374,7 +374,7 @@ class MainHome extends StatelessWidget {
                               Text(
                                 '23',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   fontFamily: 'Gilroy',
                                 ),
                               ),
@@ -401,7 +401,7 @@ class MainHome extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                                const EdgeInsets.only(left: 8.0, right: 6.0),
                             child: Image.asset(
                               'assets/images/workout_frame.png',
                               width: 40,
@@ -423,7 +423,7 @@ class MainHome extends StatelessWidget {
                               Text(
                                 '3 times (weekly)',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   fontFamily: 'Gilroy',
                                 ),
                               ),
@@ -456,7 +456,7 @@ class MainHome extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                                const EdgeInsets.only(left: 8.0, right: 6.0),
                             child: Image.asset(
                               'assets/images/current_weight_frame.png',
                               width: 40,
@@ -478,7 +478,7 @@ class MainHome extends StatelessWidget {
                               Text(
                                 '84.5',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   fontFamily: 'Gilroy',
                                 ),
                               ),
@@ -505,7 +505,7 @@ class MainHome extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                                const EdgeInsets.only(left: 8.0, right: 6.0),
                             child: Image.asset(
                               'assets/images/target_weight_frame.png',
                               width: 40,
@@ -527,7 +527,7 @@ class MainHome extends StatelessWidget {
                               Text(
                                 '95',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   fontFamily: 'Gilroy',
                                 ),
                               ),
