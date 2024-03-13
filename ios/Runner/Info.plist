@@ -12,6 +12,24 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.solidWay.platy</string>
+	<key>GIDClientID</key>
+	<string>959036007952-da02195luf71shu6b151aefc1aho57uu.apps.googleusercontent.com</string>
+
+	<key>CFBundleURLTypes</key>
+	<array>
+        <dict>
+			<key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+			    <string>com.googleusercontent.apps.959036007952-da02195luf71shu6b151aefc1aho57uu</string>
+                <string>fb1278646166859685</string>
+            </array>
+        </dict>
+    </array>
+
+
+
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,6 +42,24 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+
+	<key>FacebookAppID</key>
+    <string>1278646166859685</string>
+    <key>FacebookDisplayName</key>
+    <string>Platy</string>
+
+	<key>FacebookClientToken</key>
+    <string>bd30e8071acac90b1f1061a04b3fcbdb</string>
+
+	<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>fbapi</string>
+            <string>fb-messenger-share-api</string>
+            <string>fbauth2</string>
+            <string>fbshareextension</string>
+        </array>
+   
+
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
