@@ -19,61 +19,47 @@ class _LoadingPageState extends State<LoadingPage> {
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>
-                const LoginPage(),
+            builder: (context) => const LoginPage(),
           ),
         );
       },
-    );
+    ); 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
+        body: Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Center(
+          child: Image.asset(
+            'assets/images/logo.png',
+            width: 200,
+            height: 270,
+          ),
+        ),
+        const Positioned(
+            left: 0,
+            right: 0,
+            bottom: 100,
             child: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 15.0, top: 160.0),
-                child: Image.asset('assets/images/logo.png',
-                    width: 200, height: 140, fit: BoxFit.fitWidth),
-              ),
-            ),
-          ),
-           const Expanded(
-            flex: 1,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/loadingPage_food.png',
-                  ),
-                  fit: BoxFit.cover,
-                  alignment: Alignment(0.0, 1.0),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Color.fromRGBO(255, 163, 132, 1),
                 ),
+                backgroundColor: Colors.transparent,
+                strokeWidth: 4,
               ),
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 190.0),
-                  child: SizedBox(
-                    width: 32,
-                    height: 32, 
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3, 
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                      
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+            ))
+      ],
+    ));
   }
 }
