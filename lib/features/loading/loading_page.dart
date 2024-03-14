@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/login/login_page.dart';
 import 'dart:async';
+
+import 'package:platy/features/signUp/signUp_page.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -19,11 +20,11 @@ class _LoadingPageState extends State<LoadingPage> {
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const LoginPage(),
+            builder: (context) => const SignUpPage(),
           ),
         );
       },
-    ); 
+    );
   }
 
   @override

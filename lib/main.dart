@@ -22,7 +22,13 @@ class MyApp extends StatelessWidget {
       create: (context) => PlatyBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          //primarySwatch: Colors.green,
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Color.fromRGBO(255, 163, 132, 1),
+          ),
+        ),
         initialRoute: '/',
         routes: {
           '/': (context) => const LoadingPage(), //MainHomePage
