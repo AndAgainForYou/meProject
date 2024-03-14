@@ -119,7 +119,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
     List<Widget> lisWidgets = [
       const CalculateNameWidget(),
-      const CalculateGenderWidget(),
+      //const CalculateGenderWidget(),
       const CalculateAgeWidget(),
       const CalculateHeightWidget(),
       const CalculateWeightWidget(),
@@ -198,6 +198,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       ),
     ];
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leadingWidth: 130,
         toolbarHeight: 100,
@@ -225,14 +226,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                       Icons.arrow_back,
                       color: Colors.black,
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                          fontFamily: 'Gilroy',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
                   ],
                 ),
               ),
@@ -240,11 +233,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
           ),
         ),
         centerTitle: true,
-        title: const Image(
-          image: AssetImage('assets/images/logo_small.png'),
+        title: Container(
+          color: Colors.red,
         ),
         surfaceTintColor: Colors.transparent,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 240, 242, 236),
         actions: [
           ValueListenableBuilder<bool>(
             valueListenable: showSkipButtonNotifier,
@@ -288,21 +281,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Text('Questions:',
-                    textAlign: TextAlign.left,
-                    style: whiteTheme.textTheme.titleSmall),
-                const SizedBox(width: 8),
-                ValueListenableBuilder(
-                    valueListenable: pageNotifier,
-                    builder: (context, page, child) {
-                      return Text('$page/${lisWidgets.length}',
-                          textAlign: TextAlign.left,
-                          style: whiteTheme.textTheme.bodySmall);
-                    }),
-              ],
-            ),
             Expanded(
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -313,15 +291,10 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
             const SizedBox(height: 10),
             Container(
               height: 54.0,
-              width: double.infinity,
+              width: 180,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
-                gradient: const LinearGradient(
-                  colors: [
-                    Color(0xFF59A7A7),
-                    Color(0xFFAFCD6D),
-                  ],
-                ),
+                color: _isButtonActive ? Color(0xFFA4AC9C) : Color(0xFFCDC9C4),
               ),
               child: ElevatedButton(
                 onPressed: _isButtonActive
@@ -357,8 +330,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                 child: const Text(
                   'Next',
                   style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Gilroy',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),

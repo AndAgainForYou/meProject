@@ -18,36 +18,54 @@ class _CalculateNameWidgetState extends State<CalculateNameWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Spacer(),
+        const SizedBox(
+          height: 40,
+        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Create your User Name',
+              'What’s your name?',
               textAlign: TextAlign.center,
               style: whiteTheme.textTheme.bodyMedium,
             ),
+            SizedBox(
+              height: 60,
+            ),
             Center(
-              child: TextField(
-                controller: _nameController,
-                textAlign: TextAlign.center,
-                style: whiteTheme.textTheme.titleMedium
-                    ?.copyWith(color: Colors.black),
-                obscureText: false,
-                onChanged: (text) {
-                  CalculateGlobalWidget.of(context).userModelBuilder.name =
-                      text;
-                  CalculateGlobalWidget.of(context)
-                      .setButtonActivity(text.isNotEmpty);
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10.0),
+              child: Container(
+                width: 358.0,
+                height: 52.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(
+                    color: Color.fromRGBO(230, 227, 223, 1),
+                    width: 1.0,
                   ),
-                  hintText: 'My name is...',
-                  hintStyle: whiteTheme.textTheme.titleMedium,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextField(
+                    cursorColor: Colors.orange,
+                    controller: _nameController,
+                    textAlign: TextAlign.start,
+                    style: whiteTheme.textTheme.titleMedium
+                        ?.copyWith(color: Colors.black),
+                    obscureText: false,
+                    onChanged: (text) {
+                      CalculateGlobalWidget.of(context).userModelBuilder.name =
+                          text;
+                      CalculateGlobalWidget.of(context)
+                          .setButtonActivity(text.isNotEmpty);
+                    },
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'My name is...',
+                      hintStyle: whiteTheme.textTheme.titleMedium,
+                    ),
+                  ),
                 ),
               ),
             ),

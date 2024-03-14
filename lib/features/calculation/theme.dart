@@ -4,15 +4,15 @@ final whiteTheme = ThemeData(
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
       color: Colors.black,
-      fontFamily: 'Gilroy',
-      fontSize: 28,
-      fontWeight: FontWeight.w500,
+      fontFamily: 'Montserrat',
+      fontSize: 25,
+      fontWeight: FontWeight.w600,
     ),
     titleMedium: TextStyle(
-      color: Colors.grey,
+      color: Color.fromRGBO(205, 201, 196, 1),
       fontFamily: 'Gilroy',
-      fontSize: 32,
-      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
     ),
     titleSmall: TextStyle(
       color: Colors.grey,
@@ -23,8 +23,8 @@ final whiteTheme = ThemeData(
     bodySmall: TextStyle(
       color: Colors.black,
       fontFamily: 'Gilroy',
-      fontSize: 18,
-      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
     ),
   ),
 );
