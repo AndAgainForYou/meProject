@@ -83,11 +83,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-      ),
+      
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -534,8 +530,8 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       const SizedBox(height: 8),
                                       GestureDetector(
-                                        onTap: () => Navigator.pushNamed(
-                                            context, '/signUp'),
+                                        onTap: () => Navigator.pop(
+                                            context),
                                         child: const Directionality(
                                           textDirection: TextDirection.ltr,
                                           child: Text(
