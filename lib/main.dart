@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoadingPage(), //MainHomePage
+          '/': (context) => const CalculateGlobalWidget(), //LoadingPage
           '/login': (context) => const LoginPage(),
           '/signUp': (context) => const SignUpPage(),
           '/signUpCongratulation': (context) =>
