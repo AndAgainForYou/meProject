@@ -14,11 +14,10 @@ class CalculateChronicDiseasesListWidget extends StatefulWidget {
 class _CalculateChronicDiseasesListWidgetState
     extends State<CalculateChronicDiseasesListWidget> {
   List<String> titles = [
+    'Cardiovascular issues',
     'Diabetes',
-    'Cardiovascular diseases',
-    'Food allergies',
-    'Gastrointestinal disorders',
-    'Autoimmune conditions',
+    'Osteoporosis',
+    'Autoimmune Diseases',
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
@@ -55,7 +54,7 @@ class _CalculateChronicDiseasesListWidgetState
       children: [
         const SizedBox(height: 63),
         Text(
-          'Chronic Diseases',
+          'Health History',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
@@ -64,45 +63,12 @@ class _CalculateChronicDiseasesListWidgetState
           'If you are not allergic, skip this step.',
           style: TextStyle(
             fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
-            color: Colors.grey,
+            color: Colors.black,
           ),
         ),
         const SizedBox(height: 30),
-        Container(
-          height: 100,
-          margin: const EdgeInsets.symmetric(horizontal: 3),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                offset: Offset(1, 3),
-                blurRadius: 9,
-              ),
-              BoxShadow(
-                color: Colors.white,
-              ),
-            ],
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: ' Add your option separated by commas',
-              hintStyle: const TextStyle(
-                fontFamily: 'Gilroy',
-                fontSize: 14,
-                color: Colors.grey,
-                fontWeight: FontWeight.w500,
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
