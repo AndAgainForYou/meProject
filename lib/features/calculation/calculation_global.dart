@@ -5,6 +5,8 @@ import 'package:platy/features/calculation/Calculation_home_eating_calendar.dart
 import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
+import 'package:platy/features/calculation/calculation_blood_check_qa%20copy.dart';
+import 'package:platy/features/calculation/calculation_bones_check.dart';
 import 'package:platy/features/calculation/calculation_chronic_diseases.dart';
 import 'package:platy/features/calculation/calculation_cooking_ask.dart';
 import 'package:platy/features/calculation/calculation_cooking_chose.dart';
@@ -12,15 +14,17 @@ import 'package:platy/features/calculation/calculation_cousin_choose.dart';
 import 'package:platy/features/calculation/calculation_current_diet.dart';
 import 'package:platy/features/calculation/calculation_delivery.dart';
 import 'package:platy/features/calculation/calculation_delivery_qa.dart';
+import 'package:platy/features/calculation/calculation_digestive_health.dart';
 import 'package:platy/features/calculation/calculation_diversity_plan.dart';
 import 'package:platy/features/calculation/calculation_eco_friendly_list.dart';
+import 'package:platy/features/calculation/calculation_emotions.dart';
 import 'package:platy/features/calculation/calculation_fifth_tpd.dart';
 import 'package:platy/features/calculation/calculation_first_tpd.dart';
 import 'package:platy/features/calculation/calculation_food_preferences.dart';
 import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_fourth_tpd.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
-import 'package:platy/features/calculation/calculation_gender.dart';
+import 'package:platy/features/calculation/calculation_blood_check.dart';
 import 'package:platy/features/calculation/calculation_goals.dart';
 import 'package:platy/features/calculation/calculation_health_goals.dart';
 import 'package:platy/features/calculation/calculation_health_status_first.dart';
@@ -43,6 +47,7 @@ import 'package:platy/features/calculation/calculation_supplements.dart';
 import 'package:platy/features/calculation/calculation_supplements_qa.dart';
 import 'package:platy/features/calculation/calculation_third_tpd.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
+import 'package:platy/features/calculation/calculation_water_consumption.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/calculation/calculation_weight_loss_slider.dart';
@@ -93,9 +98,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
     bool isSkipButtonWidget = false;
-    if (pageNotifier.value == 6 ||
-        pageNotifier.value == 7 ||
-        pageNotifier.value == 8) {
+    if (pageNotifier.value == 5 || pageNotifier.value == 6) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -119,12 +122,17 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
     List<Widget> lisWidgets = [
       const CalculateNameWidget(),
-      //const CalculateGenderWidget(),
       const CalculateAgeWidget(),
       const CalculateHeightWidget(),
       const CalculateWeightWidget(),
       const CalculateAlergicListWidget(),
       const CalculateChronicDiseasesListWidget(),
+      const CalculateBloodQAWidget(),
+      const CalculateBloodCheckUpWidget(),
+      const CalculateBonesCheckUpWidget(),
+      const CalculateDigestiveHealthWidget(),
+      const CalculateEmotionsHealthWidget(),
+      const CalculateWaterConsumptionWidget(),
       const CalculateActivitySportListWidget(),
       const CalculateSportCompetitionWidget(),
       const CalculateImpGoalsListWidget(),
@@ -238,42 +246,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         ),
         surfaceTintColor: Colors.transparent,
         backgroundColor: Color.fromARGB(255, 240, 242, 236),
-        actions: [
-          ValueListenableBuilder<bool>(
-            valueListenable: showSkipButtonNotifier,
-            builder: (context, showSkipButton, child) {
-              return showSkipButton
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.ease);
-                          setButtonActivity(false);
-                        },
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
-                            const Size.fromHeight(31.0),
-                          ),
-                          backgroundColor:
-                              const MaterialStatePropertyAll(Colors.blue),
-                        ),
-                        child: const Text(
-                          'Skip',
-                          style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    )
-                  : const SizedBox.shrink();
-            },
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -337,6 +309,30 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                   ),
                 ),
               ),
+            ),
+            ValueListenableBuilder<bool>(
+              valueListenable: showSkipButtonNotifier,
+              builder: (context, showSkipButton, child) {
+                return showSkipButton
+                    ? TextButton(
+                        onPressed: () async {
+                          await pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.ease);
+                          setButtonActivity(false);
+                        },
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            color: Colors.orange,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              },
             ),
           ],
         ),
