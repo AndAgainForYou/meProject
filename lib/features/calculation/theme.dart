@@ -16,7 +16,7 @@ final whiteTheme = ThemeData(
     ),
     titleSmall: TextStyle(
       fontFamily: 'Montserrat',
-      fontSize: 17,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),

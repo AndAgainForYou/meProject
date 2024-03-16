@@ -154,8 +154,8 @@ class _DiaryPageState extends State<DiaryPage> {
                                           yearController: TextEditingController(
                                               text: items[index]['added_at']
                                                   .split('-')[0]),
-                                          questionSelectedStates:
-                                              createListParametrs(items[index]),
+                                          // questionSelectedStates:
+                                          //     createListParametrs(items[index]),
                                           bodyEditingController:
                                               TextEditingController(
                                                   text: items[index]['body']),
