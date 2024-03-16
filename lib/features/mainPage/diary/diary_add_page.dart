@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:platy/features/calculation/theme.dart';
 
 class DiaryAddPage extends StatefulWidget {
   final int? idValue;
@@ -9,7 +11,7 @@ class DiaryAddPage extends StatefulWidget {
   final TextEditingController? monthController;
   final TextEditingController? yearController;
   final TextEditingController? bodyEditingController;
-  final List<bool>? questionSelectedStates;
+  final List<int?>? questionSelectedStates;
   const DiaryAddPage({
     Key? key,
     this.titleController,
@@ -32,21 +34,41 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   late TextEditingController _monthController;
   late TextEditingController _yearController;
   late TextEditingController _bodyEditingController;
-  late List<bool> _questionSelectedStates = [];
+  late List<int?> _questionSelectedStates = [];
   final now = DateTime.now();
-  List<String> questions = [
-    'Feeling of hunger?',
-    'Enough water?',
-    'Stress or frustration feeling?',
-    'Late dinner?',
-    'Feeling of depression?',
-    'Do you have a trip?',
-    'Changes in the activity \nlevel?'
-  ];
+  bool _isButtonActive = false;
 
-  // State variables for Yes and No buttons
-  bool isYesSelected = true;
-  bool isNoSelected = false;
+  List<String> titlesImages = [
+    'sad',
+    'happy',
+    'angry',
+  ];
+  List<String> titles = [
+    'Low',
+    'Normal',
+    'High',
+  ];
+  Map<String, dynamic> _selectedOptionsEmotions = {};
+  int? _selectedIndex;
+  int? _selectedIndexEmotions;
+  bool _isDigestiveIssuesYes = false;
+
+  List<String> questions = [
+    'How much energy did you have \ntoday?',
+    'Have you experienced any digestive \nissues while following the meal \nplan?',
+    'When digestive problems have started?',
+    'How was your mood?',
+    'How was your sleep?',
+    'Any changes in your symptoms?',
+  ];
+  List<List<String>> optionsList = [
+    ['Low', 'Normal', 'High'],
+    ['No', 'Yes'],
+    ['After breakfast', 'After lunch', 'After dinner'],
+    ['Stressed out', 'Good', ' Feeling perfect'],
+    ['Good', 'I had problems with sleep'],
+    ['I feel better', 'I still have problems with my symptoms']
+  ];
 
   @override
   void initState() {
@@ -61,8 +83,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
         widget.monthController ?? TextEditingController(text: '${now.month}');
     _yearController =
         widget.yearController ?? TextEditingController(text: '${now.year}');
-    _questionSelectedStates =
-        widget.questionSelectedStates ?? List.generate(8, (index) => true);
+    _questionSelectedStates = widget.questionSelectedStates ??
+        List.generate(questions.length, (index) => null);
     _bodyEditingController =
         widget.bodyEditingController ?? TextEditingController();
   }
@@ -82,6 +104,23 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
         "is_activity_level_changes": _questionSelectedStates[5],
         "is_trip": _questionSelectedStates[6]
       };
+  double _getWidth() {
+    int maxLength = 15;
+    double initialWidth = 0.37;
+    double maxWidth = 0.75;
+    double width;
+    if (_titleController.text.length >= 8) {
+      width = initialWidth +
+          (_titleController.text.length / maxLength) *
+              (maxWidth - initialWidth * 1.2);
+    } else if (_titleController.text.length >= 13) {
+      width = maxWidth;
+    } else {
+      width = initialWidth;
+    }
+
+    return width;
+  }
 
   @override
   void dispose() {
@@ -97,9 +136,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   Widget build(BuildContext context) {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(top: 2.0),
+          padding: const EdgeInsets.only(top: 20.0),
           child: IconButton(
             icon: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -108,61 +148,26 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                   SizedBox(
                     width: 8,
                   ),
-                  Text('Back')
                 ]),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
         ),
-        actions: [
-          Visibility(
-            visible: _titleController.text.trim().isNotEmpty,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 4.0),
-                    child: Text(
-                      'PDF Export',
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                          offset: Offset(1, 3),
-                          blurRadius: 9,
-                        ),
-                      ],
-                    ),
-                    child: IconButton(
-                        icon: Image.asset(
-                          'assets/images/download_icon.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        onPressed: () {}),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Column(children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
+        ]),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -175,246 +180,476 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 24),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.of(context).size.width * _getWidth(),
                       height: 52,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.white,
-                      ),
+                      color: Colors.transparent,
                       child: TextFormField(
+                        onChanged: (value) {
+                          setState(() {});
+                        },
                         controller: _titleController,
                         style: const TextStyle(
                             fontSize: 32, fontWeight: FontWeight.bold),
-                        maxLength: 9,
+                        maxLength: 15,
                         decoration: const InputDecoration(
                           counterText: '',
-                          hintText: 'Title here...',
+                          hintText: ' Title here',
                           hintStyle: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black54,
                             fontFamily: 'Gilroy',
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                           ),
                           border: InputBorder.none,
                         ),
-                        onChanged: (value) {},
                         validator: (value) {},
                       ),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 10.0),
                       child: Icon(
-                        Icons.edit_outlined,
+                        Icons.edit,
                         size: 30,
-                        color: Colors.grey,
+                        color: Colors.black54,
                       ),
                     )
                   ],
                 ),
                 const SizedBox(height: 24),
                 Container(
-                  width: MediaQuery.of(context).size.width * 1,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                        offset: Offset(1, 3),
-                        blurRadius: 9,
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Day  ',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.1,
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
-                              child: TextFormField(
-                                controller: _dayController,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                ),
-                                maxLength: 2,
-                                decoration: const InputDecoration(
-                                  counterText: '',
-                                  hintText: '',
-                                  hintStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (value) {},
-                                validator: (value) {},
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Month  ',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.1,
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: TextFormField(
-                                controller: _monthController,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                                maxLength: 2,
-                                decoration: const InputDecoration(
-                                  counterText: '',
-                                  hintText: '',
-                                  hintStyle: TextStyle(
-                                    color: Colors.transparent,
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (value) {},
-                                validator: (value) {},
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Year  ',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.13,
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
-                              child: TextFormField(
-                                controller: _yearController,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                                maxLength: 4,
-                                decoration: const InputDecoration(
-                                  counterText: '',
-                                  hintText: '',
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (value) {},
-                                validator: (value) {},
-                              ),
-                            ),
-                          ],
+                    width: 153,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.09),
+                          offset: Offset(1, 3),
+                          blurRadius: 9,
                         ),
                       ],
                     ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          DateFormat.MMM().format(now),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Text(
+                          '${now.day}',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Text(
+                          '${now.year}',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 30),
+                Text(
+                  'How was your mood today?',
+                  textAlign: TextAlign.center,
+                  style: whiteTheme.textTheme.titleSmall,
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 200, // Set a fixed height for the ListView
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: titles.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.white,
+                          border: _selectedIndexEmotions == index
+                              ? Border.all(
+                                  color: const Color.fromRGBO(164, 171, 155, 1),
+                                  width: 2,
+                                )
+                              : null,
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 5),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndexEmotions = index;
+                              _selectedOptionsEmotions[titles[index]] =
+                                  titles[index];
+                            });
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/${titlesImages[index]}-image.png',
+                                width: 150,
+                                height: 150,
+                              ),
+                              Text(
+                                titles[index],
+                                style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 15),
                 Column(
-                  children: List.generate(questions.length, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            questions[index],
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                          const SizedBox(height: 8),
                           Row(
                             children: [
-                              buildButton('Yes', _questionSelectedStates[index],
-                                  () {
-                                setState(() {
-                                  _questionSelectedStates[index] = true;
-                                });
-                              }),
-                              buildButton('No', !_questionSelectedStates[index],
-                                  () {
-                                setState(() {
-                                  _questionSelectedStates[index] = false;
-                                });
-                              }),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                questions[0],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Column(
+                            children: [
+                              buildButton(
+                                optionsList[0],
+                                optionsList[0].length,
+                                _questionSelectedStates[0],
+                                (int? selectedIndex) {
+                                  setState(() {
+                                    _questionSelectedStates[0] = selectedIndex;
+                                  });
+                                },
+                              ),
                             ],
                           ),
                         ],
                       ),
-                    );
-                  }),
+                    ),
+                  ],
                 ),
+                Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                questions[1],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Column(
+                            children: [
+                              buildButton(
+                                optionsList[1],
+                                optionsList[1].length,
+                                _questionSelectedStates[1],
+                                (int? selectedIndex) {
+                                  setState(() {
+                                    _questionSelectedStates[1] = selectedIndex;
+                                    if (selectedIndex == 1) {
+                                      _isDigestiveIssuesYes = true;
+                                    } else {
+                                      _isDigestiveIssuesYes = false;
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                _isDigestiveIssuesYes
+                    ? Column(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                              color: Colors.white,
+                            ),
+                            margin: const EdgeInsets.symmetric(vertical: 15),
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      questions[2],
+                                      textAlign: TextAlign.start,
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Column(
+                                  children: [
+                                    buildButton(
+                                      optionsList[2],
+                                      optionsList[2].length,
+                                      _questionSelectedStates[2],
+                                      (int? selectedIndex) {
+                                        setState(() {
+                                          _questionSelectedStates[2] =
+                                              selectedIndex;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+                Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                questions[3],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Column(
+                            children: [
+                              buildButton(
+                                optionsList[3],
+                                optionsList[3].length,
+                                _questionSelectedStates[3],
+                                (int? selectedIndex) {
+                                  setState(() {
+                                    _questionSelectedStates[3] = selectedIndex;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                questions[4],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Column(
+                            children: [
+                              buildButton(
+                                optionsList[4],
+                                optionsList[4].length,
+                                _questionSelectedStates[4],
+                                (int? selectedIndex) {
+                                  setState(() {
+                                    _questionSelectedStates[4] = selectedIndex;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                questions[5],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Column(
+                            children: [
+                              buildButton(
+                                optionsList[5],
+                                optionsList[5].length,
+                                _questionSelectedStates[5],
+                                (int? selectedIndex) {
+                                  setState(() {
+                                    _questionSelectedStates[5] = selectedIndex;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: Colors.white,
                     boxShadow: const [
                       BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                        color: Color.fromRGBO(0, 0, 0, 0.09),
                         offset: Offset(1, 3),
                         blurRadius: 10,
                       ),
                     ],
                   ),
-                  height: 140,
+                  height: 200,
                   width: MediaQuery.of(context).size.width * 1,
                   child: TextField(
                     controller: _bodyEditingController,
                     keyboardType: TextInputType.text,
                     maxLines: null,
                     minLines: 7,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: BorderSide.none,
+                      ),
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "Add a note...",
-                      hintStyle:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                      border: InputBorder.none,
+                      hintStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black45),
                     ),
                   ),
                 ),
@@ -435,19 +670,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                       maxWidth: 400,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      gradient: const LinearGradient(
-                        begin: Alignment(0.0, -1.0),
-                        end: Alignment(1.0, 1.0),
-                        colors: [Color(0xFF59A7A7), Color(0xFFAFCD6D)],
-                        stops: [0.0, 1.0],
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 6,
-                        ),
-                      ],
+                      borderRadius: BorderRadius.circular(25.0),
+                      color: _isButtonActive
+                          ? const Color(0xFFA4AC9C)
+                          : const Color(0xFFCDC9C4),
                     ),
                     child: const Center(
                       child: Text(
@@ -473,41 +699,42 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
     );
   }
 
-  Widget buildButton(String label, bool isSelected, VoidCallback onPressed) {
-    Color backgroundColor =
-        isSelected ? const Color.fromRGBO(252, 108, 76, 1) : Colors.white;
-
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(50),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                offset: Offset(1, 3),
-                blurRadius: 9,
-              ),
-            ],
-          ),
-          child: Center(
-            child: Text(
-              label,
-              style: TextStyle(
-                color: backgroundColor == Colors.white
-                    ? Colors.black
-                    : Colors.white,
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ),
-      ),
+  Widget buildButton(List<String> options, int count, int? selectedIndex,
+      void Function(int?)? onChanged) {
+    return Column(
+      children: List.generate(count, (rowIndex) {
+        return Column(
+          children: List.generate(options.length, (colIndex) {
+            final index = rowIndex * options.length + colIndex;
+            if (index >= count) return SizedBox.shrink(); // Hide excess buttons
+            return Row(
+              children: [
+                Radio<int>(
+                  value: index,
+                  groupValue: selectedIndex,
+                  onChanged: onChanged,
+                  activeColor: const Color(0xFFA4AC9C),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (onChanged != null) {
+                      onChanged(index);
+                    }
+                  },
+                  child: Text(
+                    options[index],
+                    style: TextStyle(
+                      fontFamily: 'Gilroy',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }),
+        );
+      }),
     );
   }
 }
