@@ -1,11 +1,14 @@
+import 'dart:math' as math;
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:platy/features/mainPage/main_seeMore_chart.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class SeeMorePage extends StatefulWidget {
-  const SeeMorePage({super.key});
+  const SeeMorePage({Key? key}) : super(key: key);
 
   @override
   State<SeeMorePage> createState() => _SeeMorePageState();
@@ -13,6 +16,7 @@ class SeeMorePage extends StatefulWidget {
 
 class _SeeMorePageState extends State<SeeMorePage> {
   int dividerCount = 24;
+  int _selectedIndex = 0;
   List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   @override
@@ -23,284 +27,208 @@ class _SeeMorePageState extends State<SeeMorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(top: 2.0),
-          child: IconButton(
-            icon: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.arrow_back),
-                SizedBox(
-                  width: 8,
-                ),
-                Text('Back')
-              ],
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            width: 32,
+            height: 32,
           ),
-        ),
-        leadingWidth: 90,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.transparent,
-        title: const Text(
-          'Your progress',
-          style: TextStyle(
-            fontSize: 18,
-            fontFamily: 'Gilroy',
-          ),
-        ),
-      ),
+          backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+          elevation: 0.0,
+          scrolledUnderElevation: 0),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 8,
-              ),
               const Text(
                 'Overall progress',
                 style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 30,
-                  fontFamily: 'Gilroy',
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                height: 8,
+              Padding(
+                padding: const EdgeInsets.only(top: 0.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        ClipRect(
+                          child: Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
+                            height: 300,
+                            width: MediaQuery.of(context).size.width * 0.42,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 0.0),
+                              child: RotationTransition(
+                                turns: const AlwaysStoppedAnimation(-70 / 360),
+                                child: CircularArchProgressBar(
+                                  value: -40.0,
+                                  fillGradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xFFffa384),
+                                      Color(0xFFffa384),
+                                      Color(0xFFa4aa9c),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 16,
+                          bottom: MediaQuery.of(context).size.height / 5.3,
+                          child: const Text(
+                            '23/31',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(width: 20),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      child: Column(
+                        children: [
+                          RichText(
+                            text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      'You have been following your goal for ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                                TextSpan(
+                                  text: '23',
+                                  style: TextStyle(
+                                      color: Colors.orange,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                TextSpan(
+                                  text: ' days',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
+                            softWrap: true,
+                          ),
+                          const SizedBox(height: 30),
+                          RichText(
+                            text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '8 ',
+                                  style: TextStyle(
+                                      color: Colors.orange,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                TextSpan(
+                                  text: 'days left until reaching goal!',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
+                            softWrap: true,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset('assets/images/emojie_star.png'),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Column(
+                  Container(
+                    decoration: const BoxDecoration(),
+                    child: CircularPercentIndicator(
+                        radius: 50,
+                        lineWidth: 10.0,
+                        percent: 0.75,
+                        center: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("75%",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF535355))),
+                          ],
+                        ),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: <Color>[
+                              Color(0xFFa4aa9c),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFa4aa9c),
+                              Color(0xFFa4aa9c),
+                              Color(0xFFa4aa9c),
+                            ]),
+                        rotateLinearGradient: true,
+                        circularStrokeCap: CircularStrokeCap.round),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.50,
+                    child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'WOW !',
+                          'My current track',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            fontFamily: 'Gilroy',
-                          ),
+                              fontSize: 13, fontWeight: FontWeight.w300),
                         ),
                         Text(
-                          'You are good! Keep up the good work',
+                          '23',
                           style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Gilroy',
-                          ),
+                              fontSize: 17, fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'GOAL',
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w300),
+                        ),
+                        Text(
+                          '31',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
                   )
                 ],
               ),
-              const SizedBox(height: 22),
-              Container(
-                width: MediaQuery.of(context).size.width * 1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 8.0, top: 10.0, right: 8.0, bottom: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: const TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'You have been following your goal for ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Gilroy'),
-                            ),
-                            TextSpan(
-                              text: '23',
-                              style: TextStyle(
-                                  color: Color(0xFFFC6C4C),
-                                  fontSize: 20,
-                                  fontFamily: 'Gilroy',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: ' days. ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Gilroy'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      RichText(
-                        text: const TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '9',
-                              style: TextStyle(
-                                  color: Color(0xFFFC6C4C),
-                                  fontSize: 20,
-                                  fontFamily: 'Gilroy',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: ' days left until reaching goal !',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Gilroy'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      IntrinsicHeight(
-                        child: SizedBox(
-                          height: 18,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              for (int i = 0; i < dividerCount; i++)
-                                const VerticalDivider(
-                                    thickness: 3,
-                                    width: 4,
-                                    color: Color(0xFFFC6C4C)),
-                              for (int i = 0; i < (31 - dividerCount); i++)
-                                const VerticalDivider(
-                                    thickness: 3,
-                                    width: 4,
-                                    color: Color.fromRGBO(23, 23, 23, 0.25)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 0.0, right: 8.0),
-                          child: Image.asset(
-                            'assets/images/days_left_frame.png',
-                            width: 40,
-                            height: 40,
-                          ),
-                        ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Days Left',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'Gilroy',
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Text(
-                              '23',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Gilroy',
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: CircularPercentIndicator(
-                      radius: 50,
-                      lineWidth: 10.0,
-                      animation: true,
-                      percent: 75 / 100,
-                      center: const Text(
-                        "${75}%",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Gilroy',
-                        ),
-                      ),
-                      backgroundColor: const Color(0x22242424),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      progressColor: const Color(0xFFFC6C4C),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'GOAL',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'Gilroy',
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Text(
-                              '31',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Gilroy',
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 0.0),
-                          child: Image.asset(
-                            'assets/images/goal_frame.png',
-                            width: 40,
-                            height: 40,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -317,219 +245,39 @@ class _SeeMorePageState extends State<SeeMorePage> {
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      Color(0xFFFF8064),
-                                      Color(0xFFDB3D1A),
+                                      Color.fromRGBO(164, 171, 155, 1),
+                                      Color.fromRGBO(164, 171, 155, 1),
                                     ],
                                   ),
                                 )
                               : const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Color.fromRGBO(23, 23, 23, 0.25),
+                                  color: Colors.white,
                                 ),
                           child: Center(
                             child: Text(
                               days[i],
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
+                              style: TextStyle(
+                                color: i == 0 ? Colors.white : Colors.black38,
+                                fontSize: 16,
                                 fontFamily: 'Gilroy',
                               ),
                             ),
                           ),
                         ),
-                        Text(
-                          (i + 11).toString(),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Gilroy',
-                          ),
-                        ),
                       ],
                     ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Stack(children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    border: Border.all(color: const Color(0xFFDB3D1A)),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                        offset: Offset(1, 3),
-                        blurRadius: 9,
-                      ),
-                    ],
-                  ),
-                  width: MediaQuery.of(context).size.width * 1,
-                  height: 85,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, left: 8.0, right: 8.0, bottom: 10.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Hey !',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Flexible(
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.74,
-                                  child: const Text(
-                                    "Today is an important day, don't miss your workout, go to the nutrition plan and follow it",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.09000000357627869),
-                                  offset: Offset(1, 3),
-                                  blurRadius: 9,
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_forward),
-                              iconSize: 28,
-                              padding: const EdgeInsets.all(0),
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-                Positioned(
-                  top: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 23.0),
-                    child: Stack(
-                      children: [
-                        CustomPaint(
-                          painter: _ArrowPathPainter(
-                              color: Colors.red, H: 12, W: 35),
-                        ),
-                        CustomPaint(
-                          painter: _ArrowPathPainter(
-                            color: Colors.white,
-                            H: 10,
-                            W: 33,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ]),
-              const SizedBox(height: 24),
-              Container(
-                width: MediaQuery.of(context).size.width * 1,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: Image.asset(
-                                    'assets/images/workout_frame.png',
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Workout Target',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'Gilroy',
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Text(
-                                      '3 times (weekly)',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Gilroy',
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Text(
-                            '89%',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                      LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 2000,
-                        percent: 0.63,
-                        barRadius: const Radius.circular(18),
-                        progressColor: const Color.fromRGBO(137, 234, 103, 1),
-                        backgroundColor: const Color.fromRGBO(23, 23, 23, 0.25),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               const SizedBox(height: 10),
               Container(
-                width: MediaQuery.of(context).size.width * 1,
+                constraints: BoxConstraints(
+                  maxHeight: 88,
+                  maxWidth: MediaQuery.of(context).size.width * 0.92,
+                ),
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14.0),
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
@@ -538,281 +286,385 @@ class _SeeMorePageState extends State<SeeMorePage> {
                     ),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 17.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: Image.asset(
-                                    'assets/images/target_weight_frame.png',
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Target weight',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'Gilroy',
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Text(
-                                      '95',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Gilroy',
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hey!',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w400),
                             ),
-                          ),
-                          const Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 8.0),
-                                child: Text(
-                                  'Current Weight',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromRGBO(36, 36, 36, 1),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                '84.5',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                            Text(
+                              "Today is an important day, don't miss your workout, go to the nutrition plan and follow it",
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
                       ),
-                      LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 2000,
-                        percent: 0.84,
-                        barRadius: const Radius.circular(18),
-                        progressColor: const Color.fromRGBO(137, 234, 103, 1),
-                        backgroundColor: const Color.fromRGBO(23, 23, 23, 0.25),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0, left: 15),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-              const Text(
-                'Weight Chart',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 8.0),
-                      child: Text(
-                        'Jun 3 2022 - Aug 2023',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Color.fromRGBO(36, 36, 36, 1),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 1,
-                        height: 250,
-                        child: const WeightMainPageChart()),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Impact on the result',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.44,
-                    height: 206,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                          offset: Offset(1, 3),
-                          blurRadius: 9,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                          child: Text(
-                            'Negative',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 87, 87, 1),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                        Row(
+                    decoration: const BoxDecoration(),
+                    child: CircularPercentIndicator(
+                        radius: 75,
+                        lineWidth: 15.0,
+                        percent: 0.75,
+                        center: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 3.0),
-                              child: Image.asset(
-                                'assets/images/smoking_frame.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                            const Text(
-                              'Smoking',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
+                            Text("89%",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF535355))),
                           ],
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: Divider(
-                            height: 6,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 3.0),
-                              child: Image.asset(
-                                'assets/images/fastfood_frame.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                            const Text(
-                              'Fastfood',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: <Color>[
+                              Color(0xFFa4aa9c),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFffa384),
+                              Color(0xFFa4aa9c),
+                              Color(0xFFa4aa9c),
+                              Color(0xFFa4aa9c),
+                            ]),
+                        rotateLinearGradient: true,
+                        circularStrokeCap: CircularStrokeCap.round),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.44,
-                    height: 206,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                          offset: Offset(1, 3),
-                          blurRadius: 9,
-                        ),
-                      ],
-                    ),
-                    child: Column(
+                    width: MediaQuery.of(context).size.width * 0.47,
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                          child: Text(
-                            'Positive',
-                            style: TextStyle(
-                              color: Color.fromRGBO(52, 168, 83, 1),
-                              fontSize: 12,
-                            ),
-                          ),
+                        Text(
+                          'My current goal',
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w300),
                         ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 3.0),
-                              child: Image.asset(
-                                'assets/images/sleep_frame.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                            const Text(
-                              'Sleep',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: Divider(
-                            height: 6,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 3.0),
-                              child: Image.asset(
-                                'assets/images/regime_frame.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                            const Text(
-                              'Daily regime',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          '3 times (weekly)',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Your Progress',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                child: Column(
+                  children: [
+                    LinearPercentIndicator(
+                      padding: EdgeInsets.zero,
+                      animation: true,
+                      lineHeight: 10.0,
+                      animationDuration: 2000,
+                      percent: 0.63,
+                      barRadius: const Radius.circular(18),
+                      backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                      linearGradient: const LinearGradient(colors: <Color>[
+                        Color(0xFFffa384),
+                        Color(0xFFffa384),
+                        Color(0xFFffa384),
+                        Color(0xFFa4aa9c),
+                      ]),
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '80 kg',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w300),
+                        ),
+                        Text(
+                          '95 kg',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'Weight Chart',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: 210,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100.0),
+                  border: Border.all(
+                    color: const Color.fromRGBO(230, 227, 223, 1),
+                    width: 1.0,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 0;
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 68,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: _selectedIndex == 0
+                              ? const Color.fromRGBO(196, 203, 185, 1)
+                              : Colors.transparent,
+                        ),
+                        child: const Text(
+                          'Day',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 1;
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 68,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: _selectedIndex == 1
+                              ? const Color.fromRGBO(196, 203, 185, 1)
+                              : Colors.transparent,
+                        ),
+                        child: const Text(
+                          'Week',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 2;
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 68,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: _selectedIndex == 2
+                              ? const Color.fromRGBO(196, 203, 185, 1)
+                              : Colors.transparent,
+                        ),
+                        child: const Text(
+                          'Month',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 14,
+                        height: 14,
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(255, 163, 132, 1),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      const Text('Actual')
+                    ],
+                  ),
+                  const SizedBox(width: 30),
+                  Row(
+                    children: [
+                      Container(
+                        width: 14,
+                        height: 14,
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(164, 171, 155, 1),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      const Text('Goal')
+                    ],
                   ),
                 ],
               ),
+              Center(
+                  child: Container(
+                      height: 200,
+                      child: SfCartesianChart(
+                          primaryXAxis: const CategoryAxis(),
+                          series: <CartesianSeries>[
+                            LineSeries<ChartData, String>(
+                                dataSource: [
+                                  ChartData('feb', 80, Colors.red),
+                                  ChartData('mar', 87, Colors.red),
+                                  ChartData('fpr', 80, Colors.red),
+                                  ChartData('may', 70, Colors.red),
+                                  ChartData('jun', 75, Colors.red),
+                                  ChartData('july', 70, Colors.red),
+                                ],
+                                // Bind the color for all the data points from the data source
+                                pointColorMapper: (ChartData data, _) =>
+                                    data.color,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y),
+                            LineSeries<ChartData, String>(
+                                dataSource: [
+                                  ChartData('feb', 90, Colors.green),
+                                  ChartData('mar', 97, Colors.green),
+                                  ChartData('fpr', 90, Colors.green),
+                                  ChartData('may', 80, Colors.green),
+                                  ChartData('jun', 85, Colors.green),
+                                  ChartData('july', 80, Colors.green),
+                                ],
+                                // Bind the color for all the data points from the data source
+                                pointColorMapper: (ChartData data, _) =>
+                                    data.color,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y),
+                          ]))),
               const SizedBox(height: 40),
+              const Text(
+                'Impact on the result',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'Negative',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Smoking',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Fastfood',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Positive',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Sleep',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Daily regime',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 55),
             ],
           ),
         ),
@@ -821,34 +673,158 @@ class _SeeMorePageState extends State<SeeMorePage> {
   }
 }
 
-class _ArrowPathPainter extends CustomPainter {
+class ChartData {
+  ChartData(this.x, this.y, this.color);
+  final String x;
+  final double y;
   final Color color;
-  final double H;
-  final double W;
+}
 
-  _ArrowPathPainter({required this.color, required this.H, required this.W});
+class CircularArchProgressBar extends StatefulWidget {
+  final double value;
+  final double strokeWidth;
+  final Gradient fillGradient;
+  final Gradient fillGradient2;
+  final Color backgroundColor;
+
+  CircularArchProgressBar({
+    required this.value,
+    this.strokeWidth = 35.0,
+    required this.fillGradient,
+    this.backgroundColor = Colors.grey,
+    this.fillGradient2 = const LinearGradient(
+      colors: [
+        Color(0xFFa4aa9c),
+        Color(0xFFa4aa9c),
+      ],
+    ),
+  });
+
+  @override
+  _CircularArchProgressBarState createState() =>
+      _CircularArchProgressBarState();
+}
+
+class _CircularArchProgressBarState extends State<CircularArchProgressBar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _animation =
+        Tween<double>(begin: 0.0, end: widget.value).animate(_controller);
+
+    // Додамо прослуховувач, щоб оновити анімацію при зміні значення value
+    _animation.addListener(() {
+      setState(() {}); // Повідомляємо про зміну для перемалювання віджету
+    });
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant CircularArchProgressBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Якщо значення змінилося, ми повинні оновити анімацію
+    if (oldWidget.value != widget.value) {
+      _controller.reset(); // Скидаємо анімацію
+      _animation =
+          Tween<double>(begin: 0.0, end: widget.value).animate(_controller);
+      _controller.forward(); // Запускаємо анімацію знову
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 250.0,
+      height: 250.0,
+      child: CustomPaint(
+        painter: CircularArchProgressBarPainter(
+          strokeWidth: widget.strokeWidth,
+          fillGradient: widget.fillGradient,
+
+          value: _animation.value,
+          fillGradient2:
+              widget.fillGradient2, // Використовуємо значення анімації
+        ),
+      ),
+    );
+  }
+}
+
+class CircularArchProgressBarPainter extends CustomPainter {
+  final double strokeWidth; // Радіус бордера
+  final double value;
+  final Gradient fillGradient;
+  final Gradient fillGradient2;
+
+  CircularArchProgressBarPainter({
+    required this.strokeWidth,
+    required this.value,
+    required this.fillGradient,
+    required this.fillGradient2,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
+      ..strokeWidth = strokeWidth // Встановлюємо радіус бордера
+      ..strokeCap = StrokeCap.butt
+      ..style = PaintingStyle.stroke;
 
-    double triangleH = H;
-    double triangleW = W;
-    final double width = size.width;
-    final double height = size.height;
+    final Paint paint2 = Paint()
+      ..strokeWidth = strokeWidth // Встановлюємо радіус бордера
+      ..strokeCap = StrokeCap.butt
+      //..color = Colors.red
+      ..color = const Color.fromRGBO(230, 227, 223, 1)
+      ..style = PaintingStyle.stroke;
 
-    final Path trianglePath = Path()
-      ..moveTo(width / 2 - triangleW / 2, 0)
-      ..lineTo(width / 2, -triangleH)
-      ..lineTo(width / 2 + triangleW / 2, 0)
-      ..lineTo(width / 2 - triangleW / 2, height);
+    final double radius = size.width / 2;
+    const double startAngle = 2.8; // Починаємо з правого боку
+    final double sweepAngle = 2 * math.pi * (value / 100);
 
-    // Draw triangle pointer
-    canvas.drawPath(trianglePath, paint);
+    const double startAngle2 = 2.8; // Починаємо з правого боку
+    const double sweepAngle2 = 2 * math.pi * (-41.5 / 83);
+
+    // Apply gradient color
+    paint.shader = fillGradient.createShader(
+      Rect.fromCircle(center: Offset(radius, radius), radius: radius),
+    );
+
+    canvas.drawArc(
+      Rect.fromCircle(center: Offset(radius, radius), radius: 82),
+      startAngle2,
+      sweepAngle2,
+      false,
+      paint2,
+    );
+
+    // Малюємо прогрес-дугу
+    canvas.drawArc(
+      Rect.fromCircle(center: Offset(radius, radius), radius: radius),
+      startAngle,
+      sweepAngle,
+      false,
+      paint,
+    );
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
 }
