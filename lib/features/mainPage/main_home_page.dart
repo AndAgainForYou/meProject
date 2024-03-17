@@ -335,7 +335,6 @@ class _MainHomeState extends State<MainHome> {
               elevation: 0,
             ),
             SliverList(
-              
               delegate: SliverChildListDelegate([
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -406,6 +405,7 @@ class _MainHomeState extends State<MainHome> {
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0, top: 0.0),
                             child: CircularPercentIndicator(
+                              backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
                                 radius: 100,
                                 lineWidth: 16.0,
                                 percent: 0.89,
