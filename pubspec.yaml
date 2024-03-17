@@ -49,8 +49,12 @@ dependencies:
   flutter_facebook_auth: ^6.1.1
   image_picker: ^1.0.7
   flutter_switch: ^0.3.2
+
   pie_chart: ^5.4.0
   syncfusion_flutter_charts: ^24.2.9
+
+  intl: ^0.19.0
+
 
 
 dev_dependencies:

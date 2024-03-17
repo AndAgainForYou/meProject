@@ -11,7 +11,21 @@ class DiaryPage extends StatefulWidget {
 }
 
 class _DiaryPageState extends State<DiaryPage> {
-  List<Map<String, dynamic>> items = [];
+  List<Map<String, dynamic>> items = [
+    {
+      'id': 3,
+      'title': 'Coca-Cola',
+      'body': 'asdasdsadads',
+      'added_at': '2024-02-28',
+      'feeling_of_hanger': false,
+      'enough_water': true,
+      'stress_or_frusration': false,
+      'late_dinner': true,
+      'feeling_of_depression': true,
+      'is_trip': true,
+      'is_activity_level_changes': true
+    }
+  ];
 
   List<bool> createListParametrs(Map<String, dynamic> data) {
     List<bool> questionSelectedStates = [];
@@ -27,12 +41,22 @@ class _DiaryPageState extends State<DiaryPage> {
   void initState() {
     super.initState();
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-    platyBloc.add(NotesGetAllEvent({}));
+    //platyBloc.add(NotesGetAllEvent({}));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          height: 32,
+          width: 32,
+        ),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+      ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
           if (state is NotesAllState) {
@@ -63,34 +87,39 @@ class _DiaryPageState extends State<DiaryPage> {
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(15.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 15),
                 const Text(
                   'Diary',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 32,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Write down your thoughts on this day',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black87,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                    // border: Border.all(color: _isErrorVisible ? Colors.red : Colors.transparent),
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      color: Color.fromRGBO(230, 227, 223, 1),
+                      width: 2,
+                    ),
                     color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                        offset: Offset(1, 3),
-                        blurRadius: 9,
-                      ),
-                    ],
                   ),
                   child: TextFormField(
                     maxLength: 25,
@@ -98,7 +127,7 @@ class _DiaryPageState extends State<DiaryPage> {
                       counterText: '',
                       hintText: 'Search',
                       hintStyle: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black54,
                         fontFamily: 'Gilroy',
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
@@ -112,24 +141,31 @@ class _DiaryPageState extends State<DiaryPage> {
                     //controller: _emailController,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 25),
                 const Text(
                   'Previous 30 days',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Container(
-                  decoration: const BoxDecoration(
+                  height: 85,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
                     color: Colors.white,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+                        color: Color.fromRGBO(0, 0, 0, 0.09),
                         offset: Offset(1, 3),
                         blurRadius: 9,
                       ),
                     ],
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(items.length, (index) {
                       return Column(
                         children: [
@@ -154,8 +190,8 @@ class _DiaryPageState extends State<DiaryPage> {
                                           yearController: TextEditingController(
                                               text: items[index]['added_at']
                                                   .split('-')[0]),
-                                          questionSelectedStates:
-                                              createListParametrs(items[index]),
+                                          // questionSelectedStates:
+                                          //     createListParametrs(items[index]),
                                           bodyEditingController:
                                               TextEditingController(
                                                   text: items[index]['body']),
@@ -179,8 +215,13 @@ class _DiaryPageState extends State<DiaryPage> {
                                       Text(
                                         items[index]['title'] ?? '',
                                         style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 17,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600,
                                         ),
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
                                       ),
                                       Row(
                                         children: [
@@ -190,7 +231,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                                 '',
                                             style: const TextStyle(
                                               fontSize: 14,
-                                              color: Colors.grey,
+                                              color: Colors.black54,
                                             ),
                                           ),
                                           const Text('.'),
@@ -200,7 +241,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                                 '',
                                             style: const TextStyle(
                                               fontSize: 14,
-                                              color: Colors.grey,
+                                              color: Colors.black54,
                                             ),
                                           ),
                                           const Text('.'),
@@ -210,7 +251,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                                 '',
                                             style: const TextStyle(
                                               fontSize: 14,
-                                              color: Colors.grey,
+                                              color: Colors.black54,
                                             ),
                                           ),
                                         ],
@@ -223,8 +264,9 @@ class _DiaryPageState extends State<DiaryPage> {
                                           .add(NotesDeleteEvent(items[index]));
                                     },
                                     child: Image.asset(
-                                      'assets/images/trash_red_icon.png',
+                                      'assets/images/trash-icon.png',
                                       width: 24,
+                                      height: 24,
                                     ),
                                   )
                                 ],
@@ -251,13 +293,12 @@ class _DiaryPageState extends State<DiaryPage> {
         ),
       ),
       floatingActionButton: Container(
+        height: 60,
+        width: 60,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.white,
-            gradient: const LinearGradient(colors: [
-              Color(0xFF59A7A7),
-              Color(0xFFAFCD6D),
-            ])),
+          borderRadius: BorderRadius.circular(50),
+          color: Color.fromRGBO(255, 163, 132, 1),
+        ),
         child: FloatingActionButton(
           splashColor: Colors.transparent,
           backgroundColor: Colors.transparent,

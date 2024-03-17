@@ -1,0 +1,186 @@
+import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/calculation_global.dart';
+import 'package:platy/features/calculation/theme.dart';
+
+class CalculateBloodCheckUpWidget extends StatefulWidget {
+  const CalculateBloodCheckUpWidget({Key? key}) : super(key: key);
+
+  @override
+  _CalculateBloodCheckUpWidgetState createState() =>
+      _CalculateBloodCheckUpWidgetState();
+}
+
+class _CalculateBloodCheckUpWidgetState
+    extends State<CalculateBloodCheckUpWidget> {
+  List<String> titles = [
+    'Estrogen',
+    'Progesterone',
+    'Testosterone',
+  ];
+  Map<String, dynamic> _selectedOptions = {};
+  void isActive() {
+    if (_selectedOptions.length == 3) {
+      CalculateGlobalWidget.of(context).setButtonActivity(true);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Hormone panel',
+          textAlign: TextAlign.center,
+          style: whiteTheme.textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 14),
+        Text(
+          'Add information from your last blood check-up',
+          textAlign: TextAlign.center,
+          style: whiteTheme.textTheme.bodySmall,
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: titles.length,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 185,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white,
+                ),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "   ${titles[index]}",
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              _selectedOptions[titles[index]] = 'Low';
+                              isActive();
+                            });
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio(
+                                value: 'Low',
+                                activeColor:
+                                    const Color.fromRGBO(164, 171, 155, 1),
+                                groupValue: _selectedOptions[titles[index]],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedOptions[titles[index]] =
+                                        value.toString();
+                                  });
+                                },
+                              ),
+                              const Text(
+                                'Low',
+                                style: TextStyle(
+                                  fontFamily: 'Gillroy',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              isActive();
+                              _selectedOptions[titles[index]] = 'Normal';
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio(
+                                activeColor:
+                                    const Color.fromRGBO(164, 171, 155, 1),
+                                value: 'Normal',
+                                groupValue: _selectedOptions[titles[index]],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedOptions[titles[index]] =
+                                        value.toString();
+                                  });
+                                },
+                              ),
+                              const Text(
+                                'Normal',
+                                style: TextStyle(
+                                  fontFamily: 'Gillroy',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              isActive();
+                              _selectedOptions[titles[index]] = 'High';
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio(
+                                activeColor:
+                                    const Color.fromRGBO(164, 171, 155, 1),
+                                value: 'High',
+                                groupValue: _selectedOptions[titles[index]],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedOptions[titles[index]] =
+                                        value.toString();
+                                  });
+                                },
+                              ),
+                              const Text(
+                                'High',
+                                style: TextStyle(
+                                  fontFamily: 'Gillroy',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}

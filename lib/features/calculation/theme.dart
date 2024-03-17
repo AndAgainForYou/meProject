@@ -15,10 +15,10 @@ final whiteTheme = ThemeData(
       fontWeight: FontWeight.w400,
     ),
     titleSmall: TextStyle(
-      color: Colors.grey,
-      fontFamily: 'Gilroy',
+      fontFamily: 'Montserrat',
       fontSize: 18,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
     ),
     bodySmall: TextStyle(
       color: Colors.black,

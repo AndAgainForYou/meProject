@@ -21,36 +21,43 @@ class _CustomListTileState extends State<CustomListTile> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
-      height: 52,
+      alignment: Alignment.center,
+      height: 76,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: const Color.fromRGBO(255, 255, 255, 1),
+        color: widget.isChecked
+            ? const Color.fromRGBO(196, 203, 185, 0.6)
+            : const Color.fromRGBO(255, 255, 255, 1),
+        border: widget.isChecked
+            ? Border.all(
+                width: 2,
+                color: Color.fromRGBO(164, 171, 155, 1),
+              )
+            : null,
         boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
+            color: Color.fromRGBO(0, 0, 0, 0.09),
             offset: Offset(1, 3),
             blurRadius: 9,
           ),
         ],
       ),
       child: ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
-          child: Text(
-            widget.title,
-            style: const TextStyle(
-              fontFamily: 'Gilroy',
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
+        splashColor: Colors.transparent,
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            fontFamily: 'Montserrat',
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        trailing: Image(
+        leading: Image(
           width: 24,
           height: 24,
           image: widget.isChecked
-              ? const AssetImage('assets/images/check_icon.png')
-              : const AssetImage('assets/images/circle_icon.png'),
+              ? const AssetImage('assets/images/ico-done.png')
+              : const AssetImage('assets/images/ico-unselected.png'),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
