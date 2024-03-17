@@ -49,6 +49,7 @@ class _DiaryPageState extends State<DiaryPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Image.asset(
           'assets/images/logo_small.png',

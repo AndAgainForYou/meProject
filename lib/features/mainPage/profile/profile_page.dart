@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final storage = const FlutterSecureStorage();
   String? email;
   String? password;
-  
+
   String? emailText;
   String? profileImage;
   String? name;
@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     border: Border.all(
       color: Colors.transparent,
     ),
-    borderRadius: BorderRadius.circular(32),
+    borderRadius: BorderRadius.circular(12),
   );
 
   final kGradientBoxDecorationLog = BoxDecoration(
@@ -85,12 +85,21 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          height: 32,
+          width: 32,
+        ),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+      ),
       body: BlocBuilder<PlatyBloc, PlatyBlocState>(
         builder: (context, state) {
           if (state is ProfileIncludesDataState) {
             Map<String, dynamic> profileData = state.profilePageData;
-            //PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-            //setState(() { });
             emailText = profileData['user_email'];
             profileImage = profileData['photo'];
             name = profileData['name'];
@@ -107,7 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          openGallery(); // This is where you handle the tap event
+                         // openGallery(); // This is where you handle the tap event
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.transparent,
@@ -137,192 +146,197 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(height: 16),
                       Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ProfileEditPage()),
-                                  );
-                                },
-                                child: Container(
-                                  height: 52.0,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                  decoration: kGradientBoxDecoration,
-                                  child: Container(
-                                    decoration: kInnerDecoration,
-                                    child: Center(
-                                        child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 6.0),
-                                          child: Image.asset(
-                                            'assets/images/profile_edit_vector.png',
-                                            height: 24,
-                                          ),
-                                        ),
-                                        const Text(
-                                          "Edit Profile",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                      ],
-                                    )),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ProfileChangeFilledPage()),
-                                  );
-                                },
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                  height: 52,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                    gradient: const LinearGradient(
-                                      begin: Alignment(0.0, -1.0),
-                                      end: Alignment(1.0, 1.0),
-                                      colors: [
-                                        Color(0xFF59A7A7),
-                                        Color(0xFFAFCD6D)
-                                      ],
-                                      stops: [0.0, 1.0],
-                                    ),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      'Recalculation of values',
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                        fontFamily: 'Gilroy',
-                                        fontSize: 14,
-                                        letterSpacing: 0,
-                                        fontWeight: FontWeight.normal,
-                                        height: 1,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ProVersionPage()),
+                                        const ProfileEditPage()),
                               );
                             },
                             child: Container(
-                              height: 52.0,
-                              width: MediaQuery.of(context).size.width * 1,
-                              decoration: kGradientBoxDecoration,
-                              child: Container(
-                                decoration: kInnerDecoration,
-                                child: const Center(
-                                    child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Сhange my subscription plan",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ],
-                                )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 130),
-                          GestureDetector(
-                            onTap: () {
-                              _showCupertinoAlertDialog(context,
-                                  email: emailText!,
-                                  password: password.toString());
-                            },
-                            child: Container(
-                              height: 52.0,
-                              width: MediaQuery.of(context).size.width * 1,
-                              decoration: kGradientBoxDecorationLog,
-                              child: Container(
-                                decoration: kInnerDecoration,
-                                child: const Center(
-                                    child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Log Out",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ],
-                                )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          GestureDetector(
-                            onTap: () {
-                              _showCupertinoAlertDialogDelete(context,
-                                  email: emailText,
-                                  password: password);
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 1,
-                              height: 52.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50.0),
-                                gradient: const LinearGradient(
-                                  begin: Alignment(0.0, -1.0),
-                                  end: Alignment(1.0, 1.0),
-                                  colors: [
-                                    Color.fromRGBO(252, 108, 76, 1),
-                                    Color.fromRGBO(252, 108, 76, 1)
-                                  ],
-                                  stops: [0.0, 1.0],
+                                height: 44.0,
+                                width: MediaQuery.of(context).size.width * 1,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12.0),
+                                    topRight: Radius.circular(12.0),
+                                    bottomLeft: Radius.zero,
+                                    bottomRight: Radius.zero,
+                                  ),
+                                  color: Colors.white,
                                 ),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 6,
+                                child: const Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 16.0, right: 16.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Edit Profile",
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 18,
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ProfileChangeFilledPage()),
+                              );
+                            },
+                            child: Container(
+                              height: 44.0,
+                              width: MediaQuery.of(context).size.width * 1,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.zero,
+                                    topRight: Radius.zero,
+                                    bottomLeft: Radius.circular(12.0),
+                                    bottomRight: Radius.circular(12.0),
+                                  ),
+                                color: Colors.white,
                               ),
-                              child: const Center(
-                                child: Text(
-                                  'Delete account',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 16,
-                                  ),
+                              child: const Padding(
+                                padding:
+                                    EdgeInsets.only(left: 16.0, right: 16.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'My data',
+                                      style: TextStyle(
+                                        fontFamily: 'Gilroy',
+                                        fontSize: 16,
+                                        
+                                        fontWeight: FontWeight.w300,
+                                        
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 18,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      const SizedBox(height: 30),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 44.0,
+                          width: MediaQuery.of(context).size.width * 1,
+                          decoration: const BoxDecoration(
+                             borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12.0),
+                                    topRight: Radius.circular(12.0),
+                                    bottomLeft: Radius.zero,
+                                    bottomRight: Radius.zero,
+                                  ),
+                            color: Colors.white,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Notifications",
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProVersionPage()),
+                          );
+                        },
+                        child: Container(
+                          height: 44.0,
+                          width: MediaQuery.of(context).size.width * 1,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                    topLeft: Radius.zero,
+                                    topRight: Radius.zero,
+                                    bottomLeft: Radius.circular(12.0),
+                                    bottomRight: Radius.circular(12.0),
+                                  ),
+                            color: Colors.white,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Сhange my subscription plan",
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      GestureDetector(
+                        onTap: () {
+                          _showCupertinoAlertDialog(context,
+                              email: emailText!, password: password.toString());
+                        },
+                        child: Container(
+                          height: 44.0,
+                          width: MediaQuery.of(context).size.width * 1,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Log Out",
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   )),
                 ],
