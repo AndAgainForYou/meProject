@@ -29,6 +29,10 @@ class LogInWithFacebookEvent extends PlatyBlocEvent {
   LogInWithFacebookEvent();
 }
 
+class LogInWithAppleEvent extends PlatyBlocEvent {
+  LogInWithAppleEvent();
+}
+
 class LogOutEvent extends PlatyBlocEvent {
   final Map<String, dynamic> logOutData;
 

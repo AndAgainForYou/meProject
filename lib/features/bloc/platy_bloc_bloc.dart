@@ -146,6 +146,36 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       }
     });
 
+    on<LogInWithAppleEvent>((event, emit) async {
+      try {
+        final result = await FacebookAuth.instance.login();
+        await FacebookAuth.instance.logOut();
+        if (result.status == LoginStatus.success) {
+          final AccessToken accessToken = result.accessToken!;
+          print('Успішно увійшли: ${accessToken.token}');
+          print("AccsesToken Facebook: $accessToken.token");
+          final response = await apiService
+              .postData('/facebook-login/', {'accessToken': accessToken.token});
+          if (response['user_id'] != null) {
+            TokenManager.saveUserId(response['user_id']);
+          }
+
+          if (response['tokens'] != null) {
+            TokenManager.saveTokensData(response['tokens']);
+            emit(LoginSuccessState(response['user_id']));
+          } else {
+            print('bad request ${response['status']}');
+            emit(LoginErrorState(response['status']));
+          }
+          print("access: ${TokenManager.getTokensData()?['access']}");
+        } else {
+          print('Не вдалося увійти: ${result.message}');
+        }
+      } catch (e) {
+        print('Помилка при автентифікації: $e');
+      }
+    });
+
     on<LogOutEvent>((event, emit) async {
       final response = await apiService.postData('/logout/', event.logOutData);
       print(response);

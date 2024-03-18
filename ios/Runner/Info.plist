@@ -7,29 +7,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Platy</string>
+	<string>Meyes</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.solidWay.platy</string>
-	<key>GIDClientID</key>
-	<string>959036007952-da02195luf71shu6b151aefc1aho57uu.apps.googleusercontent.com</string>
-
-	<key>CFBundleURLTypes</key>
-	<array>
-        <dict>
-			<key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-			    <string>com.googleusercontent.apps.959036007952-da02195luf71shu6b151aefc1aho57uu</string>
-                <string>fb1278646166859685</string>
-            </array>
-        </dict>
-    </array>
-
-
-
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -40,26 +22,30 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.solidWay.meyes</string>
+				<string>com.googleusercontent.apps.959036007952-da02195luf71shu6b151aefc1aho57uu</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
-
-	<key>FacebookAppID</key>
-    <string>1278646166859685</string>
-    <key>FacebookDisplayName</key>
-    <string>Platy</string>
-
-	<key>FacebookClientToken</key>
-    <string>bd30e8071acac90b1f1061a04b3fcbdb</string>
-
+	
+	<key>GIDClientID</key>
+	<string>959036007952-da02195luf71shu6b151aefc1aho57uu.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
-        <array>
-            <string>fbapi</string>
-            <string>fb-messenger-share-api</string>
-            <string>fbauth2</string>
-            <string>fbshareextension</string>
-        </array>
-   
-
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

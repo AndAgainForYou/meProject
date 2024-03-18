@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/mainPage/main_home_page.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -152,60 +155,98 @@ class _LoginPageState extends State<LoginPage> {
                                       textAlign: TextAlign.center,
                                     ),
                                     const SizedBox(height: 30),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        constraints: BoxConstraints(
-                                          maxHeight: 52,
-                                          maxWidth:
-                                              MediaQuery.of(context).size.width *
+
+
+                                    Visibility(
+                                      visible: Platform.isIOS,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          try {
+                                            final result = await SignInWithApple
+                                                .getAppleIDCredential(
+                                              scopes: [
+                                                AppleIDAuthorizationScopes
+                                                    .email,
+                                                AppleIDAuthorizationScopes
+                                                    .fullName,
+                                              ],
+                                              webAuthenticationOptions:
+                                                  WebAuthenticationOptions(
+                                                clientId: '98WRF4D97U',
+                                                redirectUri: Uri.parse(
+                                                    'https://test.com/auth/login'),
+                                              ),
+                                            );
+
+                                            print(result);
+                                            // You can use the result to authenticate the user with your server.
+                                          } catch (error) {
+                                            print(error.toString());
+                                          }
+                                        },
+                                        child: Container(
+                                            constraints: BoxConstraints(
+                                              maxHeight: 52,
+                                              maxWidth: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
                                                   0.92,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                          gradient: const LinearGradient(
-                                            begin: Alignment(0.0, -1.0),
-                                            end: Alignment(1.0, 1.0),
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.transparent
-                                            ],
-                                            stops: [0.0, 1.0],
-                                          ),
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: Center(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/images/apple_logo.png',
-                                                width: 20,
-                                                height: 23,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                              gradient: const LinearGradient(
+                                                begin: Alignment(0.0, -1.0),
+                                                end: Alignment(1.0, 1.0),
+                                                colors: [
+                                                  Colors.transparent,
+                                                  Colors.transparent
+                                                ],
+                                                stops: [0.0, 1.0],
                                               ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              const Text(
-                                                'Continue with Apple',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: 'Gilroy',
-                                                  fontSize: 16,
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1,
+                                              border: Border.all(
+                                                  color: Colors.grey),
+                                            ),
+                                            child: GestureDetector(
+                                                child: Center(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        'assets/images/apple_logo.png',
+                                                        width: 20,
+                                                        height: 23,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 20,
+                                                      ),
+                                                      const Text(
+                                                        'Continue with Apple',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily: 'Gilroy',
+                                                          fontSize: 16,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          height: 1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
+                                               
                                               ),
-                                            ],
-                                          ),
-                                        ),
+                                            ),
                                       ),
                                     ),
+
+
                                     const SizedBox(height: 10),
                                     GestureDetector(
                                       onTap: () {
