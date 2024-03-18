@@ -67,7 +67,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
     ['After breakfast', 'After lunch', 'After dinner'],
     ['Stressed out', 'Good', ' Feeling perfect'],
     ['Good', 'I had problems with sleep'],
-    ['I feel better', 'I still have problems with my symptoms']
+    ['I feel better', 'I still have problems with my \nsymptoms']
   ];
 
   @override
@@ -197,7 +197,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         },
                         controller: _titleController,
                         style: const TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 30, fontWeight: FontWeight.bold),
                         maxLength: 15,
                         decoration: const InputDecoration(
                           counterText: '',
@@ -205,7 +205,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                           hintStyle: TextStyle(
                             color: Colors.black54,
                             fontFamily: 'Gilroy',
-                            fontSize: 32,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                           border: InputBorder.none,
@@ -331,11 +331,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                   children: [
                     Container(
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -348,9 +348,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 questions[0],
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -378,11 +378,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                   children: [
                     Container(
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -395,9 +395,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 questions[1],
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -436,7 +436,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               color: Colors.white,
                             ),
                             margin: const EdgeInsets.symmetric(vertical: 15),
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -449,9 +449,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                       questions[2],
                                       textAlign: TextAlign.start,
                                       style: const TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ],
                                 ),
@@ -485,7 +485,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -498,9 +498,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 questions[3],
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -532,7 +532,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -545,9 +545,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 questions[4],
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -579,7 +579,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -592,9 +592,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 questions[5],
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
