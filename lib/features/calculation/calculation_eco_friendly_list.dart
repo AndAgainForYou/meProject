@@ -34,11 +34,9 @@ class _CalculateEcoFriendlyListWidgetState
 
   void pushToSecondaryPages() async {
     if (_isCheckedList[4] == true &&
-        CalculateGlobalWidget.of(context)
-                .userModelBuilder
-                .eco_friendly_eating ==
+        CalculateGlobalWidget.of(context).userModelBuilder.refrigerator_food ==
             null) {
-      CalculateGlobalWidget.of(context).userModelBuilder.eco_friendly_eating =
+      CalculateGlobalWidget.of(context).userModelBuilder.refrigerator_food =
           await Navigator.push(
               context,
               MaterialPageRoute(
@@ -47,11 +45,11 @@ class _CalculateEcoFriendlyListWidgetState
       setState(() {
         if (CalculateGlobalWidget.of(context)
                 .userModelBuilder
-                .eco_friendly_eating !=
+                .refrigerator_food !=
             null) {
           subtitles[0] = CalculateGlobalWidget.of(context)
               .userModelBuilder
-              .eco_friendly_eating
+              .refrigerator_food
               .toString();
         }
       });
@@ -142,7 +140,7 @@ class _CalculateEcoFriendlyListWidgetState
                   subtitles[0] = null;
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
-                      .eco_friendly_eating = null;
+                      .refrigerator_food = null;
                   CalculateGlobalWidget.of(context)
                       .setButtonActivity(_isCheckedList.contains(false));
                 }

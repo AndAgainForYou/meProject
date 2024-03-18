@@ -78,6 +78,9 @@ class _CalculateCurrentSymptomsWidgetState
                     choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
                     CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .current_symptoms = choosedTitles;
+                    CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });
                 },

@@ -32,19 +32,12 @@ class _CalculateCurrentGoalsWidgetState
     'High Blood Sugar levels',
     'Thyroid Health',
   ];
-  Map<String, List<String>> _selectedOptions = {};
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   @override
   void initState() {
     super.initState();
     _isCheckedList = List.generate(titles.length, (index) => false);
-  }
-
-  void isActive() {
-    if (_selectedOptions['current_goals']!.isNotEmpty) {
-      CalculateGlobalWidget.of(context).setButtonActivity(true);
-    }
   }
 
   @override
@@ -78,6 +71,9 @@ class _CalculateCurrentGoalsWidgetState
                   setState(() {
                     choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
+                    CalculateGlobalWidget.of(context)
+                        .userModelBuilder
+                        .current_goals = choosedTitles;
                     CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                   });

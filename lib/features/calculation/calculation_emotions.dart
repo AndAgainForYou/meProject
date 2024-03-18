@@ -23,17 +23,8 @@ class _CalculateEmotionsHealthWidgetState
     'Low mood and feelings of \nsadness or depression',
     ' Poor concentration',
   ];
-  Map<String, dynamic> _selectedOptionsEmotions = {};
-  int? _selectedIndex;
-  int? _selectedIndexEmotions;
-  List<bool> _isCheckedList = [false, false, false];
 
-  void isActive() {
-    if (_selectedOptionsEmotions.isNotEmpty &&
-        (_selectedIndex == 0 || _selectedIndex == 1)) {
-      CalculateGlobalWidget.of(context).setButtonActivity(true);
-    }
-  }
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +51,9 @@ class _CalculateEmotionsHealthWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .emotional_wellbeing = titlesAnxiety[_selectedIndex!];
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

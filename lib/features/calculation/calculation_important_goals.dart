@@ -134,6 +134,9 @@ class _CalculateImportantGoalsWidgetState
                 choosedTitles.add(titles[0]);
                 _isCheckedList[0] = isChecked;
                 CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
+                CalculateGlobalWidget.of(context)
                     .setButtonActivity(_isCheckedList.contains(true));
               });
             },
@@ -144,7 +147,7 @@ class _CalculateImportantGoalsWidgetState
             subTitle: _isCheckedList[1] ? subtitles[0] : null,
             buttonActive: subtitles[0]?.isNotEmpty,
             onPressed: () async {
-              int? result = await Navigator.push(
+              String? result = await Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const CalculateWeightLossWidget()));
@@ -164,6 +167,9 @@ class _CalculateImportantGoalsWidgetState
               setState(() {
                 choosedTitles.add(titles[1]);
                 _isCheckedList[1] = isChecked;
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
                 if (_isCheckedList[1]) {
                   pushToSecondaryPages();
                   CalculateGlobalWidget.of(context)
@@ -173,6 +179,7 @@ class _CalculateImportantGoalsWidgetState
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
                       .weight_loss_goal = null;
+                  _isCheckedList[1] = isChecked;
                   CalculateGlobalWidget.of(context)
                       .setButtonActivity(_isCheckedList.contains(false));
                 }
@@ -187,6 +194,9 @@ class _CalculateImportantGoalsWidgetState
                 choosedTitles.add(titles[2]);
                 _isCheckedList[2] = isChecked;
                 CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
+                CalculateGlobalWidget.of(context)
                     .setButtonActivity(_isCheckedList.contains(true));
               });
             },
@@ -198,6 +208,9 @@ class _CalculateImportantGoalsWidgetState
               setState(() {
                 choosedTitles.add(titles[3]);
                 _isCheckedList[3] = isChecked;
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
                 CalculateGlobalWidget.of(context)
                     .setButtonActivity(_isCheckedList.contains(true));
               });
@@ -231,6 +244,9 @@ class _CalculateImportantGoalsWidgetState
               setState(() {
                 choosedTitles.add(titles[4]);
                 _isCheckedList[4] = isChecked;
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
                 if (_isCheckedList[4]) {
                   pushToSecondaryPages();
                   CalculateGlobalWidget.of(context)
@@ -239,7 +255,8 @@ class _CalculateImportantGoalsWidgetState
                   subtitles[1] = null;
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
-                      .weight_loss_goal = null;
+                      .mental_health_goals = null;
+                  _isCheckedList[4] = isChecked;
                   CalculateGlobalWidget.of(context)
                       .setButtonActivity(_isCheckedList.contains(false));
                 }
@@ -253,6 +270,9 @@ class _CalculateImportantGoalsWidgetState
               setState(() {
                 choosedTitles.add(titles[5]);
                 _isCheckedList[5] = isChecked;
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
                 CalculateGlobalWidget.of(context)
                     .setButtonActivity(_isCheckedList.contains(true));
               });
@@ -285,15 +305,19 @@ class _CalculateImportantGoalsWidgetState
               setState(() {
                 choosedTitles.add(titles[6]);
                 _isCheckedList[6] = isChecked;
+                CalculateGlobalWidget.of(context)
+                    .userModelBuilder
+                    .most_important_goals = choosedTitles;
                 if (_isCheckedList[6]) {
                   pushToSecondaryPages();
                   CalculateGlobalWidget.of(context)
                       .setButtonActivity(_isCheckedList.contains(true));
                 } else {
                   subtitles[2] = null;
+                  _isCheckedList[6] = false;
                   CalculateGlobalWidget.of(context)
                       .userModelBuilder
-                      .weight_loss_goal = null;
+                      .beauty_goals = null;
                   CalculateGlobalWidget.of(context)
                       .setButtonActivity(_isCheckedList.contains(false));
                 }

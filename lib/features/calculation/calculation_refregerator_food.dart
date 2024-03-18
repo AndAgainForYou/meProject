@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:platy/features/calculation/theme.dart';
 
 class CalculateRefrigeratorFoodWidget extends StatefulWidget {
   const CalculateRefrigeratorFoodWidget({super.key});
@@ -13,12 +12,12 @@ class _CalculateRefrigeratorFoodWidgetState
     extends State<CalculateRefrigeratorFoodWidget> {
   bool _isButtonActive = false;
   TextEditingController? controllerTextField;
-  List<String> medicamentsArray = [];
+  List<String> foodList = [];
+
   @override
   void initState() {
     super.initState();
     controllerTextField = TextEditingController();
-    controllerTextField!.addListener(_onTextFieldChanged);
   }
 
   @override
@@ -27,10 +26,10 @@ class _CalculateRefrigeratorFoodWidgetState
     super.dispose();
   }
 
-  void _onTextFieldChanged() {
+  void _onSubmitted(String text) {
     setState(() {
-      if (controllerTextField!.text.isNotEmpty) {
-        medicamentsArray = controllerTextField!.text.split(',');
+      if (text.isNotEmpty) {
+        foodList = text.split(',');
         _isButtonActive = true;
       } else {
         _isButtonActive = false;
@@ -41,19 +40,20 @@ class _CalculateRefrigeratorFoodWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 240, 242, 236),
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: IconButton(
             icon: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.arrow_back),
-                  SizedBox(
-                    width: 8,
-                  ),
-                ]),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.arrow_back),
+                SizedBox(
+                  width: 8,
+                ),
+              ],
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -63,16 +63,18 @@ class _CalculateRefrigeratorFoodWidgetState
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Column(children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Image.asset(
-            'assets/images/logo_small.png',
-            height: 32,
-            width: 32,
-          ),
-        ]),
+        title: Column(
+          children: const [
+            SizedBox(
+              height: 20,
+            ),
+            Image(
+              image: AssetImage('assets/images/logo_small.png'),
+              height: 32,
+              width: 32,
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(
@@ -86,28 +88,30 @@ class _CalculateRefrigeratorFoodWidgetState
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Write down which foods',
                   textAlign: TextAlign.center,
-                  style: whiteTheme.textTheme.bodyMedium,
+                  style: TextStyle(fontFamily: 'Gilroy', fontSize: 16),
                 ),
                 const SizedBox(height: 30),
                 Container(
                   height: 185,
                   margin: const EdgeInsets.symmetric(horizontal: 15),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
-                      border: Border.all(
-                        width: 1,
-                        color: Color.fromRGBO(230, 227, 223, 1),
-                      )),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 1,
+                      color: const Color.fromRGBO(230, 227, 223, 1),
+                    ),
+                  ),
                   child: TextField(
+                    keyboardType: TextInputType.text,
                     controller: controllerTextField,
                     maxLines: 15,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Add a note\nSeparated by commas',
-                      hintStyle: const TextStyle(
+                      hintStyle: TextStyle(
                         fontFamily: 'Gilroy',
                         fontSize: 14,
                         color: Colors.black54,
@@ -115,9 +119,10 @@ class _CalculateRefrigeratorFoodWidgetState
                       ),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                     ),
+                    onSubmitted: _onSubmitted,
                   ),
                 ),
               ],
@@ -128,14 +133,15 @@ class _CalculateRefrigeratorFoodWidgetState
               width: 180,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
-                color: _isButtonActive ? Color(0xFFA4AC9C) : Color(0xFFCDC9C4),
+                color: _isButtonActive
+                    ? const Color(0xFFA4AC9C)
+                    : const Color(0xFFCDC9C4),
               ),
               child: ElevatedButton(
                 onPressed: _isButtonActive
                     ? () {
                         FocusScope.of(context).unfocus();
-                        Navigator.of(context)
-                            .pop(medicamentsArray); //TODO: LBCONTROLER
+                        Navigator.of(context).pop(foodList);
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
@@ -156,7 +162,7 @@ class _CalculateRefrigeratorFoodWidgetState
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),

@@ -20,14 +20,8 @@ class _CalculateSugarStatementsWidgetState
     'I like sweets and consume them every day',
     "When I'm upset sugar helps me to feel better",
   ];
-  Map<String, dynamic> _selectedOptions = {};
-  int? _selectedIndexState;
 
-  void isActive() {
-    if (_selectedOptions['sugar_statements'] != null) {
-      CalculateGlobalWidget.of(context).setButtonActivity(true);
-    }
-  }
+  int? _selectedIndexState;
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +53,12 @@ class _CalculateSugarStatementsWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndexState = index;
-                      _selectedOptions['sugar_statements'] = titles[index];
-                      isActive();
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .sugar_statements = titles[_selectedIndexState!];
+                      CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndexState = null;
-                      _selectedOptions['sugar_statements'] = null;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(false);
                     }
