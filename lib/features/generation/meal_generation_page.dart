@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'dart:math';
@@ -14,88 +15,130 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Icon(Icons.arrow_back), SizedBox(width: 8,), Text('Back')],
-          ),
-          onPressed: () {
-            // Navigator.of(context).pop();
-          },
-        ),
-        leadingWidth: 90,
-        title: Image.asset('assets/images/logo_small.png'),
+        automaticallyImplyLeading: false,
         centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          height: 32,
+          width: 32,
+        ),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'We generate a meal plan for you',
-              style: TextStyle(
-                fontFamily: 'Gilroy',
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Wait a bit',
-              style: TextStyle(
-                fontFamily: 'Gilroy',
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey,
-              ),
-            ),
+            Image.asset('assets/images/food.png', height: 267,),
+            const Text('Just give me \na moment', textAlign: TextAlign.center, style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+              height: 1.1
+            ),),
+            const SizedBox(height: 14),
+            const Text('I am generating a meal plan for you', style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300
+            ),),
+            const SizedBox(height: 60),
+
             Padding(
-              padding: const EdgeInsets.only(top: 65.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  CircularStepProgressIndicator(
-                    totalSteps: 20,
-                    currentStep: 10,
-                    stepSize: 50,
-                    selectedColor: Colors.red,
-                    unselectedColor: Colors.purple[400],
-                    padding: 3.14 / 20,
-                    width: 290,
-                    height: 290,
-                    startingAngle: -3.14 * 2 / 3.5,
-                    arcSize: 3.14 * 2 / 3 * 2.2,
-                    gradientColor: const LinearGradient(
-                      colors: [Color(0xFFAFCD6D), Color(0xFF59A7A7)],
-                    ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          '54%',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 32,
-                            fontFamily: 'Gilroy',
-                          ),
-                        )),
-                        Text(
-                          'Loading',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Gilroy',
-                              color: Colors.grey),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              padding: const EdgeInsets.only(left: 70.0, right: 70.0),
+              child: LinearPercentIndicator(
+                        padding: EdgeInsets.zero,
+                        animation: true,
+                        lineHeight: 10.0,
+                        animationDuration: 3000,
+                        percent: 1,
+                        barRadius: const Radius.circular(18),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(colors: <Color>[
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFa4aa9c),
+                        ]),
+                      ),
             ),
+            const SizedBox(height: 5),
+            const Text('Breakfast', style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300
+            ),),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 70.0, right: 70.0),
+              child: LinearPercentIndicator(
+                        padding: EdgeInsets.zero,
+                        animation: true,
+                        lineHeight: 10.0,
+                        animationDuration: 4000,
+                        percent: 1,
+                        barRadius: const Radius.circular(18),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(colors: <Color>[
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFa4aa9c),
+                        ]),
+                      ),
+            ),
+            const SizedBox(height: 5),
+            const Text('Lunch', style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300
+            ),),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 70.0, right: 70.0),
+              child: LinearPercentIndicator(
+                        padding: EdgeInsets.zero,
+                        animation: true,
+                        lineHeight: 10.0,
+                        animationDuration: 5000,
+                        percent: 1,
+                        barRadius: const Radius.circular(18),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(colors: <Color>[
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFa4aa9c),
+                        ]),
+                      ),
+            ),
+            const SizedBox(height: 5),
+            const Text('Dinner', style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300
+            ),),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 70.0, right: 70.0),
+              child: LinearPercentIndicator(
+                        padding: EdgeInsets.zero,
+                        animation: true,
+                        lineHeight: 10.0,
+                        animationDuration: 6000,
+                        percent: 1,
+                        barRadius: const Radius.circular(18),
+                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                        linearGradient: const LinearGradient(colors: <Color>[
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFffa384),
+                          Color(0xFFa4aa9c),
+                        ]),
+                      ),
+            ),
+            const SizedBox(height: 5),
+            const Text('Snack', style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300
+            ),),
+            const SizedBox(height: 20),
+            
           ],
         ),
       ),
