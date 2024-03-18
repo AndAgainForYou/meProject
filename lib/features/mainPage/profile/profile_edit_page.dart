@@ -123,55 +123,54 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             width: 32,
             height: 32,
           ),
-          actions: [GestureDetector(
-            onTap: () {
-              /*if (formData.isNotEmpty) {
-                        platyBloc.add(UpdateProfilePatchEvent(formData));
-                        platyBloc.add(UpdateProfileGetEvent({}));
+          actions: [
+            GestureDetector(
+              onTap: () async {
+                if (formData.isNotEmpty) {
+                  platyBloc.add(UpdateProfilePatchEvent(formData));
+                  platyBloc.add(UpdateProfileGetEvent({}));
 
-                        await Future.delayed(const Duration(seconds: 1));
-
-                        Navigator.pop(context);
-                      }
-                      ; */
-                      Navigator.pop(context);
-                    /*  if (isPasswordsDataValid()) {
-                        if (areNewPasswordsEqual) {
-                          platyBloc
-                              .add(PasswordChangePatchEvent(passwordsData));
-                          Navigator.pop(context);
-                        } else {
-                          setState(() {
-                            areNewPasswordsEqual = false;
-                          });
-                        }
-                      } else {
-                        setState(() {
-                          areNewPasswordsEqual = false;
-                        });
-                      } */
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Text('Edit', style: TextStyle(
-                fontSize: 16,
-                color: Colors.orange,
-                fontWeight: FontWeight.w600
-              ),),
-            ),
-          )],
+                  await Future.delayed(const Duration(seconds: 1));
+                }
+                ;
+                Navigator.pop(context);
+                if (isPasswordsDataValid()) {
+                  if (areNewPasswordsEqual) {
+                    platyBloc.add(PasswordChangePatchEvent(passwordsData));
+                  } else {
+                    setState(() {
+                      areNewPasswordsEqual = false;
+                    });
+                  }
+                } else {
+                  setState(() {
+                    areNewPasswordsEqual = false;
+                  });
+                }
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text(
+                  'Edit',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            )
+          ],
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           elevation: 0.0,
           scrolledUnderElevation: 0),
       body: BlocBuilder<PlatyBloc, PlatyBlocState>(
         builder: (context, state) {
-           if (state is ProfileIncludesDataState) {
+          if (state is ProfileIncludesDataState) {
             Map<String, dynamic> profileData = state.profilePageData;
-           
+
             profileImage = profileData['photo'];
-            
           }
-          
+
           if (state is ProfileIncludesDataState) {
             Map<String, dynamic> profileData = state.profilePageData;
             return SingleChildScrollView(
@@ -180,36 +179,40 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text('Edit account', style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600
-                  ),),
+                  const Text(
+                    'Edit account',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  ),
                   const SizedBox(height: 20),
-                   GestureDetector(
-                        onTap: () {
-                         // openGallery(); // This is where you handle the tap event
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          radius: 60,
-                          backgroundImage: profileImage != null
-                              ? NetworkImage(
-                                  profileImage as String,
-                                ) as ImageProvider<Object>?
-                              : const AssetImage(
-                                  'assets/images/user-logo-image.png',
-                                ),
-                        ),
-                      ),
-                      const SizedBox(height: 13),
-                      GestureDetector(
-                        onTap: () {openGallery();},
-                        child: const Text('Set New Photo', style: TextStyle(
+                  GestureDetector(
+                    onTap: () {
+                      // openGallery(); // This is where you handle the tap event
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 60,
+                      backgroundImage: profileImage != null
+                          ? NetworkImage(
+                              profileImage as String,
+                            ) as ImageProvider<Object>?
+                          : const AssetImage(
+                              'assets/images/user-logo-image.png',
+                            ),
+                    ),
+                  ),
+                  const SizedBox(height: 13),
+                  GestureDetector(
+                    onTap: () {
+                      openGallery();
+                    },
+                    child: const Text(
+                      'Set New Photo',
+                      style: TextStyle(
                           color: Colors.orange,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500
-                        ),),
-                      ),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -218,7 +221,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                           
                             const SizedBox(height: 8),
                             Container(
                               decoration: BoxDecoration(
@@ -261,13 +263,11 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                       ),
                     ],
                   ),
-                  
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                       
                         const SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
@@ -285,12 +285,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                           ),
                           child: TextFormField(
                             controller: _controllerEmail,
-                            
                             enabled: false,
                             maxLength: 25,
                             decoration: const InputDecoration(
-                              contentPadding:
-                                      EdgeInsets.only(left: 20),
+                              contentPadding: EdgeInsets.only(left: 20),
                               counterText: '',
                               hintText: 'Your email',
                               hintStyle: TextStyle(
@@ -299,13 +297,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                               ),
-                             
                               border: InputBorder.none,
                             ),
-                            
-                            onChanged: (value) {
-                              // setFormFieldValue('email', value);  //email dont need to change only show
-                            },
+                            onChanged: (value) {},
                           ),
                         ),
                       ],
@@ -317,7 +311,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                       
                         const SizedBox(height: 8),
                         Container(
                           decoration: BoxDecoration(
@@ -337,11 +330,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             obscureText: _isObscure,
                             controller: _controllerPassword,
                             enabled: true,
-                            
                             maxLength: 25,
                             decoration: InputDecoration(
                               contentPadding:
-                                      const EdgeInsets.only(left: 20, top: 10),
+                                  const EdgeInsets.only(left: 20, top: 10),
                               counterText: '',
                               hintText: 'Your Password',
                               hintStyle: const TextStyle(
@@ -349,44 +341,49 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                                 fontFamily: 'Gilroy',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
-                                
                               ),
-                             suffixIcon: IconButton(
-                                        icon: Icon(
-                                          _isObscure
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            _isObscure = !_isObscure;
-                                          });
-                                        },
-                                        iconSize: 25,
-                                      ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                                iconSize: 25,
+                              ),
                               border: InputBorder.none,
                             ),
                             style: const TextStyle(color: Colors.grey),
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              if (value.length >= 8) {
+                                setPasswordFieldValue('new_password1', value);
+                              setPasswordFieldValue('new_password2', value);
+                              } else {
+                                print('too small password');
+                              }
+                              
+                            },
                           ),
                         ),
                       ],
                     ),
                   ),
-                  
-                 
-                 
-                  
                   const SizedBox(height: 30),
                   GestureDetector(
                     onTap: () {
                       //_showCupertinoAlertDialogDelete
                     },
-                    child: const Text('Delete account', style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(255, 59, 48, 1)
-                    ),),
+                    child: const Text(
+                      'Delete account',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(255, 59, 48, 1)),
+                    ),
                   )
                 ],
               ),
@@ -398,6 +395,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       ),
     );
   }
+
   void _showCupertinoAlertDialogDelete(BuildContext context,
       {required email, String? password}) {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
@@ -416,9 +414,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               },
               child: const Text('No'),
             ),
-          
           ],
         );
       },
     );
-}}
+  }
+}
