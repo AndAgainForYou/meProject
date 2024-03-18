@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/login/login_page.dart';
 
 class ProfileEditPage extends StatefulWidget {
   const ProfileEditPage({super.key});
@@ -361,11 +362,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             onChanged: (value) {
                               if (value.length >= 8) {
                                 setPasswordFieldValue('new_password1', value);
-                              setPasswordFieldValue('new_password2', value);
+                                setPasswordFieldValue('new_password2', value);
                               } else {
                                 print('too small password');
                               }
-                              
                             },
                           ),
                         ),
@@ -375,7 +375,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   const SizedBox(height: 30),
                   GestureDetector(
                     onTap: () {
-                      //_showCupertinoAlertDialogDelete
+                      _showCupertinoAlertDialogDelete(context,
+                          email: email, password: password);
                     },
                     child: const Text(
                       'Delete account',
@@ -413,6 +414,18 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 Navigator.pop(context);
               },
               child: const Text('No'),
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: true,
+              onPressed: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()));
+                await Future.delayed(const Duration(seconds: 1));
+                platyBloc.add(DeleteAccountEvent(const {}));
+              },
+              child: const Text('Delete'),
             ),
           ],
         );
