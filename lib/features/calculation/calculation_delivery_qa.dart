@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateDeliveryQAWidget extends StatefulWidget {
@@ -24,9 +25,8 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
-          'Do you plan to use delivery services this week?',
+          'Do you plan to use delivery\nservices this week?',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
@@ -35,7 +35,7 @@ class _CalculateDeliveryQAWidgetState extends State<CalculateDeliveryQAWidget> {
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithRadio(
                 title: titles[index],
                 isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {

@@ -46,48 +46,33 @@ class _CalculateMedicamentsWidgetState
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
           'Medicaments',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 10),
-        const Text(
-          'Choose the ones below',
-          style: TextStyle(
-            fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-            color: Colors.grey,
-          ),
-        ),
         const SizedBox(height: 30),
         Container(
-          height: 140,
-          margin: const EdgeInsets.symmetric(horizontal: 3),
+          height: 185,
+          margin: const EdgeInsets.symmetric(horizontal: 5),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                offset: Offset(1, 3),
-                blurRadius: 9,
-              ),
-              BoxShadow(
-                color: Colors.white,
-              ),
-            ],
-          ),
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+              border: Border.all(
+                width: 1,
+                color: Color.fromRGBO(230, 227, 223, 1),
+              )),
           child: TextField(
             controller: controllerTextField,
+            maxLines: 15,
             decoration: InputDecoration(
-              hintText: ' Please write down the name of the medicine',
+              hintText:
+                  'Please write the name of the medicine\nSeparated by commas',
               hintStyle: const TextStyle(
                 fontFamily: 'Gilroy',
                 fontSize: 14,
-                color: Colors.grey,
-                fontWeight: FontWeight.w500,
+                color: Colors.black54,
+                fontWeight: FontWeight.w400,
               ),
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,

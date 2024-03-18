@@ -41,9 +41,9 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 40,
-        ),
+        // const SizedBox(
+        //   height: 40,
+        // ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

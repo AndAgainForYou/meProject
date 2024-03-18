@@ -41,6 +41,7 @@ class _CalculateBloodCheckUpWidgetState
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodySmall,
         ),
+        const SizedBox(height: 30),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
@@ -90,6 +91,7 @@ class _CalculateBloodCheckUpWidgetState
                                   setState(() {
                                     _selectedOptions[titles[index]] =
                                         value.toString();
+                                    isActive();
                                   });
                                 },
                               ),
@@ -107,8 +109,8 @@ class _CalculateBloodCheckUpWidgetState
                         InkWell(
                           onTap: () {
                             setState(() {
-                              isActive();
                               _selectedOptions[titles[index]] = 'Normal';
+                              isActive();
                             });
                           },
                           child: Row(
@@ -124,6 +126,7 @@ class _CalculateBloodCheckUpWidgetState
                                   setState(() {
                                     _selectedOptions[titles[index]] =
                                         value.toString();
+                                    isActive();
                                   });
                                 },
                               ),
@@ -141,8 +144,8 @@ class _CalculateBloodCheckUpWidgetState
                         InkWell(
                           onTap: () {
                             setState(() {
-                              isActive();
                               _selectedOptions[titles[index]] = 'High';
+                              isActive();
                             });
                           },
                           child: Row(
@@ -158,6 +161,7 @@ class _CalculateBloodCheckUpWidgetState
                                   setState(() {
                                     _selectedOptions[titles[index]] =
                                         value.toString();
+                                    isActive();
                                   });
                                 },
                               ),

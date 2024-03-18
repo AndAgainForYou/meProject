@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
+import 'package:platy/features/calculation/theme.dart';
+import 'package:wheel_slider/wheel_slider.dart';
 
 class CalculateLocalProductsWidget extends StatefulWidget {
-  const CalculateLocalProductsWidget({super.key});
+  const CalculateLocalProductsWidget({Key? key}) : super(key: key);
 
   @override
   State<CalculateLocalProductsWidget> createState() =>
@@ -11,220 +13,203 @@ class CalculateLocalProductsWidget extends StatefulWidget {
 
 class _CalculateLocalProductsWidgetState
     extends State<CalculateLocalProductsWidget> {
-  bool buttonSeason1Selected = false; //Season
-  bool buttonSeason2Selected = false;
-  bool buttonSeason3Selected = false;
-  bool buttonSeason4Selected = false;
+  int? _selectedIndexEmotions;
+  List<String> regionTitles = [
+    'United States',
+    'Ukraine',
+    'United Kingdom',
+    'United Arab Emirates',
+    'Uzbekistan',
+    'Uruguay',
+    'Vanuatu',
+  ];
+  List<String> titles = [
+    'Winter',
+    'Spring',
+    'Summer',
+    'Autumn',
+  ];
+  List<String> titlesImages = [
+    'winter',
+    'spring',
+    'summer',
+    'autumn',
+  ];
+  String? _selectedOptionsEmotions;
+  int _cInitValue = 1;
+  int _cCurrentValue = 1;
 
-  String selectedRegion = 'Region';
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "Region", child: Text("Region")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItems;
-  }
-
-  void isSelectedAll() {
-    if ((buttonSeason1Selected ||
-            buttonSeason2Selected ||
-            buttonSeason3Selected ||
-            buttonSeason4Selected) &&
-        selectedRegion.isNotEmpty) {
+  void isButtonActive() {
+    if (CalculateGlobalWidget.of(context).userModelBuilder.season != null &&
+        CalculateGlobalWidget.of(context).userModelBuilder.region != null) {
       CalculateGlobalWidget.of(context).setButtonActivity(true);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 63),
-        const Center(
-          child: Column(
-            children: [
-              Text(
-                'Use local products',
-                style: TextStyle(
-                  fontSize: 28,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  'Use local products',
+                  textAlign: TextAlign.center,
+                  style: whiteTheme.textTheme.bodyMedium,
                 ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Mention the region of leaving and season of the year',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 24),
-        Container(
-          height: 52,
-          width: MediaQuery.of(context).size.width * 0.95,
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.09),
-                offset: Offset(1, 3),
-                blurRadius: 9,
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                icon: const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.black,
+                const SizedBox(height: 10),
+                const Text(
+                  'Mention the region of living and season\nof the year',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'Gilroy',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-                dropdownColor: Colors.white,
-                isExpanded: true,
-                value: selectedRegion,
-                items: dropdownItems,
-                onChanged: (value) {
-                  setState(() {
-                    selectedRegion = value!;
-                    CalculateGlobalWidget.of(context).userModelBuilder.region =
-                        selectedRegion;
-                    isSelectedAll();
-                  });
-                },
-              ),
+                const SizedBox(height: 25),
+                Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: Center(
+                        child: Container(
+                          height: 52,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(196, 203, 185, 1),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
+                      ),
+                    ),
+                    WheelSlider.customWidget(
+                      horizontal: false,
+                      isInfinite: true,
+                      verticalListHeight: 270,
+                      verticalListWidth: MediaQuery.of(context).size.width * 1,
+                      listWidth: MediaQuery.of(context).size.width * 0.7,
+                      perspective: 0.001,
+                      totalCount: regionTitles.length,
+                      initValue: _cInitValue,
+                      scrollPhysics: const BouncingScrollPhysics(),
+                      onValueChanged: (val) {
+                        setState(() {
+                          _cCurrentValue = val;
+                          CalculateGlobalWidget.of(context)
+                              .userModelBuilder
+                              .region = regionTitles[_cCurrentValue];
+                          isButtonActive();
+                        });
+                      },
+                      hapticFeedbackType: HapticFeedbackType.vibrate,
+                      showPointer: false,
+                      itemSize: 70,
+                      children: List.generate(
+                        regionTitles.length,
+                        (index) => Center(
+                          //heightFactor: MediaQuery.of(context).size.width * 1,
+                          child: Text(
+                            regionTitles[index],
+                            textAlign: TextAlign.center,
+                            style: index == _cCurrentValue
+                                ? const TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w400,
+                                  )
+                                : const TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 24,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                const Text(
+                  'Season of the year',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: 200, // Set a fixed height for the ListView
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: titles.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.white,
+                          border: _selectedIndexEmotions == index
+                              ? Border.all(
+                                  color: const Color.fromRGBO(164, 171, 155, 1),
+                                  width: 2,
+                                )
+                              : Border.all(
+                                  color: Colors.transparent,
+                                  width: 2,
+                                ),
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 5),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          onTap: () {
+                            setState(() {
+                              _selectedIndexEmotions = index;
+                              _selectedOptionsEmotions = titles[index];
+                              CalculateGlobalWidget.of(context)
+                                  .userModelBuilder
+                                  .season = _selectedOptionsEmotions;
+                              isButtonActive();
+                            });
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/${titlesImages[index]}.png',
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              Text(
+                                titles[index],
+                                style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'Season of the year',
-          style: TextStyle(fontSize: 18),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomButton(
-              width: 0.20,
-              label: 'Winter',
-              isSelected: buttonSeason1Selected,
-              onPressed: () {
-                CalculateGlobalWidget.of(context).userModelBuilder.season =
-                    'Winter';
-                isSelectedAll();
-                setState(() {
-                  buttonSeason1Selected = true;
-                  buttonSeason2Selected = false;
-                  buttonSeason3Selected = false;
-                  buttonSeason4Selected = false;
-                });
-              },
-            ),
-            CustomButton(
-              width: 0.20,
-              label: 'Spring',
-              isSelected: buttonSeason2Selected,
-              onPressed: () {
-                CalculateGlobalWidget.of(context).userModelBuilder.season =
-                    'Spring';
-                isSelectedAll();
-                setState(() {
-                  buttonSeason1Selected = false;
-                  buttonSeason2Selected = true;
-                  buttonSeason3Selected = false;
-                  buttonSeason4Selected = false;
-                });
-              },
-            ),
-            CustomButton(
-              width: 0.20,
-              label: 'Summer',
-              isSelected: buttonSeason3Selected,
-              onPressed: () {
-                CalculateGlobalWidget.of(context).userModelBuilder.season =
-                    'Summer';
-                isSelectedAll();
-                setState(() {
-                  buttonSeason1Selected = false;
-                  buttonSeason2Selected = false;
-                  buttonSeason3Selected = true;
-                  buttonSeason4Selected = false;
-                });
-              },
-            ),
-            CustomButton(
-              width: 0.20,
-              label: 'Autumn',
-              isSelected: buttonSeason4Selected,
-              onPressed: () {
-                CalculateGlobalWidget.of(context).userModelBuilder.season =
-                    'Autumn';
-                isSelectedAll();
-                setState(() {
-                  buttonSeason1Selected = false;
-                  buttonSeason2Selected = false;
-                  buttonSeason3Selected = false;
-                  buttonSeason4Selected = true;
-                });
-              },
-            ),
-          ],
-        ),
-        const Spacer(),
-      ],
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final double width;
-  final String label;
-  final bool isSelected;
-  final VoidCallback onPressed;
-
-  const CustomButton({
-    required this.width,
-    required this.label,
-    required this.isSelected,
-    required this.onPressed,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        height: 52,
-        width: MediaQuery.of(context).size.width * width,
-        padding: const EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          color:
-              isSelected ? const Color.fromRGBO(252, 108, 76, 1) : Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.09),
-              offset: Offset(1, 3),
-              blurRadius: 9,
-            ),
-          ],
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 16,
-              color: isSelected ? Colors.white : Colors.black,
-            ),
-          ),
-        ),
+        ],
       ),
     );
   }

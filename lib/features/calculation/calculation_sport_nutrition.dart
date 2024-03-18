@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateSportNutritionWidget extends StatefulWidget {
@@ -25,7 +26,6 @@ class _CalculateSportNutritionWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
           'Do you want to include sport nutrition in the plan?',
           textAlign: TextAlign.center,
@@ -36,7 +36,7 @@ class _CalculateSportNutritionWidgetState
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithRadio(
                 title: titles[index],
                 isChecked: _selectedIndex == index,
                 onTilePressed: (isChecked) {

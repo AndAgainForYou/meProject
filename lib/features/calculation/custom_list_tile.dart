@@ -24,7 +24,7 @@ class _CustomListTileState extends State<CustomListTile> {
       alignment: Alignment.center,
       height: 76,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
         color: widget.isChecked
             ? const Color.fromRGBO(196, 203, 185, 0.6)
             : const Color.fromRGBO(255, 255, 255, 1),
@@ -33,14 +33,10 @@ class _CustomListTileState extends State<CustomListTile> {
                 width: 2,
                 color: Color.fromRGBO(164, 171, 155, 1),
               )
-            : null,
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.09),
-            offset: Offset(1, 3),
-            blurRadius: 9,
-          ),
-        ],
+            : Border.all(
+                width: 2,
+                color: Colors.transparent,
+              ),
       ),
       child: ListTile(
         splashColor: Colors.transparent,

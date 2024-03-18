@@ -13,9 +13,16 @@ class CalculateDigestiveHealthWidget extends StatefulWidget {
 class _CalculateDigestiveHealthWidgetState
     extends State<CalculateDigestiveHealthWidget> {
   List<String> titles = [
-    'Bloating',
+    'Acid reflux',
     'Gas',
     'Irregular bowel movements',
+    'Constipation',
+    'Diarrhoea',
+    'Bloating',
+    'Indigestion',
+    'Abdominal pain and cramps',
+    'Flatulence',
+    'Nausea',
   ];
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
@@ -70,7 +77,7 @@ class _CalculateDigestiveHealthWidgetState
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
-                            fontSize: 17,
+                            fontSize: 18,
                           ),
                           textAlign: TextAlign.start,
                         ),

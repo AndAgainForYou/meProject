@@ -14,9 +14,16 @@ class CalculateChronicDiseasesListWidget extends StatefulWidget {
 class _CalculateChronicDiseasesListWidgetState
     extends State<CalculateChronicDiseasesListWidget> {
   List<String> titles = [
-    'Cardiovascular issues',
     'Diabetes',
+    'Cardiovascular diseases',
+    'Hyperlipidemia',
     'Osteoporosis',
+    'Hypothyroidism',
+    'Hyperthyroidism',
+    'GERD/Gastritis',
+    'Anemia',
+    'Hypertension',
+    'Coeliac Disease',
     'Autoimmune Diseases',
   ];
   List<bool> _isCheckedList = [];
@@ -52,7 +59,7 @@ class _CalculateChronicDiseasesListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
+        //const SizedBox(height: 63),
         Text(
           'Health History',
           textAlign: TextAlign.center,
@@ -60,7 +67,8 @@ class _CalculateChronicDiseasesListWidgetState
         ),
         const SizedBox(height: 10),
         const Text(
-          'If you are not allergic, skip this step.',
+          'If you have not had any of these conditions,\nskip this step',
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Gilroy',
             fontWeight: FontWeight.w400,
