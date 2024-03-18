@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateCookingChoseWidget extends StatefulWidget {
@@ -18,8 +19,8 @@ class _CalculateCookingChoseWidgetState
     'Baked',
     'Steamed',
     'Sauteed',
-    'Slow Cooked',
     'Raw',
+    'Slow Cooked',
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
@@ -35,18 +36,17 @@ class _CalculateCookingChoseWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
           'Choose the most comfortable for you',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithRadio(
                 title: titles[index],
                 isChecked: _isCheckedList[index],
                 onTilePressed: (isChecked) {

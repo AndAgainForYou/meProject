@@ -19,22 +19,27 @@ class _CalculateHomeEatingCalendarWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 240, 242, 236),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 63),
           Text(
             'Plan outside home eating',
             textAlign: TextAlign.center,
             style: whiteTheme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 14),
           const Text(
             'When do you plan to make it?',
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontFamily: 'Gilroy',
+              fontWeight: FontWeight.w400,
+            ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(days.length, (index) {
@@ -57,27 +62,19 @@ class _CalculateHomeEatingCalendarWidgetState
                       height: 44,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        gradient: isSelected[index]
-                            ? const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color(0xFFFF8064),
-                                  Color(0xFFDB3D1A),
-                                ],
-                              )
-                            : null,
                         color: isSelected[index]
-                            ? null
-                            : const Color.fromRGBO(23, 23, 23, 0.25),
+                            ? Color.fromRGBO(164, 171, 155, 1)
+                            : Colors.white,
                       ),
                       child: Center(
                         child: Text(
                           days[index],
                           style: TextStyle(
-                            color:
-                                isSelected[index] ? Colors.white : Colors.white,
-                            fontSize: 18,
+                            color: isSelected[index]
+                                ? Colors.white
+                                : Colors.black54,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
                             fontFamily: 'Gilroy',
                           ),
                         ),

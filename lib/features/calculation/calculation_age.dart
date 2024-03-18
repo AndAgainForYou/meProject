@@ -13,17 +13,17 @@ class CalculateAgeWidget extends StatefulWidget {
 class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
   bool _isButtonActive = false;
   final int _nTotalCount = 100;
-  final int _nInitValue = 8;
-  int _nCurrentValue = 20;
+  final int _nInitValue = 18;
+  int _nCurrentValue = 18;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 40,
-        ),
+        // const SizedBox(
+        //   height: 40,
+        // ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,6 +74,7 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
                 WheelSlider.number(
                   horizontal: false,
                   isInfinite: false,
+                  listWidth: 200,
                   verticalListHeight: 278,
                   verticalListWidth: 340,
                   perspective: 0.001,

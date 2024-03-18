@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/calculation/calculation_weight_loss.dart';
 import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/loading/loading_page.dart';
 import 'package:platy/features/login/login_page.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoadingPage(), //LoadingPage
+          '/': (context) => const CalculateGlobalWidget(), //LoadingPage
           '/login': (context) => const LoginPage(),
           '/signUp': (context) => const SignUpPage(),
           '/signUpCongratulation': (context) =>

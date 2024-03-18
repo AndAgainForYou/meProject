@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_image.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateCousinListWidget extends StatefulWidget {
@@ -17,10 +18,20 @@ class _CalculateCousinListWidgetState extends State<CalculateCousinListWidget> {
     'French Cuisine',
     'Chinese Cuisine',
     'Japanese Cuisine',
-    'Indian Cuisine',
     'Mexican Cuisine',
+    'Indian Cuisine',
     'Mediterranean Cuisine',
     'Home style dinner',
+  ];
+  List<String> imageTitles = [
+    'italian',
+    'french',
+    'chinese',
+    'japanese',
+    'mexican',
+    'indian',
+    'mediterranean',
+    'home-food',
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
@@ -36,20 +47,30 @@ class _CalculateCousinListWidgetState extends State<CalculateCousinListWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
-          'Which cousin do you want to choose?',
+          'World cuisine',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 14),
+        const Text(
+          'Choose the ones below',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontFamily: 'Gilroy',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(height: 30),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithImage(
                 title: titles[index],
                 isChecked: _isCheckedList[index],
+                imageName: imageTitles[index],
                 onTilePressed: (isChecked) {
                   setState(() {
                     choosedTitles.add(titles[index]);

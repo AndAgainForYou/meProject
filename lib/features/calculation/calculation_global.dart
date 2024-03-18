@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/Calculation_home_eating_calendar.dart';
-import 'package:platy/features/calculation/calculation_activity_sport.dart';
 import 'package:platy/features/calculation/calculation_age.dart';
 import 'package:platy/features/calculation/calculation_alergic_list.dart';
 import 'package:platy/features/calculation/calculation_blood_check_qa%20copy.dart';
@@ -12,6 +12,8 @@ import 'package:platy/features/calculation/calculation_cooking_ask.dart';
 import 'package:platy/features/calculation/calculation_cooking_chose.dart';
 import 'package:platy/features/calculation/calculation_cousin_choose.dart';
 import 'package:platy/features/calculation/calculation_current_diet.dart';
+import 'package:platy/features/calculation/calculation_current_goals.dart';
+import 'package:platy/features/calculation/calculation_current_symptoms.dart';
 import 'package:platy/features/calculation/calculation_delivery.dart';
 import 'package:platy/features/calculation/calculation_delivery_qa.dart';
 import 'package:platy/features/calculation/calculation_digestive_health.dart';
@@ -25,34 +27,25 @@ import 'package:platy/features/calculation/calculation_fasting_days.dart';
 import 'package:platy/features/calculation/calculation_fourth_tpd.dart';
 import 'package:platy/features/calculation/calculation_freq_sport.dart';
 import 'package:platy/features/calculation/calculation_blood_check.dart';
-import 'package:platy/features/calculation/calculation_goals.dart';
-import 'package:platy/features/calculation/calculation_health_goals.dart';
-import 'package:platy/features/calculation/calculation_health_status_first.dart';
 import 'package:platy/features/calculation/calculation_health_status_habits.dart';
-import 'package:platy/features/calculation/calculation_health_status_second.dart';
-import 'package:platy/features/calculation/calculation_health_status_third.dart';
 import 'package:platy/features/calculation/calculation_height.dart';
 import 'package:platy/features/calculation/calculation_home_eating_ask.dart';
+import 'package:platy/features/calculation/calculation_important_goals.dart';
 import 'package:platy/features/calculation/calculation_intermediate_fasting.dart';
 import 'package:platy/features/calculation/calculation_local_products.dart';
 import 'package:platy/features/calculation/calculation_medicaments.dart';
 import 'package:platy/features/calculation/calculation_medicaments_qa.dart';
-import 'package:platy/features/calculation/calculation_mental_health.dart';
 import 'package:platy/features/calculation/calculation_nutrition_add.dart';
-import 'package:platy/features/calculation/calculation_skin_beauty.dart';
 import 'package:platy/features/calculation/calculation_specific_diet.dart';
 import 'package:platy/features/calculation/calculation_sport_nutrition.dart';
-import 'package:platy/features/calculation/calculation_sports_competition.dart';
+import 'package:platy/features/calculation/calculation_sugar_statements.dart';
 import 'package:platy/features/calculation/calculation_supplements.dart';
 import 'package:platy/features/calculation/calculation_supplements_qa.dart';
 import 'package:platy/features/calculation/calculation_third_tpd.dart';
 import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_water_consumption.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
-import 'package:platy/features/calculation/calculation_weight_loss.dart';
-import 'package:platy/features/calculation/calculation_weight_loss_slider.dart';
 import 'package:platy/features/calculation/repositories/models/update_user_model.dart';
-import 'package:platy/features/calculation/theme.dart';
 import 'package:platy/features/mainPage/main_home_page.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -88,17 +81,31 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   bool _isButtonActive = false;
   bool _lastPage = false;
   final UpdateUserModelBuilder userModelBuilder = UpdateUserModelBuilder();
-
+  int? indexHabitPage;
   void setButtonActivity(bool isActive) {
     setState(() {
       _isButtonActive = isActive;
     });
   }
 
+  void checkIfHabbit(List<Widget> listWidgets) {
+    for (int i = 0; i < listWidgets.length; i++) {
+      if (listWidgets[i] is CalculateHealthStatusHabitsWidget) {
+        setState(() {
+          indexHabitPage = i + 1;
+        });
+        print(indexHabitPage);
+        break;
+      }
+    }
+  }
+
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
     bool isSkipButtonWidget = false;
-    if (pageNotifier.value == 5 || pageNotifier.value == 6) {
+    if (pageNotifier.value == 5 ||
+        pageNotifier.value == 6 ||
+        pageNotifier.value == indexHabitPage) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -133,19 +140,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       const CalculateDigestiveHealthWidget(),
       const CalculateEmotionsHealthWidget(),
       const CalculateWaterConsumptionWidget(),
-      const CalculateActivitySportListWidget(),
-      const CalculateSportCompetitionWidget(),
-      const CalculateImpGoalsListWidget(),
+      const CalculateSugarStatementsWidget(),
+      const CalculateCurrentSymptomsWidget(),
+      const CalculateCurrentGoalsWidget(),
       const CalculateFreqSportWidget(),
-      const CalculateHealthGoalsWidget(),
-      if (userModelBuilder.health_goals?[0] == 'Weight loss') ...[
-        const CalculateWeightLossWidget(),
-        const CalculateWeightLossSliderWidget(),
-      ] else if (userModelBuilder.health_goals?[0] == 'Mental Health') ...[
-        const CalculateMentalHealthWidget(),
-      ] else if (userModelBuilder.health_goals?[0] == 'Skin and Beauty') ...[
-        const CalculateSkinAndBeautyWidget(),
-      ],
+      const CalculateImportantGoalsWidget(),
       const CalculateFoodPreferencesWidget(),
       if (userModelBuilder.tpd_count == '1-2 TPD') ...[
         const CalculateFirstTPDWidget(),
@@ -171,9 +170,6 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       if (userModelBuilder.is_sport_nutrition == true) ...[
         const CalculateNutritionAddWidget(),
       ],
-      const CalculateHealthStatusFirstWidget(),
-      const CalculateHealthStatusSecondWidget(),
-      const CalculateHealthStatusThirdWidget(),
       const CalculateHealthStatusHabitsWidget(),
       const CalculateSupplementsQAWidget(),
       if (userModelBuilder.is_supplements == true) ...[
@@ -208,7 +204,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
-        leadingWidth: 130,
+        leadingWidth: 70,
         toolbarHeight: 100,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -241,8 +237,16 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
           ),
         ),
         centerTitle: true,
-        title: Container(
-          color: Colors.red,
+        title: LinearPercentIndicator(
+          padding: EdgeInsets.zero,
+          animation: true,
+          lineHeight: 8.0,
+          width: 240,
+          animationDuration: 600,
+          percent: pageNotifier.value / lisWidgets.length,
+          barRadius: const Radius.circular(10),
+          progressColor: const Color.fromRGBO(255, 163, 132, 1),
+          backgroundColor: const Color.fromRGBO(23, 23, 23, 0.25),
         ),
         surfaceTintColor: Colors.transparent,
         backgroundColor: Color.fromARGB(255, 240, 242, 236),
@@ -282,6 +286,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                                   builder: (BuildContext context) =>
                                       const MainHomePage()));
                         } else {
+                          setState(() {
+                            checkIfHabbit(lisWidgets);
+                          });
                           FocusScope.of(context).unfocus();
                           await CalculateGlobalWidget.of(context)
                               .pageController
@@ -299,9 +306,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                     borderRadius: BorderRadius.circular(22.0),
                   ),
                 ),
-                child: const Text(
-                  'Next',
-                  style: TextStyle(
+                child: Text(
+                  _lastPage == true ? 'Start Now!' : 'Next',
+                  style: const TextStyle(
                     fontFamily: 'Gilroy',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

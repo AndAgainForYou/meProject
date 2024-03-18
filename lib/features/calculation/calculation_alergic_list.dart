@@ -56,7 +56,7 @@ class _CalculateAlergicListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 40),
+        //const SizedBox(height: 40),
         Text(
           'What are you allergic to?',
           textAlign: TextAlign.center,

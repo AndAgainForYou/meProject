@@ -63,7 +63,7 @@ class _CalculateBonesCheckUpWidgetState
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
-                            fontSize: 17,
+                            fontSize: 18,
                           ),
                           textAlign: TextAlign.start,
                         ),

@@ -40,15 +40,15 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 40,
-        ),
+        // const SizedBox(
+        //   height: 40,
+        // ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Wat's your weight?",
+              "What's your weight?",
               textAlign: TextAlign.center,
               style: whiteTheme.textTheme.bodyMedium,
             ),

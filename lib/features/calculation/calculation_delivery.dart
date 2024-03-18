@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_image.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateDeliveryListWidget extends StatefulWidget {
@@ -23,6 +24,16 @@ class _CalculateDeliveryListWidgetState
     'Mediterranean Cuisine',
     'Home style dinner',
   ];
+  List<String> imageTitles = [
+    'italian',
+    'french',
+    'chinese',
+    'japanese',
+    'mexican',
+    'indian',
+    'mediterranean',
+    'home-food',
+  ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   @override
@@ -37,20 +48,20 @@ class _CalculateDeliveryListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
-          'Do you plan to use delivery services this week?',
+          'Do you plan to use delivery\nservices this week?',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithImage(
                 title: titles[index],
                 isChecked: _isCheckedList[index],
+                imageName: imageTitles[index],
                 onTilePressed: (isChecked) {
                   setState(() {
                     choosedTitles.add(titles[index]);

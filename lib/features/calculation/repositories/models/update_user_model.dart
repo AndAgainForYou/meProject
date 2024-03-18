@@ -74,7 +74,7 @@ class UpdateUserModel {
   final bool? is_competitions;
   final int? weight_loss_goal;
   final bool? is_diet;
-  final String? current_diet;
+  final List<String>? current_diet;
   final bool? is_cooking_preference;
   final String cholesterol_level;
   final String blood_glucose_level;
@@ -238,7 +238,7 @@ class UpdateUserModelBuilder {
   bool? is_competitions;
   int? weight_loss_goal;
   bool? is_diet;
-  String? current_diet;
+  List<String>? current_diet;
   bool? is_cooking_preference;
   String? cholesterol_level;
   String? blood_glucose_level;

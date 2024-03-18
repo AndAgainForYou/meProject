@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/calculation/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile_image.dart';
 import 'package:platy/features/calculation/theme.dart';
 
 class CalculateHealthStatusHabitsWidget extends StatefulWidget {
@@ -17,6 +18,7 @@ class _CalculateHealthStatusHabitsWidgetState
     'Smoking',
     'Alcohol Consumption ',
   ];
+  List<String> imageTitle = ['smoking', 'alcogol'];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   @override
@@ -31,29 +33,29 @@ class _CalculateHealthStatusHabitsWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 63),
         Text(
           'Health status',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),
+        const SizedBox(height: 14),
         const Text(
           'Do you have any of these habits?',
           style: TextStyle(
             fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
-            color: Colors.grey,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         Expanded(
           child: ListView.builder(
             itemCount: titles.length,
             itemBuilder: (context, index) {
-              return CustomListTile(
+              return CustomListTileWithImage(
                 title: titles[index],
                 isChecked: _isCheckedList[index],
+                imageName: imageTitle[index],
                 onTilePressed: (isChecked) {
                   setState(() {
                     choosedTitles.add(titles[index]);
