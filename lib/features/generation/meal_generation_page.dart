@@ -29,116 +29,124 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
       body: Center(
         child: Column(
           children: [
-            Image.asset('assets/images/food.png', height: 267,),
-            const Text('Just give me \na moment', textAlign: TextAlign.center, style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.w600,
-              height: 1.1
-            ),),
+            Stack(
+              children: [
+                Image.asset('assets/images/bg_generating.png', height: 300),
+                Positioned(
+                  top: -20,
+                  left: 0,
+                  child: Image.asset('assets/images/food.png'),
+                ),
+              ],
+            ),
+            const Text(
+              'Just give me \na moment',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 32, fontWeight: FontWeight.w600, height: 1.1),
+            ),
             const SizedBox(height: 14),
-            const Text('I am generating a meal plan for you', style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300
-            ),),
+            const Text(
+              'I am generating a meal plan for you',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
             const SizedBox(height: 60),
-
             Padding(
               padding: const EdgeInsets.only(left: 70.0, right: 70.0),
               child: LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 3000,
-                        percent: 1,
-                        barRadius: const Radius.circular(18),
-                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
-                        linearGradient: const LinearGradient(colors: <Color>[
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFa4aa9c),
-                        ]),
-                      ),
+                padding: EdgeInsets.zero,
+                animation: true,
+                lineHeight: 10.0,
+                animationDuration: 3000,
+                percent: 1,
+                barRadius: const Radius.circular(18),
+                backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                linearGradient: const LinearGradient(colors: <Color>[
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFa4aa9c),
+                ]),
+              ),
             ),
             const SizedBox(height: 5),
-            const Text('Breakfast', style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300
-            ),),
+            const Text(
+              'Breakfast',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 70.0, right: 70.0),
               child: LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 4000,
-                        percent: 1,
-                        barRadius: const Radius.circular(18),
-                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
-                        linearGradient: const LinearGradient(colors: <Color>[
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFa4aa9c),
-                        ]),
-                      ),
+                padding: EdgeInsets.zero,
+                animation: true,
+                lineHeight: 10.0,
+                animationDuration: 4000,
+                percent: 1,
+                barRadius: const Radius.circular(18),
+                backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                linearGradient: const LinearGradient(colors: <Color>[
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFa4aa9c),
+                ]),
+              ),
             ),
             const SizedBox(height: 5),
-            const Text('Lunch', style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300
-            ),),
+            const Text(
+              'Lunch',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 70.0, right: 70.0),
               child: LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 5000,
-                        percent: 1,
-                        barRadius: const Radius.circular(18),
-                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
-                        linearGradient: const LinearGradient(colors: <Color>[
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFa4aa9c),
-                        ]),
-                      ),
+                padding: EdgeInsets.zero,
+                animation: true,
+                lineHeight: 10.0,
+                animationDuration: 5000,
+                percent: 1,
+                barRadius: const Radius.circular(18),
+                backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                linearGradient: const LinearGradient(colors: <Color>[
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFa4aa9c),
+                ]),
+              ),
             ),
             const SizedBox(height: 5),
-            const Text('Dinner', style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300
-            ),),
+            const Text(
+              'Dinner',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 70.0, right: 70.0),
               child: LinearPercentIndicator(
-                        padding: EdgeInsets.zero,
-                        animation: true,
-                        lineHeight: 10.0,
-                        animationDuration: 6000,
-                        percent: 1,
-                        barRadius: const Radius.circular(18),
-                        backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
-                        linearGradient: const LinearGradient(colors: <Color>[
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFffa384),
-                          Color(0xFFa4aa9c),
-                        ]),
-                      ),
+                padding: EdgeInsets.zero,
+                animation: true,
+                lineHeight: 10.0,
+                animationDuration: 6000,
+                percent: 1,
+                barRadius: const Radius.circular(18),
+                backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                linearGradient: const LinearGradient(colors: <Color>[
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFffa384),
+                  Color(0xFFa4aa9c),
+                ]),
+              ),
             ),
             const SizedBox(height: 5),
-            const Text('Snack', style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300
-            ),),
+            const Text(
+              'Snack',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
             const SizedBox(height: 20),
-            
           ],
         ),
       ),
