@@ -1,4 +1,4 @@
-package com.example.platy
+package com.solidWay.meyes
 
 import io.flutter.embedding.android.FlutterActivity
 
