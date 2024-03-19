@@ -12,18 +12,31 @@ class ProfileHeightWidget extends StatefulWidget {
 }
 
 class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
-  String _heightController = '';
-  final int _nTotalCount = 240;
-  final int _nInitValue = 170;
-  int _nCurrentValue = 170;
-
+  bool _switchValue = true;
+  TextEditingController _cmController = TextEditingController();
+  TextEditingController _ftController = TextEditingController();
+  TextEditingController _inController = TextEditingController();
   Map<String, dynamic> updateProfileData = {};
+  void isActive() {
+    if (_switchValue) {
+      if (_cmController.text.isNotEmpty) {
+        updateProfileData['height'] = "${_cmController.text}cm";
+      } else {}
+    } else {
+      if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
+        updateProfileData['height'] =
+            "${_ftController.text}ft ${_inController.text}in";
+      } else {}
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: IconButton(
@@ -31,8 +44,6 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.arrow_back),
-                SizedBox(width: 8),
-                Text('Back'),
               ],
             ),
             onPressed: () {
@@ -41,10 +52,14 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
           ),
         ),
         leadingWidth: 90,
+        toolbarHeight: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -54,158 +69,240 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
         },
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'What is your height?',
-                    textAlign: TextAlign.center,
-                    style: whiteTheme.textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 15),
-                  RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: _heightController.isEmpty ? '...' : '',
-                            style: whiteTheme.textTheme.titleMedium!
-                                .copyWith(color: Colors.black)),
-                        TextSpan(
-                          text: _heightController,
-                          style: whiteTheme.textTheme.titleMedium!
-                              .copyWith(color: Colors.black),
-                        ),
-                        TextSpan(
-                            text: '/',
-                            style: whiteTheme.textTheme.titleMedium!
-                                .copyWith(color: Colors.black)),
-                        TextSpan(
-                          text: 'cm',
-                          style: whiteTheme.textTheme.titleMedium!
-                              .copyWith(color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Row(
-                children: [
-                  Text(
-                    'Height',
-                    style: TextStyle(
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 5),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(horizontal: 1),
-                width: MediaQuery.of(context).size.width * 1,
-                height: 52,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(35, 35, 35, 0.2),
-                      offset: Offset(0, 3),
-                      blurRadius: 5,
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'How tall are you?',
+                      textAlign: TextAlign.center,
+                      style: whiteTheme.textTheme.bodyMedium,
                     ),
                   ],
                 ),
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Container(
-                        alignment: Alignment.bottomCenter,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(252, 108, 76, 1),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 1.0),
-                      child: WheelSlider.number(
-                        perspective: 0.0001,
-                        totalCount: _nTotalCount,
-                        initValue: _nInitValue,
-                        animationDuration: const Duration(milliseconds: 600),
-                        selectedNumberStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        unSelectedNumberStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
-                        currentIndex: _nCurrentValue,
-                        onValueChanged: (val) {
+                const SizedBox(height: 30),
+                Container(
+                  alignment: Alignment.center,
+                  width: 112,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                        width: 1,
+                        color: const Color.fromRGBO(230, 227, 223, 1)),
+                    color: const Color.fromRGBO(205, 201, 196, 0.24),
+                  ),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
                           setState(() {
-                            _nCurrentValue = val;
-                            _heightController = val.toString();
-                            updateProfileData['height'] = val;
+                            _switchValue = true;
                           });
                         },
-                        hapticFeedbackType: HapticFeedbackType.heavyImpact,
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 55,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: _switchValue
+                                ? const Color.fromRGBO(196, 203, 185, 1)
+                                : Colors.transparent,
+                          ),
+                          child: const Text(
+                            'cm',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              Container(
-                height: 54.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _switchValue = false;
+                          });
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 55,
+                          height: 45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: !_switchValue
+                                ? const Color.fromRGBO(196, 203, 185, 1)
+                                : Colors.transparent,
+                          ),
+                          child: const Text(
+                            'ft',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    platyBloc.add(UpdateProfilePatchEvent(updateProfileData));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                    ),
+                const SizedBox(
+                  height: 60,
+                ),
+                Column(
+                  children: [
+                    if (_switchValue)
+                      Container(
+                        width: 160.0,
+                        height: 52.0,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                            color: const Color.fromRGBO(230, 227, 223, 1),
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            cursorColor: Colors.orange,
+                            controller: _cmController,
+                            textAlign: TextAlign.start,
+                            style: whiteTheme.textTheme.titleMedium
+                                ?.copyWith(color: Colors.black),
+                            obscureText: false,
+                            onChanged: (text) {
+                              isActive();
+                            },
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'cm',
+                              hintStyle: whiteTheme.textTheme.titleMedium,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (!_switchValue)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 90.0,
+                            height: 52.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(
+                                color: const Color.fromRGBO(230, 227, 223, 1),
+                                width: 1.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                cursorColor: Colors.orange,
+                                controller: _ftController,
+                                textAlign: TextAlign.start,
+                                style: whiteTheme.textTheme.titleMedium
+                                    ?.copyWith(color: Colors.black),
+                                obscureText: false,
+                                onChanged: (text) {
+                                  isActive();
+                                },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'ft',
+                                  hintStyle: whiteTheme.textTheme.titleMedium,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 90.0,
+                            height: 52.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(
+                                color: const Color.fromRGBO(230, 227, 223, 1),
+                                width: 1.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                cursorColor: Colors.orange,
+                                controller: _inController,
+                                textAlign: TextAlign.start,
+                                style: whiteTheme.textTheme.titleMedium
+                                    ?.copyWith(color: Colors.black),
+                                obscureText: false,
+                                onChanged: (text) {
+                                  isActive();
+                                },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'in',
+                                  hintStyle: whiteTheme.textTheme.titleMedium,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+                const Spacer(),
+                Container(
+                  height: 54.0,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Color.fromRGBO(164, 171, 155, 1),
                   ),
-                  child: const Text(
-                    'Save',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<PlatyBloc>(context)
+                          .add(UpdateProfilePatchEvent(updateProfileData));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
