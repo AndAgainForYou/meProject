@@ -14,11 +14,11 @@ class _CalculateMedicamentsWidgetState
     extends State<CalculateMedicamentsWidget> {
   TextEditingController? controllerTextField;
   List<String> medicamentsArray = [];
+
   @override
   void initState() {
     super.initState();
     controllerTextField = TextEditingController();
-    controllerTextField!.addListener(_onTextFieldChanged);
   }
 
   @override
@@ -27,10 +27,10 @@ class _CalculateMedicamentsWidgetState
     super.dispose();
   }
 
-  void _onTextFieldChanged() {
+  void _onSubmitted(String text) {
     setState(() {
-      if (controllerTextField!.text.isNotEmpty) {
-        medicamentsArray = controllerTextField!.text.split(',');
+      if (text.isNotEmpty) {
+        medicamentsArray = text.split(',');
         CalculateGlobalWidget.of(context).userModelBuilder.medicaments =
             medicamentsArray;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
@@ -64,6 +64,7 @@ class _CalculateMedicamentsWidgetState
               )),
           child: TextField(
             controller: controllerTextField,
+            keyboardType: TextInputType.text,
             maxLines: 15,
             decoration: InputDecoration(
               hintText:
@@ -79,6 +80,7 @@ class _CalculateMedicamentsWidgetState
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
+            onSubmitted: _onSubmitted,
           ),
         ),
         const Spacer(),

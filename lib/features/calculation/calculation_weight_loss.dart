@@ -19,16 +19,12 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
   void isActive() {
     if (_switchValue) {
       if (_kgController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.weight_loss_goal =
-        //     int.parse(_kgController.text);
         _isButtonActive = true;
       } else {
         _isButtonActive = false;
       }
     } else {
       if (_lbController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.weight_loss_goal =
-        //     int.parse(_lbController.text);
         _isButtonActive = true;
       } else {
         _isButtonActive = false;
@@ -248,8 +244,9 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
                 onPressed: _isButtonActive
                     ? () {
                         FocusScope.of(context).unfocus();
-                        Navigator.of(context).pop(
-                            int.parse(_kgController.text)); //TODO: LBCONTROLER
+                        Navigator.of(context).pop(_switchValue
+                            ? '${_kgController.text}kg'
+                            : '${_lbController.text}lb'); //TODO: LBCONTROLER
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

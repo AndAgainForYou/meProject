@@ -17,16 +17,16 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
   void isActive() {
     if (_switchValue) {
       if (_kgController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.height =
-        //     "${_cmController.text}cm";
+        CalculateGlobalWidget.of(context).userModelBuilder.weight =
+            "${_kgController.text}kg";
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     } else {
       if (_lbController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.height =
-        //     "${_ftController.text}ft ${_inController.text}in";
+        CalculateGlobalWidget.of(context).userModelBuilder.weight =
+            "${_lbController.text}lb";
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);

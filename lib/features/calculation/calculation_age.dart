@@ -96,9 +96,8 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
                   onValueChanged: (val) {
                     setState(() {
                       _nCurrentValue = val;
-                      CalculateGlobalWidget.of(context)
-                          .userModelBuilder
-                          .height = val;
+                      CalculateGlobalWidget.of(context).userModelBuilder.age =
+                          val;
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     });
                   },

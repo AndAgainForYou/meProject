@@ -27,7 +27,11 @@ class _CalculateDigestiveHealthWidgetState
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
     if (_selectedOptions.length == titles.length) {
+      CalculateGlobalWidget.of(context).userModelBuilder.digestive_health =
+          _selectedOptions;
       CalculateGlobalWidget.of(context).setButtonActivity(true);
+    } else {
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
     }
   }
 

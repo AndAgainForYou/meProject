@@ -3,9 +3,7 @@ class UpdateUserModel {
       this.alergies,
       this.tpds,
       this.chronic_diseases,
-      this.activities,
       this.most_important_goals,
-      this.health_goals,
       this.supplements,
       this.outside_eating_days,
       this.eco_friendly_eating,
@@ -16,26 +14,14 @@ class UpdateUserModel {
       this.delivery_cuisine,
       this.sport_nutritions,
       this.name,
-      this.gender,
-      this.birthday_date,
+      this.age,
       this.height,
       this.weight,
       this.activities_frequency,
-      this.is_competitions,
       this.weight_loss_goal,
       this.is_diet,
       this.current_diet,
       this.is_cooking_preference,
-      this.cholesterol_level,
-      this.blood_glucose_level,
-      this.hemoglobin_level,
-      this.triglycerides_level,
-      this.iron_level,
-      this.ph_level,
-      this.electrolyte_balance,
-      this.vitamin_D_status,
-      this.vitamin_B12_status,
-      this.calcium_status,
       this.is_supplements,
       this.is_medicaments,
       this.is_outside_eating,
@@ -45,17 +31,25 @@ class UpdateUserModel {
       this.is_sport_nutrition,
       this.diversity,
       this.tpd_count,
-      this.weight_goals,
       this.mental_health_goals,
       this.beauty_goals,
-      this.fasting_days);
+      this.fasting_days,
+      this.health_test,
+      this.blood_check_up,
+      this.bone_check_up,
+      this.digestive_health,
+      this.emotional_wellbeing,
+      this.water_consumption,
+      this.closer_statements,
+      this.sugar_statements,
+      this.current_symptoms,
+      this.current_goals,
+      this.refrigerator_food);
 
   final List<String>? alergies;
   final List<String>? tpds;
   final List<String>? chronic_diseases;
-  final List<String>? activities;
   final List<String>? most_important_goals;
-  final List<String>? health_goals;
   final List<String>? supplements;
   final List<String>? outside_eating_days;
   final List<String>? eco_friendly_eating;
@@ -66,26 +60,14 @@ class UpdateUserModel {
   final List<String>? delivery_cuisine;
   final List<String>? sport_nutritions;
   final String name;
-  final String gender;
-  final String birthday_date;
-  final int height;
-  final int weight;
+  final int age;
+  final String height;
+  final String weight;
   final String activities_frequency;
-  final bool? is_competitions;
-  final int? weight_loss_goal;
+  final String? weight_loss_goal;
   final bool? is_diet;
   final List<String>? current_diet;
   final bool? is_cooking_preference;
-  final String cholesterol_level;
-  final String blood_glucose_level;
-  final String hemoglobin_level;
-  final String triglycerides_level;
-  final String iron_level;
-  final String ph_level;
-  final String electrolyte_balance;
-  final String vitamin_D_status;
-  final String vitamin_B12_status;
-  final String calcium_status;
   final bool? is_supplements;
   final bool? is_medicaments;
   final bool? is_outside_eating;
@@ -95,19 +77,27 @@ class UpdateUserModel {
   final bool? is_sport_nutrition;
   final String diversity;
   final String tpd_count;
-  final List<String>? weight_goals;
   final List<String>? mental_health_goals;
   final List<String>? beauty_goals;
   final List<String>? fasting_days;
+  final bool health_test;
+  final Map<String, dynamic>? blood_check_up;
+  final Map<String, dynamic> bone_check_up;
+  final Map<String, dynamic> digestive_health;
+  final String emotional_wellbeing;
+  final String water_consumption;
+  final String closer_statements;
+  final String sugar_statements;
+  final List<String> current_symptoms;
+  final List<String> current_goals;
+  final List<String>? refrigerator_food;
 
   Map<String, dynamic> toJson() => {
         if (alergies != null) 'alergies': alergies,
         if (tpds != null) 'tpds': tpds,
         if (chronic_diseases != null) 'chronic_diseases': chronic_diseases,
-        if (activities != null) 'activities': activities,
         if (most_important_goals != null)
           'most_important_goals': most_important_goals,
-        if (health_goals != null) 'health_goals': health_goals,
         if (supplements != null) 'supplements': supplements,
         if (outside_eating_days != null)
           'outside_eating_days': outside_eating_days,
@@ -118,31 +108,19 @@ class UpdateUserModel {
         if (habits != null) 'habits': habits,
         if (medicaments != null) 'medicaments': medicaments,
         if (outside_eating_cuisine != null)
-          'outside_eating_cuisine': outside_eating_cuisine,
-        if (delivery_cuisine != null) 'delivery_cuisine': delivery_cuisine,
+          'outside_eating_cousin': outside_eating_cuisine,
+        if (delivery_cuisine != null) 'delivery_cousin': delivery_cuisine,
         if (sport_nutritions != null) 'sport_nutritions': sport_nutritions,
         'name': name,
-        'gender': gender,
-        'birthday_date': birthday_date,
+        'age': age,
         'height': height,
         'weight': weight,
         'activities_frequency': activities_frequency,
-        if (is_competitions != null) 'is_competitions': is_competitions,
         if (weight_loss_goal != null) 'weight_loss_goal': weight_loss_goal,
         if (is_diet != null) 'is_diet': is_diet,
         if (current_diet != null) 'current_diet': current_diet,
         if (is_cooking_preference != null)
           'is_cooking_preference': is_cooking_preference,
-        'cholesterol_level': cholesterol_level,
-        'blood_glucose_level': blood_glucose_level,
-        'hemoglobin_level': hemoglobin_level,
-        'triglycerides_level': triglycerides_level,
-        'iron_level': iron_level,
-        'ph_level': ph_level,
-        'electrolyte_balance': electrolyte_balance,
-        'vitamin_D_status': vitamin_D_status,
-        'vitamin_B12_status': vitamin_B12_status,
-        'calcium_status': calcium_status,
         if (is_supplements != null) 'is_supplements': is_supplements,
         if (is_medicaments != null) 'is_medicaments': is_medicaments,
         if (is_outside_eating != null) 'is_outside_eating': is_outside_eating,
@@ -153,20 +131,28 @@ class UpdateUserModel {
           'is_sport_nutrition': is_sport_nutrition,
         'diversity': diversity,
         'tpd_count': tpd_count,
-        if (weight_goals != null) 'weight_goals': weight_goals,
         if (mental_health_goals != null)
           'mental_health_goals': mental_health_goals,
         if (beauty_goals != null) 'beauty_goals': beauty_goals,
-        if (fasting_days != null) 'fasting_days': fasting_days
+        if (fasting_days != null) 'fasting_days': fasting_days,
+        'health_test': health_test,
+        'blood_check_up': blood_check_up,
+        'bone_check_up': bone_check_up,
+        'digestive_health': digestive_health,
+        'emotional_wellbeing': emotional_wellbeing,
+        'closer_statements': closer_statements,
+        'water_consumption': water_consumption,
+        'sugar_statements': sugar_statements,
+        'current_symptoms': current_symptoms,
+        'current_goals': current_goals,
+        if (refrigerator_food != null) 'refrigerator_food': refrigerator_food,
       };
 
   UpdateUserModel._builder(UpdateUserModelBuilder builder)
       : alergies = builder.alergies,
         tpds = builder.tpds,
         chronic_diseases = builder.chronic_diseases,
-        activities = builder.activities,
         most_important_goals = builder.most_important_goals,
-        health_goals = builder.health_goals,
         supplements = builder.supplements,
         outside_eating_days = builder.outside_eating_days,
         eco_friendly_eating = builder.eco_friendly_eating,
@@ -177,26 +163,14 @@ class UpdateUserModel {
         delivery_cuisine = builder.delivery_cuisine,
         sport_nutritions = builder.sport_nutritions,
         name = builder.name!,
-        gender = builder.gender!,
-        birthday_date = builder.birthday_date!,
+        age = builder.age!,
         height = builder.height!,
         weight = builder.weight!,
         activities_frequency = builder.activities_frequency!,
-        is_competitions = builder.is_competitions,
         weight_loss_goal = builder.weight_loss_goal,
         is_diet = builder.is_diet,
         current_diet = builder.current_diet,
         is_cooking_preference = builder.is_cooking_preference,
-        cholesterol_level = builder.cholesterol_level!,
-        blood_glucose_level = builder.blood_glucose_level!,
-        hemoglobin_level = builder.hemoglobin_level!,
-        triglycerides_level = builder.triglycerides_level!,
-        iron_level = builder.iron_level!,
-        ph_level = builder.ph_level!,
-        electrolyte_balance = builder.electrolyte_balance!,
-        vitamin_D_status = builder.vitamin_D_status!,
-        vitamin_B12_status = builder.vitamin_B12_status!,
-        calcium_status = builder.calcium_status!,
         is_supplements = builder.is_supplements,
         is_medicaments = builder.is_medicaments,
         is_outside_eating = builder.is_outside_eating,
@@ -206,10 +180,20 @@ class UpdateUserModel {
         is_sport_nutrition = builder.is_sport_nutrition,
         diversity = builder.diversity!,
         tpd_count = builder.tpd_count!,
-        weight_goals = builder.weight_goals,
         mental_health_goals = builder.mental_health_goals,
         beauty_goals = builder.beauty_goals,
-        fasting_days = builder.fasting_days;
+        fasting_days = builder.fasting_days,
+        health_test = builder.health_test!,
+        blood_check_up = builder.blood_check_up,
+        bone_check_up = builder.bone_check_up!,
+        digestive_health = builder.digestive_health!,
+        emotional_wellbeing = builder.emotional_wellbeing!,
+        water_consumption = builder.water_consumption!,
+        closer_statements = builder.closer_statements!,
+        sugar_statements = builder.sugar_statements!,
+        current_symptoms = builder.current_symptoms!,
+        current_goals = builder.current_goals!,
+        refrigerator_food = builder.refrigerator_food;
 }
 
 class UpdateUserModelBuilder {
@@ -217,9 +201,7 @@ class UpdateUserModelBuilder {
   List<String>? alergies;
   List<String>? tpds;
   List<String>? chronic_diseases;
-  List<String>? activities;
   List<String>? most_important_goals;
-  List<String>? health_goals;
   List<String>? supplements;
   List<String>? outside_eating_days;
   List<String>? eco_friendly_eating;
@@ -230,26 +212,14 @@ class UpdateUserModelBuilder {
   List<String>? delivery_cuisine;
   List<String>? sport_nutritions;
   String? name;
-  String? gender;
-  String? birthday_date;
-  int? height;
-  int? weight;
+  int? age;
+  String? height;
+  String? weight;
   String? activities_frequency;
-  bool? is_competitions;
-  int? weight_loss_goal;
+  String? weight_loss_goal;
   bool? is_diet;
   List<String>? current_diet;
   bool? is_cooking_preference;
-  String? cholesterol_level;
-  String? blood_glucose_level;
-  String? hemoglobin_level;
-  String? triglycerides_level;
-  String? iron_level;
-  String? ph_level;
-  String? electrolyte_balance;
-  String? vitamin_D_status;
-  String? vitamin_B12_status;
-  String? calcium_status;
   bool? is_supplements;
   bool? is_medicaments;
   bool? is_outside_eating;
@@ -259,11 +229,20 @@ class UpdateUserModelBuilder {
   bool? is_sport_nutrition;
   String? diversity;
   String? tpd_count;
-  List<String>? weight_goals;
   List<String>? mental_health_goals;
   List<String>? beauty_goals;
   List<String>? fasting_days;
-
+  bool? health_test;
+  Map<String, dynamic>? blood_check_up;
+  Map<String, dynamic>? bone_check_up;
+  Map<String, dynamic>? digestive_health;
+  String? emotional_wellbeing;
+  String? water_consumption;
+  String? closer_statements;
+  String? sugar_statements;
+  List<String>? current_symptoms;
+  List<String>? current_goals;
+  List<String>? refrigerator_food;
   UpdateUserModel build() {
     return UpdateUserModel._builder(this);
   }

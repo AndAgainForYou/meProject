@@ -25,15 +25,17 @@ class _CalculateWaterConsumptionWidgetState
     'Low',
     'High',
   ];
-  Map<String, dynamic> _selectedOptions = {};
   int? _selectedIndex;
   int? _selectedIndexState;
-  List<bool> _isCheckedList = [false, false, false];
 
   void isActive() {
-    if (_selectedOptions['water_consumption'] != null &&
-        _selectedOptions['statements'] != null) {
+    if (CalculateGlobalWidget.of(context).userModelBuilder.water_consumption !=
+            null &&
+        CalculateGlobalWidget.of(context).userModelBuilder.closer_statements !=
+            null) {
       CalculateGlobalWidget.of(context).setButtonActivity(true);
+    } else {
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
     }
   }
 
@@ -62,13 +64,13 @@ class _CalculateWaterConsumptionWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      _selectedOptions['water_consumption'] =
-                          titlesAnxiety[index];
-                      print(_selectedOptions['water_consumption']);
+
+                      CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .water_consumption = titlesAnxiety[_selectedIndex!];
                       isActive();
                     } else {
                       _selectedIndex = null;
-                      _selectedOptions['water_consumption'] = null;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(false);
                     }
@@ -101,12 +103,14 @@ class _CalculateWaterConsumptionWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndexState = index;
-                      _selectedOptions['statements'] = titles[index];
-                      print(_selectedOptions['statements']);
+
+                      CalculateGlobalWidget.of(context)
+                              .userModelBuilder
+                              .closer_statements =
+                          titlesAnxiety[_selectedIndexState!];
                       isActive();
                     } else {
                       _selectedIndexState = null;
-                      _selectedOptions['statements'] = null;
                       CalculateGlobalWidget.of(context)
                           .setButtonActivity(false);
                     }

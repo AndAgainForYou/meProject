@@ -18,16 +18,16 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
   void isActive() {
     if (_switchValue) {
       if (_cmController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.height =
-        //     "${_cmController.text}cm";
+        CalculateGlobalWidget.of(context).userModelBuilder.height =
+            "${_cmController.text}cm";
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     } else {
       if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
-        // CalculateGlobalWidget.of(context).userModelBuilder.height =
-        //     "${_ftController.text}ft ${_inController.text}in";
+        CalculateGlobalWidget.of(context).userModelBuilder.height =
+            "${_ftController.text}ft ${_inController.text}in";
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);

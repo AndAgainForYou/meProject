@@ -30,6 +30,7 @@ class _CalculateAlergicListWidgetState
   List<String> _selectedOptions = List.filled(5, '');
   TextEditingController? controllerTextField;
   List<String> alergicArray = [];
+  List<String> choosedTitles = [];
   String? _textValue;
 
   @override
@@ -39,15 +40,26 @@ class _CalculateAlergicListWidgetState
     controllerTextField!.addListener(_onTextFieldChanged);
   }
 
-  void _onTextFieldChanged() {
+  void isActive() {
     setState(() {
-      _textValue = controllerTextField!.text;
-      alergicArray = _textValue!.split(',');
-      CalculateGlobalWidget.of(context).userModelBuilder.chronic_diseases =
-          alergicArray;
-      CalculateGlobalWidget.of(context)
-          .setButtonActivity(alergicArray.isNotEmpty);
+      if (controllerTextField!.text.isNotEmpty || choosedTitles.isNotEmpty) {
+        alergicArray = _textValue != null ? _textValue!.split(',') : [];
+        choosedTitles.addAll(alergicArray);
+        print(choosedTitles);
+        CalculateGlobalWidget.of(context).userModelBuilder.alergies =
+            choosedTitles;
+        CalculateGlobalWidget.of(context).setButtonActivity(true);
+      } else {
+        CalculateGlobalWidget.of(context).setButtonActivity(false);
+      }
     });
+  }
+
+  void _onTextFieldChanged() {
+    // setState(() {
+    //   // _textValue = controllerTextField!.text;
+    //   // isActive();
+    // });
   }
 
   @override
@@ -56,7 +68,6 @@ class _CalculateAlergicListWidgetState
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        //const SizedBox(height: 40),
         Text(
           'What are you allergic to?',
           textAlign: TextAlign.center,
@@ -75,9 +86,9 @@ class _CalculateAlergicListWidgetState
         const SizedBox(height: 20),
         Expanded(
           child: ListView.builder(
-            itemCount: titles.length,
+            itemCount: titles.length + 1,
             itemBuilder: (context, index) {
-              if (index < titles.length - 1) {
+              if (index < titles.length) {
                 return Container(
                   height: 140,
                   decoration: BoxDecoration(
@@ -109,6 +120,8 @@ class _CalculateAlergicListWidgetState
                             onTap: () {
                               setState(() {
                                 _selectedOptions[index] = 'No';
+                                choosedTitles.remove(titles[index]);
+                                isActive();
                               });
                             },
                             child: Row(
@@ -123,6 +136,8 @@ class _CalculateAlergicListWidgetState
                                     setState(() {
                                       _selectedOptions[index] =
                                           value.toString();
+                                      choosedTitles.remove(titles[index]);
+                                      isActive();
                                     });
                                   },
                                 ),
@@ -134,6 +149,8 @@ class _CalculateAlergicListWidgetState
                             onTap: () {
                               setState(() {
                                 _selectedOptions[index] = 'Yes';
+                                choosedTitles.add(titles[index]);
+                                isActive();
                               });
                             },
                             child: Row(
@@ -149,6 +166,8 @@ class _CalculateAlergicListWidgetState
                                     setState(() {
                                       _selectedOptions[index] =
                                           value.toString();
+                                      choosedTitles.add(titles[index]);
+                                      isActive();
                                     });
                                   },
                                 ),
@@ -200,6 +219,12 @@ class _CalculateAlergicListWidgetState
                       ),
                       child: TextField(
                         controller: controllerTextField,
+                        onSubmitted: (text) {
+                          setState(() {
+                            _textValue = text;
+                            isActive();
+                          });
+                        },
                         decoration: InputDecoration(
                           hintText: ' Add your option separated by commas',
                           hintStyle: const TextStyle(

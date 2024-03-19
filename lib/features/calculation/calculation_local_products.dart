@@ -90,6 +90,7 @@ class _CalculateLocalProductsWidgetState
                       ),
                     ),
                     WheelSlider.customWidget(
+                      animationDuration: const Duration(milliseconds: 400),
                       horizontal: false,
                       isInfinite: true,
                       verticalListHeight: 270,
@@ -114,7 +115,6 @@ class _CalculateLocalProductsWidgetState
                       children: List.generate(
                         regionTitles.length,
                         (index) => Center(
-                          //heightFactor: MediaQuery.of(context).size.width * 1,
                           child: Text(
                             regionTitles[index],
                             textAlign: TextAlign.center,

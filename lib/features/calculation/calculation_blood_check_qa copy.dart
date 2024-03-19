@@ -41,15 +41,15 @@ class _CalculateBloodQAWidgetState extends State<CalculateBloodQAWidget> {
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-                      // if (titles[index] == "Yes") {
-                      //   CalculateGlobalWidget.of(context)
-                      //       .userModelBuilder
-                      //       .is_delivery = true;
-                      // } else {
-                      //   CalculateGlobalWidget.of(context)
-                      //       .userModelBuilder
-                      //       .is_delivery = false;
-                      // }
+                      if (titles[index] == "Yes") {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .health_test = true;
+                      } else {
+                        CalculateGlobalWidget.of(context)
+                            .userModelBuilder
+                            .health_test = false;
+                      }
                       CalculateGlobalWidget.of(context).setButtonActivity(true);
                     } else {
                       _selectedIndex = null;

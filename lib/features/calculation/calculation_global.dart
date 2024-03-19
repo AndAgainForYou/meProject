@@ -135,7 +135,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       const CalculateAlergicListWidget(),
       const CalculateChronicDiseasesListWidget(),
       const CalculateBloodQAWidget(),
-      const CalculateBloodCheckUpWidget(),
+      if (userModelBuilder.health_test == true) ...[
+        const CalculateBloodCheckUpWidget(),
+      ],
       const CalculateBonesCheckUpWidget(),
       const CalculateDigestiveHealthWidget(),
       const CalculateEmotionsHealthWidget(),
@@ -277,7 +279,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                     ? () async {
                         if (_lastPage == true) {
                           final userModel = userModelBuilder.build();
-
+                          print(userModel.toJson());
                           platyBloc.add(CreateProfileEvent(userModel.toJson()));
 
                           Navigator.pushReplacement(
