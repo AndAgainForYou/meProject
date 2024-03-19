@@ -70,7 +70,7 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
               children: [
                 Icon(Icons.arrow_back),
                 SizedBox(width: 8),
-                Text('Back'),
+                Text(''),
               ],
             ),
             onPressed: () {
@@ -79,6 +79,7 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
           ),
         ),
         leadingWidth: 90,
+        toolbarHeight: 90,
         centerTitle: true,
         surfaceTintColor: Colors.transparent,
         title: Image.asset(

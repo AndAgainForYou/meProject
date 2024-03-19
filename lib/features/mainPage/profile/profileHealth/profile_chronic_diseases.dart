@@ -18,9 +18,15 @@ class _ProfileChronicDiseasesListWidgetState
   List<String> titles = [
     'Diabetes',
     'Cardiovascular diseases',
-    'Food allergies',
-    'Gastrointestinal disorders',
-    'Autoimmune conditions',
+    'Hyperlipidemia',
+    'Osteoporosis',
+    'Hypothyroidism',
+    'Hyperthyroidism',
+    'GERD/Gastritis',
+    'Anemia',
+    'Hypertension',
+    'Coeliac Disease',
+    'Autoimmune Diseases',
   ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
@@ -61,7 +67,7 @@ class _ProfileChronicDiseasesListWidgetState
               children: [
                 Icon(Icons.arrow_back),
                 SizedBox(width: 8),
-                Text('Back'),
+                Text(''),
               ],
             ),
             onPressed: () {
@@ -69,6 +75,7 @@ class _ProfileChronicDiseasesListWidgetState
             },
           ),
         ),
+        toolbarHeight: 90,
         leadingWidth: 90,
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
@@ -91,26 +98,15 @@ class _ProfileChronicDiseasesListWidgetState
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
-                'Chronic Diseases',
+                'Health History',
                 textAlign: TextAlign.center,
                 style: whiteTheme.textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'If you are not allergic, skip this step.',
-                style: TextStyle(
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
               ),
               const SizedBox(height: 30),
               Expanded(
                 child: ListView.builder(
-                  itemCount: titles.length + 1, // Add 1 for the last element
+                  itemCount: titles.length, // Add 1 for the last element
                   itemBuilder: (context, index) {
                     if (index < titles.length) {
                       // Render custom list tile for titles
@@ -131,73 +127,29 @@ class _ProfileChronicDiseasesListWidgetState
                           CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _isCheckedList[index],
+                        customStyle: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
                         onTilePressed: (isChecked) {
                           setState(() {
                             if (isChecked) {
                               // Якщо вже вибрано, видаляємо
                               choosedTitles.add(titles[index]);
-                              
-                               
                             } else {
                               // Якщо не вибрано, додаємо
                               choosedTitles.remove(titles[index]);
-                             
                             }
                             _isCheckedList[index] = isChecked;
                             _onTextFieldChanged();
-                            
+
                             _isButtonActive = true;
                             updateProfileData['chronic_diseases'] =
                                 choosedTitles;
                           });
                           print(_isButtonActive);
                         },
-                      );
-                    } else {
-                      // Render TextField in a Container as the last element
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Container(
-                              height: 180,
-                              width: 340,
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(
-                                        0, 0, 0, 0.09000000357627869),
-                                    offset: Offset(1, 3),
-                                    blurRadius: 9,
-                                  ),
-                                ],
-                              ),
-                              child: TextField(
-                                controller: controllerTextField,
-                                onSubmitted: (text) {
-                                  setState(() {
-                                    controllerTextField = text as TextEditingController?;
-                                    _onTextFieldChanged();
-                                  });
-                                },
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                  hintText:
-                                      ' Add your option separated by commas',
-                                  hintStyle: const TextStyle(
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                              ),
-                            ),
                       );
                     }
                   },
@@ -211,13 +163,12 @@ class _ProfileChronicDiseasesListWidgetState
                   color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
-                  onPressed:  () {
-                                  _isButtonActive
-                                      ? BlocProvider.of<PlatyBloc>(context).add(
-                                          UpdateProfilePatchEvent(
-                                              updateProfileData))
-                                      : null;
-                                },
+                  onPressed: () {
+                    _isButtonActive
+                        ? BlocProvider.of<PlatyBloc>(context)
+                            .add(UpdateProfilePatchEvent(updateProfileData))
+                        : null;
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

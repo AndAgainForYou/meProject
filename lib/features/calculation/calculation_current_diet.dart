@@ -77,9 +77,6 @@ class _CalculateCurrentDietWidgetState
                     choosedTitles.add(titles[index]);
                     _isCheckedList[index] = isChecked;
                     CalculateGlobalWidget.of(context)
-                        .userModelBuilder
-                        .chronic_diseases = choosedTitles;
-                    CalculateGlobalWidget.of(context)
                         .setButtonActivity(_isCheckedList.contains(true));
                     CalculateGlobalWidget.of(context)
                         .userModelBuilder

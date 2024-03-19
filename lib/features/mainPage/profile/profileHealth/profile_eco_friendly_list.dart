@@ -33,6 +33,7 @@ class _ProfileEcoFriendlyListWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -42,7 +43,7 @@ class _ProfileEcoFriendlyListWidgetState
               children: [
                 Icon(Icons.arrow_back),
                 SizedBox(width: 8),
-                Text('Back'),
+                Text(''),
               ],
             ),
             onPressed: () {
@@ -51,10 +52,15 @@ class _ProfileEcoFriendlyListWidgetState
           ),
         ),
         leadingWidth: 90,
+        toolbarHeight: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -68,7 +74,6 @@ class _ProfileEcoFriendlyListWidgetState
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
                 'Eco-friendly eating',
                 textAlign: TextAlign.center,

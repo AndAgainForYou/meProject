@@ -5,27 +5,40 @@ import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
-class ProfileFifthTPDWidget extends StatefulWidget {
-  const ProfileFifthTPDWidget({Key? key}) : super(key: key);
+class ProfileEmotionalWellbeingWidget extends StatefulWidget {
+  const ProfileEmotionalWellbeingWidget({super.key});
 
   @override
-  _ProfileFifthTPDWidgetState createState() => _ProfileFifthTPDWidgetState();
+  State<ProfileEmotionalWellbeingWidget> createState() =>
+      _ProfileEmotionalWellbeingWidgetState();
 }
 
-class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
+class _ProfileEmotionalWellbeingWidgetState
+    extends State<ProfileEmotionalWellbeingWidget> {
   List<String> titles = [
-    'Three Main Meals and Two Snacks',
-    'Frequent Small Meals Throughout the Day',
+    'Anger and irritability',
+    'Stress and anxiety',
+    'Forgetfulness',
+    'Loss of self-esteem',
+    'Loss of confidence',
+    'Low mood and feelings of \nsadness or depression',
+    ' Poor concentration',
   ];
   int? _selectedIndex;
-  Map<String, dynamic> updateProfileData = {};
+  List<bool> _isCheckedList = [];
+  List<String> choosedTitles = [];
   bool _isButtonActive = false;
+  @override
+  void initState() {
+    super.initState();
+    _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
-          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -42,6 +55,7 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
               },
             ),
           ),
+          toolbarHeight: 90,
           leadingWidth: 90,
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
@@ -55,9 +69,7 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
             if (state is ProfileIncludesDataState) {
-              for (int i = 0; i < 2; i++) {
-                Navigator.of(context).pop();
-              }
+              Navigator.of(context).pop();
             }
           },
           child: Padding(
@@ -67,36 +79,18 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '5 TPD',
+                  'Your emotional wellbeing',
                   textAlign: TextAlign.center,
                   style: whiteTheme.textTheme.bodyMedium,
                 ),
-                const Text(
-                  'What is your eating type?',
-                  style: TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                const SizedBox(
+                  height: 30,
                 ),
-                const SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     itemCount: titles.length,
                     itemBuilder: (context, index) {
-                      return /* CustomListTile(
-                        title: titles[index],
-                        isChecked: _selectedIndex == index,
-                        onTilePressed: (isChecked) {
-                          setState(() {
-                            _selectedIndex = isChecked ? index : null;
-                            _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
-                          });
-                        },
-                      ); */
-                          CustomListTileWithRadio(
+                      return CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _selectedIndex == index,
                         customStyle: const TextStyle(
@@ -106,9 +100,13 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
                         ),
                         onTilePressed: (isChecked) {
                           setState(() {
-                            _selectedIndex = isChecked ? index : null;
-                            _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
+                            if (isChecked) {
+                              _selectedIndex = index;
+                              _isButtonActive = true;
+                            } else {
+                              _selectedIndex = null;
+                              _isButtonActive = false;
+                            }
                           });
                         },
                       );
@@ -126,7 +124,9 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
                     onPressed: _isButtonActive
                         ? () {
                             BlocProvider.of<PlatyBloc>(context).add(
-                                UpdateProfilePatchEvent(updateProfileData));
+                                UpdateProfilePatchEvent({
+                              'emotional_wellbeing': titles[_selectedIndex!]
+                            }));
                           }
                         : null,
                     style: ElevatedButton.styleFrom(

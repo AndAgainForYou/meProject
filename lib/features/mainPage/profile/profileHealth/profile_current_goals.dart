@@ -5,27 +5,49 @@ import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
-class ProfileFifthTPDWidget extends StatefulWidget {
-  const ProfileFifthTPDWidget({Key? key}) : super(key: key);
+class ProfileCurrentGoalsWidget extends StatefulWidget {
+  const ProfileCurrentGoalsWidget({super.key});
 
   @override
-  _ProfileFifthTPDWidgetState createState() => _ProfileFifthTPDWidgetState();
+  State<ProfileCurrentGoalsWidget> createState() =>
+      _ProfileCurrentGoalsWidgetState();
 }
 
-class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
+class _ProfileCurrentGoalsWidgetState extends State<ProfileCurrentGoalsWidget> {
   List<String> titles = [
-    'Three Main Meals and Two Snacks',
-    'Frequent Small Meals Throughout the Day',
+    "Gut Health",
+    "Hydration",
+    'Adapt to Changes',
+    'Mood Stability',
+    "Weight Management",
+    'Hot Flash Management',
+    'Cognitive function',
+    'Muscle Mass Preservation',
+    'Skin and Hair Health',
+    'Insomnia and Sleep \nDisturbance Management',
+    'Oral Health Management',
+    'Cardiovascular Health',
+    'Bone Health',
+    'Vaginal Problems',
+    'Urinary Problems',
+    'High Blood Sugar levels',
+    'Thyroid Health',
   ];
   int? _selectedIndex;
-  Map<String, dynamic> updateProfileData = {};
+  List<bool> _isCheckedList = [];
+  List<String> choosedTitles = [];
   bool _isButtonActive = false;
+  @override
+  void initState() {
+    super.initState();
+    _isCheckedList = List.generate(titles.length, (index) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
-          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -42,6 +64,7 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
               },
             ),
           ),
+          toolbarHeight: 90,
           leadingWidth: 90,
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
@@ -55,9 +78,7 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
             if (state is ProfileIncludesDataState) {
-              for (int i = 0; i < 2; i++) {
-                Navigator.of(context).pop();
-              }
+              Navigator.of(context).pop();
             }
           },
           child: Padding(
@@ -67,36 +88,18 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '5 TPD',
+                  'Current Goals',
                   textAlign: TextAlign.center,
                   style: whiteTheme.textTheme.bodyMedium,
                 ),
-                const Text(
-                  'What is your eating type?',
-                  style: TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                const SizedBox(
+                  height: 30,
                 ),
-                const SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     itemCount: titles.length,
                     itemBuilder: (context, index) {
-                      return /* CustomListTile(
-                        title: titles[index],
-                        isChecked: _selectedIndex == index,
-                        onTilePressed: (isChecked) {
-                          setState(() {
-                            _selectedIndex = isChecked ? index : null;
-                            _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
-                          });
-                        },
-                      ); */
-                          CustomListTileWithRadio(
+                      return CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _selectedIndex == index,
                         customStyle: const TextStyle(
@@ -106,9 +109,9 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
                         ),
                         onTilePressed: (isChecked) {
                           setState(() {
-                            _selectedIndex = isChecked ? index : null;
-                            _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
+                            choosedTitles.add(titles[index]);
+                            _isCheckedList[index] = isChecked;
+                            _isButtonActive = _isCheckedList.contains(true);
                           });
                         },
                       );
@@ -126,7 +129,8 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
                     onPressed: _isButtonActive
                         ? () {
                             BlocProvider.of<PlatyBloc>(context).add(
-                                UpdateProfilePatchEvent(updateProfileData));
+                                UpdateProfilePatchEvent(
+                                    {'current_goals': choosedTitles}));
                           }
                         : null,
                     style: ElevatedButton.styleFrom(

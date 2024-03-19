@@ -34,7 +34,7 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
@@ -44,7 +44,7 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
                 children: [
                   Icon(Icons.arrow_back),
                   SizedBox(width: 8),
-                  Text('Back'),
+                  Text(''),
                 ],
               ),
               onPressed: () {
@@ -52,13 +52,16 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
               },
             ),
           ),
+          toolbarHeight: 90,
           leadingWidth: 90,
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           surfaceTintColor: Colors.transparent,
-          title: Image.asset('assets/images/logo_small.png',
-          height: 32,
-          width: 32,),
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
         ),
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
@@ -72,9 +75,8 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 63),
                 Text(
-                  'Choose the most comfortable for you',
+                  'Choose the most comfortable\nfor you',
                   textAlign: TextAlign.center,
                   style: whiteTheme.textTheme.bodyMedium,
                 ),
@@ -94,9 +96,14 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
                           });
                         },
                       ); */
-                      CustomListTileWithRadio(
+                          CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _isCheckedList[index],
+                        customStyle: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
                         onTilePressed: (isChecked) {
                           setState(() {
                             _isCheckedList[index] = isChecked;
@@ -110,11 +117,11 @@ class _ProfileCookingChoseWidgetState extends State<ProfileCookingChoseWidget> {
                 ),
                 Container(
                   height: 54.0,
-                width: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: const Color.fromRGBO(164, 171, 155, 1),
-                ),
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(164, 171, 155, 1),
+                  ),
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {
