@@ -925,7 +925,7 @@ class _MainHomeState extends State<MainHome> {
             ),
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 18.0, bottom: 40.0, left: 16.0, right: 16.0),
+                  top: 18.0, bottom: 40.0, left: 10.0, right: 5.0),
               child: Stack(
                 children: [
                   PageView(

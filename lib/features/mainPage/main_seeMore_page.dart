@@ -84,7 +84,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
                         ),
                         Positioned(
                           left: 16,
-                          bottom: MediaQuery.of(context).size.height / 5.3,
+                          bottom: MediaQuery.of(context).size.height / 5.1,
                           child: const Text(
                             '23/31',
                             style: TextStyle(

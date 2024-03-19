@@ -188,8 +188,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * _getWidth(),
-                      height: 52,
+                      width: 155,
+                      height: 60,
+                    
                       color: Colors.transparent,
                       child: TextFormField(
                         onChanged: (value) {
@@ -197,7 +198,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         },
                         controller: _titleController,
                         style: const TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 28, fontWeight: FontWeight.bold),
                         maxLength: 15,
                         decoration: const InputDecoration(
                           counterText: '',
@@ -223,7 +224,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                     )
                   ],
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 14),
                 Container(
                     width: 153,
                     height: 52,

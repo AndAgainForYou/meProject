@@ -214,55 +214,48 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.915,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 8),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14.0),
-                                border: Border.all(color: Colors.transparent),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(
-                                        0, 0, 0, 0.09000000357627869),
-                                    offset: Offset(1, 3),
-                                    blurRadius: 9,
-                                  ),
-                                ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14.0),
+                            border: Border.all(color: Colors.transparent),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                    0, 0, 0, 0.09000000357627869),
+                                offset: Offset(1, 3),
+                                blurRadius: 9,
                               ),
-                              child: TextFormField(
-                                controller: _controllerFirstName,
-                                maxLength: 25,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 20),
-                                  counterText: '',
-                                  hintText: profileData['name'],
-                                  hintStyle: const TextStyle(
-                                    color: Colors.grey,
-                                    fontFamily: 'Gilroy',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (value) {
-                                  setFormFieldValue(
-                                      'name', value); //need change
-                                },
+                            ],
+                          ),
+                          child: TextFormField(
+                            controller: _controllerFirstName,
+                            maxLength: 25,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(left: 20),
+                              counterText: '',
+                              hintText: profileData['name'],
+                              hintStyle: const TextStyle(
+                                color: Colors.grey,
+                                fontFamily: 'Gilroy',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
                               ),
+                              border: InputBorder.none,
                             ),
-                          ],
+                            onChanged: (value) {
+                              setFormFieldValue('name', value); //need change
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
