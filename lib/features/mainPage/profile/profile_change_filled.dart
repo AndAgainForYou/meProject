@@ -66,6 +66,7 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     const ProfileChronicDiseasesListWidget(),
     const ProfileFreqSportWidget(),
     const ProfileWeightLossSliderWidget(), //
+    
     const ProfileMentalHealthWidget(),
     const ProfileSkinAndBeautyWidget(),
     const ProfileFoodPreferencesWidget(),

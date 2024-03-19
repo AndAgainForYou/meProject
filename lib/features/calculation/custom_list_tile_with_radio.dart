@@ -27,8 +27,8 @@ class _CustomListTileWithRadioState extends State<CustomListTileWithRadio> {
     TextStyle textStyle = widget.customStyle ??
         const TextStyle(
           fontFamily: 'Montserrat',
-          fontSize: 17,
-          fontWeight: FontWeight.w600,
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
         );
 
     return Container(
@@ -43,7 +43,7 @@ class _CustomListTileWithRadioState extends State<CustomListTileWithRadio> {
         border: widget.isChecked
             ? Border.all(
                 width: 2,
-                color: Color.fromRGBO(164, 171, 155, 1),
+                color: const Color.fromRGBO(164, 171, 155, 1),
               )
             : Border.all(
                 width: 2,
