@@ -15,11 +15,11 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
   TextEditingController? controllerTextField;
   List<String> medicamentsArray = [];
   bool _isButtonActive = false;
+
   @override
   void initState() {
     super.initState();
     controllerTextField = TextEditingController();
-    controllerTextField!.addListener(_onTextFieldChanged);
   }
 
   @override
@@ -28,11 +28,13 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
     super.dispose();
   }
 
-  void _onTextFieldChanged() {
+  void _onSubmitted(String text) {
     setState(() {
-      if (controllerTextField!.text.isNotEmpty) {
-        medicamentsArray = controllerTextField!.text.split(',');
+      if (text.isNotEmpty) {
+        medicamentsArray = text.split(',');
         _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
       }
     });
   }
@@ -40,6 +42,7 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -49,7 +52,7 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
               children: [
                 Icon(Icons.arrow_back),
                 SizedBox(width: 8),
-                Text('Back'),
+                Text(''),
               ],
             ),
             onPressed: () {
@@ -57,11 +60,16 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
             },
           ),
         ),
+        toolbarHeight: 90,
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -75,68 +83,50 @@ class _ProfileMedicamentsWidgetState extends State<ProfileMedicamentsWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
                 'Medicaments',
                 textAlign: TextAlign.center,
                 style: whiteTheme.textTheme.bodyMedium,
               ),
-              const SizedBox(height: 10),
-              const Text(
-                'Choose the ones below',
-                style: TextStyle(
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
-              ),
               const SizedBox(height: 30),
               Container(
-                height: 140,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
+                height: 185,
+                margin: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 1,
+                      color: Color.fromRGBO(230, 227, 223, 1),
+                    )),
                 child: TextField(
                   controller: controllerTextField,
+                  keyboardType: TextInputType.text,
+                  maxLines: 15,
                   decoration: InputDecoration(
-                    hintText: ' Please write down the name of the medicine',
+                    hintText:
+                        'Please write the name of the medicine\nSeparated by commas',
                     hintStyle: const TextStyle(
                       fontFamily: 'Gilroy',
                       fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w400,
                     ),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
+                  onSubmitted: _onSubmitted,
                 ),
               ),
               const Spacer(),
               Container(
                 height: 54.0,
-                width: double.infinity,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
                   onPressed: _isButtonActive

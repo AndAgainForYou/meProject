@@ -100,11 +100,11 @@ class _CalculateMentalHealthWidgetState
                             if (isChecked) {
                               _selectedIndex = index;
                               _isButtonActive = true;
-                              // CalculateGlobalWidget.of(context)
-                              //     .userModelBuilder
-                              //     .mental_health_goals = [
-                              //   titles[_selectedIndex!]
-                              // ];
+                              CalculateGlobalWidget.of(context)
+                                  .userModelBuilder
+                                  .mental_health_goals = [
+                                titles[_selectedIndex!]
+                              ];
                             } else {
                               _selectedIndex = index;
                               _isButtonActive = false;

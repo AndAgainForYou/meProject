@@ -23,8 +23,9 @@ class _ProfileFourthTPDWidgetState extends State<ProfileFourthTPDWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
+          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -33,7 +34,7 @@ class _ProfileFourthTPDWidgetState extends State<ProfileFourthTPDWidget> {
                 children: [
                   Icon(Icons.arrow_back),
                   SizedBox(width: 8),
-                  Text('Back'),
+                  Text(''),
                 ],
               ),
               onPressed: () {
@@ -45,9 +46,11 @@ class _ProfileFourthTPDWidgetState extends State<ProfileFourthTPDWidget> {
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           surfaceTintColor: Colors.transparent,
-          title: Image.asset('assets/images/logo_small.png',
-          height: 32,
-          width: 32,),
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
         ),
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
@@ -63,7 +66,6 @@ class _ProfileFourthTPDWidgetState extends State<ProfileFourthTPDWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 63),
                 Text(
                   '4 TPD',
                   textAlign: TextAlign.center,
@@ -95,27 +97,31 @@ class _ProfileFourthTPDWidgetState extends State<ProfileFourthTPDWidget> {
                         },
                       ); */
 
-                       CustomListTileWithRadio(
-                        title: titles[index],
-                        isChecked: _selectedIndex == index,
-                        onTilePressed: (isChecked) {
-                           setState(() {
-                            _selectedIndex = isChecked ? index : null;
-                            _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
-                          });
-                        });
-                      
+                          CustomListTileWithRadio(
+                              title: titles[index],
+                              isChecked: _selectedIndex == index,
+                              customStyle: const TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              onTilePressed: (isChecked) {
+                                setState(() {
+                                  _selectedIndex = isChecked ? index : null;
+                                  _isButtonActive = true;
+                                  updateProfileData['tpds'] = titles[index];
+                                });
+                              });
                     },
                   ),
                 ),
                 Container(
-                   height: 54.0,
-                width: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: const Color.fromRGBO(164, 171, 155, 1),
-                ),
+                  height: 54.0,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(164, 171, 155, 1),
+                  ),
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:platy/features/calculation/theme.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_activity_sport.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_alergic_list.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_bones_check.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_chronic_diseases.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_cooking_chose.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_cousin_choose.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_current_diet.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_current_goals.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_degistive.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_diversity_plan.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_eco_friendly_list.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_emotional.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_food_preferences.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_freq_sport.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_first.dart';
@@ -15,6 +19,7 @@ import 'package:platy/features/mainPage/profile/profileHealth/profile_health_sta
 import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_second.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_third.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_height.dart';
+import 'package:platy/features/mainPage/profile/profileHealth/profile_hormone.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_local_products.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_medicaments.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_mental_health.dart';
@@ -39,11 +44,11 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     'Alegic list status',
     'Chronic Diseases status',
     'Frequency of Sport status',
-    'Weight Loss status',
     'Mental Health status',
     'Skin & Beauty status',
     'Food Preferences status',
     'Current Diet status',
+    'Cooking status',
     'Nutrition status',
     'Hormone panel status',
     'Bone Health status',
@@ -54,7 +59,6 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     'Supplements status',
     'Medicaments status',
     'Cousin List status',
-    'Eco Friendly products status',
     'Local Products status',
     'Diversity Plan status',
   ];
@@ -65,24 +69,21 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     const ProfileAlergicListWidget(),
     const ProfileChronicDiseasesListWidget(),
     const ProfileFreqSportWidget(),
-    const ProfileWeightLossSliderWidget(), //
-    
     const ProfileMentalHealthWidget(),
     const ProfileSkinAndBeautyWidget(),
     const ProfileFoodPreferencesWidget(),
     const ProfileCurrentDietWidget(),
     const ProfileCookingChoseWidget(),
     const ProfileNutritionAddWidget(),
-    //  'Hormone panel status',
-    //   'Bone Health status',
-    //   'Digestive Health',
-    //   'Emotional wellbeing',
-    //   'Current Goals',
+    const ProfileHormoneWidget(),
+    const ProfileBonesCheckUpWidget(),
+    const ProfileDigestiveWidget(),
+    const ProfileEmotionalWellbeingWidget(),
+    const ProfileCurrentGoalsWidget(),
     const ProfileHealthStatusHabitsWidget(),
     const ProfileSupplementsListWidget(),
     const ProfileMedicamentsWidget(),
     const ProfileCousinListWidget(),
-    const ProfileEcoFriendlyListWidget(),
     const ProfileLocalProductsWidget(),
     const ProfileDiversityPlanWidget(),
   ];
@@ -141,10 +142,13 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                 style: whiteTheme.textTheme.bodyMedium,
               ),
               const SizedBox(
-                height: 20,
+                height: 15,
               ),
               Column(
                 children: generateListWidgets(elementsTitles),
+              ),
+              const SizedBox(
+                height: 50,
               ),
             ],
           ),

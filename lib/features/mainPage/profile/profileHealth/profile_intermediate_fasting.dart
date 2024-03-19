@@ -27,8 +27,9 @@ class _ProfileIntermediateFastingWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
+          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -37,7 +38,7 @@ class _ProfileIntermediateFastingWidgetState
                 children: [
                   Icon(Icons.arrow_back),
                   SizedBox(width: 8),
-                  Text('Back'),
+                  Text(''),
                 ],
               ),
               onPressed: () {
@@ -49,9 +50,11 @@ class _ProfileIntermediateFastingWidgetState
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           surfaceTintColor: Colors.transparent,
-          title: Image.asset('assets/images/logo_small.png',
-          height: 32,
-          width: 32,),
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
         ),
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
@@ -73,7 +76,6 @@ class _ProfileIntermediateFastingWidgetState
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 63),
                 Text(
                   'Intermediate Fasting',
                   textAlign: TextAlign.center,
@@ -104,11 +106,16 @@ class _ProfileIntermediateFastingWidgetState
                           });
                         },
                       ); */
-                       CustomListTileWithRadio(
+                          CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _selectedIndex == index,
+                        customStyle: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
                         onTilePressed: (isChecked) {
-                           setState(() {
+                          setState(() {
                             if (isChecked) {
                               _selectedIndex = index;
                               _isButtonActive = true;
@@ -125,11 +132,11 @@ class _ProfileIntermediateFastingWidgetState
                 ),
                 Container(
                   height: 54.0,
-                width: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: const Color.fromRGBO(164, 171, 155, 1),
-                ),
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(164, 171, 155, 1),
+                  ),
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {

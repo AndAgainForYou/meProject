@@ -25,8 +25,9 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
+          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -35,7 +36,7 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
                 children: [
                   Icon(Icons.arrow_back),
                   SizedBox(width: 8),
-                  Text('Back'),
+                  Text(''),
                 ],
               ),
               onPressed: () {
@@ -47,9 +48,11 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           surfaceTintColor: Colors.transparent,
-          title: Image.asset('assets/images/logo_small.png',
-          height: 32,
-          width: 32,),
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
         ),
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
@@ -65,7 +68,6 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 63),
                 Text(
                   '3 TPD',
                   textAlign: TextAlign.center,
@@ -96,11 +98,16 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
                           });
                         },
                       ); */
-                       CustomListTileWithRadio(
+                          CustomListTileWithRadio(
                         title: titles[index],
                         isChecked: _selectedIndex == index,
+                        customStyle: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
                         onTilePressed: (isChecked) {
-                           setState(() {
+                          setState(() {
                             _selectedIndex = isChecked ? index : null;
                             updateProfileData['tpds'] = titles[index];
                             _isButtonActive = true;
@@ -111,12 +118,12 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
                   ),
                 ),
                 Container(
-                   height: 54.0,
-                width: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: const Color.fromRGBO(164, 171, 155, 1),
-                ),
+                  height: 54.0,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(164, 171, 155, 1),
+                  ),
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {

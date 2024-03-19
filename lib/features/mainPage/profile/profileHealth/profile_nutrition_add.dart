@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
+import 'package:platy/features/calculation/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
 class ProfileNutritionAddWidget extends StatefulWidget {
@@ -31,8 +31,9 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         appBar: AppBar(
+          toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: IconButton(
@@ -41,7 +42,7 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
                 children: [
                   Icon(Icons.arrow_back),
                   SizedBox(width: 8),
-                  Text('Back'),
+                  Text(''),
                 ],
               ),
               onPressed: () {
@@ -53,9 +54,11 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
           surfaceTintColor: Colors.transparent,
-          title: Image.asset('assets/images/logo_small.png',
-          height: 32,
-          width: 32,),
+          title: Image.asset(
+            'assets/images/logo_small.png',
+            height: 32,
+            width: 32,
+          ),
         ),
         body: BlocListener<PlatyBloc, PlatyBlocState>(
           listener: (context, state) {
@@ -69,9 +72,8 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 63),
                 Text(
-                  'Chose the ones you want to add',
+                  'Chose the ones you want\nto add',
                   textAlign: TextAlign.center,
                   style: whiteTheme.textTheme.bodyMedium,
                 ),
@@ -80,22 +82,11 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
                   child: ListView.builder(
                     itemCount: titles.length,
                     itemBuilder: (context, index) {
-                      return /* CustomListTile(
+                      return CustomListTile(
                         title: titles[index],
                         isChecked: _isCheckedList[index],
                         onTilePressed: (isChecked) {
                           setState(() {
-                            _isButtonActive = true;
-                            choosedTitles.add(titles[index]);
-                            _isCheckedList[index] = isChecked;
-                          });
-                        },
-                      ); */
-                      CustomListTileWithRadio(
-                        title: titles[index],
-                        isChecked: _isCheckedList[index],
-                        onTilePressed: (isChecked) {
-                           setState(() {
                             _isButtonActive = true;
                             choosedTitles.add(titles[index]);
                             _isCheckedList[index] = isChecked;
@@ -106,12 +97,12 @@ class _ProfileNutritionAddWidgetState extends State<ProfileNutritionAddWidget> {
                   ),
                 ),
                 Container(
-                 height: 54.0,
-                width: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: const Color.fromRGBO(164, 171, 155, 1),
-                ),
+                  height: 54.0,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(164, 171, 155, 1),
+                  ),
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/calculation/custom_list_tile_image.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
@@ -18,23 +19,35 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
     'French Cuisine',
     'Chinese Cuisine',
     'Japanese Cuisine',
-    'Indian Cuisine',
     'Mexican Cuisine',
+    'Indian Cuisine',
     'Mediterranean Cuisine',
     'Home style dinner',
   ];
+  List<String> imageTitles = [
+    'italian',
+    'french',
+    'chinese',
+    'japanese',
+    'mexican',
+    'indian',
+    'mediterranean',
+    'home-food',
+  ];
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
-  bool _isButtonActive = false;
   @override
   void initState() {
     super.initState();
     _isCheckedList = List.generate(titles.length, (index) => false);
   }
 
+  bool _isButtonActive = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -44,7 +57,7 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
               children: [
                 Icon(Icons.arrow_back),
                 SizedBox(width: 8),
-                Text('Back'),
+                Text(''),
               ],
             ),
             onPressed: () {
@@ -52,11 +65,16 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
             },
           ),
         ),
+        toolbarHeight: 90,
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -70,25 +88,35 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
-                'Which cousin do you want to choose?',
+                'World cuisine',
                 textAlign: TextAlign.center,
                 style: whiteTheme.textTheme.bodyMedium,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 14),
+              const Text(
+                'Choose the ones below',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: 'Gilroy',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 30),
               Expanded(
                 child: ListView.builder(
                   itemCount: titles.length,
                   itemBuilder: (context, index) {
-                    return CustomListTile(
+                    return CustomListTileWithImage(
                       title: titles[index],
                       isChecked: _isCheckedList[index],
+                      imageName: imageTitles[index],
                       onTilePressed: (isChecked) {
                         setState(() {
                           choosedTitles.add(titles[index]);
-                          _isButtonActive = true;
                           _isCheckedList[index] = isChecked;
+                          _isButtonActive = _isCheckedList.contains(true);
                         });
                       },
                     );
@@ -97,23 +125,17 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
               ),
               Container(
                 height: 54.0,
-                width: double.infinity,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
                   onPressed: _isButtonActive
                       ? () {
                           BlocProvider.of<PlatyBloc>(context).add(
-                              UpdateProfilePatchEvent({
-                            'outside_eating_cuisine': choosedTitles
-                          })); //TODO probably uncorrect param
+                              UpdateProfilePatchEvent(
+                                  {'outside_eating_cuisine': choosedTitles}));
                         }
                       : null,
                   style: ElevatedButton.styleFrom(

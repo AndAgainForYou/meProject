@@ -15,8 +15,13 @@ class CalculateSkinAndBeautyWidget extends StatefulWidget {
 class _CalculateSkinAndBeautyWidgetState
     extends State<CalculateSkinAndBeautyWidget> {
   List<String> titles = [
-    'Reduce Akne',
-    'Reduce skin aging effects',
+    'Reduce aging effects',
+    'Reduce Spider Veins and\nBroken Blood Vessels',
+    'Improve Hair Health',
+    'Reduce skin sensitivity',
+    'Reduce Dry Skin Effect',
+    'Reduce Acne',
+    'Reduce Hair Loss',
     'Improve Hair Health',
   ];
   List<bool> _isCheckedList = [];

@@ -16,8 +16,13 @@ class ProfileSkinAndBeautyWidget extends StatefulWidget {
 class _ProfileSkinAndBeautyWidgetState
     extends State<ProfileSkinAndBeautyWidget> {
   List<String> titles = [
-    'Reduce Akne',
-    'Reduce skin aging effects',
+    'Reduce aging effects',
+    'Reduce Spider Veins and\nBroken Blood Vessels',
+    'Improve Hair Health',
+    'Reduce skin sensitivity',
+    'Reduce Dry Skin Effect',
+    'Reduce Acne',
+    'Reduce Hair Loss',
     'Improve Hair Health',
   ];
   List<bool> _isCheckedList = [];
@@ -35,6 +40,7 @@ class _ProfileSkinAndBeautyWidgetState
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+        toolbarHeight: 90,
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: IconButton(
@@ -42,8 +48,6 @@ class _ProfileSkinAndBeautyWidgetState
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.arrow_back),
-                SizedBox(width: 8),
-                Text('Back'),
               ],
             ),
             onPressed: () {
@@ -55,9 +59,11 @@ class _ProfileSkinAndBeautyWidgetState
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png',
+        title: Image.asset(
+          'assets/images/logo_small.png',
           height: 32,
-          width: 32,),
+          width: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -71,7 +77,6 @@ class _ProfileSkinAndBeautyWidgetState
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
                 'Skin and Beauty',
                 textAlign: TextAlign.center,
@@ -98,17 +103,22 @@ class _ProfileSkinAndBeautyWidgetState
                       },
                     ); */
 
-                    CustomListTileWithRadio(
-                        title: titles[index],
-                        isChecked: _isCheckedList[index],
-                        onTilePressed: (isChecked) {
-                          setState(() {
+                        CustomListTileWithRadio(
+                      title: titles[index],
+                      isChecked: _isCheckedList[index],
+                      customStyle: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      onTilePressed: (isChecked) {
+                        setState(() {
                           choosedTitles.add(titles[index]);
                           _isButtonActive = true;
                           _isCheckedList[index] = isChecked;
                         });
-                        },
-                      );
+                      },
+                    );
                   },
                 ),
               ),
