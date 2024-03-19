@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platy/features/calculation/theme.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_activity_sport.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_alergic_list.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_chronic_diseases.dart';
@@ -37,18 +38,18 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     'Weight Status',
     'Alegic list status',
     'Chronic Diseases status',
-    'Sport Activity status',
     'Frequency of Sport status',
     'Weight Loss status',
     'Mental Health status',
     'Skin & Beauty status',
     'Food Preferences status',
     'Current Diet status',
-    'Cooking Choose status',
     'Nutrition status',
-    'Blood check-up status',
-    'Urine check-up status',
-    'Vitamin check-up status',
+    'Hormone panel status',
+    'Bone Health status',
+    'Digestive Health',
+    'Emotional wellbeing',
+    'Current Goals',
     'Habits status',
     'Supplements status',
     'Medicaments status',
@@ -63,18 +64,19 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     const ProfileWeightWidget(),
     const ProfileAlergicListWidget(),
     const ProfileChronicDiseasesListWidget(),
-    const ProfileActivitySportListWidget(),
     const ProfileFreqSportWidget(),
-    const ProfileWeightLossSliderWidget(),
+    const ProfileWeightLossSliderWidget(), //
     const ProfileMentalHealthWidget(),
     const ProfileSkinAndBeautyWidget(),
     const ProfileFoodPreferencesWidget(),
     const ProfileCurrentDietWidget(),
     const ProfileCookingChoseWidget(),
     const ProfileNutritionAddWidget(),
-    const ProfileHealthStatusFirstWidget(),
-    const ProfileHealthStatusSecondWidget(),
-    const ProfileHealthStatusThirdWidget(),
+    //  'Hormone panel status',
+    //   'Bone Health status',
+    //   'Digestive Health',
+    //   'Emotional wellbeing',
+    //   'Current Goals',
     const ProfileHealthStatusHabitsWidget(),
     const ProfileSupplementsListWidget(),
     const ProfileMedicamentsWidget(),
@@ -87,54 +89,63 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(top: 2.0),
-          child: IconButton(
-            icon: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.arrow_back),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text('Back')
-                ]),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-        leadingWidth: 90,
+        toolbarHeight: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.transparent,
-        title: const Text(
-          'Сhange filled data',
-          style: TextStyle(
-            fontSize: 18,
-            fontFamily: 'Gilroy',
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
+        leading: GestureDetector(
+          onTap: () async {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0, top: 4.0),
-            child: IconButton(
-                onPressed: () {},
-                icon: const Text(
-                  'Clear All',
-                  style: TextStyle(
-                      fontSize: 16, color: Color.fromRGBO(255, 87, 87, 1)),
-                )),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(18.0),
+              child: Text(
+                'Clear All',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.orange,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
           )
         ],
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
+        elevation: 0.0,
+        scrolledUnderElevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-              top: 10.0, left: 10.0, right: 10.0, bottom: 100.0),
+              top: 10.0, left: 10.0, right: 10.0, bottom: 10.0),
           child: Column(
-            children: generateListWidgets(elementsTitles),
+            children: [
+              Text(
+                'Change filled data',
+                textAlign: TextAlign.center,
+                style: whiteTheme.textTheme.bodyMedium,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Column(
+                children: generateListWidgets(elementsTitles),
+              ),
+            ],
           ),
         ),
       ),
@@ -143,14 +154,11 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
         child: Container(
           height: 52.0,
-          width: MediaQuery.of(context).size.width * 1,
+          width: 180,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Colors.white,
-              gradient: const LinearGradient(colors: [
-                Color(0xFF59A7A7),
-                Color(0xFFAFCD6D),
-              ])),
+            borderRadius: BorderRadius.circular(50),
+            color: Color.fromRGBO(164, 171, 155, 1),
+          ),
           child: FloatingActionButton(
             heroTag: "MyFirstPage",
             splashColor: Colors.transparent,
@@ -179,71 +187,80 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         child: Column(
           children: [
             Container(
+              margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
               width: MediaQuery.of(context).size.width * 1,
-              height: 52,
+              height: 140,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                    offset: Offset(1, 3),
-                    blurRadius: 9,
-                  ),
-                ],
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
+                  top: 20,
                   left: 16.0,
                   right: 16.0,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
                           '${index + 1}. ',
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         Text(
                           elements[index],
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => elemWidget[index]),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        padding: EdgeInsets.zero,
-                        minimumSize: const Size(30, 26),
-                        backgroundColor: Colors.blue,
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(
-                          top: 4.0,
-                          bottom: 4.0,
-                          left: 8.0,
-                          right: 8.0,
-                        ),
-                        child: Text(
-                          'Edit',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Gilroy',
-                            color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Vitamin D (Normal)\nCalcium (Normal)…', //TODO: Make data from server
+                            maxLines: 2,
+                            style: const TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black45,
+                            ),
                           ),
-                        ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => elemWidget[index],
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Edit',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                fontFamily: 'Montserrat',
+                                color: Color.fromRGBO(255, 163, 132, 1),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

@@ -14,32 +14,35 @@ class ProfileAlergicListWidget extends StatefulWidget {
 
 class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
   List<String> titles = [
-    'Dairy',
-    'Nuts',
-    'Gluten',
     'Shellfish',
-    'Soy',
+    'Nuts',
     'Eggs',
+    'Milk',
+    'Soy',
   ];
+  List<String> pictureTitle = [
+    'shellfish',
+    'nuts',
+    'eggs',
+    'milk',
+    'soy',
+  ];
+  List<String> _selectedOptions = List.filled(5, '');
+  TextEditingController? controllerTextField;
+  List<String> alergicArray = [];
+  String? _textValue;
+
   List<bool> _isCheckedList = [];
   List<String> choosedTitles = [];
   Map<String, dynamic> updateProfileData = {};
-  TextEditingController? controllerTextField;
-  List<String> alergicArray = [];
   bool _isButtonActive = false;
-  @override
-  void initState() {
-    super.initState();
-    controllerTextField = TextEditingController();
-    controllerTextField!.addListener(_onTextFieldChanged);
-    _isCheckedList = List.generate(titles.length, (index) => false);
-  }
 
-  void _onTextFieldChanged() {
+  void isActive() {
     setState(() {
-      if (controllerTextField!.text.isNotEmpty) {
-        alergicArray = controllerTextField!.text.split(',');
+      if (controllerTextField!.text.isNotEmpty || choosedTitles.isNotEmpty) {
+        alergicArray = _textValue != null ? _textValue!.split(',') : [];
         choosedTitles.addAll(alergicArray);
+        updateProfileData['alergies'] = choosedTitles;
         _isButtonActive = true;
       } else {
         _isButtonActive = false;
@@ -50,7 +53,9 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: IconButton(
@@ -69,7 +74,6 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
         ),
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
         title: Image.asset('assets/images/logo_small.png'),
       ),
@@ -85,109 +89,213 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 63),
               Text(
                 'What are you allergic to?',
                 textAlign: TextAlign.center,
                 style: whiteTheme.textTheme.bodyMedium,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 14),
               const Text(
-                'If you are not allergic, skip this step.',
+                'If you are not allergic, skip this step',
                 style: TextStyle(
                   fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 30),
-              Container(
-                height: 100,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                  ],
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: ' Add your option separated by commas',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'Gilroy',
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: titles.length,
-                  itemBuilder: (context, index) {
-                    return CustomListTile(
-                      title: titles[index],
-                      isChecked: _isCheckedList[index],
-                      onTilePressed: (isChecked) {
-                        setState(() {
-                          choosedTitles.add(titles[index]);
-                          _isCheckedList[index] = isChecked;
-                          _onTextFieldChanged();
-                          _isButtonActive = true;
-                          updateProfileData['alergies'] = choosedTitles;
-                        });
-                      },
+              const SizedBox(height: 20),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: titles.length,
+                itemBuilder: (context, index) {
+                  if (index < titles.length - 1) {
+                    return Container(
+                      height: 140,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "   ${titles[index]}",
+                                style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                                textAlign: TextAlign.start,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    choosedTitles.remove(titles[index]);
+                                    isActive();
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Radio(
+                                      value: 'No',
+                                      activeColor: const Color.fromRGBO(
+                                          164, 171, 155, 1),
+                                      groupValue: _selectedOptions[index],
+                                      onChanged: (value) {
+                                        setState(() {
+                                          choosedTitles.remove(titles[index]);
+                                          isActive();
+                                        });
+                                      },
+                                    ),
+                                    const Text('No'),
+                                  ],
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    choosedTitles.add(titles[index]);
+                                    isActive();
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Radio(
+                                      activeColor: const Color.fromRGBO(
+                                          164, 171, 155, 1),
+                                      value: 'Yes',
+                                      groupValue: _selectedOptions[index],
+                                      onChanged: (value) {
+                                        setState(() {
+                                          choosedTitles.add(titles[index]);
+                                          isActive();
+                                        });
+                                      },
+                                    ),
+                                    const Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                        fontFamily: 'Gillroy',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Image.asset(
+                              'assets/images/${pictureTitle[index]}.png'),
+                        ],
+                      ),
                     );
-                  },
-                ),
-              ),
-              Container(
-                height: 54.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
-                ),
-                child: ElevatedButton(
-                  onPressed: _isButtonActive
-                      ? () {
-                          BlocProvider.of<PlatyBloc>(context)
-                              .add(UpdateProfilePatchEvent(updateProfileData));
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                    ),
-                  ),
-                  child: const Text(
-                    'Save',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                  } else {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'Other',
+                          textAlign: TextAlign.center,
+                          style: whiteTheme.textTheme.bodyMedium,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          height: 180,
+                          width: 340,
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                    0, 0, 0, 0.09000000357627869),
+                                offset: Offset(1, 3),
+                                blurRadius: 9,
+                              ),
+                            ],
+                          ),
+                          child: TextField(
+                            controller: controllerTextField,
+                            onSubmitted: (text) {
+                              setState(() {
+                                _textValue = text;
+                                isActive();
+                              });
+                            },
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              hintText: ' Add your option separated by commas',
+                              hintStyle: const TextStyle(
+                                fontFamily: 'Gilroy',
+                                fontSize: 14,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          height: 54.0,
+                          width: 180,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Color.fromRGBO(164, 171, 155, 1),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _isButtonActive
+                                  ? BlocProvider.of<PlatyBloc>(context).add(
+                                      UpdateProfilePatchEvent(
+                                          updateProfileData))
+                                  : null;
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(22.0),
+                              ),
+                            ),
+                            child: const Text(
+                              'Save',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
             ],
           ),
