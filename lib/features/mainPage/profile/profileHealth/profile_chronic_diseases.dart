@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
@@ -50,6 +51,7 @@ class _ProfileChronicDiseasesListWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -69,9 +71,13 @@ class _ProfileChronicDiseasesListWidgetState
         ),
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          height: 32,
+          width: 32,
+        ),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -102,78 +108,116 @@ class _ProfileChronicDiseasesListWidgetState
                 ),
               ),
               const SizedBox(height: 30),
-              Container(
-                height: 100,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                      offset: Offset(1, 3),
-                      blurRadius: 9,
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: ' Add your option separated by commas',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'Gilroy',
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
-                  itemCount: titles.length,
+                  itemCount: titles.length + 1, // Add 1 for the last element
                   itemBuilder: (context, index) {
-                    return CustomListTile(
-                      title: titles[index],
-                      isChecked: _isCheckedList[index],
-                      onTilePressed: (isChecked) {
-                        setState(() {
-                          choosedTitles.add(titles[index]);
-                          _isCheckedList[index] = isChecked;
-                          _onTextFieldChanged();
-                          _isButtonActive = true;
-                          updateProfileData['chronic_diseases'] = choosedTitles;
-                        });
-                      },
-                    );
+                    if (index < titles.length) {
+                      // Render custom list tile for titles
+                      return /*CustomListTile(
+                        title: titles[index],
+                        isChecked: _isCheckedList[index],
+                        onTilePressed: (isChecked) {
+                          setState(() {
+                            choosedTitles.add(titles[index]);
+                            _isCheckedList[index] = isChecked;
+                            _onTextFieldChanged();
+                            _isButtonActive = true;
+                            updateProfileData['chronic_diseases'] =
+                                choosedTitles;
+                          });
+                        },
+                      ); */
+                          CustomListTileWithRadio(
+                        title: titles[index],
+                        isChecked: _isCheckedList[index],
+                        onTilePressed: (isChecked) {
+                          setState(() {
+                            if (isChecked) {
+                              // Якщо вже вибрано, видаляємо
+                              choosedTitles.add(titles[index]);
+                              
+                               
+                            } else {
+                              // Якщо не вибрано, додаємо
+                              choosedTitles.remove(titles[index]);
+                             
+                            }
+                            _isCheckedList[index] = isChecked;
+                            _onTextFieldChanged();
+                            
+                            _isButtonActive = true;
+                            updateProfileData['chronic_diseases'] =
+                                choosedTitles;
+                          });
+                          print(_isButtonActive);
+                        },
+                      );
+                    } else {
+                      // Render TextField in a Container as the last element
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Container(
+                              height: 180,
+                              width: 340,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.white,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(
+                                        0, 0, 0, 0.09000000357627869),
+                                    offset: Offset(1, 3),
+                                    blurRadius: 9,
+                                  ),
+                                ],
+                              ),
+                              child: TextField(
+                                controller: controllerTextField,
+                                onSubmitted: (text) {
+                                  setState(() {
+                                    controllerTextField = text as TextEditingController?;
+                                    _onTextFieldChanged();
+                                  });
+                                },
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  hintText:
+                                      ' Add your option separated by commas',
+                                  hintStyle: const TextStyle(
+                                    fontFamily: 'Gilroy',
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                      );
+                    }
                   },
                 ),
               ),
               Container(
                 height: 54.0,
-                width: double.infinity,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
-                  onPressed: _isButtonActive
-                      ? () {
-                          BlocProvider.of<PlatyBloc>(context)
-                              .add(UpdateProfilePatchEvent(updateProfileData));
-                        }
-                      : null,
+                  onPressed:  () {
+                                  _isButtonActive
+                                      ? BlocProvider.of<PlatyBloc>(context).add(
+                                          UpdateProfilePatchEvent(
+                                              updateProfileData))
+                                      : null;
+                                },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,

@@ -19,6 +19,7 @@ class _ProfileFastingDaysWidgetState extends State<ProfileFastingDaysWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -38,9 +39,11 @@ class _ProfileFastingDaysWidgetState extends State<ProfileFastingDaysWidget> {
         ),
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset('assets/images/logo_small.png',
+          height: 32,
+          width: 32,),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -91,14 +94,14 @@ class _ProfileFastingDaysWidgetState extends State<ProfileFastingDaysWidget> {
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      Color(0xFFFF8064),
-                                      Color(0xFFDB3D1A),
+                                      Color.fromRGBO(164, 171, 155, 1),
+                                      Color.fromRGBO(164, 171, 155, 1),
                                     ],
                                   )
                                 : null,
                             color: isSelected[index]
                                 ? null
-                                : const Color.fromRGBO(23, 23, 23, 0.25),
+                                : Color.fromRGBO(255, 255, 255, 1),
                           ),
                           child: Center(
                             child: Text(
@@ -106,7 +109,7 @@ class _ProfileFastingDaysWidgetState extends State<ProfileFastingDaysWidget> {
                               style: TextStyle(
                                 color: isSelected[index]
                                     ? Colors.white
-                                    : Colors.white,
+                                    : Colors.grey,
                                 fontSize: 18,
                                 fontFamily: 'Gilroy',
                               ),
@@ -120,16 +123,11 @@ class _ProfileFastingDaysWidgetState extends State<ProfileFastingDaysWidget> {
               ),
               const Spacer(),
               Container(
-                height: 54.0,
-                width: double.infinity,
+               height: 54.0,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
                   onPressed: _isButtonActive

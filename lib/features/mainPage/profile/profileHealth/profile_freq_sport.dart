@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
@@ -28,7 +29,9 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+        
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: IconButton(
@@ -47,9 +50,11 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
         ),
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset('assets/images/logo_small.png',
+          height: 32,
+          width: 32,),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -74,7 +79,7 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
                 child: ListView.builder(
                   itemCount: titles.length,
                   itemBuilder: (context, index) {
-                    return CustomListTile(
+                    return /*CustomListTile(
                       title: titles[index],
                       isChecked: _selectedIndex == index,
                       onTilePressed: (isChecked) {
@@ -90,21 +95,33 @@ class _ProfileFreqSportWidgetState extends State<ProfileFreqSportWidget> {
                           }
                         });
                       },
-                    );
+                    ); */
+                    CustomListTileWithRadio(
+                        title: titles[index],
+                        isChecked: _selectedIndex == index,
+                        onTilePressed: (isChecked) {
+                           setState(() {
+                          if (isChecked) {
+                            _selectedIndex = index;
+                            updateProfileData['activities_frequency'] =
+                                titles[index];
+                            _isButtonActive = true;
+                          } else {
+                            _selectedIndex = null;
+                            _isButtonActive = false;
+                          }
+                        });
+                        },
+                      );
                   },
                 ),
               ),
               Container(
                 height: 54.0,
-                width: double.infinity,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
                   onPressed: _isButtonActive

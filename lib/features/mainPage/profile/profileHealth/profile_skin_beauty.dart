@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
+import 'package:platy/features/calculation/custom_list_tile_with_radio.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/custom_list_tile.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/theme.dart';
 
@@ -32,6 +33,7 @@ class _ProfileSkinAndBeautyWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -51,9 +53,11 @@ class _ProfileSkinAndBeautyWidgetState
         ),
         leadingWidth: 90,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         surfaceTintColor: Colors.transparent,
-        title: Image.asset('assets/images/logo_small.png'),
+        title: Image.asset('assets/images/logo_small.png',
+          height: 32,
+          width: 32,),
       ),
       body: BlocListener<PlatyBloc, PlatyBlocState>(
         listener: (context, state) {
@@ -82,7 +86,7 @@ class _ProfileSkinAndBeautyWidgetState
                 child: ListView.builder(
                   itemCount: titles.length,
                   itemBuilder: (context, index) {
-                    return CustomListTile(
+                    return /* CustomListTile(
                       title: titles[index],
                       isChecked: _isCheckedList[index],
                       onTilePressed: (isChecked) {
@@ -92,21 +96,28 @@ class _ProfileSkinAndBeautyWidgetState
                           _isCheckedList[index] = isChecked;
                         });
                       },
-                    );
+                    ); */
+
+                    CustomListTileWithRadio(
+                        title: titles[index],
+                        isChecked: _isCheckedList[index],
+                        onTilePressed: (isChecked) {
+                          setState(() {
+                          choosedTitles.add(titles[index]);
+                          _isButtonActive = true;
+                          _isCheckedList[index] = isChecked;
+                        });
+                        },
+                      );
                   },
                 ),
               ),
               Container(
                 height: 54.0,
-                width: double.infinity,
+                width: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF59A7A7),
-                      Color(0xFFAFCD6D),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color.fromRGBO(164, 171, 155, 1),
                 ),
                 child: ElevatedButton(
                   onPressed: _isButtonActive
