@@ -41,22 +41,22 @@ class _MainHomePageState extends State<MainHomePage> {
     super.dispose();
   }
 
- void _onScroll() {
-  if (_selectedIndex >= 0 && _selectedIndex < _scrollControllers.length) {
-    final selectedController = _scrollControllers[_selectedIndex];
-    if (selectedController.hasClients) {
-      if (selectedController.offset > 50 && !_isScrolled) {
-        setState(() {
-          _isScrolled = true;
-        });
-      } else if (selectedController.offset <= 50 && _isScrolled) {
-        setState(() {
-          _isScrolled = false;
-        });
+  void _onScroll() {
+    if (_selectedIndex >= 0 && _selectedIndex < _scrollControllers.length) {
+      final selectedController = _scrollControllers[_selectedIndex];
+      if (selectedController.hasClients) {
+        if (selectedController.offset > 50 && !_isScrolled) {
+          setState(() {
+            _isScrolled = true;
+          });
+        } else if (selectedController.offset <= 50 && _isScrolled) {
+          setState(() {
+            _isScrolled = false;
+          });
+        }
       }
     }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,7 @@ class _MainHomePageState extends State<MainHomePage> {
         },
         children: [
           MainHome(
-              scrollController: _scrollControllers[0], 
-              isScrolled: _isScrolled),
+              scrollController: _scrollControllers[0], isScrolled: _isScrolled),
           const MealPlanPage(),
           const DiaryPage(),
           const ProfilePage(),
@@ -165,7 +164,8 @@ class MainHome extends StatefulWidget {
   final ScrollController scrollController;
   final bool isScrolled;
 
-  const MainHome({Key? key, required this.scrollController, required this.isScrolled})
+  const MainHome(
+      {Key? key, required this.scrollController, required this.isScrolled})
       : super(key: key);
 
   @override
@@ -302,6 +302,7 @@ class _MainHomeState extends State<MainHome> {
           controller: widget.scrollController,
           slivers: [
             SliverAppBar(
+              centerTitle: true,
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0,
               expandedHeight: 0.0,
@@ -407,7 +408,8 @@ class _MainHomeState extends State<MainHome> {
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0, top: 0.0),
                             child: CircularPercentIndicator(
-                              backgroundColor: const Color.fromRGBO(230, 227, 223, 1),
+                                backgroundColor:
+                                    const Color.fromRGBO(230, 227, 223, 1),
                                 radius: 100,
                                 lineWidth: 16.0,
                                 percent: 0.89,
@@ -532,8 +534,10 @@ class _MainHomeState extends State<MainHome> {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
-                           PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-                          platyBloc.add(MealPlanDataEvent(const {}));
+
+                          PlatyBloc platyBloc =
+                              BlocProvider.of<PlatyBloc>(context);
+                          // platyBloc.add(MealPlanDataEvent());
                           Navigator.push(
                             context,
                             MaterialPageRoute(

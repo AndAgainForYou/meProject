@@ -29,6 +29,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+          centerTitle: true,
           title: Image.asset(
             'assets/images/logo_small.png',
             width: 32,
@@ -56,32 +57,31 @@ class _SeeMorePageState extends State<SeeMorePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                   ClipRect(
-                          child: Stack(
-                            children: [
-                              Container(
-                              decoration:
-                                  const BoxDecoration(color: Colors.transparent),
-                              height: 300,
-                              width: MediaQuery.of(context).size.width * 0.42,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 0.0),
-                                child: RotationTransition(
-                                  turns: const AlwaysStoppedAnimation(-70 / 360),
-                                  child: CircularArchProgressBar(
-                                    value: -40.0,
-                                    fillGradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFFffa384),
-                                        Color(0xFFffa384),
-                                        Color(0xFFa4aa9c),
-                                      ],
-                                    ),
-                                  ),
+                    ClipRect(
+                      child: Stack(children: [
+                        Container(
+                          decoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          height: 300,
+                          width: MediaQuery.of(context).size.width * 0.42,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 0.0),
+                            child: RotationTransition(
+                              turns: const AlwaysStoppedAnimation(-70 / 360),
+                              child: CircularArchProgressBar(
+                                value: -40.0,
+                                fillGradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFFffa384),
+                                    Color(0xFFffa384),
+                                    Color(0xFFa4aa9c),
+                                  ],
                                 ),
                               ),
                             ),
-                             Positioned(
+                          ),
+                        ),
+                        Positioned(
                           left: 16,
                           bottom: 165,
                           child: const Text(
@@ -92,12 +92,8 @@ class _SeeMorePageState extends State<SeeMorePage> {
                             ),
                           ),
                         )
-                            ]
-                          ),
-                        ),
-                       
-                      
-                    
+                      ]),
+                    ),
                     const SizedBox(width: 20),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.44,
