@@ -534,6 +534,7 @@ class _MainHomeState extends State<MainHome> {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
+
                           PlatyBloc platyBloc =
                               BlocProvider.of<PlatyBloc>(context);
                           // platyBloc.add(MealPlanDataEvent());

@@ -14,6 +14,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
   late final ScrollController _scrollController;
   List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
+  //late List<Map<String, dynamic>> mealPlan = [];
+
   bool _showDetails = false;
   bool _showDetails2 = false;
   bool _showDetails3 = false;
@@ -21,12 +23,80 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   int _currentPageIndex = 0;
 
+  /*static const String _mealPlanText = '''
+Day 1:
+- Breakfast: Quinoa porridge with berries (200g quinoa, 100g mixed berries) - 350 calories
+- Lunch: Grilled chicken breast with roasted vegetables (150g chicken, 200g mixed vegetables) - 400 calories
+- Dinner: Baked salmon with sweet potato and asparagus (150g salmon, 200g sweet potato, 100g asparagus) - 450 calories
+Day 2:
+- Breakfast: Chia seed pudding with almond milk and raspberries (30g chia seeds, 200ml almond milk, 100g raspberries) - 300 calories
+- Lunch: Grilled turkey burger on lettuce wraps with avocado (150g turkey, 50g avocado, lettuce) - 350 calories
+- Dinner: Baked cod with quinoa and steamed broccoli (150g cod, 200g quinoa, 100g broccoli) - 400 calories
+'''; */
+
+  //late List<Map<String, dynamic>> parsedMealPlan;
+
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
+    // Імітуємо отримання тексту плану харчування
+   
+
+  //parsedMealPlan = parseMealPlan(_mealPlanText);
+  //print('parsedMealPlan ----- $parsedMealPlan');
   }
+
+
+
+/* List<Map<String, dynamic>> parseMealPlan(String mealPlanText) {
+  final List<Map<String, dynamic>> mealPlan = [];
+  final List<String> days = mealPlanText.split('Day ');
+
+  for (int i = 1; i < days.length; i++) {
+    final List<String> lines = days[i].trim().split('\n');
+    final List<Map<String, dynamic>> meals = [];
+
+    for (final line in lines) {
+      final List<String> parts = line.split(': ');
+      if (parts.length != 2) {
+        print('Unexpected format in line: $line');
+        continue; // Skip this line
+      }
+      final String mealName = parts[0].trim();
+      final String details = parts[1].trim();
+
+      final Map<String, dynamic> mealDetails = {};
+      final List<String> detailParts = details.split(' - ');
+
+      for (final part in detailParts) {
+        final List<String> detailInfo = part.split(': ');
+        if (detailInfo.length != 2) {
+          print('Unexpected format in detail: $part');
+          continue; // Skip this detail
+        }
+        final String key = detailInfo[0].trim();
+        final String value = detailInfo[1].trim();
+        mealDetails[key] = value;
+      }
+
+      meals.add({'name': mealName, 'details': mealDetails});
+    }
+
+    mealPlan.add({'day': 'Day $i', 'meals': meals});
+  }
+
+  return mealPlan;
+}
+*/
+
+
+
+
+
+
+
 
   @override
   void dispose() {
@@ -141,6 +211,22 @@ class _MealPlanPageState extends State<MealPlanPage> {
     const Color.fromRGBO(244, 177, 131, 1),
     const Color.fromRGBO(223, 166, 123, 1),
   ];
+
+
+
+
+  
+
+ 
+
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -405,277 +491,236 @@ class _MealPlanPageState extends State<MealPlanPage> {
                         ],
                       ),
                       const SizedBox(height: 20),
+
+
+
+
+
+                  Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: dataList.map<Widget>((data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: dataList.map<Widget>((data) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 0.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                  child: Column(
+                        children: [
+                          Text(
+                            data['title'],
+                            style: const TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            data['subtitle'],
+                            style: const TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Image.asset(
+                        'assets/images/' + data['image'],
+                        width: 140,
+                        height: 140,
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: data['title'] == 'Breakfast'
+                      ? !_showDetails
+                      : data['title'] == 'Lunch'
+                          ? !_showDetails2
+                          : data['title'] == 'Dinner'
+                              ? !_showDetails3
+                              : data['title'] == 'Snack'
+                                  ? !_showDetails4
+                                  : false,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        switch (data['title']) {
+                          case 'Breakfast':
+                            _showDetails = !_showDetails;
+                            break;
+                          case 'Lunch':
+                            _showDetails2 = !_showDetails2;
+                            break;
+                          case 'Dinner':
+                            _showDetails3 = !_showDetails3;
+                            break;
+                          case 'Snack':
+                            _showDetails4 = !_showDetails4;
+                            break;
+                        }
+                      });
+                    },
+                    child: Center(
+                      child: Icon(
+                        _getIconForTitle(data['title'], data['details']),
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                ),
+                if (_shouldShowDetails(data['title']))
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 16.0, bottom: 2.0, left: 16.0),
+                    child: Column(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: data['details']
+                              .map<Widget>((detail) {
+                            return Column(
+                              children: [
+                                const Divider(),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _currentPageIndex = 0;
+                                    });
+                                    _showModalBottomSheet(
+                                        context, detail['name']);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  data['title'],
-                                                  style: const TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Text(
-                                                  data['subtitle'],
-                                                  style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                            Image.asset(
-                                              'assets/images/' + data['image'],
-                                              width: 140,
-                                              height: 140,
-                                            ),
-                                          ],
-                                        ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            detail['name'],
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          Text(
+                                            detail['amount'],
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.grey),
+                                          ),
+                                        ],
                                       ),
-                                      Visibility(
-                                        visible: data['title'] == 'Breakfast'
-                                            ? !_showDetails
-                                            : data['title'] == 'Lunch'
-                                                ? !_showDetails2
-                                                : data['title'] == 'Dinner'
-                                                    ? !_showDetails3
-                                                    : data['title'] == 'Snack'
-                                                        ? !_showDetails4
-                                                        : false,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              switch (data['title']) {
-                                                case 'Breakfast':
-                                                  _showDetails = !_showDetails;
-                                                  break;
-                                                case 'Lunch':
-                                                  _showDetails2 =
-                                                      !_showDetails2;
-                                                  break;
-                                                case 'Dinner':
-                                                  _showDetails3 =
-                                                      !_showDetails3;
-                                                  break;
-                                                case 'Snack':
-                                                  _showDetails4 =
-                                                      !_showDetails4;
-                                                  break;
-                                              }
-                                            });
-                                          },
-                                          child: Center(
-                                            child: Icon(
-                                              _getIconForTitle(data['title'],
-                                                  data['details']),
-                                              size: 30,
-                                            ),
+                                      Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          gradient: const LinearGradient(
+                                            begin: Alignment(0.0, -1.0),
+                                            end: Alignment(1.0, 1.0),
+                                            colors: [
+                                              Color.fromRGBO(
+                                                  205, 201, 196, 0.24),
+                                              Color.fromRGBO(
+                                                  205, 201, 196, 0.24)
+                                            ],
+                                            stops: [0.0, 1.0],
                                           ),
                                         ),
-                                      ),
-                                      if (_shouldShowDetails(data['title']))
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 16.0,
-                                              bottom: 2.0,
-                                              left: 16.0),
+                                        padding: const EdgeInsets.all(8),
+                                        child: const Center(
                                           child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: data['details']
-                                                    .map<Widget>((detail) {
-                                                  return Column(
-                                                    children: [
-                                                      const Divider(),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _currentPageIndex =
-                                                                0;
-                                                          });
-                                                          _showModalBottomSheet(
-                                                              context,
-                                                              detail['name']);
-                                                        },
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  detail[
-                                                                      'name'],
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400),
-                                                                ),
-                                                                Text(
-                                                                  detail[
-                                                                      'amount'],
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Container(
-                                                              width: 50,
-                                                              height: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                                gradient:
-                                                                    const LinearGradient(
-                                                                  begin:
-                                                                      Alignment(
-                                                                          0.0,
-                                                                          -1.0),
-                                                                  end:
-                                                                      Alignment(
-                                                                          1.0,
-                                                                          1.0),
-                                                                  colors: [
-                                                                    Color.fromRGBO(
-                                                                        205,
-                                                                        201,
-                                                                        196,
-                                                                        0.24),
-                                                                    Color.fromRGBO(
-                                                                        205,
-                                                                        201,
-                                                                        196,
-                                                                        0.24)
-                                                                  ],
-                                                                  stops: [
-                                                                    0.0,
-                                                                    1.0
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8),
-                                                              child:
-                                                                  const Center(
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      '283',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      'kcal',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      const SizedBox(height: 5),
-                                                    ],
-                                                  );
-                                                }).toList(),
+                                              Text(
+                                                '283',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    switch (data['title']) {
-                                                      case 'Breakfast':
-                                                        _showDetails =
-                                                            !_showDetails;
-                                                        break;
-                                                      case 'Lunch':
-                                                        _showDetails2 =
-                                                            !_showDetails2;
-                                                        break;
-                                                      case 'Dinner':
-                                                        _showDetails3 =
-                                                            !_showDetails3;
-                                                        break;
-                                                      case 'Snack':
-                                                        _showDetails4 =
-                                                            !_showDetails4;
-                                                        break;
-                                                    }
-                                                  });
-                                                },
-                                                child: Center(
-                                                  child: Icon(
-                                                    _getIconForTitle(
-                                                        data['title'],
-                                                        data['details']),
-                                                    size: 30,
-                                                  ),
-                                                ),
+                                              Text(
+                                                'kcal',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),
                                         ),
+                                      )
                                     ],
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 16.0),
-                            ],
-                          );
-                        }).toList(),
-                      ),
+                                const SizedBox(height: 5),
+                              ],
+                            );
+                          }).toList(),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              switch (data['title']) {
+                                case 'Breakfast':
+                                  _showDetails = !_showDetails;
+                                  break;
+                                case 'Lunch':
+                                  _showDetails2 = !_showDetails2;
+                                  break;
+                                case 'Dinner':
+                                  _showDetails3 = !_showDetails3;
+                                  break;
+                                case 'Snack':
+                                  _showDetails4 = !_showDetails4;
+                                  break;
+                              }
+                            });
+                          },
+                          child: Center(
+                            child: Icon(
+                              _getIconForTitle(data['title'], data['details']),
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 16.0),
+      ],
+    );
+  }).toList(),
+),
+
+
+
+
+
+
+
+
+
+
+
+
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

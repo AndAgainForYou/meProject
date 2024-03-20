@@ -87,6 +87,29 @@ class ApiService {
     }
   }
 
+
+   Future<List> fetchDataPlan(
+      String path, Map<String, dynamic> getData) async {
+    final response = await _dio.post(
+      path,
+      data: getData,
+      queryParameters: TokenManager._token?.isNotEmpty == true
+          ? {'user_id': TokenManager.getUserId()}
+          : null,
+      options: _getTokenOptions(),
+    );
+    print(response.statusCode);
+    if (response.statusCode == 401) {
+      await refreshToken();
+      return fetchDataPlan(path, getData);
+    } else {
+      return response.data;
+    }
+  }
+
+
+
+
   Future<Map<String, dynamic>> postData(
       String path, Map<String, dynamic> postsData) async {
     final response = await _dio.post(
