@@ -156,6 +156,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
           controller: _scrollController,
           slivers: [
             SliverAppBar(
+              centerTitle: true,
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0,
               expandedHeight: 0.0,
@@ -692,14 +693,18 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                 ),
                                 color: Colors.transparent,
                               ),
-                              child: const Center(child: Text('Add a note', style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(164, 171, 155, 1),
-                              ),)),
+                              child: const Center(
+                                  child: Text(
+                                'Add a note',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(164, 171, 155, 1),
+                                ),
+                              )),
                             ),
                           ),
-                           GestureDetector(
+                          GestureDetector(
                             onTap: () {},
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.445,
@@ -712,11 +717,15 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                 ),
                                 color: const Color.fromRGBO(164, 171, 155, 1),
                               ),
-                              child: const Center(child: Text('Save meal plan', style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),)),
+                              child: const Center(
+                                  child: Text(
+                                'Save meal plan',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              )),
                             ),
                           ),
                         ],
