@@ -56,35 +56,34 @@ class _SeeMorePageState extends State<SeeMorePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Stack(
-                      children: [
-                        ClipRect(
-                          child: Container(
-                            decoration:
-                                const BoxDecoration(color: Colors.transparent),
-                            height: 300,
-                            width: MediaQuery.of(context).size.width * 0.42,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0.0),
-                              child: RotationTransition(
-                                turns: const AlwaysStoppedAnimation(-70 / 360),
-                                child: CircularArchProgressBar(
-                                  value: -40.0,
-                                  fillGradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xFFffa384),
-                                      Color(0xFFffa384),
-                                      Color(0xFFa4aa9c),
-                                    ],
+                   ClipRect(
+                          child: Stack(
+                            children: [
+                              Container(
+                              decoration:
+                                  const BoxDecoration(color: Colors.transparent),
+                              height: 300,
+                              width: MediaQuery.of(context).size.width * 0.42,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 0.0),
+                                child: RotationTransition(
+                                  turns: const AlwaysStoppedAnimation(-70 / 360),
+                                  child: CircularArchProgressBar(
+                                    value: -40.0,
+                                    fillGradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFFffa384),
+                                        Color(0xFFffa384),
+                                        Color(0xFFa4aa9c),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        Positioned(
+                             Positioned(
                           left: 16,
-                          bottom: MediaQuery.of(context).size.height / 5.1,
+                          bottom: 165,
                           child: const Text(
                             '23/31',
                             style: TextStyle(
@@ -93,8 +92,12 @@ class _SeeMorePageState extends State<SeeMorePage> {
                             ),
                           ),
                         )
-                      ],
-                    ),
+                            ]
+                          ),
+                        ),
+                       
+                      
+                    
                     const SizedBox(width: 20),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.44,
