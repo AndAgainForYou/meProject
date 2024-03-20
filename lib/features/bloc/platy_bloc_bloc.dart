@@ -161,9 +161,9 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         );
 
         final response = await apiService
-            .postData('/apple-login/', {'accessToken': result.identityToken});
+            .postData('/apple-login/', {'identityToken': result.identityToken});
        
-        print(result);
+        //print(result);
 
         print(response);
 
@@ -344,7 +344,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
   on<MealPlanDataEvent>((event, emit) async {
       //partical update
-      final response = await apiService.postData('/week-meelplan/', {});
+      final response = await apiService.fetchDataPlan('/week-meelplan/', event.data);
       
       print(response);
       

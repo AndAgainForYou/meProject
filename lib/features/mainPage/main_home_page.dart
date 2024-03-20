@@ -533,7 +533,7 @@ class _MainHomeState extends State<MainHome> {
                       GestureDetector(
                         onTap: () {
                            PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-                         // platyBloc.add(MealPlanDataEvent());
+                          platyBloc.add(MealPlanDataEvent(const {}));
                           Navigator.push(
                             context,
                             MaterialPageRoute(

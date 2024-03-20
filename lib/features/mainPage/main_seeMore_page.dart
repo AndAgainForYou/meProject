@@ -801,7 +801,7 @@ class CircularArchProgressBarPainter extends CustomPainter {
     final double sweepAngle = 2 * math.pi * (value / 100);
 
     const double startAngle2 = 2.8; // Починаємо з правого боку
-    const double sweepAngle2 = 2 * math.pi * (-41.5 / 83);
+    const double sweepAngle2 = 2 * math.pi * (-41.5 / 8);
 
     // Apply gradient color
     paint.shader = fillGradient.createShader(
