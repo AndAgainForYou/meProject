@@ -11,7 +11,7 @@ class DiaryAddPage extends StatefulWidget {
   final TextEditingController? monthController;
   final TextEditingController? yearController;
   final TextEditingController? bodyEditingController;
-  final List<int?>? questionSelectedStates;
+  final List<String?>? questionSelectedStates;
   const DiaryAddPage({
     Key? key,
     this.titleController,
@@ -34,7 +34,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   late TextEditingController _monthController;
   late TextEditingController _yearController;
   late TextEditingController _bodyEditingController;
-  late List<int?> _questionSelectedStates = [];
+  late List<String?> _questionSelectedStates = [];
   final now = DateTime.now();
   bool _isButtonActive = false;
 
@@ -50,6 +50,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   ];
   Map<String, dynamic> _selectedOptionsEmotions = {};
   int? _selectedIndex;
+  List<int?> _selectedIndexList = List.generate(7, (index) => null);
   int? _selectedIndexEmotions;
   bool _isDigestiveIssuesYes = false;
 
@@ -84,7 +85,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
     _yearController =
         widget.yearController ?? TextEditingController(text: '${now.year}');
     _questionSelectedStates = widget.questionSelectedStates ??
-        List.generate(questions.length, (index) => null);
+        List.generate(questions.length + 1, (index) => null);
     _bodyEditingController =
         widget.bodyEditingController ?? TextEditingController();
   }
@@ -96,13 +97,13 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
           "body": _bodyEditingController.text,
         "added_at":
             '${_yearController.text}-${_monthController.text}-${_dayController.text}',
-        "feeling_of_hanger": _questionSelectedStates[0],
-        "enough_water": _questionSelectedStates[1],
-        "stress_or_frusration": _questionSelectedStates[2],
-        "late_dinner": _questionSelectedStates[3],
-        "feeling_of_depression": _questionSelectedStates[4],
-        "is_activity_level_changes": _questionSelectedStates[5],
-        "is_trip": _questionSelectedStates[6]
+        "mood_from_image": _questionSelectedStates[0],
+        "energy": _questionSelectedStates[1],
+        "digestive_issues": _questionSelectedStates[2],
+        "digestive problems": _questionSelectedStates[3],
+        "mood": _questionSelectedStates[4],
+        "sleep": _questionSelectedStates[5],
+        "symptoms": _questionSelectedStates[6],
       };
   double _getWidth() {
     int maxLength = 15;
@@ -190,7 +191,6 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                     Container(
                       width: 155,
                       height: 60,
-                    
                       color: Colors.transparent,
                       child: TextFormField(
                         onChanged: (value) {
@@ -243,7 +243,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          DateFormat.MMM().format(now),
+                          DateFormat.MMM()
+                              .format(DateTime.parse(_monthController.text)),
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -251,7 +252,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                           ),
                         ),
                         Text(
-                          '${now.day}',
+                          _dayController.text,
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -259,7 +260,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                           ),
                         ),
                         Text(
-                          '${now.year}',
+                          _yearController.text,
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -299,8 +300,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                           onTap: () {
                             setState(() {
                               _selectedIndexEmotions = index;
-                              _selectedOptionsEmotions[titles[index]] =
-                                  titles[index];
+                              _questionSelectedStates[0] =
+                                  titles[_selectedIndexEmotions!];
                             });
                           },
                           child: Column(
@@ -336,7 +337,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -361,10 +363,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               buildButton(
                                 optionsList[0],
                                 optionsList[0].length,
-                                _questionSelectedStates[0],
-                                (int? selectedIndex) {
+                                _selectedIndexList[0],
+                                (selectedIndex) {
                                   setState(() {
-                                    _questionSelectedStates[0] = selectedIndex;
+                                    _questionSelectedStates[1] =
+                                        optionsList[0][selectedIndex!];
                                   });
                                 },
                               ),
@@ -383,7 +386,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -408,10 +412,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               buildButton(
                                 optionsList[1],
                                 optionsList[1].length,
-                                _questionSelectedStates[1],
-                                (int? selectedIndex) {
+                                _selectedIndexList[1],
+                                (selectedIndex) {
                                   setState(() {
-                                    _questionSelectedStates[1] = selectedIndex;
+                                    _questionSelectedStates[2] =
+                                        optionsList[1][selectedIndex!];
                                     if (selectedIndex == 1) {
                                       _isDigestiveIssuesYes = true;
                                     } else {
@@ -437,7 +442,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               color: Colors.white,
                             ),
                             margin: const EdgeInsets.symmetric(vertical: 15),
-                            padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                            padding: const EdgeInsets.only(
+                                top: 20, right: 10, bottom: 10, left: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -462,11 +468,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                     buildButton(
                                       optionsList[2],
                                       optionsList[2].length,
-                                      _questionSelectedStates[2],
-                                      (int? selectedIndex) {
+                                      _selectedIndexList[2],
+                                      (selectedIndex) {
                                         setState(() {
-                                          _questionSelectedStates[2] =
-                                              selectedIndex;
+                                          _questionSelectedStates[3] =
+                                              optionsList[2][selectedIndex!];
                                         });
                                       },
                                     ),
@@ -486,7 +492,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -511,10 +518,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               buildButton(
                                 optionsList[3],
                                 optionsList[3].length,
-                                _questionSelectedStates[3],
-                                (int? selectedIndex) {
+                                _selectedIndexList[3],
+                                (selectedIndex) {
                                   setState(() {
-                                    _questionSelectedStates[3] = selectedIndex;
+                                    _questionSelectedStates[4] =
+                                        optionsList[3][selectedIndex!];
                                   });
                                 },
                               ),
@@ -533,7 +541,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -558,10 +567,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               buildButton(
                                 optionsList[4],
                                 optionsList[4].length,
-                                _questionSelectedStates[4],
-                                (int? selectedIndex) {
+                                _selectedIndexList[4],
+                                (selectedIndex) {
                                   setState(() {
-                                    _questionSelectedStates[4] = selectedIndex;
+                                    _questionSelectedStates[5] =
+                                        optionsList[4][selectedIndex!];
                                   });
                                 },
                               ),
@@ -580,7 +590,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         color: Colors.white,
                       ),
                       margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 20, right: 10, bottom: 10, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -605,10 +616,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               buildButton(
                                 optionsList[5],
                                 optionsList[5].length,
-                                _questionSelectedStates[5],
-                                (int? selectedIndex) {
+                                _selectedIndexList[5],
+                                (selectedIndex) {
                                   setState(() {
-                                    _questionSelectedStates[5] = selectedIndex;
+                                    _questionSelectedStates[6] =
+                                        optionsList[5][selectedIndex!];
                                   });
                                 },
                               ),

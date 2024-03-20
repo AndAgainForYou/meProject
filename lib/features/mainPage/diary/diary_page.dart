@@ -11,24 +11,10 @@ class DiaryPage extends StatefulWidget {
 }
 
 class _DiaryPageState extends State<DiaryPage> {
-  List<Map<String, dynamic>> items = [
-    {
-      'id': 3,
-      'title': 'Coca-Cola',
-      'body': 'asdasdsadads',
-      'added_at': '2024-02-28',
-      'feeling_of_hanger': false,
-      'enough_water': true,
-      'stress_or_frusration': false,
-      'late_dinner': true,
-      'feeling_of_depression': true,
-      'is_trip': true,
-      'is_activity_level_changes': true
-    }
-  ];
+  List<Map<String, dynamic>> items = [];
 
-  List<bool> createListParametrs(Map<String, dynamic> data) {
-    List<bool> questionSelectedStates = [];
+  List<String?> createListParametrs(Map<String, dynamic> data) {
+    List<String?> questionSelectedStates = [];
     data.forEach((key, value) {
       if (key != 'id' && key != 'title' && key != 'body' && key != 'added_at') {
         questionSelectedStates.add(value);
@@ -41,7 +27,7 @@ class _DiaryPageState extends State<DiaryPage> {
   void initState() {
     super.initState();
     PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
-    //platyBloc.add(NotesGetAllEvent({}));
+    platyBloc.add(NotesGetAllEvent({}));
   }
 
   @override
@@ -191,8 +177,8 @@ class _DiaryPageState extends State<DiaryPage> {
                                           yearController: TextEditingController(
                                               text: items[index]['added_at']
                                                   .split('-')[0]),
-                                          // questionSelectedStates:
-                                          //     createListParametrs(items[index]),
+                                          questionSelectedStates:
+                                              createListParametrs(items[index]),
                                           bodyEditingController:
                                               TextEditingController(
                                                   text: items[index]['body']),
