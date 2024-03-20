@@ -28,7 +28,7 @@ class _CustomListTileWithRadioState extends State<CustomListTileWithRadio> {
         const TextStyle(
           fontFamily: 'Montserrat',
           fontSize: 15,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
         );
 
     return Container(
