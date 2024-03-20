@@ -204,27 +204,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                       child: GestureDetector(
                                         onTap: () async {
                                           try {
-                                            final result = await SignInWithApple
-                                                .getAppleIDCredential(
-                                              scopes: [
-                                                AppleIDAuthorizationScopes
-                                                    .email,
-                                                AppleIDAuthorizationScopes
-                                                    .fullName,
-                                              ],
-                                              webAuthenticationOptions:
-                                                  WebAuthenticationOptions(
-                                                clientId: '98WRF4D97U',
-                                                redirectUri: Uri.parse(
-                                                    'https://test.com/auth/login'),
-                                              ),
-                                            );
+                                            
 
-                                            print(result);
+                                           // print(result.authorizationCode);
+                                            platyBloc.add(LogInWithAppleEvent());
                                             // You can use the result to authenticate the user with your server.
                                           } catch (error) {
                                             print(error.toString());
                                           }
+
+                                           
                                         },
                                         child: Container(
                                             constraints: BoxConstraints(

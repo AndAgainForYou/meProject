@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/mainPage/diary/diary_page.dart';
 import 'package:platy/features/mainPage/main_seeMore_page.dart';
 import 'package:platy/features/mainPage/myMealPlan/meal_plan_page.dart';
@@ -530,6 +532,8 @@ class _MainHomeState extends State<MainHome> {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
+                           PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+                         // platyBloc.add(MealPlanDataEvent());
                           Navigator.push(
                             context,
                             MaterialPageRoute(
