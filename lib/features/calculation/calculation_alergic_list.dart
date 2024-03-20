@@ -14,21 +14,34 @@ class CalculateAlergicListWidget extends StatefulWidget {
 class _CalculateAlergicListWidgetState
     extends State<CalculateAlergicListWidget> {
   List<String> titles = [
+    'Dairy',
+    'Peanuts',
+    'Tree Nuts',
+    'Gluten',
+    'Wheat',
     'Shellfish',
-    'Nuts',
-    'Eggs',
-    'Milk',
+    'Selery',
+    'Fish',
     'Soy',
+    'Eggs',
+    'Sesame',
   ];
-  List<String> pictureTitle = [
-    'shellfish',
-    'nuts',
-    'eggs',
+  List<String?> pictureTitle = [
     'milk',
+    null,
+    'nuts',
+    null,
+    null,
+    'shellfish',
+    null,
+    null,
     'soy',
+    'eggs',
+    null
   ];
-  List<String> _selectedOptions = List.filled(5, '');
+
   TextEditingController? controllerTextField;
+  List<String> _selectedOptions = [];
   List<String> alergicArray = [];
   List<String> choosedTitles = [];
   String? _textValue;
@@ -37,7 +50,7 @@ class _CalculateAlergicListWidgetState
   void initState() {
     super.initState();
     controllerTextField = TextEditingController();
-    controllerTextField!.addListener(_onTextFieldChanged);
+    _selectedOptions = List.filled(titles.length, '');
   }
 
   void isActive() {
@@ -53,13 +66,6 @@ class _CalculateAlergicListWidgetState
         CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     });
-  }
-
-  void _onTextFieldChanged() {
-    // setState(() {
-    //   // _textValue = controllerTextField!.text;
-    //   // isActive();
-    // });
   }
 
   @override
@@ -184,7 +190,8 @@ class _CalculateAlergicListWidgetState
                           ),
                         ],
                       ),
-                      Image.asset('assets/images/${pictureTitle[index]}.png'),
+                      if (pictureTitle[index] != null)
+                        Image.asset('assets/images/${pictureTitle[index]}.png'),
                     ],
                   ),
                 );
