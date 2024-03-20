@@ -167,3 +167,11 @@ class UpdateProfilePatchEvent extends PlatyBlocEvent {
 
   UpdateProfilePatchEvent(this.data);
 }
+
+// week meal plan
+
+class MealPlanDataEvent extends PlatyBlocEvent {
+  
+
+  MealPlanDataEvent();
+}

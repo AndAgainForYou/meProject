@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:platy/features/api/api_service.dart';
 import 'package:platy/features/secureStorage/secure_storage.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 part 'platy_bloc_event.dart';
 part 'platy_bloc_state.dart';
@@ -148,31 +149,53 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
 
     on<LogInWithAppleEvent>((event, emit) async {
       try {
-        final result = await FacebookAuth.instance.login();
-        await FacebookAuth.instance.logOut();
-        if (result.status == LoginStatus.success) {
-          final AccessToken accessToken = result.accessToken!;
-          print('Успішно увійшли: ${accessToken.token}');
-          print("AccsesToken Facebook: $accessToken.token");
-          final response = await apiService
-              .postData('/facebook-login/', {'accessToken': accessToken.token});
-          if (response['user_id'] != null) {
-            TokenManager.saveUserId(response['user_id']);
-          }
+        final result = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+            clientId: '7539P5BQRJ',
+            redirectUri: Uri.parse('http://16.171.1.90/api/v1/apple-login/'),
+          ),
+        );
 
-          if (response['tokens'] != null) {
-            TokenManager.saveTokensData(response['tokens']);
-            emit(LoginSuccessState(response['user_id']));
-          } else {
-            print('bad request ${response['status']}');
-            emit(LoginErrorState(response['status']));
-          }
-          print("access: ${TokenManager.getTokensData()?['access']}");
-        } else {
-          print('Не вдалося увійти: ${result.message}');
-        }
+        final response = await apiService
+            .postData('/apple-login/', {'accessToken': result.identityToken});
+       
+        print(result);
+
+        print(response);
+
+        /*if (result.status == AuthorizationStatus.authorized) {
+      // Отримати необхідні дані з результату автентифікації
+      final String userIdentifier = result.userIdentifier ?? '';
+      final String email = result.email ?? '';
+      final String fullName = '${result.givenName ?? ''} ${result.familyName ?? ''}';
+
+      // Надіслати отримані дані на ваш сервер для обробки та реєстрації
+      final response = await apiService.postData('/apple-login/', {
+        'userIdentifier': userIdentifier,
+        'email': email,
+        'fullName': fullName,
+      });
+
+      if (response['user_id'] != null) {
+        TokenManager.saveUserId(response['user_id']);
+      }
+
+      if (response['tokens'] != null) {
+        TokenManager.saveTokensData(response['tokens']);
+        emit(LoginSuccessState(response['user_id']));
+      } else {
+        print('Bad request ${response['status']}');
+        emit(LoginErrorState(response['status']));
+      }
+    } else {
+      print('Failed to sign in with Apple: ${result}');
+    }*/
       } catch (e) {
-        print('Помилка при автентифікації: $e');
+        print('Authentication error: $e');
       }
     });
 
@@ -317,5 +340,15 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       print(responseData);
       emit(ProfileIncludesDataState(responseData));
     });
+
+
+  on<MealPlanDataEvent>((event, emit) async {
+      //partical update
+      final response = await apiService.postData('/week-meelplan/', {});
+      
+      print(response);
+      
+    });
+    
   }
 }

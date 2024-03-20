@@ -131,3 +131,11 @@ class NotesUpdateByIdSuccessState extends PlatyBlocState {
 
   List<dynamic> get props => [successMessage];
 }
+
+class MealPlanDataState extends PlatyBlocState {
+  final dynamic successMessage;
+
+  MealPlanDataState(this.successMessage);
+
+  List<dynamic> get props => [successMessage];
+}
