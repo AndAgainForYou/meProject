@@ -106,11 +106,8 @@ class _CalculateSkinAndBeautyWidgetState
                             if (isChecked) {
                               _selectedIndex = index;
                               _isButtonActive = true;
-                              // CalculateGlobalWidget.of(context)
-                              //     .userModelBuilder
-                              //     .beauty_goals = [titles[_selectedIndex!]];
                             } else {
-                              _selectedIndex = index;
+                              _selectedIndex = null;
                               _isButtonActive = false;
                             }
                           },
@@ -120,7 +117,6 @@ class _CalculateSkinAndBeautyWidgetState
                   },
                 ),
               ),
-              const Spacer(),
               Container(
                 height: 54.0,
                 width: 180,

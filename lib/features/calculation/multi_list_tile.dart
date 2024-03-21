@@ -8,6 +8,7 @@ class MultiListTile extends StatefulWidget {
   final String? subTitle;
   final bool? buttonActive;
   final void Function()? onPressed;
+  final double? containerHeight;
 
   const MultiListTile({
     Key? key,
@@ -18,6 +19,7 @@ class MultiListTile extends StatefulWidget {
     this.subTitle,
     this.buttonActive,
     this.onPressed,
+    this.containerHeight,
   }) : super(key: key);
 
   @override
@@ -33,13 +35,14 @@ class _MultiListTileState extends State<MultiListTile> {
           fontSize: 17,
           fontWeight: FontWeight.w600,
         );
+    double contHeight = widget.containerHeight ?? 110;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
       padding: (widget.buttonActive == true)
           ? EdgeInsets.only(bottom: 0)
           : EdgeInsets.only(bottom: 10),
       alignment: Alignment.center,
-      height: 110,
+      height: contHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: widget.isChecked

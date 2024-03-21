@@ -6,6 +6,7 @@ class CustomListTileWithRadio extends StatefulWidget {
   final Function(bool) onTilePressed;
   final TextStyle? customStyle;
   final String? subtitle;
+  final double? containerHeight;
 
   const CustomListTileWithRadio({
     Key? key,
@@ -14,6 +15,7 @@ class CustomListTileWithRadio extends StatefulWidget {
     required this.onTilePressed,
     this.customStyle,
     this.subtitle,
+    this.containerHeight,
   }) : super(key: key);
 
   @override
@@ -30,11 +32,11 @@ class _CustomListTileWithRadioState extends State<CustomListTileWithRadio> {
           fontSize: 15,
           fontWeight: FontWeight.w600,
         );
-
+    double conHeight = widget.containerHeight ?? 76;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
       alignment: Alignment.center,
-      height: widget.subtitle != null ? 120 : 76,
+      height: widget.subtitle != null ? 120 : conHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: widget.isChecked
