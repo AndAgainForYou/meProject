@@ -60,7 +60,12 @@ class _RestorePasswordPageState extends State<RestorePasswordPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Image.asset('assets/images/logo_small.png', width: 32, height: 32,),
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo_small.png',
+          width: 32,
+          height: 32,
+        ),
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -75,10 +80,11 @@ class _RestorePasswordPageState extends State<RestorePasswordPage> {
           }
           ;
           if (state is PasswordResetSuccessState) {
-             Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const RestorePasswordSuccessPage()));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const RestorePasswordSuccessPage()));
           }
           ;
         },
@@ -113,8 +119,7 @@ class _RestorePasswordPageState extends State<RestorePasswordPage> {
                               color: Colors.black,
                             ),
                             children: [
-                              TextSpan(
-                                  text: 'Restore password'),
+                              TextSpan(text: 'Restore password'),
                             ],
                           ),
                         ),
