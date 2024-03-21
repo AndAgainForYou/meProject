@@ -16,15 +16,24 @@ class _ProfileWeightWidgetState extends State<ProfileWeightWidget> {
   TextEditingController _kgController = TextEditingController();
   TextEditingController _lbController = TextEditingController();
   Map<String, dynamic> updateProfileData = {};
+  bool _isButtonActive = false;
+
   void isActive() {
     if (_switchValue) {
       if (_kgController.text.isNotEmpty) {
-        updateProfileData['weight'] = "${_kgController.text}cm";
-      } else {}
+        updateProfileData['weight'] = _kgController.text;
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
     } else {
       if (_lbController.text.isNotEmpty) {
-        updateProfileData['weight'] = "${_lbController.text}ft";
-      } else {}
+        updateProfileData['weight'] =
+            (int.parse(_lbController.text) * 0.453592).toStringAsFixed(1);
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
     }
   }
 
@@ -235,10 +244,12 @@ class _ProfileWeightWidgetState extends State<ProfileWeightWidget> {
                     color: Color.fromRGBO(164, 171, 155, 1),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<PlatyBloc>(context)
-                          .add(UpdateProfilePatchEvent(updateProfileData));
-                    },
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<PlatyBloc>(context).add(
+                                UpdateProfilePatchEvent(updateProfileData));
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       elevation: 0,

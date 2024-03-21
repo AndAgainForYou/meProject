@@ -15,11 +15,17 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
   TextEditingController _ftController = TextEditingController();
   TextEditingController _inController = TextEditingController();
 
+  int feetAndInchesToCentimeters(int feet, int inches) {
+    int totalInches = feet * 12 + inches;
+    double centimeters = totalInches * 2.54;
+    return centimeters.round();
+  }
+
   void isActive() {
     if (_switchValue) {
       if (_cmController.text.isNotEmpty) {
         CalculateGlobalWidget.of(context).userModelBuilder.height =
-            "${_cmController.text}cm";
+            _cmController.text;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);
@@ -27,7 +33,7 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
     } else {
       if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
         CalculateGlobalWidget.of(context).userModelBuilder.height =
-            "${_ftController.text}ft ${_inController.text}in";
+            "${feetAndInchesToCentimeters(int.parse(_ftController.text), int.parse(_inController.text))}";
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);

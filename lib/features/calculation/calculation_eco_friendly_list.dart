@@ -51,6 +51,9 @@ class _CalculateEcoFriendlyListWidgetState
               .userModelBuilder
               .refrigerator_food
               .toString();
+        } else {
+          _isCheckedList[4] = false;
+          CalculateGlobalWidget.of(context).setButtonActivity(false);
         }
       });
     }
@@ -64,13 +67,13 @@ class _CalculateEcoFriendlyListWidgetState
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'What is the most \nimportant goal for you now',
+            'Eco-friendly eating',
             textAlign: TextAlign.center,
             style: whiteTheme.textTheme.bodyMedium,
           ),
           const SizedBox(height: 15),
           Text(
-            'You can choose more than one',
+            'Do you want to pursue any of these goals?',
             textAlign: TextAlign.center,
             style: whiteTheme.textTheme.bodySmall,
           ),
@@ -128,6 +131,7 @@ class _CalculateEcoFriendlyListWidgetState
             isChecked: _isCheckedList[4],
             subTitle: _isCheckedList[4] ? subtitles[0] : null,
             buttonActive: subtitles[0]?.isNotEmpty,
+            containerHeight: 140,
             onTilePressed: (isChecked) {
               setState(() {
                 choosedTitles.add(titles[4]);
@@ -152,7 +156,12 @@ class _CalculateEcoFriendlyListWidgetState
                   MaterialPageRoute(
                       builder: (context) =>
                           const CalculateRefrigeratorFoodWidget()));
-              if (mounted && result != null) {
+              if (mounted &&
+                  result != null &&
+                  CalculateGlobalWidget.of(context)
+                          .userModelBuilder
+                          .refrigerator_food !=
+                      null) {
                 CalculateGlobalWidget.of(context)
                     .userModelBuilder
                     .eco_friendly_eating = result;

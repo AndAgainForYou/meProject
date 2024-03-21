@@ -17,16 +17,30 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
   TextEditingController _ftController = TextEditingController();
   TextEditingController _inController = TextEditingController();
   Map<String, dynamic> updateProfileData = {};
+  bool _isButtonActive = false;
+
+  int feetAndInchesToCentimeters(int feet, int inches) {
+    int totalInches = feet * 12 + inches;
+    double centimeters = totalInches * 2.54;
+    return centimeters.round();
+  }
+
   void isActive() {
     if (_switchValue) {
       if (_cmController.text.isNotEmpty) {
-        updateProfileData['height'] = "${_cmController.text}cm";
-      } else {}
+        updateProfileData['height'] = _cmController.text;
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
     } else {
       if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
         updateProfileData['height'] =
-            "${_ftController.text}ft ${_inController.text}in";
-      } else {}
+            "${feetAndInchesToCentimeters(int.parse(_ftController.text), int.parse(_inController.text))}";
+        _isButtonActive = true;
+      } else {
+        _isButtonActive = false;
+      }
     }
   }
 
@@ -280,10 +294,12 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
                     color: Color.fromRGBO(164, 171, 155, 1),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<PlatyBloc>(context)
-                          .add(UpdateProfilePatchEvent(updateProfileData));
-                    },
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<PlatyBloc>(context).add(
+                                UpdateProfilePatchEvent(updateProfileData));
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       elevation: 0,

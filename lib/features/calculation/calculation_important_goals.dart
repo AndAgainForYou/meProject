@@ -54,6 +54,9 @@ class _CalculateImportantGoalsWidgetState
               .userModelBuilder
               .weight_loss_goal
               .toString();
+        } else {
+          _isCheckedList[1] = false;
+          CalculateGlobalWidget.of(context).setButtonActivity(false);
         }
       });
     }
@@ -77,6 +80,9 @@ class _CalculateImportantGoalsWidgetState
               .userModelBuilder
               .mental_health_goals![0]
               .toString();
+        } else {
+          _isCheckedList[4] = false;
+          CalculateGlobalWidget.of(context).setButtonActivity(false);
         }
       });
     }
@@ -96,6 +102,9 @@ class _CalculateImportantGoalsWidgetState
               .userModelBuilder
               .beauty_goals![0]
               .toString();
+        } else {
+          _isCheckedList[6] = false;
+          CalculateGlobalWidget.of(context).setButtonActivity(false);
         }
       });
     }

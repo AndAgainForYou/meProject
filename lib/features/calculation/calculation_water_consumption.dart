@@ -99,15 +99,15 @@ class _CalculateWaterConsumptionWidgetState
                   fontFamily: 'Gilroy',
                   fontWeight: FontWeight.w400,
                 ),
+                containerHeight: 100,
                 onTilePressed: (isChecked) {
                   setState(() {
                     if (isChecked) {
                       _selectedIndexState = index;
 
                       CalculateGlobalWidget.of(context)
-                              .userModelBuilder
-                              .closer_statements =
-                          titlesAnxiety[_selectedIndexState!];
+                          .userModelBuilder
+                          .closer_statements = titles[_selectedIndexState!];
                       isActive();
                     } else {
                       _selectedIndexState = null;
