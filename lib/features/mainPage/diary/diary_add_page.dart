@@ -72,12 +72,12 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   ];
   void isActive() {
     if (_titleController.text.isNotEmpty &&
-        _questionSelectedStates[0]!.isNotEmpty &&
-        _questionSelectedStates[1]!.isNotEmpty &&
-        _questionSelectedStates[2]!.isNotEmpty &&
-        _questionSelectedStates[4]!.isNotEmpty &&
-        _questionSelectedStates[5]!.isNotEmpty &&
-        _questionSelectedStates[6]!.isNotEmpty) {
+        _questionSelectedStates[0] != null &&
+        _questionSelectedStates[1] != null &&
+        _questionSelectedStates[2] != null &&
+        _questionSelectedStates[4] != null &&
+        _questionSelectedStates[5] != null &&
+        _questionSelectedStates[6] != null) {
       _isButtonActive = true;
     } else {
       _isButtonActive = false;
@@ -87,8 +87,6 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
   @override
   void initState() {
     super.initState();
-
-    // Set default values for the controllers
     _idValue = widget.idValue;
     _titleController = widget.titleController ?? TextEditingController();
     _dayController =
@@ -97,10 +95,23 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
         widget.monthController ?? TextEditingController(text: '${now.month}');
     _yearController =
         widget.yearController ?? TextEditingController(text: '${now.year}');
-    _questionSelectedStates = widget.questionSelectedStates ??
-        List.generate(questions.length + 1, (index) => null);
     _bodyEditingController =
         widget.bodyEditingController ?? TextEditingController();
+
+    // Set the selected states for the radio buttons
+    _questionSelectedStates = widget.questionSelectedStates ??
+        List.generate(questions.length + 1, (index) => null); // Add 1 for mood
+    _selectedIndexEmotions = titles
+        .indexWhere((title) => title == widget.questionSelectedStates?[0]);
+    print(_questionSelectedStates);
+    // Set the initial selected index for each radio button group
+    _selectedIndexList = List.generate(optionsList.length, (index) {
+      String? selectedValue =
+          _questionSelectedStates.elementAtOrNull(index + 1);
+      return selectedValue != null
+          ? optionsList[index].indexOf(selectedValue)
+          : -1;
+    });
   }
 
   Map<String, dynamic> toJson() => {
@@ -110,9 +121,9 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
           "body": _bodyEditingController.text,
         "added_at":
             '${_yearController.text}-${_monthController.text}-${_dayController.text}',
-        "stress_or_frusration": _questionSelectedStates[0],
+        "mood_from_image": _questionSelectedStates[0],
         "energy": _questionSelectedStates[1],
-        "digestive_issues": _questionSelectedStates[2],
+        "stress_or_frusration": _questionSelectedStates[2],
         if (_questionSelectedStates[3] != null)
           "digestive problems": _questionSelectedStates[3],
         "mood": _questionSelectedStates[4],
@@ -203,20 +214,26 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 155,
+                      width: 235,
                       height: 60,
                       color: Colors.transparent,
                       child: TextFormField(
                         onChanged: (value) {
-                          setState(() {});
+                          isActive();
                         },
                         controller: _titleController,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 28, fontWeight: FontWeight.bold),
-                        maxLength: 15,
+                        maxLength: 12,
                         decoration: const InputDecoration(
+                          suffixIcon: Icon(
+                            Icons.edit,
+                            size: 30,
+                            color: Colors.black54,
+                          ),
                           counterText: '',
-                          hintText: ' Title here',
+                          hintText: 'Title here...',
                           hintStyle: TextStyle(
                             color: Colors.black54,
                             fontFamily: 'Gilroy',
@@ -228,14 +245,6 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                         validator: (value) {},
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Icon(
-                        Icons.edit,
-                        size: 30,
-                        color: Colors.black54,
-                      ),
-                    )
                   ],
                 ),
                 const SizedBox(height: 14),
@@ -687,10 +696,14 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                       filled: true,
                       hintText: "Add a note...",
                       hintStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black45),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black45,
+                      ),
                     ),
+                    onChanged: (value) {
+                      isActive();
+                    },
                   ),
                 ),
                 const SizedBox(height: 24),

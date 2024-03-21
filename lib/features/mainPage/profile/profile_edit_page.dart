@@ -119,6 +119,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
+          centerTitle: true,
           title: Image.asset(
             'assets/images/logo_small.png',
             width: 32,
