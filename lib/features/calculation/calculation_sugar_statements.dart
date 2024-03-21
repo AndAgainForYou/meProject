@@ -49,6 +49,7 @@ class _CalculateSugarStatementsWidgetState
                   fontFamily: 'Gilroy',
                   fontWeight: FontWeight.w400,
                 ),
+                containerHeight: 100,
                 onTilePressed: (isChecked) {
                   setState(() {
                     if (isChecked) {

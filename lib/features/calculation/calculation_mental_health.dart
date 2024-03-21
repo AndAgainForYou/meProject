@@ -100,13 +100,8 @@ class _CalculateMentalHealthWidgetState
                             if (isChecked) {
                               _selectedIndex = index;
                               _isButtonActive = true;
-                              CalculateGlobalWidget.of(context)
-                                  .userModelBuilder
-                                  .mental_health_goals = [
-                                titles[_selectedIndex!]
-                              ];
                             } else {
-                              _selectedIndex = index;
+                              _selectedIndex = null;
                               _isButtonActive = false;
                             }
                           },
@@ -116,7 +111,6 @@ class _CalculateMentalHealthWidgetState
                   },
                 ),
               ),
-              const Spacer(),
               Container(
                 height: 54.0,
                 width: 180,

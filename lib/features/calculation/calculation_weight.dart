@@ -18,7 +18,7 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
     if (_switchValue) {
       if (_kgController.text.isNotEmpty) {
         CalculateGlobalWidget.of(context).userModelBuilder.weight =
-            "${_kgController.text}kg";
+            _kgController.text;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);
@@ -26,7 +26,7 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
     } else {
       if (_lbController.text.isNotEmpty) {
         CalculateGlobalWidget.of(context).userModelBuilder.weight =
-            "${_lbController.text}lb";
+            (int.parse(_lbController.text) * 0.453592).toStringAsFixed(1);
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
         CalculateGlobalWidget.of(context).setButtonActivity(false);
