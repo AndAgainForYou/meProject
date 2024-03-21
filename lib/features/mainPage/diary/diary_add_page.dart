@@ -70,6 +70,19 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
     ['Good', 'I had problems with sleep'],
     ['I feel better', 'I still have problems with my \nsymptoms']
   ];
+  void isActive() {
+    if (_titleController.text.isNotEmpty &&
+        _questionSelectedStates[0]!.isNotEmpty &&
+        _questionSelectedStates[1]!.isNotEmpty &&
+        _questionSelectedStates[2]!.isNotEmpty &&
+        _questionSelectedStates[4]!.isNotEmpty &&
+        _questionSelectedStates[5]!.isNotEmpty &&
+        _questionSelectedStates[6]!.isNotEmpty) {
+      _isButtonActive = true;
+    } else {
+      _isButtonActive = false;
+    }
+  }
 
   @override
   void initState() {
@@ -97,10 +110,11 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
           "body": _bodyEditingController.text,
         "added_at":
             '${_yearController.text}-${_monthController.text}-${_dayController.text}',
-        "mood_from_image": _questionSelectedStates[0],
+        "stress_or_frusration": _questionSelectedStates[0],
         "energy": _questionSelectedStates[1],
         "digestive_issues": _questionSelectedStates[2],
-        "digestive problems": _questionSelectedStates[3],
+        if (_questionSelectedStates[3] != null)
+          "digestive problems": _questionSelectedStates[3],
         "mood": _questionSelectedStates[4],
         "sleep": _questionSelectedStates[5],
         "symptoms": _questionSelectedStates[6],
@@ -243,8 +257,8 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          DateFormat.MMM()
-                              .format(DateTime.parse(_monthController.text)),
+                          DateFormat.MMM().format(DateTime(DateTime.now().year,
+                              int.parse(_monthController.text), 1)),
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -302,6 +316,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                               _selectedIndexEmotions = index;
                               _questionSelectedStates[0] =
                                   titles[_selectedIndexEmotions!];
+                              isActive();
                             });
                           },
                           child: Column(
@@ -366,8 +381,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 _selectedIndexList[0],
                                 (selectedIndex) {
                                   setState(() {
+                                    _selectedIndexList[0] = selectedIndex;
                                     _questionSelectedStates[1] =
                                         optionsList[0][selectedIndex!];
+                                    isActive();
                                   });
                                 },
                               ),
@@ -415,8 +432,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 _selectedIndexList[1],
                                 (selectedIndex) {
                                   setState(() {
+                                    _selectedIndexList[1] = selectedIndex;
                                     _questionSelectedStates[2] =
                                         optionsList[1][selectedIndex!];
+                                    isActive();
                                     if (selectedIndex == 1) {
                                       _isDigestiveIssuesYes = true;
                                     } else {
@@ -471,8 +490,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                       _selectedIndexList[2],
                                       (selectedIndex) {
                                         setState(() {
+                                          _selectedIndexList[2] = selectedIndex;
                                           _questionSelectedStates[3] =
                                               optionsList[2][selectedIndex!];
+                                          isActive();
                                         });
                                       },
                                     ),
@@ -521,8 +542,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 _selectedIndexList[3],
                                 (selectedIndex) {
                                   setState(() {
+                                    _selectedIndexList[3] = selectedIndex;
                                     _questionSelectedStates[4] =
                                         optionsList[3][selectedIndex!];
+                                    isActive();
                                   });
                                 },
                               ),
@@ -570,8 +593,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 _selectedIndexList[4],
                                 (selectedIndex) {
                                   setState(() {
+                                    _selectedIndexList[4] = selectedIndex;
                                     _questionSelectedStates[5] =
                                         optionsList[4][selectedIndex!];
+                                    isActive();
                                   });
                                 },
                               ),
@@ -619,8 +644,10 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                                 _selectedIndexList[5],
                                 (selectedIndex) {
                                   setState(() {
+                                    _selectedIndexList[5] = selectedIndex;
                                     _questionSelectedStates[6] =
                                         optionsList[5][selectedIndex!];
+                                    isActive();
                                   });
                                 },
                               ),
@@ -668,7 +695,7 @@ class _DiaryAddPageState extends State<DiaryAddPage> {
                 ),
                 const SizedBox(height: 24),
                 GestureDetector(
-                  onTap: _titleController.text.isNotEmpty
+                  onTap: _isButtonActive
                       ? () {
                           if (_idValue == null) {
                             platyBloc.add(NotesCreateEvent(toJson()));
