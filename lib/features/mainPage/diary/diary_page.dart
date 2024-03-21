@@ -138,138 +138,113 @@ class _DiaryPageState extends State<DiaryPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Container(
-                  height: 85,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.09),
-                        offset: Offset(1, 3),
-                        blurRadius: 9,
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: List.generate(items.length, (index) {
+                    final item = items[index];
+                    return Container(
+                      height: 85,
+                      margin: const EdgeInsets.symmetric(vertical: 5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.09),
+                            offset: Offset(1, 3),
+                            blurRadius: 9,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(items.length, (index) {
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DiaryAddPage(
-                                          idValue: items[index]['id'],
-                                          titleController:
-                                              TextEditingController(
-                                                  text: items[index]['title']),
-                                          dayController: TextEditingController(
-                                              text: items[index]['added_at']
-                                                  .split('-')[2]),
-                                          monthController:
-                                              TextEditingController(
-                                                  text: items[index]['added_at']
-                                                      .split('-')[1]),
-                                          yearController: TextEditingController(
-                                              text: items[index]['added_at']
-                                                  .split('-')[0]),
-                                          questionSelectedStates:
-                                              createListParametrs(items[index]),
-                                          bodyEditingController:
-                                              TextEditingController(
-                                                  text: items[index]['body']),
-                                        )),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16.0,
-                                  right: 16.0,
-                                  top: 8.0,
-                                  bottom: 8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DiaryAddPage(
+                                idValue: item['id'],
+                                titleController:
+                                    TextEditingController(text: item['title']),
+                                dayController: TextEditingController(
+                                    text: item['added_at'].split('-')[2]),
+                                monthController: TextEditingController(
+                                    text: item['added_at'].split('-')[1]),
+                                yearController: TextEditingController(
+                                    text: item['added_at'].split('-')[0]),
+                                questionSelectedStates:
+                                    createListParametrs(item),
+                                bodyEditingController:
+                                    TextEditingController(text: item['body']),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Text(
+                                    item['title'] ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 3),
+                                  Row(
                                     children: [
                                       Text(
-                                        items[index]['title'] ?? '',
+                                        "${item['added_at']?.split('-')[2]}",
                                         style: const TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14,
+                                          color: Colors.black54,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 3,
+                                      const Text('.'),
+                                      Text(
+                                        item['added_at']?.split('-')[1] ?? '',
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                        ),
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            items[index]['added_at']
-                                                    .split('-')[2] ??
-                                                '',
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const Text('.'),
-                                          Text(
-                                            items[index]['added_at']
-                                                    .split('-')[1] ??
-                                                '',
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const Text('.'),
-                                          Text(
-                                            items[index]['added_at']
-                                                    .split('-')[0] ??
-                                                '',
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                        ],
+                                      const Text('.'),
+                                      Text(
+                                        item['added_at']?.split('-')[0] ?? '',
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      BlocProvider.of<PlatyBloc>(context)
-                                          .add(NotesDeleteEvent(items[index]));
-                                    },
-                                    child: Image.asset(
-                                      'assets/images/trash-icon.png',
-                                      width: 24,
-                                      height: 24,
-                                    ),
-                                  )
                                 ],
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<PlatyBloc>(context)
+                                      .add(NotesDeleteEvent(item));
+                                },
+                                child: Image.asset(
+                                  'assets/images/trash-icon.png',
+                                  width: 24,
+                                  height: 24,
+                                ),
+                              )
+                            ],
                           ),
-                          // Conditionally add the divider if it's not the last item
-                          if (index < items.length - 1)
-                            const Padding(
-                              padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                              child: Divider(height: 2),
-                            ),
-                        ],
-                      );
-                    }),
-                  ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
                 const SizedBox(
                   height: 60,

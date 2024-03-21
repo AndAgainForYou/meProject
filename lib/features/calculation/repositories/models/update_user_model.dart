@@ -146,6 +146,7 @@ class UpdateUserModel {
         'current_symptoms': current_symptoms,
         'current_goals': current_goals,
         if (refrigerator_food != null) 'refrigerator_food': refrigerator_food,
+        'gender': 'Female',
       };
 
   UpdateUserModel._builder(UpdateUserModelBuilder builder)
