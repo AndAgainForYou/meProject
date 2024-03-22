@@ -19,7 +19,7 @@ class _CalculateBloodCheckUpWidgetState
   ];
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
-    if (_selectedOptions.length == 3) {
+    if (_selectedOptions.isNotEmpty) {
       CalculateGlobalWidget.of(context).userModelBuilder.blood_check_up =
           _selectedOptions;
       CalculateGlobalWidget.of(context).setButtonActivity(true);

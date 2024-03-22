@@ -82,6 +82,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   bool _lastPage = false;
   final UpdateUserModelBuilder userModelBuilder = UpdateUserModelBuilder();
   int? indexHabitPage;
+  int? indexBloodPage;
+  int? indexBonesPage;
   void setButtonActivity(bool isActive) {
     setState(() {
       _isButtonActive = isActive;
@@ -100,12 +102,28 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
     }
   }
 
+  void checkIfBlood(List<Widget> listWidgets) {
+    for (int i = 0; i < listWidgets.length; i++) {
+      if (listWidgets[i] is CalculateBloodCheckUpWidget) {
+        setState(() {
+          indexBloodPage = i + 1;
+          indexBonesPage = indexBloodPage! + 1;
+        });
+        break;
+      }
+    }
+  }
+
   void pageListener() {
     pageNotifier.value = pageController.page!.round() + 1;
     bool isSkipButtonWidget = false;
     if (pageNotifier.value == 5 ||
         pageNotifier.value == 6 ||
-        pageNotifier.value == indexHabitPage) {
+        pageNotifier.value == indexHabitPage ||
+        (userModelBuilder.health_test == true &&
+            pageNotifier.value == indexBloodPage) ||
+        (userModelBuilder.health_test == true &&
+            pageNotifier.value == indexBonesPage)) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -137,8 +155,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       const CalculateBloodQAWidget(),
       if (userModelBuilder.health_test == true) ...[
         const CalculateBloodCheckUpWidget(),
+        const CalculateBonesCheckUpWidget(),
       ],
-      const CalculateBonesCheckUpWidget(),
       const CalculateDigestiveHealthWidget(),
       const CalculateEmotionsHealthWidget(),
       const CalculateWaterConsumptionWidget(),
@@ -290,6 +308,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                         } else {
                           setState(() {
                             checkIfHabbit(lisWidgets);
+                            checkIfBlood(lisWidgets);
                           });
                           FocusScope.of(context).unfocus();
                           await CalculateGlobalWidget.of(context)
