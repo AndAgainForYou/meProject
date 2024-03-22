@@ -917,8 +917,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                                           Image.asset(
                                                             _getImagePathForTitle(
                                                                 meal['title']),
-                                                            width: 140,
-                                                            height: 140,
+                                                            width: 130,
+                                                            height: 130,
                                                           ),
                                                         ],
                                                       ),
