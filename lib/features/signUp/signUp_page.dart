@@ -281,7 +281,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     const SizedBox(height: 10),
                                     GestureDetector(
                                       onTap: () {
-                                        platyBloc.add(LogInWithGoogleEvent());
+                                        platyBloc.add(SignUpWithGoogleEvent());
                                       },
                                       child: Container(
                                         constraints: BoxConstraints(

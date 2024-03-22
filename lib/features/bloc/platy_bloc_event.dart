@@ -25,6 +25,11 @@ class LogInWithGoogleEvent extends PlatyBlocEvent {
   LogInWithGoogleEvent();
 }
 
+class SignUpWithGoogleEvent extends PlatyBlocEvent {
+  SignUpWithGoogleEvent();
+}
+
+
 class LogInWithFacebookEvent extends PlatyBlocEvent {
   LogInWithFacebookEvent();
 }
