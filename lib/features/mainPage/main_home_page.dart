@@ -26,6 +26,7 @@ class _MainHomePageState extends State<MainHomePage> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent({}));
     _scrollControllers = List.generate(4, (_) => ScrollController());
     _scrollControllers.forEach((controller) {
       controller.addListener(_onScroll);
@@ -1028,6 +1029,7 @@ class _MainHomeState extends State<MainHome> {
                                                 height: 10,
                                               ),
                                               Container(
+                                               // width: MediaQuery.of(context).size.width * 0.90,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   border: Border.all(
@@ -1086,8 +1088,8 @@ class _MainHomeState extends State<MainHome> {
                                                           Image.asset(
                                                             _getImagePathForTitle(
                                                                 meal['title']),
-                                                            width: 140,
-                                                            height: 140,
+                                                            width: 130,
+                                                            height: 130,
                                                           ),
                                                         ],
                                                       ),

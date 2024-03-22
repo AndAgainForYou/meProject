@@ -58,12 +58,13 @@ class _SeeMorePageState extends State<SeeMorePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ClipRect(
-                      child: Stack(children: [
+                      child: Stack(
+                        children: [
                         Container(
                           decoration:
                               const BoxDecoration(color: Colors.transparent),
                           height: 300,
-                          width: MediaQuery.of(context).size.width * 0.42,
+                          width: 160,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 0.0),
                             child: RotationTransition(
@@ -96,7 +97,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
                     ),
                     const SizedBox(width: 20),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.44,
+                      width: MediaQuery.of(context).size.width * 0.43,
                       child: Column(
                         children: [
                           RichText(
@@ -797,7 +798,7 @@ class CircularArchProgressBarPainter extends CustomPainter {
     final double sweepAngle = 2 * math.pi * (value / 100);
 
     const double startAngle2 = 2.8; // Починаємо з правого боку
-    const double sweepAngle2 = 2 * math.pi * (-41.5 / 8);
+    const double sweepAngle2 = 2 * math.pi * (-50 / 100);
 
     // Apply gradient color
     paint.shader = fillGradient.createShader(
@@ -805,7 +806,7 @@ class CircularArchProgressBarPainter extends CustomPainter {
     );
 
     canvas.drawArc(
-      Rect.fromCircle(center: Offset(radius, radius), radius: 82),
+      Rect.fromCircle(center: Offset(radius, radius), radius: radius),
       startAngle2,
       sweepAngle2,
       false,

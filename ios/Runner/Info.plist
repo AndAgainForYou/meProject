@@ -38,7 +38,7 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	
 	<key>GIDClientID</key>
-	<string>959036007952-da02195luf71shu6b151aefc1aho57uu.apps.googleusercontent.com</string>
+	<string>8581746365-i0fgtbhgj8dlhdbnl7hof3fqgjkeq0ej.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
