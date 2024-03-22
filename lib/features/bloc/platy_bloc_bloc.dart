@@ -395,7 +395,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<MealPlanDataEvent>((event, emit) async {
       //partical update
       final response =
-          await apiService.fetchDataPlan('/week-meelplan/', event.data);
+          await apiService.fetchData('/week-meelplan/', event.data);
 
       print(response);
       //emit(MealPlanDataState(response));
