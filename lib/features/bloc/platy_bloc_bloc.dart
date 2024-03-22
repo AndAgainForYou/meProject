@@ -104,6 +104,38 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
         if (response['tokens'] != null) {
           TokenManager.saveTokensData(response['tokens']);
           emit(LoginSuccessState(response['user_id']));
+          //emit(SignUpSuccessState(response['user_id']));
+          //SignUpSuccessState
+          await secureStorage.saveCredentials(
+              email: googleUser!.email, password: "");
+        } else {
+          print('bad request ${response['status']}');
+          emit(LoginErrorState(response['status']));
+        }
+        print("access: ${TokenManager.getTokensData()?['access']}");
+        print("refresh: ${TokenManager.getTokensData()?['refresh']}");
+      } catch (e) {
+        print('Error: $e');
+      }
+    });
+
+     on<SignUpWithGoogleEvent>((event, emit) async {
+      try {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+        String? accessToken = googleAuth?.accessToken;
+        print("AccsesToken Google: $accessToken");
+        final response = await apiService
+            .postData('/google-login/', {'accessToken': accessToken});
+        if (response['user_id'] != null) {
+          TokenManager.saveUserId(response['user_id']);
+        }
+
+        if (response['tokens'] != null) {
+          TokenManager.saveTokensData(response['tokens']);
+          emit(SignUpSuccessState(response['user_id']));
+          //SignUpSuccessState
           await secureStorage.saveCredentials(
               email: googleUser!.email, password: "");
         } else {
