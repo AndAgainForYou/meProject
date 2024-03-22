@@ -31,6 +31,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
   @override
   void initState() {
     super.initState();
+    //BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent({}));
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
   }
@@ -57,19 +58,20 @@ class _MealPlanPageState extends State<MealPlanPage> {
     ]
   };
 
+  // Sample data
   final List<Map<String, dynamic>> dataList = [
     {
       "day": 1,
       "meals": [
         {
           "title": "Breakfast",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_title": "DAY 1 DATA",
           "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Dick",
+              "name": "Duck",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -78,7 +80,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -87,7 +89,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -96,7 +98,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -112,7 +114,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia Seeds",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -121,7 +123,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -130,7 +132,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -139,7 +141,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -155,7 +157,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia Seeds",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -164,7 +166,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -173,7 +175,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -182,7 +184,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -198,7 +200,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia Seeds",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -207,7 +209,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -216,7 +218,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -225,7 +227,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -240,13 +242,13 @@ class _MealPlanPageState extends State<MealPlanPage> {
       "meals": [
         {
           "title": "Breakfast",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_title": "DAY 2 DATA",
           "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Dick",
+              "name": "Duck",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -255,7 +257,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -264,7 +266,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -273,7 +275,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -289,7 +291,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia Seeds",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -298,7 +300,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -307,7 +309,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -316,7 +318,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -332,7 +334,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia Seeds",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -341,7 +343,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -350,7 +352,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -359,7 +361,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -375,7 +377,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Chia",
               "amount": "30 g",
-              "calories": "137 kcal",
+              "calories": "137",
               "protein": "4 g",
               "fat": "9 g",
               "cholesterol": "0 mg",
@@ -384,7 +386,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Almond Milk (unsweetened)",
               "amount": "200 ml",
-              "calories": "36 kcal",
+              "calories": "36",
               "protein": "1 g",
               "fat": "3 g",
               "cholesterol": "0 mg",
@@ -393,7 +395,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Strawberries",
               "amount": "100 g",
-              "calories": "32 kcal",
+              "calories": "32",
               "protein": "1 g",
               "fat": "0 g",
               "cholesterol": "0 mg",
@@ -402,7 +404,892 @@ class _MealPlanPageState extends State<MealPlanPage> {
             {
               "name": "Whole Grain Oats",
               "amount": "40 g",
-              "calories": "305 kcal",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "DAY 3 DATA",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "DAY 4 DATA",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "DAY 5 DATA",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "DAY 6 DATA",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "DAY 7 DATA",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305",
               "protein": "10 g",
               "fat": "5 g",
               "cholesterol": "0 mg",
@@ -470,26 +1357,25 @@ class _MealPlanPageState extends State<MealPlanPage> {
     setState(() {
       if (_days < 7) {
         _days++;
+        _resetDetailsVisibility();
       }
-      ;
-      _showDetails = false;
-      _showDetails2 = false;
-      _showDetails3 = false;
-      _showDetails4 = false;
     });
   }
 
   void _decrementDays() {
     setState(() {
-      if (_days > 0) {
+      if (_days > 1) {
         _days--;
+        _resetDetailsVisibility();
       }
-      ;
-      _showDetails = false;
-      _showDetails2 = false;
-      _showDetails3 = false;
-      _showDetails4 = false;
     });
+  }
+
+  void _resetDetailsVisibility() {
+    _showDetails = false;
+    _showDetails2 = false;
+    _showDetails3 = false;
+    _showDetails4 = false;
   }
 
   String _getImagePathForTitle(String title) {
@@ -527,12 +1413,9 @@ class _MealPlanPageState extends State<MealPlanPage> {
   }
 
   int getTodayDayNumber() {
-  DateTime now = DateTime.now();
-  return now.day;
-}
-
-
-
+    DateTime now = DateTime.now();
+    return now.day;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -720,67 +1603,70 @@ class _MealPlanPageState extends State<MealPlanPage> {
                             ),
                           ),
                           const SizedBox(height: 40),
-
-                          
                           Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: List.generate(days.length, (index) {
-    final int dayNumber = index + 1; // Adjust the day number
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _days = dayNumber;
-          _showDetails = false;
-      _showDetails2 = false;
-      _showDetails3 = false;
-      _showDetails4 = false; // Update _days with the adjusted day number
-        });
-      },
-      child: Column(
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: dayNumber == _days
-                  ? const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(164, 171, 155, 1),
-                        Color.fromRGBO(164, 171, 155, 1),
-                      ],
-                    )
-                  : null,
-              color: dayNumber != _days ? Colors.white : null,
-            ),
-            child: Center(
-              child: Text(
-                days[index],
-                style: TextStyle(
-                  color: dayNumber == _days ? Colors.white : Colors.black38,
-                  fontSize: 16,
-                  fontFamily: 'Gilroy',
-                ),
-              ),
-            ),
-          ),
-          Text(
-            (dayNumber).toString(), // show it here
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ],
-      ),
-    );
-  }),
-),
-
-
-
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(days.length, (index) {
+                              final int dayNumber =
+                                  index + 1; // Adjust the day number
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _days = dayNumber;
+                                    _showDetails = false;
+                                    _showDetails2 = false;
+                                    _showDetails3 = false;
+                                    _showDetails4 =
+                                        false; // Update _days with the adjusted day number
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 44,
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: dayNumber == _days
+                                            ? const LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Color.fromRGBO(
+                                                      164, 171, 155, 1),
+                                                  Color.fromRGBO(
+                                                      164, 171, 155, 1),
+                                                ],
+                                              )
+                                            : null,
+                                        color: dayNumber != _days
+                                            ? Colors.white
+                                            : null,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          days[index],
+                                          style: TextStyle(
+                                            color: dayNumber == _days
+                                                ? Colors.white
+                                                : Colors.black38,
+                                            fontSize: 16,
+                                            fontFamily: 'Gilroy',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      (dayNumber).toString(), // show it here
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
                           const SizedBox(height: 30),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -836,10 +1722,6 @@ class _MealPlanPageState extends State<MealPlanPage> {
                             ],
                           ),
                           const SizedBox(height: 20),
-
-
-
-
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: dataList.map<Widget>((data) {
@@ -980,23 +1862,23 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                                                         _currentPageIndex =
                                                                             0;
                                                                       });
-                                                                       _showModalBottomSheet(
-                                                                    context,
-                                                                    detail[
-                                                                        'name'],
+                                                                      _showModalBottomSheet(
+                                                                        context,
                                                                         detail[
-                                                                        'amount'],
+                                                                            'name'],
                                                                         detail[
-                                                                        'calories'],
-                                                                         detail[
-                                                                        'protein'],
-                                                                         detail[
-                                                                        'fat'],
+                                                                            'amount'],
                                                                         detail[
-                                                                        'cholesterol'],
+                                                                            'calories'],
                                                                         detail[
-                                                                        'calcium'],
-                                                                  );
+                                                                            'protein'],
+                                                                        detail[
+                                                                            'fat'],
+                                                                        detail[
+                                                                            'cholesterol'],
+                                                                        detail[
+                                                                            'calcium'],
+                                                                      );
                                                                     },
                                                                     child: Row(
                                                                       mainAxisAlignment:
@@ -1083,26 +1965,26 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                                                 ],
                                                               );
                                                             }).toList(),
-                                                           GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _toggleDetailsForTitle(
-                                                                meal['title']);
-                                                          });
-                                                        },
-                                                        child: Center(
-                                                          child: Icon(
-                                                            _getIconForTitle(
-                                                                meal['title'],
-                                                                meal[
-                                                                    'details']),
-                                                            size: 30,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  _toggleDetailsForTitle(
+                                                                      meal[
+                                                                          'title']);
+                                                                });
+                                                              },
+                                                              child: Center(
+                                                                child: Icon(
+                                                                  _getIconForTitle(
+                                                                      meal[
+                                                                          'title'],
+                                                                      meal[
+                                                                          'details']),
+                                                                  size: 30,
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ],
-                                                          
                                                         ),
                                                       ),
                                                   ],
@@ -1122,10 +2004,6 @@ class _MealPlanPageState extends State<MealPlanPage> {
                               }
                             }).toList(),
                           ),
-
-
-
-
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1199,7 +2077,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
     );
   }
 
-    void _showModalBottomSheet(BuildContext context, name, amount, calories, protein, fat, cholesterol, calcium) {
+  void _showModalBottomSheet(BuildContext context, name, amount, calories,
+      protein, fat, cholesterol, calcium) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -1253,7 +2132,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '${calories.split(' ')[0]}',
+                                        '${calories}',
                                         style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
@@ -1274,7 +2153,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                 height: 70,
                                 width: 70,
                                 decoration: const BoxDecoration(),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
@@ -1450,7 +2329,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(' ${calories.split(' ')[0]}'),
+                                Text(' ${calories}'),
                                 const Text(
                                   'kcal',
                                   style: TextStyle(color: Colors.grey),
