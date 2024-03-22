@@ -33,6 +33,10 @@ class LogInWithAppleEvent extends PlatyBlocEvent {
   LogInWithAppleEvent();
 }
 
+class SignUpWithAppleEvent extends PlatyBlocEvent {
+  SignUpWithAppleEvent();
+}
+
 class LogOutEvent extends PlatyBlocEvent {
   final Map<String, dynamic> logOutData;
 

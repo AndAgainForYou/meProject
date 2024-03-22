@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   int _currentPageIndex = 0;
 
-  int _days = 0;
+  int _days = 1;
 
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
     setState(() {});
   }
 
-    static const Map<String, dynamic> modalData = {
+  static const Map<String, dynamic> modalData = {
     "nutritionalInfo": [
       {"name": "kcal", "value": "283"},
       {"name": "Protein", "value": "1 gr"},
@@ -55,7 +56,6 @@ class _MealPlanPageState extends State<MealPlanPage> {
       {"name": "Calcium", "value": "146 mg"}
     ]
   };
-
 
   final List<Map<String, dynamic>> dataList = [
     {
@@ -66,32 +66,128 @@ class _MealPlanPageState extends State<MealPlanPage> {
           "meal_title": "Chia Seed Pudding with Almond Milk",
           "meal_calories": "590 kcal",
           "details": [
-            {"name": "Dick", "amount": "30 g", "calories": "137 kcal", "protein": "4 g", "fat": "9 g", "cholesterol": "0 mg", "calcium": "177 mg"},
-            {"name": "Almond Milk (unsweetened)", "amount": "200 ml", "calories": "36 kcal", "protein": "1 g", "fat": "3 g", "cholesterol": "0 mg", "calcium": "79 mg"},
-            {"name": "Strawberries", "amount": "100 g", "calories": "32 kcal", "protein": "1 g", "fat": "0 g", "cholesterol": "0 mg", "calcium": "16 mg"},
-            {"name": "Whole Grain Oats", "amount": "40 g", "calories": "305 kcal", "protein": "10 g", "fat": "5 g", "cholesterol": "0 mg", "calcium": "52 mg"}
+            {
+              "name": "Dick",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
           ]
         },
-         {
+        {
           "title": "Lunch",
           "meal_title": "Chia Seed Pudding with Almond Milk",
           "meal_calories": "590 kcal",
           "details": [
-            {"name": "Chia Seeds", "amount": "30 g", "calories": "137 kcal", "protein": "4 g", "fat": "9 g", "cholesterol": "0 mg", "calcium": "177 mg"},
-            {"name": "Almond Milk (unsweetened)", "amount": "200 ml", "calories": "36 kcal", "protein": "1 g", "fat": "3 g", "cholesterol": "0 mg", "calcium": "79 mg"},
-            {"name": "Strawberries", "amount": "100 g", "calories": "32 kcal", "protein": "1 g", "fat": "0 g", "cholesterol": "0 mg", "calcium": "16 mg"},
-            {"name": "Whole Grain Oats", "amount": "40 g", "calories": "305 kcal", "protein": "10 g", "fat": "5 g", "cholesterol": "0 mg", "calcium": "52 mg"}
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
           ]
         },
-         {
+        {
           "title": "Dinner",
           "meal_title": "Chia Seed Pudding with Almond Milk",
           "meal_calories": "590 kcal",
           "details": [
-            {"name": "Chia Seeds", "amount": "30 g", "calories": "137 kcal", "protein": "4 g", "fat": "9 g", "cholesterol": "0 mg", "calcium": "177 mg"},
-            {"name": "Almond Milk (unsweetened)", "amount": "200 ml", "calories": "36 kcal", "protein": "1 g", "fat": "3 g", "cholesterol": "0 mg", "calcium": "79 mg"},
-            {"name": "Strawberries", "amount": "100 g", "calories": "32 kcal", "protein": "1 g", "fat": "0 g", "cholesterol": "0 mg", "calcium": "16 mg"},
-            {"name": "Whole Grain Oats", "amount": "40 g", "calories": "305 kcal", "protein": "10 g", "fat": "5 g", "cholesterol": "0 mg", "calcium": "52 mg"}
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
           ]
         },
         {
@@ -99,10 +195,219 @@ class _MealPlanPageState extends State<MealPlanPage> {
           "meal_title": "Chia Seed Pudding with Almond Milk",
           "meal_calories": "590 kcal",
           "details": [
-            {"name": "Chia Seeds", "amount": "30 g", "calories": "137 kcal", "protein": "4 g", "fat": "9 g", "cholesterol": "0 mg", "calcium": "177 mg"},
-            {"name": "Almond Milk (unsweetened)", "amount": "200 ml", "calories": "36 kcal", "protein": "1 g", "fat": "3 g", "cholesterol": "0 mg", "calcium": "79 mg"},
-            {"name": "Strawberries", "amount": "100 g", "calories": "32 kcal", "protein": "1 g", "fat": "0 g", "cholesterol": "0 mg", "calcium": "16 mg"},
-            {"name": "Whole Grain Oats", "amount": "40 g", "calories": "305 kcal", "protein": "10 g", "fat": "5 g", "cholesterol": "0 mg", "calcium": "52 mg"}
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Dick",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
           ]
         }
       ]
@@ -139,8 +444,6 @@ class _MealPlanPageState extends State<MealPlanPage> {
     }
   }
 
-
-
   bool _shouldShowDetails(String title) {
     switch (title) {
       case 'Breakfast':
@@ -164,20 +467,72 @@ class _MealPlanPageState extends State<MealPlanPage> {
   ];
 
   void _incrementDays() {
-  setState(() {
-    if (_days < 7) {
-      _days++;
+    setState(() {
+      if (_days < 7) {
+        _days++;
+      }
+      ;
+      _showDetails = false;
+      _showDetails2 = false;
+      _showDetails3 = false;
+      _showDetails4 = false;
+    });
+  }
+
+  void _decrementDays() {
+    setState(() {
+      if (_days > 0) {
+        _days--;
+      }
+      ;
+      _showDetails = false;
+      _showDetails2 = false;
+      _showDetails3 = false;
+      _showDetails4 = false;
+    });
+  }
+
+  String _getImagePathForTitle(String title) {
+    switch (title) {
+      case 'Breakfast':
+        return 'assets/images/sun.png';
+      case 'Lunch':
+        return 'assets/images/l.png';
+      case 'Dinner':
+        return 'assets/images/D.png';
+      case 'Snack':
+        return 'assets/images/s.png';
+      default:
+        return 'assets/images/s.png'; // Default image path
     }
-  });
+  }
+
+  void _toggleDetailsForTitle(String title) {
+    setState(() {
+      switch (title) {
+        case 'Breakfast':
+          _showDetails = !_showDetails;
+          break;
+        case 'Lunch':
+          _showDetails2 = !_showDetails2;
+          break;
+        case 'Dinner':
+          _showDetails3 = !_showDetails3;
+          break;
+        case 'Snack':
+          _showDetails4 = !_showDetails4;
+          break;
+      }
+    });
+  }
+
+  int getTodayDayNumber() {
+  DateTime now = DateTime.now();
+  return now.day;
 }
 
-void _decrementDays() {
-  setState(() {
-    if (_days > 0) {
-      _days--;
-    }
-  });
-}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -365,56 +720,67 @@ void _decrementDays() {
                             ),
                           ),
                           const SizedBox(height: 40),
+
+                          
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              for (int i = 0; i < days.length; i++)
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 44,
-                                      height: 44,
-                                      decoration: i == 0
-                                          ? const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              gradient: LinearGradient(
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                                colors: [
-                                                  Color.fromRGBO(
-                                                      164, 171, 155, 1),
-                                                  Color.fromRGBO(
-                                                      164, 171, 155, 1),
-                                                ],
-                                              ),
-                                            )
-                                          : const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white,
-                                            ),
-                                      child: Center(
-                                        child: Text(
-                                          days[i],
-                                          style: TextStyle(
-                                            color: i == 0
-                                                ? Colors.white
-                                                : Colors.black38,
-                                            fontSize: 16,
-                                            fontFamily: 'Gilroy',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      (i + 11).toString(),
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ],
-                                ),
-                            ],
-                          ),
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: List.generate(days.length, (index) {
+    final int dayNumber = index + 1; // Adjust the day number
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _days = dayNumber;
+          _showDetails = false;
+      _showDetails2 = false;
+      _showDetails3 = false;
+      _showDetails4 = false; // Update _days with the adjusted day number
+        });
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: dayNumber == _days
+                  ? const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromRGBO(164, 171, 155, 1),
+                        Color.fromRGBO(164, 171, 155, 1),
+                      ],
+                    )
+                  : null,
+              color: dayNumber != _days ? Colors.white : null,
+            ),
+            child: Center(
+              child: Text(
+                days[index],
+                style: TextStyle(
+                  color: dayNumber == _days ? Colors.white : Colors.black38,
+                  fontSize: 16,
+                  fontFamily: 'Gilroy',
+                ),
+              ),
+            ),
+          ),
+          Text(
+            (dayNumber).toString(), // show it here
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+        ],
+      ),
+    );
+  }),
+),
+
+
+
                           const SizedBox(height: 30),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -422,7 +788,9 @@ void _decrementDays() {
                               InkWell(
                                 onTap: () {
                                   _decrementDays();
-                                }, ///to do
+                                },
+
+                                ///to do
                                 child: const Icon(
                                   Icons.arrow_back_ios,
                                   size: 18,
@@ -430,33 +798,35 @@ void _decrementDays() {
                               ),
                               Row(
                                 children: [
-                                  Text('$_days', style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black54,
-                                      ),),
-                                  const Text(' / ', style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.grey,
-                                    ),), 
-                                  const Text('7',  style: TextStyle(
+                                  Text(
+                                    '$_days',
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black54,
-                                    ),)
+                                    ),
+                                  ),
+                                  const Text(
+                                    ' / ',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '7',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black54,
+                                    ),
+                                  )
                                 ],
                               ),
-
-
-                            
-
-
-
-
                               InkWell(
                                 onTap: () {
-                                   _incrementDays();
+                                  _incrementDays();
                                 },
                                 child: const Icon(
                                   Icons.arrow_forward_ios,
@@ -470,255 +840,292 @@ void _decrementDays() {
 
 
 
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: dataList.map<Widget>((data) {
-    if (data['day'] == 1) {
-      // Display containers only for the first day
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Column(
-              children: data['meals'].map<Widget>((meal) {
-                return Column(
-                  children: [
-                    const SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: dataList.map<Widget>((data) {
+                              if (data['day'] == _days) {
+                                // Display containers for the selected day
+                                return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      meal['title'],
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width * 0.50,
-                                      child: Text(
-                                        meal['meal_title'],
-                                        style: const TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-
-                              
-
-
-                                ...{meal['title'] == 'Breakfast' 
-  ? Image.asset('assets/images/sun.png', width: 140, height: 140,)
-  : meal['title'] == 'Lunch' 
-    ? Image.asset('assets/images/l.png', width: 140, height: 140,)
-    : meal['title'] == 'Dinner' 
-      ? Image.asset('assets/images/D.png', width: 140, height: 140,)
-      : meal['title'] == 'Snack' 
-        ? Image.asset('assets/images/s.png', width: 140, height: 140,)
-        : Image.asset('assets/images/s.png', width: 140, height: 140,),
-                                }
-                              ],
-                            ),
-                          ),
-                          Visibility(
-                            visible: meal['title'] == 'Breakfast' ? !_showDetails :
-                              meal['title'] == 'Lunch' ? !_showDetails2 :
-                              meal['title'] == 'Dinner' ? !_showDetails3 :
-                              meal['title'] == 'Snack' ? !_showDetails4 : false,
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  switch (meal['title']) {
-                                    case 'Breakfast':
-                                      _showDetails = !_showDetails;
-                                      break;
-                                    case 'Lunch':
-                                      _showDetails2 = !_showDetails2;
-                                      break;
-                                    case 'Dinner':
-                                      _showDetails3 = !_showDetails3;
-                                      break;
-                                    case 'Snack':
-                                      _showDetails4 = !_showDetails4;
-                                      break;
-                                  }
-                                });
-                              },
-                              child: Center(
-                                child: Icon(
-                                  _getIconForTitle(meal['title'], meal['details']),
-                                  size: 30,
-                                ),
-                              ),
-                            ),
-                          ),
-                          if (_shouldShowDetails(meal['title']))
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                right: 16.0,
-                                bottom: 2.0,
-                                left: 16.0,
-                              ),
-                              child: Column(
-                                children: [
-                                  ...meal['details'].map<Widget>((detail) {
-                                    return Column(
-                                      children: [
-                                        const Divider(),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              _currentPageIndex = 0;
-                                            });
-                                            _showModalBottomSheet(
-                                              context,
-                                              detail['name'],
-                                            );
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Column(
+                                        children:
+                                            data['meals'].map<Widget>((meal) {
+                                          return Column(
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    detail['name'],
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    detail['amount'],
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
-                                                ],
+                                              const SizedBox(
+                                                height: 10,
                                               ),
                                               Container(
-                                                width: 50,
-                                                height: 50,
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(12.0),
-                                                  gradient: const LinearGradient(
-                                                    begin: Alignment(-0.5, -1.0),
-                                                    end: Alignment(0.5, 1.0),
-                                                    colors: [
-                                                      Color.fromRGBO(205, 201, 196, 0.24),
-                                                      Color.fromRGBO(205, 201, 196, 0.24),
-                                                    ],
-                                                    stops: [0.0, 1.0],
-                                                  ),
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                      color: Colors.white),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0),
                                                 ),
-                                                padding: const EdgeInsets.all(8),
-                                                child: const Center(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        '283',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w400,
+                                                child: Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                meal['title'],
+                                                                style:
+                                                                    const TextStyle(
+                                                                  fontSize: 17,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.50,
+                                                                child: Text(
+                                                                  meal[
+                                                                      'meal_title'],
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontSize:
+                                                                        13,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Image.asset(
+                                                            _getImagePathForTitle(
+                                                                meal['title']),
+                                                            width: 140,
+                                                            height: 140,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: meal['title'] ==
+                                                              'Breakfast'
+                                                          ? !_showDetails
+                                                          : meal['title'] ==
+                                                                  'Lunch'
+                                                              ? !_showDetails2
+                                                              : meal['title'] ==
+                                                                      'Dinner'
+                                                                  ? !_showDetails3
+                                                                  : meal['title'] ==
+                                                                          'Snack'
+                                                                      ? !_showDetails4
+                                                                      : false,
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            _toggleDetailsForTitle(
+                                                                meal['title']);
+                                                          });
+                                                        },
+                                                        child: Center(
+                                                          child: Icon(
+                                                            _getIconForTitle(
+                                                                meal['title'],
+                                                                meal[
+                                                                    'details']),
+                                                            size: 30,
+                                                          ),
                                                         ),
                                                       ),
-                                                      Text(
-                                                        'kcal',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w400,
+                                                    ),
+                                                    if (_shouldShowDetails(
+                                                        meal['title']))
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          right: 16.0,
+                                                          bottom: 2.0,
+                                                          left: 16.0,
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+                                                            ...meal['details']
+                                                                .map<Widget>(
+                                                                    (detail) {
+                                                              return Column(
+                                                                children: [
+                                                                  const Divider(),
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        _currentPageIndex =
+                                                                            0;
+                                                                      });
+                                                                       _showModalBottomSheet(
+                                                                    context,
+                                                                    detail[
+                                                                        'name'],
+                                                                        detail[
+                                                                        'amount'],
+                                                                        detail[
+                                                                        'calories'],
+                                                                         detail[
+                                                                        'protein'],
+                                                                         detail[
+                                                                        'fat'],
+                                                                        detail[
+                                                                        'cholesterol'],
+                                                                        detail[
+                                                                        'calcium'],
+                                                                  );
+                                                                    },
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              detail['name'],
+                                                                              style: const TextStyle(
+                                                                                fontSize: 16,
+                                                                                fontWeight: FontWeight.w400,
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              detail['amount'],
+                                                                              style: const TextStyle(
+                                                                                fontSize: 12,
+                                                                                fontWeight: FontWeight.w400,
+                                                                                color: Colors.grey,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              50,
+                                                                          height:
+                                                                              50,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(12.0),
+                                                                            gradient:
+                                                                                const LinearGradient(
+                                                                              begin: Alignment(-0.5, -1.0),
+                                                                              end: Alignment(0.5, 1.0),
+                                                                              colors: [
+                                                                                Color.fromRGBO(205, 201, 196, 0.24),
+                                                                                Color.fromRGBO(205, 201, 196, 0.24),
+                                                                              ],
+                                                                              stops: [
+                                                                                0.0,
+                                                                                1.0
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              8),
+                                                                          child:
+                                                                              const Center(
+                                                                            child:
+                                                                                Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Text(
+                                                                                  '283',
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                    fontWeight: FontWeight.w400,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  'kcal',
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                    fontWeight: FontWeight.w400,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          5),
+                                                                ],
+                                                              );
+                                                            }).toList(),
+                                                           GestureDetector(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            _toggleDetailsForTitle(
+                                                                meal['title']);
+                                                          });
+                                                        },
+                                                        child: Center(
+                                                          child: Icon(
+                                                            _getIconForTitle(
+                                                                meal['title'],
+                                                                meal[
+                                                                    'details']),
+                                                            size: 30,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    
+                                                          ],
+                                                          
+                                                        ),
+                                                      ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                      ],
-                                    );
-                                  }).toList(),
-
-                               GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  switch (meal['title']) {
-                                    case 'Breakfast':
-                                      _showDetails = !_showDetails;
-                                      break;
-                                    case 'Lunch':
-                                      _showDetails2 = !_showDetails2;
-                                      break;
-                                    case 'Dinner':
-                                      _showDetails3 = !_showDetails3;
-                                      break;
-                                       case 'Snack':
-                                      _showDetails4 = !_showDetails4;
-                                      break;
-                                  }
-                                });
-                              },
-                              child: Center(
-            child: Icon(
-              _getIconForTitle(meal['title'], meal['details']),
-              size: 30,
-            ),
-          ),
-                            
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16.0),
+                                  ],
+                                );
+                              } else {
+                                // Return empty container for other days
+                                return Container();
+                              }
+                            }).toList(),
                           ),
-                                ]  
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              }).toList(),
-            ),
-          ),
-          const SizedBox(height: 16.0),
-        ],
-      );
-    } else {
-      // Return empty container for other days
-      return Container();
-    }
-  }).toList(),
-),
 
 
 
 
-
-
-
-                          
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -792,14 +1199,12 @@ Column(
     );
   }
 
-  void _showModalBottomSheet(BuildContext context, detail) {
+    void _showModalBottomSheet(BuildContext context, name, amount, calories, protein, fat, cholesterol, calcium) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
-              // Отримання даних з перемінної jsonData
-          List<dynamic> nutritionalInfo = modalData['nutritionalInfo'];
           return Container(
             height: 380,
             decoration: const BoxDecoration(
@@ -808,10 +1213,7 @@ Column(
                 top: Radius.circular(32.0),
               ),
             ),
-            child: 
-            
-            
-            Padding(
+            child: Padding(
               padding: const EdgeInsets.only(
                   top: 18.0, bottom: 40.0, left: 10.0, right: 5.0),
               child: Stack(
@@ -840,8 +1242,8 @@ Column(
                                   color:
                                       const Color.fromRGBO(205, 201, 196, 0.24),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -851,13 +1253,13 @@ Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '283',
-                                        style: TextStyle(
+                                        '${calories.split(' ')[0]}',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'kcal',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -872,8 +1274,8 @@ Column(
                                 height: 70,
                                 width: 70,
                                 decoration: const BoxDecoration(),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child:  Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -883,13 +1285,13 @@ Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '1 gr',
-                                        style: TextStyle(
+                                        '$protein',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Protein',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -911,8 +1313,8 @@ Column(
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -922,13 +1324,13 @@ Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '5 gr',
-                                        style: TextStyle(
+                                        '$fat',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Fat',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -950,8 +1352,8 @@ Column(
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -961,13 +1363,13 @@ Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '0 gr',
-                                        style: TextStyle(
+                                        '$cholesterol',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Cholesterol',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -989,8 +1391,8 @@ Column(
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -1000,13 +1402,13 @@ Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '146 mg',
-                                        style: TextStyle(
+                                        '$calcium',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Calcium',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -1044,12 +1446,12 @@ Column(
                                 legendTextStyle: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.w400)),
-                            centerWidget: const Column(
+                            centerWidget: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('283'),
-                                Text(
+                                Text(' ${calories.split(' ')[0]}'),
+                                const Text(
                                   'kcal',
                                   style: TextStyle(color: Colors.grey),
                                 ),
@@ -1081,13 +1483,13 @@ Column(
                       child: Column(
                         children: [
                           Text(
-                            detail,
+                            name,
                             style: const TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w600),
                           ),
-                          const Text(
-                            '100 g',
-                            style: TextStyle(fontSize: 12),
+                          Text(
+                            '$amount',
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -1120,16 +1522,9 @@ Column(
                 ],
               ),
             ),
-
-
-
-
           );
         });
       },
     );
   }
-
-
-  
 }
