@@ -20,7 +20,7 @@ class _CalculateBonesCheckUpWidgetState
   ];
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
-    if (_selectedOptions.length == titles.length) {
+    if (_selectedOptions.isNotEmpty) {
       CalculateGlobalWidget.of(context).userModelBuilder.bone_check_up =
           _selectedOptions;
       CalculateGlobalWidget.of(context).setButtonActivity(true);
