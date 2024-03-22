@@ -22,24 +22,26 @@ class _CalculateHeightWidgetState extends State<CalculateHeightWidget> {
   }
 
   void isActive() {
-    if (_switchValue) {
-      if (_cmController.text.isNotEmpty) {
+  if (_switchValue) {
+    if (_cmController.text.isNotEmpty) {
+      // Check if entered number is within the valid range
+      double enteredValue = double.tryParse(_cmController.text) ?? 0;
+      if (enteredValue >= 50 && enteredValue <= 210) {
         CalculateGlobalWidget.of(context).userModelBuilder.height =
             _cmController.text;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
+        // Make button inactive if number is not within the valid range
         CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     } else {
-      if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
-        CalculateGlobalWidget.of(context).userModelBuilder.height =
-            "${feetAndInchesToCentimeters(int.parse(_ftController.text), int.parse(_inController.text))}";
-        CalculateGlobalWidget.of(context).setButtonActivity(true);
-      } else {
-        CalculateGlobalWidget.of(context).setButtonActivity(false);
-      }
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
     }
+  } else {
+    // Your existing code for feet and inches input
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

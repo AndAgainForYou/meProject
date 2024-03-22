@@ -26,23 +26,35 @@ class _ProfileHeightWidgetState extends State<ProfileHeightWidget> {
   }
 
   void isActive() {
+  setState(() {
     if (_switchValue) {
       if (_cmController.text.isNotEmpty) {
-        updateProfileData['height'] = _cmController.text;
-        _isButtonActive = true;
+        int heightInCm = int.parse(_cmController.text);
+        if (heightInCm >= 50 && heightInCm <= 210) {
+          updateProfileData['height'] = _cmController.text;
+          _isButtonActive = true;
+        } else {
+          _isButtonActive = false;
+        }
       } else {
         _isButtonActive = false;
       }
     } else {
       if (_ftController.text.isNotEmpty && _inController.text.isNotEmpty) {
-        updateProfileData['height'] =
-            "${feetAndInchesToCentimeters(int.parse(_ftController.text), int.parse(_inController.text))}";
-        _isButtonActive = true;
+        int heightInInches = feetAndInchesToCentimeters(int.parse(_ftController.text), int.parse(_inController.text));
+        if (heightInInches >= 30 && heightInInches <= 200) {
+          updateProfileData['height'] = "$heightInInches";
+          _isButtonActive = true;
+        } else {
+          _isButtonActive = false;
+        }
       } else {
         _isButtonActive = false;
       }
     }
-  }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -18,24 +18,37 @@ class _ProfileWeightWidgetState extends State<ProfileWeightWidget> {
   Map<String, dynamic> updateProfileData = {};
   bool _isButtonActive = false;
 
-  void isActive() {
+ void isActive() {
+  setState(() {
     if (_switchValue) {
       if (_kgController.text.isNotEmpty) {
-        updateProfileData['weight'] = _kgController.text;
-        _isButtonActive = true;
+        double weightInKg = double.tryParse(_kgController.text) ?? 0.0;
+        if (weightInKg >= 30.0 && weightInKg <= 200.0) {
+          updateProfileData['weight'] = weightInKg.toString();
+          _isButtonActive = true;
+        } else {
+          _isButtonActive = false;
+        }
       } else {
         _isButtonActive = false;
       }
     } else {
       if (_lbController.text.isNotEmpty) {
-        updateProfileData['weight'] =
-            (int.parse(_lbController.text) * 0.453592).toStringAsFixed(1);
-        _isButtonActive = true;
+        double weightInLb = double.tryParse(_lbController.text) ?? 0.0;
+        double weightInKg = weightInLb * 0.453592;
+        if (weightInKg >= 9.0 && weightInKg <= 90.0) {
+          updateProfileData['weight'] = weightInKg.toStringAsFixed(1);
+          _isButtonActive = true;
+        } else {
+          _isButtonActive = false;
+        }
       } else {
         _isButtonActive = false;
       }
     }
-  }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

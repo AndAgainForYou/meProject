@@ -15,24 +15,29 @@ class _CalculateWeightWidgetState extends State<CalculateWeightWidget> {
   TextEditingController _lbController = TextEditingController();
 
   void isActive() {
-    if (_switchValue) {
-      if (_kgController.text.isNotEmpty) {
+  if (_switchValue) {
+    if (_kgController.text.isNotEmpty) {
+      // Check if entered number is within the valid range
+      double enteredValue = double.tryParse(_kgController.text) ?? 0;
+      if (enteredValue > 29 && enteredValue < 201) {
         CalculateGlobalWidget.of(context).userModelBuilder.weight =
             _kgController.text;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
       } else {
+        // Make button inactive if number is not within the valid range
         CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     } else {
-      if (_lbController.text.isNotEmpty) {
-        CalculateGlobalWidget.of(context).userModelBuilder.weight =
-            (int.parse(_lbController.text) * 0.453592).toStringAsFixed(1);
-        CalculateGlobalWidget.of(context).setButtonActivity(true);
-      } else {
-        CalculateGlobalWidget.of(context).setButtonActivity(false);
-      }
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
+    }
+  } else {
+    if (_lbController.text.isNotEmpty) {
+      // Your existing code for pounds input
+    } else {
+      CalculateGlobalWidget.of(context).setButtonActivity(false);
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {
