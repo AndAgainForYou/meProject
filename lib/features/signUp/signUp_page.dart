@@ -207,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                             
 
                                            // print(result.authorizationCode);
-                                            platyBloc.add(LogInWithAppleEvent());
+                                            platyBloc.add(SignUpWithAppleEvent());
                                             // You can use the result to authenticate the user with your server.
                                           } catch (error) {
                                             print(error.toString());

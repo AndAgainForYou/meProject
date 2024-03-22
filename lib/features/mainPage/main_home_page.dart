@@ -182,52 +182,364 @@ class _MainHomeState extends State<MainHome> {
 
   int _currentPageIndex = 0;
 
+  int _days = 1;
+
   // Sample data
   final List<Map<String, dynamic>> dataList = [
     {
-      'title': 'Breakfast',
-      'subtitle': '597 kcal',
-      'image': 'sun.png',
-      'details': [
-        {'name': 'Tofu', 'amount': '100 g'},
-        {'name': 'Chicken, Beef and Pork Bologna', 'amount': '100 g'},
-        {'name': 'Cheese', 'amount': '100 g'},
-        {'name': 'Egg', 'amount': '1 extra large (71,5 g)'},
-      ],
+      "day": 1,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkkkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Duck",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
     },
     {
-      'title': 'Lunch',
-      'subtitle': '597 kcal',
-      'image': 'l.png',
-      'details': [
-        {'name': 'Tofu', 'amount': '100 g'},
-        {'name': 'Chicken, Beef and Pork Bologna', 'amount': '100 g'},
-        {'name': 'Cheese', 'amount': '100 g'},
-        {'name': 'Egg', 'amount': '1 extra large (71,5 g)'},
-      ],
-    },
-    {
-      'title': 'Dinner',
-      'subtitle': '597 kcal',
-      'image': 'D.png',
-      'details': [
-        {'name': 'Tofu', 'amount': '100 g'},
-        {'name': 'Chicken, Beef and Pork Bologna', 'amount': '100 g'},
-        {'name': 'Cheese', 'amount': '100 g'},
-        {'name': 'Egg', 'amount': '1 extra large (71,5 g)'},
-      ],
-    },
-    {
-      'title': 'Snack',
-      'subtitle': '597 kcal',
-      'image': 's.png',
-      'details': [
-        {'name': 'Tofu', 'amount': '100 g'},
-        {'name': 'Chicken, Beef and Pork Bologna', 'amount': '100 g'},
-        {'name': 'Cheese', 'amount': '100 g'},
-        {'name': 'Egg', 'amount': '1 extra large (71,5 g)'},
-      ],
-    },
+      "day": 2,
+      "meals": [
+        {
+          "title": "Breakfast",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Dick",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Lunch",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Dinner",
+          "meal_title": "Chia Seed Pudding with Almond Milk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia Seeds",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        },
+        {
+          "title": "Snack",
+          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
+          "meal_calories": "590 kcal",
+          "details": [
+            {
+              "name": "Chia",
+              "amount": "30 g",
+              "calories": "137 kcal",
+              "protein": "4 g",
+              "fat": "9 g",
+              "cholesterol": "0 mg",
+              "calcium": "177 mg"
+            },
+            {
+              "name": "Almond Milk (unsweetened)",
+              "amount": "200 ml",
+              "calories": "36 kcal",
+              "protein": "1 g",
+              "fat": "3 g",
+              "cholesterol": "0 mg",
+              "calcium": "79 mg"
+            },
+            {
+              "name": "Strawberries",
+              "amount": "100 g",
+              "calories": "32 kcal",
+              "protein": "1 g",
+              "fat": "0 g",
+              "cholesterol": "0 mg",
+              "calcium": "16 mg"
+            },
+            {
+              "name": "Whole Grain Oats",
+              "amount": "40 g",
+              "calories": "305 kcal",
+              "protein": "10 g",
+              "fat": "5 g",
+              "cholesterol": "0 mg",
+              "calcium": "52 mg"
+            }
+          ]
+        }
+      ]
+    }
   ];
 
   IconData _getIconForTitle(String title, List<dynamic> details) {
@@ -274,6 +586,21 @@ class _MainHomeState extends State<MainHome> {
     }
   }
 
+  String _getImagePathForTitle(String title) {
+    switch (title) {
+      case 'Breakfast':
+        return 'assets/images/sun.png';
+      case 'Lunch':
+        return 'assets/images/l.png';
+      case 'Dinner':
+        return 'assets/images/D.png';
+      case 'Snack':
+        return 'assets/images/s.png';
+      default:
+        return 'assets/images/s.png'; // Default image path
+    }
+  }
+
   final dataMap = <String, double>{
     "Protein": 1,
     "Fat": 5,
@@ -288,636 +615,699 @@ class _MainHomeState extends State<MainHome> {
     const Color.fromRGBO(223, 166, 123, 1),
   ];
 
+  void _toggleDetailsForTitle(String title) {
+    setState(() {
+      switch (title) {
+        case 'Breakfast':
+          _showDetails = !_showDetails;
+          break;
+        case 'Lunch':
+          _showDetails2 = !_showDetails2;
+          break;
+        case 'Dinner':
+          _showDetails3 = !_showDetails3;
+          break;
+        case 'Snack':
+          _showDetails4 = !_showDetails4;
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: Image.asset(
-            'assets/images/background_noOrange.png',
-            fit: BoxFit.cover,
-          ),
-        ),
-        CustomScrollView(
-          controller: widget.scrollController,
-          slivers: [
-            SliverAppBar(
-              centerTitle: true,
-              automaticallyImplyLeading: false,
-              scrolledUnderElevation: 0,
-              expandedHeight: 0.0,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                background: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.transparent, Colors.transparent],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
+    return BlocBuilder<PlatyBloc, PlatyBlocState>(
+      builder: (context, state) {
+          if (state is MealPlanDataState) {
+            //Map<String, dynamic> profileData = state.profilePageData;
+            //emailText = profileData['user_email'];
+          }
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/background_noOrange.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            CustomScrollView(
+              controller: widget.scrollController,
+              slivers: [
+                SliverAppBar(
+                  centerTitle: true,
+                  automaticallyImplyLeading: false,
+                  scrolledUnderElevation: 0,
+                  expandedHeight: 0.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: true,
+                    background: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.transparent, Colors.transparent],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
                     ),
                   ),
+                  title: Image.asset('assets/images/logo_small.png',
+                      width: 32, height: 32),
+                  actions: [
+                    IconButton(
+                      icon: Image.asset('assets/images/black_bell.png',
+                          width: 42, height: 42),
+                      onPressed: () {
+                        // Add your action here
+                      },
+                    ),
+                  ],
+                  backgroundColor: widget.isScrolled
+                      ? const Color.fromARGB(255, 240, 242, 236)
+                      : Colors.transparent,
+                  floating: true,
+                  pinned: true,
+                  snap: false,
+                  elevation: 0,
                 ),
-              ),
-              title: Image.asset('assets/images/logo_small.png',
-                  width: 32, height: 32),
-              actions: [
-                IconButton(
-                  icon: Image.asset('assets/images/black_bell.png',
-                      width: 42, height: 42),
-                  onPressed: () {
-                    // Add your action here
-                  },
-                ),
-              ],
-              backgroundColor: widget.isScrolled
-                  ? const Color.fromARGB(255, 240, 242, 236)
-                  : Colors.transparent,
-              floating: true,
-              pinned: true,
-              snap: false,
-              elevation: 0,
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Goal',
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        constraints: BoxConstraints(
-                          maxHeight: 72,
-                          maxWidth: MediaQuery.of(context).size.width * 0.92,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14.0),
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                              color:
-                                  Color.fromRGBO(0, 0, 0, 0.09000000357627869),
-                              offset: Offset(1, 3),
-                              blurRadius: 9,
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Goal',
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 10),
+                          Container(
+                            constraints: BoxConstraints(
+                              maxHeight: 72,
+                              maxWidth:
+                                  MediaQuery.of(context).size.width * 0.92,
                             ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 17.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14.0),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                      0, 0, 0, 0.09000000357627869),
+                                  offset: Offset(1, 3),
+                                  blurRadius: 9,
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 17.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'WOW!',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
+                                  const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'WOW!',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        'You are good! Keep up the good work',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    'You are good! Keep up the good work',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
+                                  IconButton(
+                                    icon: const Icon(Icons.cancel),
+                                    onPressed: () {
+                                      // Add your cancel action here
+                                    },
                                   ),
                                 ],
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.cancel),
-                                onPressed: () {
-                                  // Add your cancel action here
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0, top: 0.0),
-                            child: CircularPercentIndicator(
-                                backgroundColor:
-                                    const Color.fromRGBO(230, 227, 223, 1),
-                                radius: 100,
-                                lineWidth: 16.0,
-                                percent: 0.89,
-                                center: const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("89%",
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color(0xFF535355))),
-                                    Text(
-                                      'Daily progress',
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w300),
-                                    )
-                                  ],
-                                ),
-                                linearGradient: const LinearGradient(
-                                    begin: Alignment.topRight,
-                                    end: Alignment.bottomLeft,
-                                    colors: <Color>[
-                                      Color(0xFFa4aa9c),
-                                      Color(0xFFffa384),
-                                      Color(0xFFffa384),
-                                      Color(0xFFffa384),
-                                      Color(0xFFffa384),
-                                      Color(0xFFffa384),
-                                      Color(0xFFa4aa9c),
-                                      Color(0xFFa4aa9c),
-                                      Color(0xFFa4aa9c),
-                                    ]),
-                                rotateLinearGradient: true,
-                                circularStrokeCap: CircularStrokeCap.round),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.36,
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'My current track',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      '23',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'My current goal',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      '3 times (weekly)',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Divider(),
-                                SizedBox(height: 5),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Current weight',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      '84.5',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Target weight',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      '95',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 50),
-                      GestureDetector(
-                        onTap: () {
-
-                          PlatyBloc platyBloc =
-                              BlocProvider.of<PlatyBloc>(context);
-                          // platyBloc.add(MealPlanDataEvent());
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SeeMorePage()),
-                          );
-                        },
-                        child: Container(
-                          constraints: const BoxConstraints(
-                            maxHeight: 44,
-                            maxWidth: 131,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100.0),
-                            // ignore: prefer_const_constructors
-                            gradient: LinearGradient(
-                              begin: const Alignment(0.0, -1.0),
-                              end: const Alignment(1.0, 1.0),
-                              colors: const [
-                                Color.fromRGBO(164, 171, 155, 1),
-                                Color.fromRGBO(164, 171, 155, 1),
-                              ],
-                              stops: const [0.0, 1.0],
-                            ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 6,
-                              ),
-                            ],
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'See More',
-                              style: TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: 'Gilroy',
-                                fontSize: 16,
-                                letterSpacing: 0,
-                                fontWeight: FontWeight.w600,
-                                height: 1,
-                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Your meal plan',
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          for (int i = 0; i < days.length; i++)
-                            Column(
-                              children: [
-                                Container(
-                                  width: 44,
-                                  height: 44,
-                                  decoration: i == 0
-                                      ? const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            colors: [
-                                              Color.fromRGBO(164, 171, 155, 1),
-                                              Color.fromRGBO(164, 171, 155, 1),
-                                            ],
-                                          ),
-                                        )
-                                      : const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                  child: Center(
-                                    child: Text(
-                                      days[i],
-                                      style: TextStyle(
-                                        color: i == 0
-                                            ? Colors.white
-                                            : Colors.black38,
-                                        fontSize: 16,
-                                        fontFamily: 'Gilroy',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: dataList.map<Widget>((data) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          const SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 0.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  data['title'],
-                                                  style: const TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Text(
-                                                  data['subtitle'],
-                                                  style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                            Image.asset(
-                                              'assets/images/' + data['image'],
-                                              width: 140,
-                                              height: 140,
-                                            ),
-                                          ],
+                                padding:
+                                    const EdgeInsets.only(left: 0.0, top: 0.0),
+                                child: CircularPercentIndicator(
+                                    backgroundColor:
+                                        const Color.fromRGBO(230, 227, 223, 1),
+                                    radius: 100,
+                                    lineWidth: 16.0,
+                                    percent: 0.89,
+                                    center: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("89%",
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xFF535355))),
+                                        Text(
+                                          'Daily progress',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w300),
+                                        )
+                                      ],
+                                    ),
+                                    linearGradient: const LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: <Color>[
+                                          Color(0xFFa4aa9c),
+                                          Color(0xFFffa384),
+                                          Color(0xFFffa384),
+                                          Color(0xFFffa384),
+                                          Color(0xFFffa384),
+                                          Color(0xFFffa384),
+                                          Color(0xFFa4aa9c),
+                                          Color(0xFFa4aa9c),
+                                          Color(0xFFa4aa9c),
+                                        ]),
+                                    rotateLinearGradient: true,
+                                    circularStrokeCap: CircularStrokeCap.round),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.36,
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'My current track',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
                                         ),
+                                        Text(
+                                          '23',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'My current goal',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          '3 times (weekly)',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Divider(),
+                                    SizedBox(height: 5),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Current weight',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          '84.5',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Target weight',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          '95',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 50),
+                          GestureDetector(
+                            onTap: () {
+                              PlatyBloc platyBloc =
+                                  BlocProvider.of<PlatyBloc>(context);
+                              // platyBloc.add(MealPlanDataEvent());
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SeeMorePage()),
+                              );
+                            },
+                            child: Container(
+                              constraints: const BoxConstraints(
+                                maxHeight: 44,
+                                maxWidth: 131,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100.0),
+                                // ignore: prefer_const_constructors
+                                gradient: LinearGradient(
+                                  begin: const Alignment(0.0, -1.0),
+                                  end: const Alignment(1.0, 1.0),
+                                  colors: const [
+                                    Color.fromRGBO(164, 171, 155, 1),
+                                    Color.fromRGBO(164, 171, 155, 1),
+                                  ],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 6,
+                                  ),
+                                ],
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'See More',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(255, 255, 255, 1),
+                                    fontFamily: 'Gilroy',
+                                    fontSize: 16,
+                                    letterSpacing: 0,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          const Text(
+                            'Your meal plan',
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(days.length, (index) {
+                              final int dayNumber =
+                                  index + 1; // Adjust the day number
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _days = dayNumber;
+                                    _showDetails = false;
+                                    _showDetails2 = false;
+                                    _showDetails3 = false;
+                                    _showDetails4 =
+                                        false; // Update _days with the adjusted day number
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 44,
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: dayNumber == _days
+                                            ? const LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Color.fromRGBO(
+                                                      164, 171, 155, 1),
+                                                  Color.fromRGBO(
+                                                      164, 171, 155, 1),
+                                                ],
+                                              )
+                                            : null,
+                                        color: dayNumber != _days
+                                            ? Colors.white
+                                            : null,
                                       ),
-                                      Visibility(
-                                        visible: data['title'] == 'Breakfast'
-                                            ? !_showDetails
-                                            : data['title'] == 'Lunch'
-                                                ? !_showDetails2
-                                                : data['title'] == 'Dinner'
-                                                    ? !_showDetails3
-                                                    : data['title'] == 'Snack'
-                                                        ? !_showDetails4
-                                                        : false,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              switch (data['title']) {
-                                                case 'Breakfast':
-                                                  _showDetails = !_showDetails;
-                                                  break;
-                                                case 'Lunch':
-                                                  _showDetails2 =
-                                                      !_showDetails2;
-                                                  break;
-                                                case 'Dinner':
-                                                  _showDetails3 =
-                                                      !_showDetails3;
-                                                  break;
-                                                case 'Snack':
-                                                  _showDetails4 =
-                                                      !_showDetails4;
-                                                  break;
-                                              }
-                                            });
-                                          },
-                                          child: Center(
-                                            child: Icon(
-                                              _getIconForTitle(data['title'],
-                                                  data['details']),
-                                              size: 30,
-                                            ),
+                                      child: Center(
+                                        child: Text(
+                                          days[index],
+                                          style: TextStyle(
+                                            color: dayNumber == _days
+                                                ? Colors.white
+                                                : Colors.black38,
+                                            fontSize: 16,
+                                            fontFamily: 'Gilroy',
                                           ),
                                         ),
                                       ),
-                                      if (_shouldShowDetails(data['title']))
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 16.0,
-                                              bottom: 2.0,
-                                              left: 16.0),
-                                          child: Column(
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
+                          const SizedBox(height: 30),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: dataList.map<Widget>((data) {
+                              if (data['day'] == _days) {
+                                // Display containers for the selected day
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Column(
+                                        children:
+                                            data['meals'].map<Widget>((meal) {
+                                          return Column(
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: data['details']
-                                                    .map<Widget>((detail) {
-                                                  return Column(
-                                                    children: [
-                                                      const Divider(),
-                                                      InkWell(
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                      color: Colors.white),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0),
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                meal['title'],
+                                                                style:
+                                                                    const TextStyle(
+                                                                  fontSize: 17,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.50,
+                                                                child: Text(
+                                                                  meal[
+                                                                      'meal_title'],
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontSize:
+                                                                        13,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Image.asset(
+                                                            _getImagePathForTitle(
+                                                                meal['title']),
+                                                            width: 140,
+                                                            height: 140,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: meal['title'] ==
+                                                              'Breakfast'
+                                                          ? !_showDetails
+                                                          : meal['title'] ==
+                                                                  'Lunch'
+                                                              ? !_showDetails2
+                                                              : meal['title'] ==
+                                                                      'Dinner'
+                                                                  ? !_showDetails3
+                                                                  : meal['title'] ==
+                                                                          'Snack'
+                                                                      ? !_showDetails4
+                                                                      : false,
+                                                      child: GestureDetector(
                                                         onTap: () {
                                                           setState(() {
-                                                            _currentPageIndex =
-                                                                0;
+                                                            _toggleDetailsForTitle(
+                                                                meal['title']);
                                                           });
-                                                          _showModalBottomSheet(
-                                                              context,
-                                                              detail['name']);
                                                         },
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                        child: Center(
+                                                          child: Icon(
+                                                            _getIconForTitle(
+                                                                meal['title'],
+                                                                meal[
+                                                                    'details']),
+                                                            size: 30,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    if (_shouldShowDetails(
+                                                        meal['title']))
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          right: 16.0,
+                                                          bottom: 2.0,
+                                                          left: 16.0,
+                                                        ),
+                                                        child: Column(
                                                           children: [
-                                                            Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  detail[
-                                                                      'name'],
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400),
+                                                            ...meal['details']
+                                                                .map<Widget>(
+                                                                    (detail) {
+                                                              return Column(
+                                                                children: [
+                                                                  const Divider(),
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        _currentPageIndex =
+                                                                            0;
+                                                                      });
+                                                                      _showModalBottomSheet(
+                                                                        context,
+                                                                        detail[
+                                                                            'name'],
+                                                                        detail[
+                                                                            'amount'],
+                                                                        detail[
+                                                                            'calories'],
+                                                                        detail[
+                                                                            'protein'],
+                                                                        detail[
+                                                                            'fat'],
+                                                                        detail[
+                                                                            'cholesterol'],
+                                                                        detail[
+                                                                            'calcium'],
+                                                                      );
+                                                                    },
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              detail['name'],
+                                                                              style: const TextStyle(
+                                                                                fontSize: 16,
+                                                                                fontWeight: FontWeight.w400,
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              detail['amount'],
+                                                                              style: const TextStyle(
+                                                                                fontSize: 12,
+                                                                                fontWeight: FontWeight.w400,
+                                                                                color: Colors.grey,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              50,
+                                                                          height:
+                                                                              50,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(12.0),
+                                                                            gradient:
+                                                                                const LinearGradient(
+                                                                              begin: Alignment(-0.5, -1.0),
+                                                                              end: Alignment(0.5, 1.0),
+                                                                              colors: [
+                                                                                Color.fromRGBO(205, 201, 196, 0.24),
+                                                                                Color.fromRGBO(205, 201, 196, 0.24),
+                                                                              ],
+                                                                              stops: [
+                                                                                0.0,
+                                                                                1.0
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              8),
+                                                                          child:
+                                                                              const Center(
+                                                                            child:
+                                                                                Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Text(
+                                                                                  '283',
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                    fontWeight: FontWeight.w400,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  'kcal',
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                    fontWeight: FontWeight.w400,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          5),
+                                                                ],
+                                                              );
+                                                            }).toList(),
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  _toggleDetailsForTitle(
+                                                                      meal[
+                                                                          'title']);
+                                                                });
+                                                              },
+                                                              child: Center(
+                                                                child: Icon(
+                                                                  _getIconForTitle(
+                                                                      meal[
+                                                                          'title'],
+                                                                      meal[
+                                                                          'details']),
+                                                                  size: 30,
                                                                 ),
-                                                                Text(
-                                                                  detail[
-                                                                      'amount'],
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ],
+                                                              ),
                                                             ),
-                                                            Container(
-                                                              width: 50,
-                                                              height: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                                gradient:
-                                                                    const LinearGradient(
-                                                                  begin:
-                                                                      Alignment(
-                                                                          0.0,
-                                                                          -1.0),
-                                                                  end:
-                                                                      Alignment(
-                                                                          1.0,
-                                                                          1.0),
-                                                                  colors: [
-                                                                    Color.fromRGBO(
-                                                                        205,
-                                                                        201,
-                                                                        196,
-                                                                        0.24),
-                                                                    Color.fromRGBO(
-                                                                        205,
-                                                                        201,
-                                                                        196,
-                                                                        0.24)
-                                                                  ],
-                                                                  stops: [
-                                                                    0.0,
-                                                                    1.0
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8),
-                                                              child:
-                                                                  const Center(
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      '283',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      'kcal',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            )
                                                           ],
                                                         ),
                                                       ),
-                                                      const SizedBox(height: 5),
-                                                    ],
-                                                  );
-                                                }).toList(),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    switch (data['title']) {
-                                                      case 'Breakfast':
-                                                        _showDetails =
-                                                            !_showDetails;
-                                                        break;
-                                                      case 'Lunch':
-                                                        _showDetails2 =
-                                                            !_showDetails2;
-                                                        break;
-                                                      case 'Dinner':
-                                                        _showDetails3 =
-                                                            !_showDetails3;
-                                                        break;
-                                                      case 'Snack':
-                                                        _showDetails4 =
-                                                            !_showDetails4;
-                                                        break;
-                                                    }
-                                                  });
-                                                },
-                                                child: Center(
-                                                  child: Icon(
-                                                    _getIconForTitle(
-                                                        data['title'],
-                                                        data['details']),
-                                                    size: 30,
-                                                  ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16.0),
-                            ],
-                          );
-                        }).toList(),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16.0),
+                                  ],
+                                );
+                              } else {
+                                // Return empty container for other days
+                                return Container();
+                              }
+                            }).toList(),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
 
-                // Add more widgets here if needed
-              ]),
+                    // Add more widgets here if needed
+                  ]),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 
-  void _showModalBottomSheet(BuildContext context, detail) {
+  void _showModalBottomSheet(BuildContext context, name, amount, calories,
+      protein, fat, cholesterol, calcium) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -960,8 +1350,8 @@ class _MainHomeState extends State<MainHome> {
                                   color:
                                       const Color.fromRGBO(205, 201, 196, 0.24),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -971,13 +1361,13 @@ class _MainHomeState extends State<MainHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '283',
-                                        style: TextStyle(
+                                        '${calories.split(' ')[0]}',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'kcal',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -992,8 +1382,8 @@ class _MainHomeState extends State<MainHome> {
                                 height: 70,
                                 width: 70,
                                 decoration: const BoxDecoration(),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -1003,13 +1393,13 @@ class _MainHomeState extends State<MainHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '1 gr',
-                                        style: TextStyle(
+                                        '$protein',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Protein',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -1031,8 +1421,8 @@ class _MainHomeState extends State<MainHome> {
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -1042,13 +1432,13 @@ class _MainHomeState extends State<MainHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '5 gr',
-                                        style: TextStyle(
+                                        '$fat',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Fat',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -1070,8 +1460,8 @@ class _MainHomeState extends State<MainHome> {
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -1081,13 +1471,13 @@ class _MainHomeState extends State<MainHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '0 gr',
-                                        style: TextStyle(
+                                        '$cholesterol',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Cholesterol',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -1109,8 +1499,8 @@ class _MainHomeState extends State<MainHome> {
                                     ),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
                                     top: 6.0,
                                     bottom: 6.0,
                                   ),
@@ -1120,13 +1510,13 @@ class _MainHomeState extends State<MainHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '146 mg',
-                                        style: TextStyle(
+                                        '$calcium',
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         'Calcium',
                                         style: TextStyle(
                                           fontSize: 11,
@@ -1164,12 +1554,12 @@ class _MainHomeState extends State<MainHome> {
                                 legendTextStyle: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.w400)),
-                            centerWidget: const Column(
+                            centerWidget: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('283'),
-                                Text(
+                                Text(' ${calories.split(' ')[0]}'),
+                                const Text(
                                   'kcal',
                                   style: TextStyle(color: Colors.grey),
                                 ),
@@ -1201,7 +1591,7 @@ class _MainHomeState extends State<MainHome> {
                       child: Column(
                         children: [
                           Text(
-                            detail,
+                            name,
                             style: const TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w600),
                           ),
