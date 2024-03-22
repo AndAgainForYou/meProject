@@ -109,7 +109,7 @@ class _CalculateLocalProductsWidgetState
                           isButtonActive();
                         });
                       },
-                      hapticFeedbackType: HapticFeedbackType.vibrate,
+                      hapticFeedbackType: HapticFeedbackType.lightImpact,
                       showPointer: false,
                       itemSize: 70,
                       children: List.generate(
