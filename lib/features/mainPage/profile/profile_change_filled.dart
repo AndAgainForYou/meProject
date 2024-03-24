@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/theme.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_activity_sport.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_alergic_list.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_bones_check.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_chronic_diseases.dart';
@@ -10,14 +11,10 @@ import 'package:platy/features/mainPage/profile/profileHealth/profile_current_di
 import 'package:platy/features/mainPage/profile/profileHealth/profile_current_goals.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_degistive.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_diversity_plan.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_eco_friendly_list.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_emotional.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_food_preferences.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_freq_sport.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_first.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_habits.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_second.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_health_status_third.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_height.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_hormone.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_local_products.dart';
@@ -27,7 +24,6 @@ import 'package:platy/features/mainPage/profile/profileHealth/profile_nutrition_
 import 'package:platy/features/mainPage/profile/profileHealth/profile_skin_beauty.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_supplements.dart';
 import 'package:platy/features/mainPage/profile/profileHealth/profile_weight.dart';
-import 'package:platy/features/mainPage/profile/profileHealth/profile_weight_loss_slider.dart';
 
 class ProfileChangeFilledPage extends StatefulWidget {
   const ProfileChangeFilledPage({super.key});
@@ -87,6 +83,12 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     const ProfileLocalProductsWidget(),
     const ProfileDiversityPlanWidget(),
   ];
+
+  @override
+  void initState() {
+    BlocProvider.of<PlatyBloc>(context).add(ProfileDataEvent({}));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

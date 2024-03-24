@@ -83,8 +83,8 @@ class UpdateUserModel {
   final bool health_test;
   final Map<String, dynamic>? blood_check_up;
   final Map<String, dynamic>? bone_check_up;
-  final Map<String, dynamic> digestive_health;
-  final String emotional_wellbeing;
+  final Map<String, dynamic>? digestive_health;
+  final String? emotional_wellbeing;
   final String water_consumption;
   final String closer_statements;
   final String sugar_statements;
@@ -138,8 +138,9 @@ class UpdateUserModel {
         'health_test': health_test,
         if (blood_check_up != null) 'blood_check_up': blood_check_up,
         if (bone_check_up != null) 'bone_check_up': bone_check_up,
-        'digestive_health': digestive_health,
-        'emotional_wellbeing': emotional_wellbeing,
+        if (digestive_health != null) 'digestive_health': digestive_health,
+        if (emotional_wellbeing != null)
+          'emotional_wellbeing': emotional_wellbeing,
         'closer_statements': closer_statements,
         'water_consumption': water_consumption,
         'sugar_statements': sugar_statements,
@@ -187,8 +188,8 @@ class UpdateUserModel {
         health_test = builder.health_test!,
         blood_check_up = builder.blood_check_up,
         bone_check_up = builder.bone_check_up,
-        digestive_health = builder.digestive_health!,
-        emotional_wellbeing = builder.emotional_wellbeing!,
+        digestive_health = builder.digestive_health,
+        emotional_wellbeing = builder.emotional_wellbeing,
         water_consumption = builder.water_consumption!,
         closer_statements = builder.closer_statements!,
         sugar_statements = builder.sugar_statements!,

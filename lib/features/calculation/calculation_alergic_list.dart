@@ -54,6 +54,7 @@ class _CalculateAlergicListWidgetState
   }
 
   void isActive() {
+    CalculateGlobalWidget.of(context).setButtonActivity(true);
     setState(() {
       if (controllerTextField!.text.isNotEmpty || choosedTitles.isNotEmpty) {
         alergicArray = _textValue != null ? _textValue!.split(',') : [];
@@ -62,8 +63,6 @@ class _CalculateAlergicListWidgetState
         CalculateGlobalWidget.of(context).userModelBuilder.alergies =
             choosedTitles;
         CalculateGlobalWidget.of(context).setButtonActivity(true);
-      } else {
-        CalculateGlobalWidget.of(context).setButtonActivity(false);
       }
     });
   }

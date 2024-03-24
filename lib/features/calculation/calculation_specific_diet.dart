@@ -27,7 +27,7 @@ class _CalculateSpecificDietWidgetState
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Do you follow any Specific\nDiet?',
+          'Do you follow any Specific Diet?',
           textAlign: TextAlign.center,
           style: whiteTheme.textTheme.bodyMedium,
         ),

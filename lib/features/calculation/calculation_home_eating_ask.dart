@@ -32,7 +32,7 @@ class _CalculateHomeEatingAskWidgetState
         ),
         const SizedBox(height: 14),
         const Text(
-          'Do you plan to have a meal outside of your\nhome this week?',
+          'Do you plan to have a meal outside of your home this week?',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Gilroy',

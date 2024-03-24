@@ -50,7 +50,7 @@ class _CalculateChronicDiseasesListWidgetState
         ),
         const SizedBox(height: 10),
         const Text(
-          'If you have not had any of these conditions,\nskip this step',
+          'If you have not had any of these conditions, skip this step',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Gilroy',
