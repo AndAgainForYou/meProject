@@ -39,18 +39,18 @@ android {
         versionName 'meyes 1.0'
     }
 
-    signingConfigs {
-       debug {
-           keyAlias 'androiddebugkey'
-        keyPassword 'android'
-        storeFile file('androiddebugkey.jks')
-        storePassword 'android'
+     signingConfigs {
+       release {
+           keyAlias 'your-key-alias'
+        keyPassword 'your-key-password'
+        storeFile file('path-to-your-keystore-file')
+        storePassword 'your-keystore-password'
        }
    }
 
     buildTypes {
       
-       debug {
+        release {
            signingConfig signingConfigs.debug
        }
     }
