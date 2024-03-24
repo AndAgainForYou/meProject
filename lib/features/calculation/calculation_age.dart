@@ -35,7 +35,7 @@ class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
             ),
             const SizedBox(height: 14),
             Text(
-              'This will help us make adjustments to your \npersonal plan',
+              'This will help us make adjustments to your personal plan',
               style: whiteTheme.textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),

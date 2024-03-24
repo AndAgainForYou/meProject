@@ -84,6 +84,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   int? indexHabitPage;
   int? indexBloodPage;
   int? indexBonesPage;
+  int? indexEmotionsPage;
+  int? indexDigestivePage;
+
   void setButtonActivity(bool isActive) {
     setState(() {
       _isButtonActive = isActive;
@@ -97,6 +100,18 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
           indexHabitPage = i + 1;
         });
         print(indexHabitPage);
+        break;
+      }
+    }
+  }
+
+  void checkIfDigestive(List<Widget> listWidgets) {
+    for (int i = 0; i < listWidgets.length; i++) {
+      if (listWidgets[i] is CalculateDigestiveHealthWidget) {
+        setState(() {
+          indexDigestivePage = i + 1;
+          indexEmotionsPage = indexDigestivePage! + 1;
+        });
         break;
       }
     }
@@ -123,7 +138,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         (userModelBuilder.health_test == true &&
             pageNotifier.value == indexBloodPage) ||
         (userModelBuilder.health_test == true &&
-            pageNotifier.value == indexBonesPage)) {
+            pageNotifier.value == indexBonesPage) ||
+        pageNotifier.value == indexDigestivePage ||
+        pageNotifier.value == indexEmotionsPage) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -309,6 +326,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                           setState(() {
                             checkIfHabbit(lisWidgets);
                             checkIfBlood(lisWidgets);
+                            checkIfDigestive(lisWidgets);
                           });
                           FocusScope.of(context).unfocus();
                           await CalculateGlobalWidget.of(context)

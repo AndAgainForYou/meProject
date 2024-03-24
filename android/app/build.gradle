@@ -40,16 +40,16 @@ android {
     }
 
      signingConfigs {
-       release {
+       debug {
            keyAlias 'androiddebugkey'
         keyPassword 'android'
-        storeFile file('platyKeystore.jks')
+        storeFile file('androiddebugkey.jks')
         storePassword 'android'
        }
    }
 
     buildTypes {
-        release {
+        debug {
             signingConfig signingConfigs.debug
         }
     }
