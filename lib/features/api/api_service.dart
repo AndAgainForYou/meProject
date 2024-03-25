@@ -48,10 +48,10 @@ class TokenManager {
 
 class ApiService {
   final Dio _dio;
-  final String _baseUrl = 'http://16.171.230.207/api/v1';
+  final String _baseUrl = 'http://16.171.254.131/api/v1';
 
   ApiService()
-      : _dio = Dio(BaseOptions(baseUrl: 'http://16.171.230.207/api/v1'));
+      : _dio = Dio(BaseOptions(baseUrl: 'http://16.171.254.131/api/v1'));
 
   Future<void> refreshToken() async {
     print('Refreshing');

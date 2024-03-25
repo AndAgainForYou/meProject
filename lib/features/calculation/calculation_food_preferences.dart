@@ -16,9 +16,9 @@ class _CalculateFoodPreferencesWidgetState
     extends State<CalculateFoodPreferencesWidget> {
   List<String> titles = [
     '1-2 TPD',
-    '3 TPD',
-    '4 TPD',
-    '5 TPD',
+    '3TPD',
+    '4TPD',
+    '5TPD',
     'Only snacks',
     'Intermediate Fasting',
   ];
