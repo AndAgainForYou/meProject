@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -1427,6 +1429,8 @@ class _MainHomeState extends State<MainHome> {
     }
   ];
 
+  bool _alert = true;
+
   IconData _getIconForTitle(String title, List<dynamic> details) {
     switch (title) {
       case 'Breakfast':
@@ -1587,57 +1591,66 @@ class _MainHomeState extends State<MainHome> {
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w600),
                           ),
-                          const SizedBox(height: 10),
-                          Container(
-                            constraints: BoxConstraints(
-                              maxHeight: 72,
-                              maxWidth:
-                                  MediaQuery.of(context).size.width * 0.92,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14.0),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.09000000357627869),
-                                  offset: Offset(1, 3),
-                                  blurRadius: 9,
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 17.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'WOW!',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Text(
-                                        'You are good! Keep up the good work',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.cancel),
-                                    onPressed: () {
-                                      // Add your cancel action here
-                                    },
+                          Visibility(
+                              visible: _alert,
+                              child: const SizedBox(height: 10)),
+                          Visibility(
+                            visible: _alert,
+                            child: Container(
+                              constraints: BoxConstraints(
+                                maxHeight: 72,
+                                maxWidth:
+                                    MediaQuery.of(context).size.width * 0.92,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14.0),
+                                color: Colors.white,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(
+                                        0, 0, 0, 0.09000000357627869),
+                                    offset: Offset(1, 3),
+                                    blurRadius: 9,
                                   ),
                                 ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 17.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'WOW!',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          'You are good! Keep up the good work',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.cancel),
+                                      onPressed: () {
+                                        // Add your cancel action here
+                                        setState(() {
+                                          _alert = false;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

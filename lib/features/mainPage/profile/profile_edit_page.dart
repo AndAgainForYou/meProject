@@ -203,18 +203,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     ),
                   ),
                   const SizedBox(height: 13),
-                  GestureDetector(
-                    onTap: () {
-                      openGallery();
-                    },
-                    child: const Text(
-                      'Set New Photo',
-                      style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
+                
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
                     child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -236,77 +237,83 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       const SizedBox(height: 30),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: 44.0,
-                          width: MediaQuery.of(context).size.width * 1,
-                          decoration: const BoxDecoration(
-                             borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(12.0),
-                                    topRight: Radius.circular(12.0),
-                                    bottomLeft: Radius.zero,
-                                    bottomRight: Radius.zero,
+                      Visibility(
+                        visible: false,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 44.0,
+                            width: MediaQuery.of(context).size.width * 1,
+                            decoration: const BoxDecoration(
+                               borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12.0),
+                                      topRight: Radius.circular(12.0),
+                                      bottomLeft: Radius.zero,
+                                      bottomRight: Radius.zero,
+                                    ),
+                              color: Colors.white,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Notifications",
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                                   ),
-                            color: Colors.white,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Notifications",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 18,
-                                ),
-                              ],
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 18,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProVersionPage()),
-                          );
-                        },
-                        child: Container(
-                          height: 44.0,
-                          width: MediaQuery.of(context).size.width * 1,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                    topLeft: Radius.zero,
-                                    topRight: Radius.zero,
-                                    bottomLeft: Radius.circular(12.0),
-                                    bottomRight: Radius.circular(12.0),
+                      Visibility(
+                        visible: false,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProVersionPage()),
+                            );
+                          },
+                          child: Container(
+                            height: 44.0,
+                            width: MediaQuery.of(context).size.width * 1,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                      topLeft: Radius.zero,
+                                      topRight: Radius.zero,
+                                      bottomLeft: Radius.circular(12.0),
+                                      bottomRight: Radius.circular(12.0),
+                                    ),
+                              color: Colors.white,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Сhange my subscription plan",
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                                   ),
-                            color: Colors.white,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Сhange my subscription plan",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 18,
-                                ),
-                              ],
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 18,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      
                       GestureDetector(
                         onTap: () {
                           _showCupertinoAlertDialog(context,

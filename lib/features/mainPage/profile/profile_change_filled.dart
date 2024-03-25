@@ -141,23 +141,7 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
             color: Colors.black,
           ),
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Text(
-                'Clear All',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.orange,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-          )
-        ],
+      
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         elevation: 0.0,
         scrolledUnderElevation: 0,
