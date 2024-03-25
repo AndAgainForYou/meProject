@@ -31,7 +31,7 @@ class _MainHomePageState extends State<MainHomePage> {
     _scrollControllers = List.generate(4, (_) => ScrollController());
     _scrollControllers.forEach((controller) {
       controller.addListener(_onScroll);
-      BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
+     
     });
   }
 
@@ -1459,6 +1459,7 @@ class _MainHomeState extends State<MainHome> {
   void initState() {
     super.initState();
     _currentPageIndex = 0;
+    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
   }
 
   bool _shouldShowDetails(String title) {
@@ -1909,289 +1910,230 @@ class _MainHomeState extends State<MainHome> {
                             }),
                           ),
                           const SizedBox(height: 30),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: dataList.map<Widget>((data) {
-                              if (data['day'] == _days) {
-                                // Display containers for the selected day
-                                return Column(
+
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: dataList.map<Widget>((data) {
+    if (data['day'] == _days) {
+      // Display containers for the selected day
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Column(
+              children: data['meals'].map<Widget>((meal) {
+                return Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      // width: MediaQuery.of(context).size.width * 0.90,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(24.0),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
-                                      child: Column(
-                                        children:
-                                            data['meals'].map<Widget>((meal) {
-                                          return Column(
+                                    Text(
+                                      meal['title'],
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width * 0.50,
+                                      child: Text(
+                                        meal['meal_title'],
+                                        style: const TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Image.asset(
+                                  _getImagePathForTitle(meal['title']),
+                                  width: 130,
+                                  height: 130,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Visibility(
+                            visible: meal['title'] == 'Breakfast'
+                                ? !_showDetails
+                                : meal['title'] == 'Lunch'
+                                    ? !_showDetails2
+                                    : meal['title'] == 'Dinner'
+                                        ? !_showDetails3
+                                        : meal['title'] == 'Snack'
+                                            ? !_showDetails4
+                                            : false,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _toggleDetailsForTitle(meal['title']);
+                                });
+                              },
+                              child: Center(
+                                child: Icon(
+                                  _getIconForTitle(meal['title'], meal['details']),
+                                  size: 30,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: _shouldShowDetails(meal['title']),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                right: 16.0,
+                                bottom: 2.0,
+                                left: 16.0,
+                              ),
+                              child: Column(
+                                children: [
+                                  ...meal['details'].map<Widget>((detail) {
+                                    return Column(
+                                      children: [
+                                        const Divider(),
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              _currentPageIndex = 0;
+                                            });
+                                            _showModalBottomSheet(
+                                              context,
+                                              detail['name'],
+                                              detail['amount'],
+                                              detail['calories'],
+                                              detail['protein'],
+                                              detail['fat'],
+                                              detail['cholesterol'],
+                                              detail['calcium'],
+                                            );
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const SizedBox(
-                                                height: 10,
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    detail['name'],
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    detail['amount'],
+                                                    style: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               Container(
-                                                // width: MediaQuery.of(context).size.width * 0.90,
+                                                width: 50,
+                                                height: 50,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  border: Border.all(
-                                                      color: Colors.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
+                                                  borderRadius: BorderRadius.circular(12.0),
+                                                  gradient: const LinearGradient(
+                                                    begin: Alignment(-0.5, -1.0),
+                                                    end: Alignment(0.5, 1.0),
+                                                    colors: [
+                                                      Color.fromRGBO(205, 201, 196, 0.24),
+                                                      Color.fromRGBO(205, 201, 196, 0.24),
+                                                    ],
+                                                    stops: [0.0, 1.0],
+                                                  ),
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 20.0),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                meal['title'],
-                                                                style:
-                                                                    const TextStyle(
-                                                                  fontSize: 17,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.50,
-                                                                child: Text(
-                                                                  meal[
-                                                                      'meal_title'],
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    fontSize:
-                                                                        13,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Image.asset(
-                                                            _getImagePathForTitle(
-                                                                meal['title']),
-                                                            width: 130,
-                                                            height: 130,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Visibility(
-                                                      visible: meal['title'] ==
-                                                              'Breakfast'
-                                                          ? !_showDetails
-                                                          : meal['title'] ==
-                                                                  'Lunch'
-                                                              ? !_showDetails2
-                                                              : meal['title'] ==
-                                                                      'Dinner'
-                                                                  ? !_showDetails3
-                                                                  : meal['title'] ==
-                                                                          'Snack'
-                                                                      ? !_showDetails4
-                                                                      : false,
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _toggleDetailsForTitle(
-                                                                meal['title']);
-                                                          });
-                                                        },
-                                                        child: Center(
-                                                          child: Icon(
-                                                            _getIconForTitle(
-                                                                meal['title'],
-                                                                meal[
-                                                                    'details']),
-                                                            size: 30,
-                                                          ),
+                                                padding: const EdgeInsets.all(8),
+                                                child: const Center(
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        '283',
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w400,
                                                         ),
                                                       ),
-                                                    ),
-                                                    if (_shouldShowDetails(
-                                                        meal['title']))
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          right: 16.0,
-                                                          bottom: 2.0,
-                                                          left: 16.0,
-                                                        ),
-                                                        child: Column(
-                                                          children: [
-                                                            ...meal['details']
-                                                                .map<Widget>(
-                                                                    (detail) {
-                                                              return Column(
-                                                                children: [
-                                                                  const Divider(),
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      setState(
-                                                                          () {
-                                                                        _currentPageIndex =
-                                                                            0;
-                                                                      });
-                                                                      _showModalBottomSheet(
-                                                                        context,
-                                                                        detail[
-                                                                            'name'],
-                                                                        detail[
-                                                                            'amount'],
-                                                                        detail[
-                                                                            'calories'],
-                                                                        detail[
-                                                                            'protein'],
-                                                                        detail[
-                                                                            'fat'],
-                                                                        detail[
-                                                                            'cholesterol'],
-                                                                        detail[
-                                                                            'calcium'],
-                                                                      );
-                                                                    },
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              detail['name'],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.w400,
-                                                                              ),
-                                                                            ),
-                                                                            Text(
-                                                                              detail['amount'],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 12,
-                                                                                fontWeight: FontWeight.w400,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        Container(
-                                                                          width:
-                                                                              50,
-                                                                          height:
-                                                                              50,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(12.0),
-                                                                            gradient:
-                                                                                const LinearGradient(
-                                                                              begin: Alignment(-0.5, -1.0),
-                                                                              end: Alignment(0.5, 1.0),
-                                                                              colors: [
-                                                                                Color.fromRGBO(205, 201, 196, 0.24),
-                                                                                Color.fromRGBO(205, 201, 196, 0.24),
-                                                                              ],
-                                                                              stops: [
-                                                                                0.0,
-                                                                                1.0
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                          padding: const EdgeInsets
-                                                                              .all(
-                                                                              8),
-                                                                          child:
-                                                                              const Center(
-                                                                            child:
-                                                                                Column(
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Text(
-                                                                                  '283',
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 12,
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'kcal',
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 12,
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          5),
-                                                                ],
-                                                              );
-                                                            }).toList(),
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  _toggleDetailsForTitle(
-                                                                      meal[
-                                                                          'title']);
-                                                                });
-                                                              },
-                                                              child: Center(
-                                                                child: Icon(
-                                                                  _getIconForTitle(
-                                                                      meal[
-                                                                          'title'],
-                                                                      meal[
-                                                                          'details']),
-                                                                  size: 30,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                      Text(
+                                                        'kcal',
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w400,
                                                         ),
                                                       ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ],
-                                          );
-                                        }).toList(),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                      ],
+                                    );
+                                  }).toList(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _toggleDetailsForTitle(meal['title']);
+                                      });
+                                    },
+                                    child: Center(
+                                      child: Icon(
+                                        _getIconForTitle(meal['title'], meal['details']),
+                                        size: 30,
                                       ),
                                     ),
-                                    const SizedBox(height: 16.0),
-                                  ],
-                                );
-                              } else {
-                                // Return empty container for other days
-                                return Container();
-                              }
-                            }).toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+        ],
+      );
+    } else {
+      // Return empty container for other days
+      return Container();
+    }
+  }).toList(),
+),
+
+
+
+                          
                         ],
                       ),
                     ),
