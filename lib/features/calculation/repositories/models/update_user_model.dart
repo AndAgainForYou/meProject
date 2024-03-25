@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class UpdateUserModel {
   UpdateUserModel(
       this.alergies,
@@ -108,7 +110,7 @@ class UpdateUserModel {
         if (habits != null) 'habits': habits,
         if (medicaments != null) 'medicaments': medicaments,
         if (outside_eating_cuisine != null)
-          'outside_eating_cousin': outside_eating_cuisine,
+          'outside_eating_cuisine': outside_eating_cuisine,
         if (delivery_cuisine != null) 'delivery_cousin': delivery_cuisine,
         if (sport_nutritions != null) 'sport_nutritions': sport_nutritions,
         'name': name,

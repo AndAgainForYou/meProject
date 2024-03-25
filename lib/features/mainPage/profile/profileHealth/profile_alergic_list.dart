@@ -15,27 +15,39 @@ class ProfileAlergicListWidget extends StatefulWidget {
 
 class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
   List<String> titles = [
+    'Dairy',
+    'Peanuts',
+    'Tree Nuts',
+    'Gluten',
+    'Wheat',
     'Shellfish',
-    'Nuts',
-    'Eggs',
-    'Milk',
+    'Selery',
+    'Fish',
     'Soy',
+    'Eggs',
+    'Sesame',
   ];
-  List<String> pictureTitle = [
-    'shellfish',
-    'nuts',
-    'eggs',
+  List<String?> pictureTitle = [
     'milk',
+    null,
+    'nuts',
+    null,
+    null,
+    'shellfish',
+    null,
+    null,
     'soy',
+    'eggs',
+    null
   ];
-  final List<String> _selectedOptions = List.generate(5, (index) => '');
+  final List<String> _selectedOptions = List.generate(11, (index) => '');
   TextEditingController? controllerTextField;
   List<String> alergicArray = [];
   String? _textValue;
 
   List<String> choosedTitles = [];
   Map<String, dynamic> updateProfileData = {};
-  bool _isButtonActive = false;
+  bool _isButtonActive = true;
 
   @override
   void initState() {
@@ -49,9 +61,6 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
         alergicArray = _textValue != null ? _textValue!.split(',') : [];
         choosedTitles.addAll(alergicArray);
         updateProfileData['alergies'] = choosedTitles;
-        _isButtonActive = true;
-      } else {
-        _isButtonActive = false;
       }
     });
   }
@@ -220,8 +229,9 @@ class _ProfileAlergicListWidgetState extends State<ProfileAlergicListWidget> {
                                 ),
                               ],
                             ),
-                            Image.asset(
-                                'assets/images/${pictureTitle[index]}.png'),
+                            if (pictureTitle[index] != null)
+                              Image.asset(
+                                  'assets/images/${pictureTitle[index]}.png'),
                           ],
                         ),
                       );

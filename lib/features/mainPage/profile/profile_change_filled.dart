@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
@@ -83,6 +85,34 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
     const ProfileLocalProductsWidget(),
     const ProfileDiversityPlanWidget(),
   ];
+  Map<String, dynamic> jsonData = {};
+  List<dynamic> subtitleList = List.generate(22, (index) => null);
+
+  String makeSubTitle(dynamic value) {
+    if (value == null) {
+      return 'Nothing yet...';
+    } else if (value is String) {
+      return value;
+    } else if (value is Map) {
+      if (value.isEmpty) {
+        return 'Nothing yet...';
+      } else {
+        return value.entries
+            .map((entry) => '${entry.key} (${entry.value})')
+            .join(', ');
+      }
+    } else if (value is int) {
+      return value.toString();
+    } else if (value is List) {
+      if (value.isEmpty) {
+        return 'Nothing yet...';
+      } else {
+        return value.map((value) => '$value').join(', ');
+      }
+    } else {
+      return 'Nothing yet...';
+    }
+  }
 
   @override
   void initState() {
@@ -116,27 +146,61 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         elevation: 0.0,
         scrolledUnderElevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-              top: 10.0, left: 10.0, right: 10.0, bottom: 10.0),
-          child: Column(
-            children: [
-              Text(
-                'Change filled data',
-                textAlign: TextAlign.center,
-                style: whiteTheme.textTheme.bodyMedium,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Column(
-                children: generateListWidgets(elementsTitles),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
+      body: BlocListener<PlatyBloc, PlatyBlocState>(
+        listener: (context, state) {
+          if (state is ProfileIncludesDataState) {
+            setState(() {
+              jsonData.addAll(state.profilePageData);
+              subtitleList = [
+                jsonData['height'],
+                jsonData['weight'],
+                jsonData['alergies'],
+                jsonData['chronic_diseases'],
+                jsonData['activities_frequency'],
+                jsonData['mental_health_goals'],
+                jsonData['beauty_goals'],
+                "${jsonData['tpd_count']} (${jsonData['tpds'].first})",
+                jsonData['current_diet'],
+                jsonData['cooking_preferences'],
+                jsonData['sport_nutritions'],
+                jsonData['blood_check_up'],
+                jsonData['bone_check_up'],
+                jsonData['digestive_health'],
+                jsonData['emotional_wellbeing'],
+                jsonData['current_goals'],
+                jsonData['habits'],
+                jsonData['supplements'],
+                jsonData['medicaments'],
+                jsonData['delivery_cuisine'],
+                "${jsonData['region']}\n${jsonData['season']}",
+                jsonData['diversity'],
+              ];
+            });
+            print('JSON profile data: ${jsonData}');
+          }
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: 10.0, left: 10.0, right: 10.0, bottom: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  'Change filled data',
+                  textAlign: TextAlign.center,
+                  style: whiteTheme.textTheme.bodyMedium,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Column(
+                  children: generateListWidgets(elementsTitles),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -180,7 +244,7 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
               width: MediaQuery.of(context).size.width * 1,
-              height: 140,
+              height: 130,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
@@ -222,7 +286,8 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Vitamin D (Normal)\nCalcium (Normal)…', //TODO: Make data from server
+                            makeSubTitle(subtitleList[index]),
+                            softWrap: true,
                             maxLines: 2,
                             style: const TextStyle(
                               fontFamily: 'Gilroy',

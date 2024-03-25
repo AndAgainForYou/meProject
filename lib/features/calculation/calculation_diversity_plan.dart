@@ -15,9 +15,9 @@ class CalculateDiversityPlanWidget extends StatefulWidget {
 class _CalculateDiversityPlanWidgetState
     extends State<CalculateDiversityPlanWidget> {
   List<String> titles = [
-    'Each day new meal plan',
+    'Each new day new meal plan',
     'New meal plan each second day',
-    'Same meal plan Mo-Fri and diverse plan for Sa-So',
+    'Same meal plan Mo-Fr and diverse plan for Sa-So',
   ];
   int? _selectedIndex;
 
