@@ -117,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                         // openGallery(); // This is where you handle the tap event
+                          // openGallery(); // This is where you handle the tap event
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.transparent,
@@ -177,7 +177,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       Text(
                                         "Edit Profile",
-                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w300),
                                       ),
                                       Icon(
                                         Icons.arrow_forward_ios,
@@ -201,11 +203,11 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: MediaQuery.of(context).size.width * 1,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
-                                    topLeft: Radius.zero,
-                                    topRight: Radius.zero,
-                                    bottomLeft: Radius.circular(12.0),
-                                    bottomRight: Radius.circular(12.0),
-                                  ),
+                                  topLeft: Radius.zero,
+                                  topRight: Radius.zero,
+                                  bottomLeft: Radius.circular(12.0),
+                                  bottomRight: Radius.circular(12.0),
+                                ),
                                 color: Colors.white,
                               ),
                               child: const Padding(
@@ -220,9 +222,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       style: TextStyle(
                                         fontFamily: 'Gilroy',
                                         fontSize: 16,
-                                        
                                         fontWeight: FontWeight.w300,
-                                        
                                       ),
                                     ),
                                     Icon(
@@ -245,22 +245,25 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 44.0,
                             width: MediaQuery.of(context).size.width * 1,
                             decoration: const BoxDecoration(
-                               borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(12.0),
-                                      topRight: Radius.circular(12.0),
-                                      bottomLeft: Radius.zero,
-                                      bottomRight: Radius.zero,
-                                    ),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12.0),
+                                topRight: Radius.circular(12.0),
+                                bottomLeft: Radius.zero,
+                                bottomRight: Radius.zero,
+                              ),
                               color: Colors.white,
                             ),
                             child: const Padding(
                               padding: EdgeInsets.only(left: 16.0, right: 16.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "Notifications",
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300),
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -287,21 +290,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             width: MediaQuery.of(context).size.width * 1,
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                      topLeft: Radius.zero,
-                                      topRight: Radius.zero,
-                                      bottomLeft: Radius.circular(12.0),
-                                      bottomRight: Radius.circular(12.0),
-                                    ),
+                                topLeft: Radius.zero,
+                                topRight: Radius.zero,
+                                bottomLeft: Radius.circular(12.0),
+                                bottomRight: Radius.circular(12.0),
+                              ),
                               color: Colors.white,
                             ),
                             child: const Padding(
                               padding: EdgeInsets.only(left: 16.0, right: 16.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "Сhange my subscription plan",
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300),
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -313,7 +319,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      
                       GestureDetector(
                         onTap: () {
                           _showCupertinoAlertDialog(context,
@@ -333,7 +338,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 Text(
                                   "Log Out",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w300),
                                 ),
                                 Icon(
                                   Icons.arrow_forward_ios,

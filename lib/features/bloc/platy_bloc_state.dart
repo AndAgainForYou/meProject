@@ -133,7 +133,7 @@ class NotesUpdateByIdSuccessState extends PlatyBlocState {
 }
 
 class MealPlanDataState extends PlatyBlocState {
-  final dynamic successMessage;
+  final List<Map<String, dynamic>> successMessage;
 
   MealPlanDataState(this.successMessage);
 

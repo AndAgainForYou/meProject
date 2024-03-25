@@ -31,7 +31,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent({}));
+    //BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
   }

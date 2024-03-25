@@ -29,7 +29,6 @@ class SignUpWithGoogleEvent extends PlatyBlocEvent {
   SignUpWithGoogleEvent();
 }
 
-
 class LogInWithFacebookEvent extends PlatyBlocEvent {
   LogInWithFacebookEvent();
 }
@@ -180,7 +179,7 @@ class UpdateProfilePatchEvent extends PlatyBlocEvent {
 // week meal plan
 
 class MealPlanDataEvent extends PlatyBlocEvent {
-  final Map<String, dynamic>  data;
+  final List<Map<String, dynamic>> data;
 
   MealPlanDataEvent(this.data);
 }

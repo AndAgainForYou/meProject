@@ -119,7 +119,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       }
     });
 
-     on<SignUpWithGoogleEvent>((event, emit) async {
+    on<SignUpWithGoogleEvent>((event, emit) async {
       try {
         final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
         GoogleSignInAuthentication? googleAuth =
@@ -215,7 +215,7 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       }
     });
 
-     on<SignUpWithAppleEvent>((event, emit) async {
+    on<SignUpWithAppleEvent>((event, emit) async {
       try {
         final result = await SignInWithApple.getAppleIDCredential(
           scopes: [
@@ -395,10 +395,10 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<MealPlanDataEvent>((event, emit) async {
       //partical update
       final response =
-          await apiService.fetchData('/week-meelplan/', event.data);
+          await apiService.fetchDataPlan('/week-meelplan/', event.data);
 
       print(response);
-      //emit(MealPlanDataState(response));
+      emit(MealPlanDataState(response.cast<Map<String, dynamic>>()));
     });
   }
 }
