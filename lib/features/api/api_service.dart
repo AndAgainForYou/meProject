@@ -48,9 +48,10 @@ class TokenManager {
 
 class ApiService {
   final Dio _dio;
-  final String _baseUrl = 'http://16.171.1.90/api/v1';
+  final String _baseUrl = 'http://16.171.230.207/api/v1';
 
-  ApiService() : _dio = Dio(BaseOptions(baseUrl: 'http://16.171.1.90/api/v1'));
+  ApiService()
+      : _dio = Dio(BaseOptions(baseUrl: 'http://16.171.230.207/api/v1'));
 
   Future<void> refreshToken() async {
     print('Refreshing');
@@ -87,9 +88,7 @@ class ApiService {
     }
   }
 
-
-   Future<List> fetchDataPlan(
-      String path, Map<String, dynamic> getData) async {
+  Future<List> fetchDataPlan(String path, Map<String, dynamic> getData) async {
     final response = await _dio.post(
       path,
       data: getData,
@@ -106,9 +105,6 @@ class ApiService {
       return response.data;
     }
   }
-
-
-
 
   Future<Map<String, dynamic>> postData(
       String path, Map<String, dynamic> postsData) async {
