@@ -88,8 +88,9 @@ class ApiService {
     }
   }
 
-  Future<List> fetchDataPlan(String path, Map<String, dynamic> getData) async {
-    final response = await _dio.post(
+  Future<List> fetchDataPlan(
+      String path, List<Map<String, dynamic>> getData) async {
+    final response = await _dio.get(
       path,
       data: getData,
       queryParameters: TokenManager._token?.isNotEmpty == true

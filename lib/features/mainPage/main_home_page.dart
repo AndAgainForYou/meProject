@@ -31,6 +31,7 @@ class _MainHomePageState extends State<MainHomePage> {
     _scrollControllers = List.generate(4, (_) => ScrollController());
     _scrollControllers.forEach((controller) {
       controller.addListener(_onScroll);
+      BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
     });
   }
 
@@ -187,7 +188,7 @@ class _MainHomeState extends State<MainHome> {
   int _days = 1;
 
   // Sample data
-  final List<Map<String, dynamic>> dataList = [
+  List<Map<String, dynamic>> dataList = [
     {
       "day": 1,
       "meals": [
@@ -1528,8 +1529,9 @@ class _MainHomeState extends State<MainHome> {
     return BlocBuilder<PlatyBloc, PlatyBlocState>(
       builder: (context, state) {
         if (state is MealPlanDataState) {
-          //Map<String, dynamic> profileData = state.profilePageData;
-          //emailText = profileData['user_email'];
+          List<Map<String, dynamic>> dataFromJson = state.successMessage;
+          print('Data: $dataFromJson');
+          dataList = dataFromJson;
         }
         return Stack(
           children: [
